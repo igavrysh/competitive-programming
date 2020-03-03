@@ -15,7 +15,7 @@ public class Main {
 
     public static void test2() {
         int result = solution.lengthOfLongestSubstring("bbbbb");
-        assert(result == 1);
+        assert(result == 2);
     }
 
     public static void test3() {
