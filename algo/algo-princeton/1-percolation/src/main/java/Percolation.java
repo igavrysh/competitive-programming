@@ -15,7 +15,7 @@ public class Percolation {
             throw new IllegalArgumentException("Grid size must be positive number");
         }
         this.n = n;
-        uf = new WeightedQuickUnionUnionFind(n + 2);
+        uf = new WeightedQuickUnionUnionFind(n * n + 2);
         opened = new boolean[n * n];
         for (int i = 0; i < n; i++) {
             uf.union(i, n);
@@ -121,6 +121,7 @@ class WeightedQuickUnionUnionFind {
 
     public WeightedQuickUnionUnionFind(int N) {
         id = new int[N];
+        sz = new int[N];
 
         for (int i = 0; i < N; i++) {
             id[i] = i;
