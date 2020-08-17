@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution {
+public class SolutionArrayRecreation {
   public List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> lhs = new ArrayList<>();
     if (root == null) {

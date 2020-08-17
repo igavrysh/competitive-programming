@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SolutionResultPassedAsArgument {
+
   public List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> result = new ArrayList<>();
     inorderTraversal(root, result);
