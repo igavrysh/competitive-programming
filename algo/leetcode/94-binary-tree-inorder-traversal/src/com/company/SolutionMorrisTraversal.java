@@ -8,6 +8,9 @@ public class SolutionMorrisTraversal {
     TreeNode current = root;
 
     TreeNode resultRootNode = root;
+    TreeNode previousNode = null;
+
+    List<Integer> result = new ArrayList<>();
 
     while (current != null) {
       if (current.left != null) {
@@ -23,18 +26,26 @@ public class SolutionMorrisTraversal {
         }
         TreeNode temp = current;
         current = current.left;
+        if (previousNode != null) {
+          previousNode.right = current;
+        }
         temp.left = null;
       } else {
+        previousNode = current;
+        result.add(current.val);
         current = current.right;
       }
     }
 
+    /*
     ArrayList<Integer> result = new ArrayList<>();
     TreeNode pointer = resultRootNode;
     while(pointer != null) {
       result.add(pointer.val);
       pointer = pointer.right;
     }
+
+     */
 
     return result;
   }
