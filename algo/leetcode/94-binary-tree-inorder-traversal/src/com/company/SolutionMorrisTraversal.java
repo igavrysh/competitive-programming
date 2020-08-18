@@ -37,16 +37,6 @@ public class SolutionMorrisTraversal {
       }
     }
 
-    /*
-    ArrayList<Integer> result = new ArrayList<>();
-    TreeNode pointer = resultRootNode;
-    while(pointer != null) {
-      result.add(pointer.val);
-      pointer = pointer.right;
-    }
-
-     */
-
     return result;
   }
 }
