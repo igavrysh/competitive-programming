@@ -1,13 +1,23 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Solution {
   public List<List<Integer>> permute(int[] nums) {
-    return new ArrayList<>b();
+    Set<Integer> sNums = new HashSet<>();
+    for (Integer num : nums) {
+      sNums.add(num);
+    }
+
+    return permuteInternal(
+        sNums,
+        nums.length,
+        new ArrayList<Integer>());
   }
 
   private  List<List<Integer>> permuteInternal(
@@ -35,10 +45,6 @@ public class Solution {
               partialResultToPass));
     }
 
-
     return output;
   }
-
-
-
 }
