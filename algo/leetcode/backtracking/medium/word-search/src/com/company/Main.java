@@ -12,7 +12,7 @@ public class Main {
     Solution solution = new Solution();
     boolean passed1 = solution.exist(board, "ABCCED") == true;
     boolean passed2 = solution.exist(board, "SEE") == true;
-    boolean passed3 = solution.exist(board, "ABCB") == true;
+    boolean passed3 = solution.exist(board, "ABCB") == false;
     boolean passed = passed1 && passed2 && passed3;
     System.out.println("test1:" + (passed ? "passed" : "failed"));
   }
