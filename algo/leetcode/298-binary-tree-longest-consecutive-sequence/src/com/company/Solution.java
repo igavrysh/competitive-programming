@@ -24,6 +24,8 @@ public class Solution {
       counter = 1;
     }
 
-    return longestConsecutiveInternal(node.right, node.val, maxReached, counter);
+    return Math.max(
+        longestConsecutiveInternal(node.right, node.val, maxReached, counter),
+        longestConsecutiveInternal(node.left, node.val, maxReached, counter));
   }
 }
