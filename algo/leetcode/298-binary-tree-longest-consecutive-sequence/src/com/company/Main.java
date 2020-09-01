@@ -29,7 +29,7 @@ public class Main {
             )
         )
     );
-    Solution solution = new Solution();
+    SolutionByKevin solution = new SolutionByKevin();
     int output = solution.longestConsecutive(root);
     System.out.println("test1:" + (output == 3 ? "passed" : "failed"));
   }
@@ -56,7 +56,7 @@ public class Main {
         )
 
     );
-    Solution solution = new Solution();
+    SolutionByKevin solution = new SolutionByKevin();
     int output = solution.longestConsecutive(root);
     System.out.println("test2:" + (output == 3 ? "passed" : "failed"));
   }
@@ -83,7 +83,7 @@ public class Main {
             new TreeNode(1),
             null),
             null));
-    Solution solution = new Solution();
+    SolutionByKevin solution = new SolutionByKevin();
     int output = solution.longestConsecutive(root);
     System.out.println("test3:" + (output == 2 ? "passed" : "failed"));
   }
