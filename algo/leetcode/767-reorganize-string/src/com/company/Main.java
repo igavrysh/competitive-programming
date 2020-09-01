@@ -23,9 +23,41 @@ public class Main {
     System.out.println("test3:" + (passed ? "passed" : "failed"));
   }
 
+  public static void test4() {
+    SolutionByKevin solution = new SolutionByKevin();
+    String output = solution.reorganizeString("aabb");
+    boolean passed = output.equals("abab") || output.equals("baba");
+    System.out.println("test4:" + (passed ? "passed" : "failed"));
+  }
+
+  public static void test5() {
+    SolutionByKevin solution = new SolutionByKevin();
+    String output = solution.reorganizeString("bbaa");
+    boolean passed = output.equals("abab") || output.equals("baba");
+    System.out.println("test5:" + (passed ? "passed" : "failed"));
+  }
+
+  public static void test6() {
+    SolutionByKevin solution = new SolutionByKevin();
+    String output = solution.reorganizeString("abab");
+    boolean passed = output.equals("abab") || output.equals("baba");
+    System.out.println("test6:" + (passed ? "passed" : "failed"));
+  }
+
+  public static void test7() {
+    SolutionByKevin solution = new SolutionByKevin();
+    String output = solution.reorganizeString("baba");
+    boolean passed = output.equals("abab") || output.equals("baba");
+    System.out.println("test7:" + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     test1();
     test2();
     test3();
+    test4();
+    test5();
+    test6();
+    test7();
   }
 }
