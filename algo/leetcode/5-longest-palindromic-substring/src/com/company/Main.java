@@ -18,8 +18,17 @@ public class Main {
     System.out.println("test2:" + (passed ? "passed" : "failed"));
   }
 
+  public static void test3() {
+    String input = "babaddtattarrattatddetartrateedredividerb";
+    Solution solution = new Solution();
+    String output = solution.longestPalindrome(input);
+    boolean passed = output.equals("bb");
+    System.out.println("test3:" + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     test1();
     test2();
+    test3();
   }
 }
