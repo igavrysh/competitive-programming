@@ -29,7 +29,6 @@ public class SolutionByKevin {
       if (counts.get(next) > 0) {
         maxHeap.add(next);
       }
-
     }
     if (!maxHeap.isEmpty()) {
       char last = maxHeap.remove();
