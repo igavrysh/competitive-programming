@@ -20,13 +20,13 @@ public class Main {
   private static void test3() {
     Solution solution = new Solution();
     int output = solution.coinChange(new int[]{186, 419, 83, 408}, 6249);
-    System.out.println("test3 finished execution");
+    boolean passed = output == 20;
+    System.out.println("test3:" + (passed ? "passed" : "failed"));
   }
 
-
   public static void main(String[] args) {
-    //test1();
+    test1();
     test2();
-    //test3();
+    test3();
   }
 }
