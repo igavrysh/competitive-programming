@@ -89,12 +89,12 @@ public class Main {
   public static void test13() {
     Solution solution = new Solution();
     boolean output = solution.isMatch("aaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*a*a*a*c");
-    boolean passed = output == true;
+    boolean passed = output == false;
     System.out.println("test13:" + (passed ? "passed" : "failed"));
   }
 
   public static void main(String[] args) {
-    /*
+
     test1();
     test2();
     test3();
@@ -107,8 +107,6 @@ public class Main {
     test10();
     test11();
     test12();
-
-     */
     test13();
   }
 }

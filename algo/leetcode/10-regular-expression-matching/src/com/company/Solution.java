@@ -3,87 +3,81 @@ package com.company;
 import java.util.*;
 
 class Solution {
-  public boolean isMatch(String s, String p) {
-    List<Set<Integer>> E = new ArrayList<>();
-    List<Character> V = new ArrayList<>();
-    List<Boolean> isOptional = new ArrayList<>();
-    s = "s" + s + "e";
-    p = "s" + p + "e";
-
-    for (int i = 0; i < p.length(); i++) {
-      Character c = p.charAt(i);
-      if (c != '*') {
-        V.add(c);
-        E.add(new HashSet<>());
-        isOptional.add(Boolean.FALSE);
-      } else {
-        isOptional.set(isOptional.size() - 1, Boolean.TRUE);
-      }
-
-      if (c != '*' && V.size() > 1) {
-        Set<Integer> e = E.get(V.size() - 2);
-        e.add(V.size() - 1);
-      } else if (c == '*' && V.size() > 0) {
-        Set<Integer> e = E.get(V.size() - 1);
-        e.add(V.size() - 1);
-        if (V.size() > 2) {
-          Set<Integer> ePrev = E.get(V.size() - 2);
-        }
-      }
-    }
-    if (V.size() == 0 && s.length() == 0) {
-      return true;
+  private List<Boolean> DFS(List<List<Integer>> G, List<Integer> sp) {
+    List<Boolean> marked = new ArrayList<>();
+    for (int i = 0; i < G.size(); i++) {
+      marked.add(false);
     }
 
-    if (V.size() == 0 && s.length() != 0) {
-      return false;
+    for (Integer i = 0; i < sp.size(); i++) {
+      DFSInternal(G, sp.get(i), marked);
     }
-
-    return DFS(0, s, 0, E, V, isOptional);
+    return marked;
   }
 
-  private boolean DFS(
-      int i,
-      String s,
-      int j,
-      List<Set<Integer>> E,
-      List<Character> V,
-      List<Boolean> isOptional
-  ) {
-    if (i >= s.length()) {
-      return false;
+  private void DFSInternal(List<List<Integer>> G, Integer v, List<Boolean> marked) {
+    marked.set(v, true);
+    List<Integer> adj = G.get(v);
+    for (int i = 0; i < adj.size(); i++) {
+      if (!marked.get(adj.get(i))) {
+        DFSInternal(G, adj.get(i), marked);
+      }
+    }
+  }
+
+  public boolean isMatch(String s, String p) {
+    char[] regexp = p.toCharArray();
+    List<List<Integer>> G = new ArrayList<>();
+    for (int i = 0; i < p.length() + 1; i++) {
+      G.add(new ArrayList<>());
     }
 
-    if (i == s.length() - 1 && j == V.size() - 1) {
-      return true;
-    }
+    for (int i = 0; i < p.length(); i++) {
+      if (i < regexp.length - 1 && regexp[i + 1] == '*') {
+        G.get(i).add(i + 1);
+        G.get(i + 1).add(i);
+      }
 
-    Character c = s.charAt(i);
-    Character p = V.get(j);
-    Boolean isOpt = isOptional.get(j);
-    boolean result = false;
-    if (p == '.' || c == p) {
-      Set<Integer> e = E.get(j);
-      for (Integer adj : e) {
-        boolean output = DFS(i + 1, s, adj, E, V, isOptional);
-        if (output == true) {
-          result = true;
-        }
+      if (regexp[i] == '*') {
+        G.get(i).add(i + 1);
       }
     }
 
-    if (isOpt) {
-      Set<Integer> e = E.get(j);
-      for (Integer adj : e) {
-        if (adj.equals(Integer.valueOf(j))) {
-          boolean output = DFS(i, s, adj, E, V, isOptional);
-          if (output == true) {
-            result = true;
-          }
-        }
+    char[] input = s.toCharArray();
+
+    List<Integer> pc = new ArrayList<>();
+    List<Integer> initial = new ArrayList<>();
+    initial.add(0);
+    List<Boolean> marked = DFS(G, initial);
+    for (int j = 0; j < marked.size(); j++) {
+      if (marked.get(j)) {
+        pc.add(j);
       }
     }
 
-    return result;
+    for (int i = 0; i < input.length; i++) {
+      List<Integer> matched = new ArrayList<>();
+
+      for (Integer v : pc) {
+        if (v < regexp.length
+            && (regexp[v] == input[i] || regexp[v] == '.')
+        ) {
+          matched.add(v + 1);
+        }
+      }
+      pc = new ArrayList<>();
+      marked = DFS(G, matched);
+      for (int j = 0; j < marked.size(); j++) {
+        if (marked.get(j)) {
+          pc.add(j);
+        }
+      }
+    }
+    for (int i : pc) {
+      if (i == p.length()) {
+        return true;
+      }
+    }
+    return false;
   }
 }
