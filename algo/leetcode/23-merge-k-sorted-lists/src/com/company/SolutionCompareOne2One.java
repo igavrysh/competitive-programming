@@ -1,6 +1,6 @@
 package com.company;
 
-public class Solution {
+public class SolutionCompareOne2One {
 
   public ListNode mergeKLists(ListNode[] lists) {
     ListNode output = null;
