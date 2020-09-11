@@ -27,3 +27,9 @@ DP
 * Hard
   * Create Maximum Number https://leetcode.com/problems/create-maximum-number/
 
+
+
+Geometry
+
+* Hard
+  * 587. Erect the Fence https://leetcode.com/problems/erect-the-fence/
