@@ -18,7 +18,7 @@ public class Main {
             )
         )
     );
-    SolutionRecursive solution = new SolutionRecursive();
+    SolutionIterative solution = new SolutionIterative();
     ListNode output = solution.reverseList(input);
     boolean passed = output != null
         && output.val == 5
@@ -34,7 +34,7 @@ public class Main {
     ListNode input = new ListNode(
         1
     );
-    SolutionRecursive solution = new SolutionRecursive();
+    SolutionIterative solution = new SolutionIterative();
     ListNode output = solution.reverseList(input);
     boolean passed = output != null
         && output.val == 1
@@ -44,12 +44,11 @@ public class Main {
 
   public static void test3() {
     ListNode input = null;
-    SolutionRecursive solution = new SolutionRecursive();
+    SolutionIterative solution = new SolutionIterative();
     ListNode output = solution.reverseList(input);
     boolean passed = output == null;
     System.out.println("test2: " + (passed ? "passed" : "failed"));
   }
-
 
   public static void main(String[] args) {
     test1();
