@@ -1,4 +1,4 @@
-###94. Binary Tree Inorder Traversal
+# 94. Binary Tree Inorder Traversal
 Medium
 
 Given a binary tree, return the inorder traversal of its nodes' values.
