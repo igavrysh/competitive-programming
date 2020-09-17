@@ -9,7 +9,7 @@ public class Solution {
     Trie trie = new Trie();
     for (int i = 0; i < board.length; i++) {
       for (int j = 0; j < board[i].length; j++) {
-        buildTrie(trie, "", new HashSet<>(), i, j, board);
+        buildTrie(trie, "", i, j, board);
       }
     }
 
@@ -23,24 +23,24 @@ public class Solution {
     return output;
   }
 
-  private void buildTrie(Trie output, String acc, HashSet<String> path, int i, int j, char[][]board) {
+  private void buildTrie(Trie trie, String acc, int i, int j, char[][]board) {
     if (i < 0 || j < 0 || i >= board.length || j >= board[i].length) {
-      output.insert(acc);
+      trie.insert(acc);
       return;
     }
 
-    String key = Integer.toString(i) + "_" + Integer.toString(j);
-    if (path.contains(key)) {
+    char c = board[i][j];
+    if (c == '#') {
       return;
-    } else {
-      path.add(key);
     }
-    buildTrie(output, acc + board[i][j], path, i+1, j, board);
-    buildTrie(output, acc + board[i][j], path, i, j+1, board);
-    buildTrie(output, acc + board[i][j], path, i-1, j, board);
-    buildTrie(output, acc + board[i][j], path, i, j-1, board);
 
-    path.remove(key);
+    board[i][j] = '#';
+
+    buildTrie(trie, acc + c, i+1, j, board);
+    buildTrie(trie, acc + c, i-1, j, board);
+    buildTrie(trie, acc + c, i, j+1, board);
+    buildTrie(trie, acc + c, i, j-1, board);
+    board[i][j] = c;
   }
 
   public class Trie {

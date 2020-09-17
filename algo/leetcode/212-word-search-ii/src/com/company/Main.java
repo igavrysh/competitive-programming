@@ -31,11 +31,9 @@ public class Main {
     };
     String[] words = new String[] {"abbbababaa"};
     List<String> output = solution.findWords(board, words);
-    boolean passed = output.contains("eat")
-        && output.contains("oath")
-        && output.size() == 2;
+    boolean passed = output.contains("abbbababaa")
+        && output.size() == 1;
     System.out.println("test1:" + (passed ? "passed" : "failed"));
-
   }
 
   public static void main(String[] args) {
