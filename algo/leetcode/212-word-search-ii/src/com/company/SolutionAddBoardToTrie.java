@@ -1,46 +1,47 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-public class Solution {
 
+public class SolutionAddBoardToTrie {
   public List<String> findWords(char[][] board, String[] words) {
     Trie trie = new Trie();
-    for (String w : words) {
-      trie.insert(w);
-    }
-
-    Set<String> outputSet = new HashSet<>();
     for (int i = 0; i < board.length; i++) {
       for (int j = 0; j < board[i].length; j++) {
-        DFS(i, j, board, trie, outputSet, "");
+        buildTrie(trie, "", i, j, board);
       }
     }
-    return new ArrayList<>(outputSet);
+
+    List<String> output = new ArrayList<>();
+
+    for (String word : words) {
+      if (trie.searchPrefix(word) != null) {
+        output.add(word);
+      }
+    }
+    return output;
   }
 
-  private void DFS(int i, int j, char[][] board, Trie words, Set<String> output, String acc) {
-    if (!words.startsWith(acc)) {
-      return;
-    }
-
-    if (words.search(acc)) {
-      output.add(acc);
-    }
-
-    if (i < 0 || j < 0 || i >= board.length || j >= board[i].length || board[i][j] == '#') {
+  private void buildTrie(Trie trie, String acc, int i, int j, char[][]board) {
+    if (i < 0 || j < 0 || i >= board.length || j >= board[i].length) {
+      trie.insert(acc);
       return;
     }
 
     char c = board[i][j];
+
+
+    if (c == '#') {
+      return;
+    }
+
     board[i][j] = '#';
-    DFS(i+1, j, board, words, output, acc + c);
-    DFS(i-1, j, board, words, output, acc + c);
-    DFS(i, j+1, board, words, output, acc + c);
-    DFS(i, j-1, board, words, output, acc + c);
+
+    buildTrie(trie, acc + c, i+1, j, board);
+    buildTrie(trie, acc + c, i-1, j, board);
+    buildTrie(trie, acc + c, i, j+1, board);
+    buildTrie(trie, acc + c, i, j-1, board);
     board[i][j] = c;
   }
 

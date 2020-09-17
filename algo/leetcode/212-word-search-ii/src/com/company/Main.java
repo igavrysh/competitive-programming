@@ -13,6 +13,8 @@ public class Main {
         {'i','f','l','v'}
     };
     String[] words = new String[] {"oath","pea","eat","rain"};
+
+
     List<String> output = solution.findWords(board, words);
     boolean passed = output.contains("eat")
         && output.contains("oath")
@@ -33,10 +35,11 @@ public class Main {
     List<String> output = solution.findWords(board, words);
     boolean passed = output.contains("abbbababaa")
         && output.size() == 1;
-    System.out.println("test1:" + (passed ? "passed" : "failed"));
+    System.out.println("test2:" + (passed ? "passed" : "failed"));
   }
 
   public static void main(String[] args) {
+    test1();
     test2();
   }
 }
