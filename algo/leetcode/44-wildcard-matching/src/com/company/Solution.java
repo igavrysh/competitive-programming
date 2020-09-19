@@ -1,4 +1,7 @@
 package com.company;
 
-public class Solution {
+class Solution {
+  public boolean isMatch(String s, String p) {
+    return false;
+  }
 }
