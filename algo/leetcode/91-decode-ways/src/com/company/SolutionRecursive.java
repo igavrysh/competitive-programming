@@ -1,6 +1,6 @@
 package com.company;
 
-public class Solution {
+public class SolutionRecursive {
   public int numDecodings(String s) {
     int[] cache = new int[s.length()];
     for (int i = 0; i < cache.length; i++) {
