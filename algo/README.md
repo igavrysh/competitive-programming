@@ -24,6 +24,9 @@ Unclassified
 
 DP
 
+* Easy:
+  * 53. Maximum Subarray - implement divide and conquer solution
+
 * Medium:
   * 309. Best Time to buy and sell stock with cooldown https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
 
