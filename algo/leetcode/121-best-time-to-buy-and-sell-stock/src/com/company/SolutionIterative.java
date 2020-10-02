@@ -24,7 +24,6 @@ public class SolutionIterative {
         output = dp[i];
       }
     }
-
     return output;
   }
 }
