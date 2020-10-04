@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Solution {
   public List<String> wordBreak(String s, List<String> wordDict) {
@@ -30,28 +27,28 @@ public class Solution {
         }
       }
     }
+
     List<String> output = new ArrayList<>();
-    generateString(s.length()-1, "", s, DP, output);
+    Stack<Integer> indexes = new Stack<>();
+    Stack<String> acc = new Stack<>();
+    indexes.push(s.length()-1);
+    acc.push("");
+    while(indexes.size() != 0) {
+      Integer currentIndex = indexes.pop();
+      String currentAcc = acc.pop();
+
+      if(currentIndex < 0) {
+        if (currentAcc != "") {
+          output.add(currentAcc);
+        }
+      } else {
+        List<Integer> currentMap = DP.get(currentIndex);
+        for (Integer i : currentMap) {
+          indexes.push(currentIndex - i);
+          acc.push(s.substring(currentIndex - i + 1, currentIndex + 1) + (currentAcc == "" ? "" : " " + currentAcc));
+        }
+      }
+    }
     return output;
   }
-
-  private void generateString(
-      int index,
-      String acc,
-      String s,
-      List<List<Integer>> map,
-      List<String> output
-  ) {
-    if (index < 0) {
-      output.add(acc);
-      return;
-    }
-
-    List<Integer> currentMap = map.get(index);
-    for (Integer i : currentMap) {
-
-      generateString(index-i, s.substring(index-i+1, index+1) + (acc == "" ? "" : " " + acc), s, map, output);
-    }
-  }
-
 }

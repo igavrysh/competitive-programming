@@ -37,9 +37,31 @@ public class Main {
     System.out.println("test3:" + (passed ? "passed" : "failed"));
   }
 
+  public static void test4() {
+    String s = "a";
+    List<String> wordDict = Arrays.asList(new String[] {} );
+    Solution solution = new Solution();
+    List<String> output = solution.wordBreak(s, wordDict);
+    boolean passed = output.size() == 0;
+    System.out.println("test4:" + (passed ? "passed" : "failed"));
+  }
+
+  public static void test5() {
+    String s = "a";
+    List<String> wordDict = Arrays.asList(new String[] {"a"} );
+    Solution solution = new Solution();
+    List<String> output = solution.wordBreak(s, wordDict);
+    boolean passed = output.size() == 1
+        && output.contains("a");
+    System.out.println("test5:" + (passed ? "passed" : "failed"));
+  }
+
+
   public static void main(String[] args) {
     test1();
     test2();
     test3();
+    test4();
+    test5();
   }
 }
