@@ -5,32 +5,20 @@ public class Solution {
     if (head == null) {
       return head;
     }
-    ListNode prevt = null;
-    ListNode prevh = null;
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+    ListNode t = dummy;
+    ListNode h = dummy;
 
-    ListNode t = head;
-    ListNode h = head;
-
-    for (int i = 0; i < n; i++) {
-      prevt = t;
+    for (int i = 0; i <= n; i++) {
       t = t.next;
     }
-
-    while (t != null && t.next != null) {
-      prevt = t;
-      prevh = h;
+    while (t != null) {
       t = t.next;
       h = h.next;
     }
+    h.next = h.next.next;
 
-    if (h == head && h == t) {
-      return head.next;
-    }
-
-    if (h.next != null) {
-      h.next = h.next.next;
-    }
-
-    return head;
+    return dummy.next;
   }
 }

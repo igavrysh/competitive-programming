@@ -94,10 +94,19 @@ public class Main {
     System.out.println("test4:" + (passed ? "passed" : "failed"));
   }
 
+  private static void test5() {
+    ListNode input = new ListNode(1);
+    Solution s = new Solution();
+    ListNode output = s.removeNthFromEnd(input, 1);
+    boolean passed = output == null;
+    System.out.println("test5:" + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     test1();
-    //test2();
-    //test3();
-    //test4();
+    test2();
+    test3();
+    test4();
+    test5();
   }
 }
