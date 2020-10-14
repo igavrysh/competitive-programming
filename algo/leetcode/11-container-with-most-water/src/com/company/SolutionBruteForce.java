@@ -1,6 +1,6 @@
 package com.company;
 
-public class Solution {
+public class SolutionBruteForce {
   public int maxArea(int[] height) {
     int maxArea = 0;
     for (int i = 0; i < height.length; i++) {
@@ -13,5 +13,4 @@ public class Solution {
     }
     return maxArea;
   }
-
 }
