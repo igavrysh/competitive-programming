@@ -1,7 +1,5 @@
 package com.company;
 
-import com.sun.source.tree.Tree;
-
 public class Solution {
   public boolean isSubPath(ListNode head, TreeNode root) {
     return DFS(head, head, root);
