@@ -4,31 +4,32 @@ import com.sun.source.tree.Tree;
 
 public class Solution {
   public boolean isSubPath(ListNode head, TreeNode root) {
-    // Case 1 Continue
-    // Case 2 Start Over
     return DFS(head, head, root);
   }
 
   private boolean DFS(ListNode currentHead, ListNode globalHead, TreeNode treeNode) {
-    if (treeNode == null) {
+    if (currentHead == null) {
       return true;
+    }
+
+    if (treeNode == null) {
+      return false;
     }
 
     if (currentHead.val == treeNode.val) {
-      return DFS(currentHead.next, globalHead, treeNode.left)
-          || DFS(currentHead.next, globalHead, treeNode.right);
+      if (DFS(currentHead.next, globalHead, treeNode.left)) {
+        return true;
+      }
+      if (DFS(currentHead.next, globalHead, treeNode.right)) {
+        return true;
+      }
     }
 
-    if (globalHead.val == treeNode.val) {
-      return DFS(globalHead.next, globalHead, treeNode.left)
-          || DFS(globalHead.next, globalHead, treeNode.right);
-    }
-
-    if (DFS(currentHead, globalHead, treeNode.left)) {
+    if (DFS(globalHead, globalHead, treeNode.left)) {
       return true;
     }
 
-    if (DFS(currentHead, globalHead, treeNode.right)) {
+    if (DFS(globalHead, globalHead, treeNode.right)) {
       return true;
     }
 
