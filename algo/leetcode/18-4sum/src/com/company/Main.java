@@ -7,7 +7,7 @@ public class Main {
 
   public static void test1() {
     int[] nums = {1,0,-1,0,-2,2};
-    Solution s = new Solution();
+    SolutionOptimized s = new SolutionOptimized();
     List<List<Integer>> output = s.fourSum(nums, 0);
     boolean passed = output.size() == 3
         && output.contains(Arrays.asList(new Integer[] {-2,-1,1,2}))
@@ -18,7 +18,7 @@ public class Main {
 
   public static void test2() {
     int[] nums = {};
-    Solution s = new Solution();
+    SolutionOptimized s = new SolutionOptimized();
     List<List<Integer>> output = s.fourSum(nums, 0);
     boolean passed = output.size() == 0;
     System.out.println("test2:" + (passed ? "passed" : "failed"));
@@ -26,7 +26,7 @@ public class Main {
 
   public static void test3() {
     int [] nums = {0, 0, 0, 0};
-    Solution s = new Solution();
+    SolutionOptimized s = new SolutionOptimized();
     List<List<Integer>> output = s.fourSum(nums, 0);
     boolean passed = output.size() == 1
         && output.contains(Arrays.asList(new Integer[] {0,0,0,0}));
@@ -35,7 +35,7 @@ public class Main {
 
   public static void test4() {
     int [] nums = {-2,-1,-1,1,1,2,2};
-    Solution s = new Solution();
+    SolutionOptimized s = new SolutionOptimized();
     List<List<Integer>> output = s.fourSum(nums, 0);
     boolean passed = output.size() == 2
         && output.contains(Arrays.asList(new Integer[] {-2,-1,1,2}))
@@ -45,7 +45,7 @@ public class Main {
 
   public static void test5() {
     int[] nums = {1, 1, 2, 2};
-    Solution s = new Solution();
+    SolutionOptimized s = new SolutionOptimized();
     List<List<Integer>> output = s.twoSum(nums, 0, 3);
     boolean passed = output.size() == 1
         && output.contains(Arrays.asList(new Integer[] {1, 2}));
@@ -54,7 +54,7 @@ public class Main {
 
   public static void test6() {
     int[] nums = {1, 1, 3};
-    Solution s = new Solution();
+    SolutionOptimized s = new SolutionOptimized();
     List<List<Integer>> output = s.twoSum(nums, 0, 2);
     boolean passed = output.size() == 1
         && output.contains(Arrays.asList(new Integer[] {1, 1}));
@@ -63,7 +63,7 @@ public class Main {
 
   public static void test7() {
     int[] nums = {0,2,2,2,10,-3,-9,2,-10,-4,-9,-2,2,8,7};
-    Solution s = new Solution();
+    SolutionOptimized s = new SolutionOptimized();
     List<List<Integer>> output = s.fourSum(nums, 6);
     boolean passed = output.size() == 8
         && output.contains(Arrays.asList(new Integer[] {-10,-2,8,10}))
@@ -79,7 +79,7 @@ public class Main {
 
   public static void test8() {
     int[] nums = {0, 2, 2, 2, 2, 2, 7, 8, 10};
-    Solution s = new Solution();
+    SolutionOptimized s = new SolutionOptimized();
     List<List<Integer>> output = s.fourSum(nums, 6);
     boolean passed = output.size() == 1
         && output.contains(Arrays.asList(new Integer[] {0, 2, 2, 2}));
@@ -88,7 +88,7 @@ public class Main {
 
   public static void test9() {
     int[] nums = {2, 2, 2};
-    Solution s = new Solution();
+    SolutionOptimized s = new SolutionOptimized();
     List<List<Integer>> output = s.twoSum(nums, 0, 4);
     boolean passed = output.size() == 1
         && output.contains(Arrays.asList(new Integer[] {2, 2}));
