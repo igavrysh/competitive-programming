@@ -2,11 +2,11 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
-public class SolutionOptimized {
+public class SolutionHashSet {
   public List<List<Integer>> fourSum(int[] nums, int target) {
     Arrays.sort(nums);
     return kSum(nums, 0, 4, target);
@@ -41,19 +41,18 @@ public class SolutionOptimized {
 
   public List<List<Integer>> twoSum(int[] nums, int s, int target) {
     List<List<Integer>> res = new ArrayList<>();
-    Map<Integer, Integer> M = new HashMap<>();
+    Set<Integer> HS = new HashSet<>();
+
     for (int i = s; i < nums.length; i++) {
-      if (M.containsKey(nums[i])) {
-        if (M.get(nums[i]) != Integer.MAX_VALUE) {
-          List<Integer> list = new ArrayList<>();
-          list.add(M.get(nums[i]));
-          list.add(nums[i]);
-          res.add(list);
-          M.put(nums[i], Integer.MAX_VALUE);
+      if (HS.contains(target - nums[i])) {
+        if (res.size() == 0 || res.get(res.size() - 1).get(1) != nums[i]) {
+          List<Integer> ls = new ArrayList<>();
+          ls.add(target-nums[i]);
+          ls.add(nums[i]);
+          res.add(ls);
         }
-      } else {
-        M.put(target - nums[i], nums[i]);
       }
+      HS.add((Integer)nums[i]);
     }
     return res;
   }
