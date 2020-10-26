@@ -41,18 +41,17 @@ public class Codec {
 
   private String intToTinyUrl(int n) {
     int base = mapping.length();
-    String output = "";
+    StringBuilder sb = new StringBuilder();
     while (n != 0) {
       int curr = n % base;
-      output += mapping.charAt(curr);
+      sb.append(mapping.charAt(curr));
       n /= base;
     }
 
-    while (output.length() < 6) {
-      output = mapping.charAt(0) + output;
+    while (sb.length() <= 6) {
+      sb.append(mapping.charAt(0));
     }
-
-    return output;
+    return sb.toString();
   }
 
   private int tinyUrlToInt(String tinyUrl) {
