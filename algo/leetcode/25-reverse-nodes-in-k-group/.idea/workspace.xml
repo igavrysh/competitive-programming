@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c16ce28b-eed9-4809-bb1e-d35413eaadd0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/company/SolutionStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/25-reverse-nodes-in-k-group.iml" beforeDir="false" afterPath="$PROJECT_DIR$/25-reverse-nodes-in-k-group.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ListNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Solution.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1jVu0fvsWYDBZ3j7LGc9ATnHFIP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="25-reverse-nodes-in-k-group" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c16ce28b-eed9-4809-bb1e-d35413eaadd0" name="Default Changelist" comment="" />
+      <created>1603901358264</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603901358264</updated>
+      <workItem from="1603901361622" duration="4207000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="894" height="277" key="GridCell.Tab.0.bottom" timestamp="1603908237937">
+      <screen x="48" y="27" width="1872" height="1053" />
+    </state>
+    <state width="894" height="277" key="GridCell.Tab.0.bottom/48.27.1872.1053@48.27.1872.1053" timestamp="1603908237937" />
+    <state width="894" height="277" key="GridCell.Tab.0.center" timestamp="1603908237937">
+      <screen x="48" y="27" width="1872" height="1053" />
+    </state>
+    <state width="894" height="277" key="GridCell.Tab.0.center/48.27.1872.1053@48.27.1872.1053" timestamp="1603908237937" />
+    <state width="894" height="277" key="GridCell.Tab.0.left" timestamp="1603908237937">
+      <screen x="48" y="27" width="1872" height="1053" />
+    </state>
+    <state width="894" height="277" key="GridCell.Tab.0.left/48.27.1872.1053@48.27.1872.1053" timestamp="1603908237937" />
+    <state width="894" height="277" key="GridCell.Tab.0.right" timestamp="1603908237937">
+      <screen x="48" y="27" width="1872" height="1053" />
+    </state>
+    <state width="894" height="277" key="GridCell.Tab.0.right/48.27.1872.1053@48.27.1872.1053" timestamp="1603908237937" />
+    <state width="894" height="234" key="GridCell.Tab.1.bottom" timestamp="1603908055544">
+      <screen x="48" y="27" width="1872" height="1053" />
+    </state>
+    <state width="894" height="234" key="GridCell.Tab.1.bottom/48.27.1872.1053@48.27.1872.1053" timestamp="1603908055544" />
+    <state width="894" height="234" key="GridCell.Tab.1.center" timestamp="1603908055544">
+      <screen x="48" y="27" width="1872" height="1053" />
+    </state>
+    <state width="894" height="234" key="GridCell.Tab.1.center/48.27.1872.1053@48.27.1872.1053" timestamp="1603908055544" />
+    <state width="894" height="234" key="GridCell.Tab.1.left" timestamp="1603908055544">
+      <screen x="48" y="27" width="1872" height="1053" />
+    </state>
+    <state width="894" height="234" key="GridCell.Tab.1.left/48.27.1872.1053@48.27.1872.1053" timestamp="1603908055544" />
+    <state width="894" height="234" key="GridCell.Tab.1.right" timestamp="1603908055544">
+      <screen x="48" y="27" width="1872" height="1053" />
+    </state>
+    <state width="894" height="234" key="GridCell.Tab.1.right/48.27.1872.1053@48.27.1872.1053" timestamp="1603908055544" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
