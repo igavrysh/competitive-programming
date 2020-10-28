@@ -18,7 +18,7 @@ public class Main {
             )
         )
     );
-    SolutionStack s = new SolutionStack();
+    SolutionO1Space s = new SolutionO1Space();
     ListNode output = s.reverseKGroup(input, 2);
     boolean passed = output.val == 2
         && output.next.val == 1
@@ -45,7 +45,7 @@ public class Main {
             )
         )
     );
-    SolutionStack s = new SolutionStack();
+    SolutionO1Space s = new SolutionO1Space();
     ListNode output = s.reverseKGroup(input, 3);
     boolean passed = output.val == 3
         && output.next.val == 2
@@ -72,7 +72,7 @@ public class Main {
             )
         )
     );
-    SolutionStack s = new SolutionStack();
+    SolutionO1Space s = new SolutionO1Space();
     ListNode output = s.reverseKGroup(input, 1);
     boolean passed = output.val == 1
         && output.next.val == 2
@@ -85,7 +85,7 @@ public class Main {
 
   public static void test4() {
     ListNode input = new ListNode(1);
-    SolutionStack s = new SolutionStack();
+    SolutionO1Space s = new SolutionO1Space();
     ListNode output = s.reverseKGroup(input, 1);
     boolean passed = output.val == 1
         && output.next == null;

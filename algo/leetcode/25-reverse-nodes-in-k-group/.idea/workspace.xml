@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c16ce28b-eed9-4809-bb1e-d35413eaadd0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/company/SolutionStack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/25-reverse-nodes-in-k-group.iml" beforeDir="false" afterPath="$PROJECT_DIR$/25-reverse-nodes-in-k-group.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ListNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/SolutionO1Space.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Solution.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/SolutionStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/SolutionStack.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603901358264</updated>
-      <workItem from="1603901361622" duration="4207000" />
+      <workItem from="1603901361622" duration="10144000" />
     </task>
     <servers />
   </component>
@@ -85,22 +98,22 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="894" height="277" key="GridCell.Tab.0.bottom" timestamp="1603908237937">
+    <state width="894" height="277" key="GridCell.Tab.0.bottom" timestamp="1603928489640">
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
-    <state width="894" height="277" key="GridCell.Tab.0.bottom/48.27.1872.1053@48.27.1872.1053" timestamp="1603908237937" />
-    <state width="894" height="277" key="GridCell.Tab.0.center" timestamp="1603908237937">
+    <state width="894" height="277" key="GridCell.Tab.0.bottom/48.27.1872.1053@48.27.1872.1053" timestamp="1603928489640" />
+    <state width="894" height="277" key="GridCell.Tab.0.center" timestamp="1603928489640">
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
-    <state width="894" height="277" key="GridCell.Tab.0.center/48.27.1872.1053@48.27.1872.1053" timestamp="1603908237937" />
-    <state width="894" height="277" key="GridCell.Tab.0.left" timestamp="1603908237937">
+    <state width="894" height="277" key="GridCell.Tab.0.center/48.27.1872.1053@48.27.1872.1053" timestamp="1603928489640" />
+    <state width="894" height="277" key="GridCell.Tab.0.left" timestamp="1603928489640">
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
-    <state width="894" height="277" key="GridCell.Tab.0.left/48.27.1872.1053@48.27.1872.1053" timestamp="1603908237937" />
-    <state width="894" height="277" key="GridCell.Tab.0.right" timestamp="1603908237937">
+    <state width="894" height="277" key="GridCell.Tab.0.left/48.27.1872.1053@48.27.1872.1053" timestamp="1603928489640" />
+    <state width="894" height="277" key="GridCell.Tab.0.right" timestamp="1603928489640">
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
-    <state width="894" height="277" key="GridCell.Tab.0.right/48.27.1872.1053@48.27.1872.1053" timestamp="1603908237937" />
+    <state width="894" height="277" key="GridCell.Tab.0.right/48.27.1872.1053@48.27.1872.1053" timestamp="1603928489640" />
     <state width="894" height="234" key="GridCell.Tab.1.bottom" timestamp="1603908055544">
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
@@ -117,16 +130,5 @@
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
     <state width="894" height="234" key="GridCell.Tab.1.right/48.27.1872.1053@48.27.1872.1053" timestamp="1603908055544" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

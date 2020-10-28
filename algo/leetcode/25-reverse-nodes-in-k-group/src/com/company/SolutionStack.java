@@ -34,7 +34,6 @@ public class SolutionStack {
         stackOpPrev.next = afterTail;
       }
     }
-
     return proxy.next;
   }
 }
