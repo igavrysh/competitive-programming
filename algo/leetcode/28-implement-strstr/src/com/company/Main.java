@@ -2,7 +2,30 @@ package com.company;
 
 public class Main {
 
-    public static void main(String[] args) {
-	// write your code here
-    }
+  public static void test1() {
+    Solution s = new Solution();
+    int output = s.strStr("hello", "ll");
+    boolean passed = output == 2;
+    System.out.println("test1:" + (passed ? "passed" : "failed"));
+  }
+
+  public static void test2() {
+    Solution s = new Solution();
+    int output = s.strStr("aaaaa", "baa");
+    boolean passed = output == -1;
+    System.out.println("test2:" + (passed ? "passed" : "failed"));
+  }
+
+  public static void test3() {
+    Solution s = new Solution();
+    int output = s.strStr("aaaaa", "");
+    boolean passed = output == 0;
+    System.out.println("test3:" + (passed ? "passed" : "failed"));
+  }
+
+  public static void main(String[] args) {
+    test1();
+    test2();
+    test3();
+  }
 }
