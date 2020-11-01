@@ -16,7 +16,7 @@ public class Main {
         3,
         cycle
     );
-    Solution s = new Solution();
+    SolutionO1Memory s = new SolutionO1Memory();
     ListNode output = s.detectCycle(input);
     boolean passed = output == cycle;
     System.out.println("test1:" + (passed ? "passed" : "failed"));
@@ -24,7 +24,7 @@ public class Main {
 
   public static void test2() {
     ListNode input = null;
-    Solution s = new Solution();
+    SolutionO1Memory s = new SolutionO1Memory();
     ListNode output = s.detectCycle(input);
     boolean passed = output == null;
     System.out.println("test2:" + (passed ? "passed" : "failed"));
@@ -32,10 +32,19 @@ public class Main {
 
   public static void test3() {
     ListNode input = new ListNode(1);
-    Solution s = new Solution();
+    SolutionO1Memory s = new SolutionO1Memory();
     ListNode output = s.detectCycle(input);
     boolean passed = output == null;
     System.out.println("test3:" + (passed ? "passed" : "failed"));
+  }
+
+
+  public static void test4() {
+    ListNode input = new ListNode(1, new ListNode(2));
+    SolutionO1Memory s = new SolutionO1Memory();
+    ListNode output = s.detectCycle(input);
+    boolean passed = output == null;
+    System.out.println("test4:" + (passed ? "passed" : "failed"));
   }
 
 
@@ -43,5 +52,6 @@ public class Main {
     test1();
     test2();
     test3();
+    test4();
   }
 }
