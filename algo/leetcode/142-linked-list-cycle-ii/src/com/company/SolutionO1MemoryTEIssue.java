@@ -3,13 +3,14 @@ package com.company;
 public class SolutionO1MemoryTEIssue {
 
   public ListNode detectCycle(ListNode head) {
-    ListNode proxy = new ListNode(-1);
-    proxy.next = head;
-    if (proxy.next == null || proxy.next.next == null) {
+    if (head == null || head.next == null) {
       return null;
     }
-    ListNode fast = proxy.next.next;
-    ListNode slow = proxy.next;
+
+    ListNode fast = head;
+    ListNode slow = head;
+    fast = head.next.next;
+    slow = head.next;
     //while (fast != slow && fast != null && fast.next != null) {
     while (fast != slow && fast != null && fast.next != null) {
       if (fast == slow) {
@@ -27,7 +28,7 @@ public class SolutionO1MemoryTEIssue {
       return null;
     }
 
-    ListNode current = proxy;
+    ListNode current = head;
 
     while (fast != current) {
       fast = fast.next;
