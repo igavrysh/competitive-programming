@@ -16,7 +16,11 @@ public class SolutionByOrkhan {
         break;
       }
       slow = slow.next;
-      fast = fast.next.next;
+      fast = fast.next;
+      if (fast == slow) {
+        break;
+      }
+      fast = fast.next;
     }
 
     if (slow == fast) {
