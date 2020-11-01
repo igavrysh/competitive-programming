@@ -10,12 +10,13 @@ public class SolutionO1Memory {
     }
     ListNode fast = proxy.next.next;
     ListNode slow = proxy.next;
-    while (fast != slow && fast != null && slow != null) {
-      fast = fast.next;
+    while (fast != slow && fast != null && fast.next != null) {
+      fast = fast.next.next;
       slow = slow.next;
-      if (fast != slow && fast != null) {
-        fast = fast.next;
-      }
+      //if (fast != slow && fast != null) {
+      //  fast = fast.next;
+     // }
+
     }
 
     if (fast == null || slow == null || fast != slow) {
