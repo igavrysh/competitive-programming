@@ -44,7 +44,7 @@ public class Main {
         3,
         cycle
     );
-    SolutionO1Memory s = new SolutionO1Memory();
+    SolutionByOrkhan s = new SolutionByOrkhan();
     ListNode output = s.detectCycle(input);
     boolean passed = output == cycle;
     System.out.println("test1:" + (passed ? "passed" : "failed"));
@@ -52,7 +52,7 @@ public class Main {
 
   public static void test2() {
     ListNode input = null;
-    SolutionO1Memory s = new SolutionO1Memory();
+    SolutionByOrkhan s = new SolutionByOrkhan();
     ListNode output = s.detectCycle(input);
     boolean passed = output == null;
     System.out.println("test2:" + (passed ? "passed" : "failed"));
@@ -60,7 +60,7 @@ public class Main {
 
   public static void test3() {
     ListNode input = new ListNode(1);
-    SolutionO1Memory s = new SolutionO1Memory();
+    SolutionByOrkhan s = new SolutionByOrkhan();
     ListNode output = s.detectCycle(input);
     boolean passed = output == null;
     System.out.println("test3:" + (passed ? "passed" : "failed"));
@@ -69,7 +69,7 @@ public class Main {
 
   public static void test4() {
     ListNode input = new ListNode(1, new ListNode(2));
-    SolutionO1Memory s = new SolutionO1Memory();
+    SolutionByOrkhan s = new SolutionByOrkhan();
     ListNode output = s.detectCycle(input);
     boolean passed = output == null;
     System.out.println("test4:" + (passed ? "passed" : "failed"));
@@ -88,7 +88,7 @@ public class Main {
         24);
     ListNode head = input[0];
     ListNode cycle = input[1];
-    SolutionO1Memory s = new SolutionO1Memory();
+    SolutionByOrkhan s = new SolutionByOrkhan();
     ListNode output = s.detectCycle(head);
     boolean passed = output == cycle;
     System.out.println("test5:" + (passed ? "passed" : "failed"));
