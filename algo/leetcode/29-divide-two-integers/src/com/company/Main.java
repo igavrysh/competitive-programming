@@ -59,13 +59,13 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    //test1();
-    //test2();
-    //test3();
-    //test4();
-    //test5();
-    //test6();
-    //test7();
+    test1();
+    test2();
+    test3();
+    test4();
+    test5();
+    test6();
+    test7();
     test8();
   }
 }

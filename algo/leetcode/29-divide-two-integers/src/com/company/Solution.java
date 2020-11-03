@@ -7,11 +7,23 @@ public class Solution {
     long divisorTmp = divisor < 0 ? (0 - (long)divisor) : divisor;
     long remainder = dividentTmp;
     long counter = 0;
+
+    long prevRemainder = 0;
+    long currentDivisor = divisorTmp;
+    long currentIncrement = 1;
+
     while (remainder >= 0) {
-      remainder = remainder - divisorTmp;
-      counter++;
+      if (remainder - currentDivisor < 0 ) {
+        currentDivisor = divisorTmp;
+        currentIncrement = 1;
+      }
+      remainder = remainder - currentDivisor;
+      counter += currentIncrement;
+
+      currentDivisor += currentDivisor;
+      currentIncrement += currentIncrement;
     }
-    counter-=1;
+    counter -= 1;
 
     long result = 0;
     if ((dividend < 0 && divisor > 0)
