@@ -5,32 +5,21 @@ import java.util.Set;
 
 public class Solution {
     public int sumEvenGrandparent(TreeNode root) {
-        Set<TreeNode> acc = new HashSet<>();
-        DFS(root, -1, acc);
-        int output = 0;
-        for (TreeNode n : acc) {
-            output += n.val;
-        }
+        int output = DFS(root, null, null);
         return output;
     }
 
-    private void DFS(TreeNode node, int sumLevel, Set<TreeNode> acc) {
+    private int DFS(TreeNode node, TreeNode grandparent, TreeNode parent) {
+        int output = 0;
         if (node == null) {
-            return;
+            return 0;
         }
-        if (node.val % 2 == 0) {
-            DFS(node.left, 1, acc);
-            DFS(node.right, 1, acc);
-        } else {
-            DFS(node.left, -1, acc);
-            DFS(node.right, -1, acc);
+        if (grandparent != null) {
+            if (grandparent.val % 2 == 0) {
+                output += node.val;
+            }
         }
-
-        if (sumLevel == 0) {
-            acc.add(node);
-        }
-
-        DFS(node.left, sumLevel == -1 ? -1 : sumLevel - 1, acc);
-        DFS(node.right, sumLevel == -1 ? -1 : sumLevel - 1, acc);
+        output += DFS(node.left, parent, node) + DFS(node.right, parent, node);
+        return output;
     }
 }
