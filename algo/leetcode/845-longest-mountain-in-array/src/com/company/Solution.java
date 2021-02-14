@@ -3,9 +3,7 @@ package com.company;
 public class Solution {
   public int longestMountain(int[] arr) {
     int startPoint = -1;
-
     int output = 0;
-
     int i = 1;
     while (i < arr.length-1) {
       // /
@@ -22,7 +20,7 @@ public class Solution {
           startPoint = i;
         } else {
           if (startPoint != -1) {
-            if (i - startPoint+1 > output) {
+            if (i-startPoint+1 > output) {
               output = i - startPoint + 1;
             }
           }
@@ -34,8 +32,8 @@ public class Solution {
       if (arr[i] < arr[i-1] && arr[i+1] < arr[i]) {
         if (i+1 == arr.length-1) {
           if (startPoint != -1) {
-            if (i+1 - startPoint+1 > output) {
-              output = i+1 - startPoint+1;
+            if (i+1-startPoint+1 > output) {
+              output = i+1-startPoint+1;
             }
           }
         }
@@ -53,8 +51,8 @@ public class Solution {
 
         if (i+1 == arr.length-1) {
           if (startPoint != -1) {
-            if (i+1 - startPoint+1 > output) {
-              output = i+1 - startPoint+1;
+            if (i+1-startPoint+1 > output) {
+              output = i+1-startPoint+1;
             }
           }
         }
@@ -84,11 +82,9 @@ public class Solution {
       if (arr[i] == arr[i-1] && arr[i] < arr[i+1]) {
         startPoint = i;
       }
-
       i++;
     }
 
     return output;
   }
-
 }
