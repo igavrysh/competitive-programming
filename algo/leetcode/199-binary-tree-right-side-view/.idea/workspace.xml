@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2925216e-c01d-4b2a-9003-70f36b40ae1f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../90-subsets-ii/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../90-subsets-ii/.idea/workspace.xml" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,29 +45,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="199-binary-tree-right-side-view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="199-binary-tree-right-side-view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="199-binary-tree-right-side-view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="199-binary-tree-right-side-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="199-binary-tree-right-side-view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="199-binary-tree-right-side-view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="company" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -81,6 +61,18 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1612767776902" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -123,16 +115,19 @@
       <workItem from="1613432040432" duration="183000" />
       <workItem from="1613432271259" duration="6000" />
       <workItem from="1613432401551" duration="279000" />
+      <workItem from="1613456133740" duration="38000" />
+      <workItem from="1613457827566" duration="1000" />
+      <workItem from="1613507509368" duration="29000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7374000" />
+    <option name="totallyTimeSpent" value="7442000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="983" y="21" width="935" height="1059" extended-state="4" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24412094" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23964165" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -166,7 +161,7 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
