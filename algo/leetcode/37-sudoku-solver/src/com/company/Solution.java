@@ -6,18 +6,6 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 
 public class Solution {
-
-  private class FQ {
-    public int row;
-    public int column;
-    public int sq;
-    public FQ(int row, int column, int sq) {
-      this.row = row;
-      this.column = column;
-      this.sq = sq;
-    }
-  }
-
   class Pair {
     public int i;
     public int j;
@@ -42,18 +30,35 @@ public class Solution {
     for (int i = 0; i < N; i++) {
       for (int j = 0; j < N; j++) {
         if (board[i][j] != '.') {
-          rows[i].add((int)board[i][j]);
-          columns[j].add((int)board[i][j]);
-          squares[(i/3)*3+j/3].add((int)board[i][j]);
+          int num = Character.getNumericValue(board[i][j]);
+          rows[i].add(num);
+          columns[j].add(num);
+          squares[(i/3)*3+j/3].add(num);
         }
       }
     }
+    helper(board, rows, columns, squares);
+  }
 
-    HashSet<Integer> possibleValues = new HashSet<Integer>(Arrays.asList(new Integer[] {1,2,3,4,5,6,7,8,9}));
+  private boolean helper(
+      char[][] board,
+      HashSet<Integer>[] rows,
+      HashSet<Integer>[] columns,
+      HashSet<Integer>[] squares
+  ) {
+    int N = board.length;
+
+    HashSet<Integer> possibleValues = new HashSet<Integer>(
+        Arrays.asList(new Integer[] {1,2,3,4,5,6,7,8,9}));
 
     PriorityQueue<Pair> queue = new PriorityQueue<Pair>(
-            N*N,
-            Comparator.comparingInt(p -> rows[p.i].size() + columns[p.j].size() + squares[p.i / 3 * 3 + p.j / 3].size()));
+        N*N,
+
+        Comparator.comparingInt(p ->
+            -1 * (rows[p.i].size() + columns[p.j].size()
+                + squares[p.i/3*3 + p.j/3].size())));
+
+    int emptyPlaces = 0;
     for (int i=0; i<N; i++) {
       for (int j=0; j<N; j++) {
         if (board[i][j] == '.') {
@@ -63,6 +68,7 @@ public class Solution {
     }
 
     if (queue.size() == 0) {
+      return true;
     }
 
     Pair next = queue.poll();
@@ -70,11 +76,20 @@ public class Solution {
     possibleValues.removeAll(columns[next.j]);
     possibleValues.removeAll(squares[next.i/3*3 + next.j/3]);
     for (Integer e : possibleValues) {
-      board[next.i][next.j] = (char)e.intValue();
+      char c = (char)(e.intValue() + '0');
+      board[next.i][next.j] = c;
+      rows[next.i].add(e);
+      columns[next.j].add(e);
+      squares[next.i/3*3 + next.j/3].add(e);
+      if (helper(board, rows, columns, squares)) {
+        return true;
+      }
+      board[next.i][next.j] = '.';
+      rows[next.i].remove(e);
+      columns[next.j].remove(e);
+      squares[next.i/3*3 + next.j/3].remove(e);
     }
-  }
 
-  private boolean helper() {
     return false;
   }
 }
