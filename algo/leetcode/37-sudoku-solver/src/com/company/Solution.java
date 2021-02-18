@@ -1,6 +1,9 @@
 package com.company;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.PriorityQueue;
 
 public class Solution {
 
@@ -12,6 +15,15 @@ public class Solution {
       this.row = row;
       this.column = column;
       this.sq = sq;
+    }
+  }
+
+  class Pair {
+    public int i;
+    public int j;
+    public Pair(int i, int j) {
+      this.i = i;
+      this.j = j;
     }
   }
 
@@ -37,28 +49,32 @@ public class Solution {
       }
     }
 
+    HashSet<Integer> possibleValues = new HashSet<Integer>(Arrays.asList(new Integer[] {1,2,3,4,5,6,7,8,9}));
 
-
-    int maxFq = 0;
-    int nextR, nextC, nextSq;
-    for (int r = 0; r < rows.length; r++) {
-      for (int c = 0; c < columns.length; c++) {
-        for (int sq = 0; sq < squares.length; sq++) {
-          if (rows[r].size() + columns[c].size() + squares[sq].size() > maxFq) {
-            maxFq = rows[r].size() + columns[c].size() + squares[sq].size();
-            nextR = r;
-            nextC = c;
-            nextSq = sq;
-          }
+    PriorityQueue<Pair> queue = new PriorityQueue<Pair>(
+            N*N,
+            Comparator.comparingInt(p -> rows[p.i].size() + columns[p.j].size() + squares[p.i / 3 * 3 + p.j / 3].size()));
+    for (int i=0; i<N; i++) {
+      for (int j=0; j<N; j++) {
+        if (board[i][j] == '.') {
+          queue.add(new Pair(i, j));
         }
       }
     }
+
+    if (queue.size() == 0) {
+    }
+
+    Pair next = queue.poll();
+    possibleValues.removeAll(rows[next.i]);
+    possibleValues.removeAll(columns[next.j]);
+    possibleValues.removeAll(squares[next.i/3*3 + next.j/3]);
+    for (Integer e : possibleValues) {
+      board[next.i][next.j] = (char)e.intValue();
+    }
   }
 
-  private void helper() {
-
-
+  private boolean helper() {
+    return false;
   }
-
-
 }
