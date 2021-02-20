@@ -32,6 +32,7 @@ DP
 
 * Hard
   * Create Maximum Number https://leetcode.com/problems/create-maximum-number/
+	* 871. Minimum Number of Refueling Stops https://leetcode.com/problems/minimum-number-of-refueling-stops/
 
 
 
