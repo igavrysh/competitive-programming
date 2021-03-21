@@ -9,11 +9,13 @@ public class Solution {
         int[] last = new int[26];
         for (int s = 0; s < S.length(); s++) {
             int idx = S.charAt(s) - 'a';
-            for (int e = S.length()-1; e>=0; e--) {
-                int idx2 = S.charAt(e) - 'a';
-                if (idx == idx2 && last[idx] < e) {
-                    last[idx] = e;
-                    break;
+            if (last[idx] == 0) {
+                for (int e = S.length() - 1; e >= 0; e--) {
+                    int idx2 = S.charAt(e) - 'a';
+                    if (idx == idx2 && last[idx] < e) {
+                        last[idx] = e;
+                        break;
+                    }
                 }
             }
         }

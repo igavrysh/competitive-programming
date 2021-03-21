@@ -20,8 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90cf8e3b-cd0a-473c-a3d0-f9fce0dd6e12" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Solution.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +58,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1616261747790" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -101,7 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1616259659909</updated>
       <workItem from="1616259663914" duration="2605000" />
-      <workItem from="1616288058749" duration="4246000" />
+      <workItem from="1616288058749" duration="4689000" />
     </task>
     <servers />
   </component>
@@ -120,22 +119,22 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1878" height="339" key="GridCell.Tab.0.bottom" timestamp="1616293470404">
+    <state width="1878" height="274" key="GridCell.Tab.0.bottom" timestamp="1616294930504">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
-    <state width="1878" height="339" key="GridCell.Tab.0.bottom/1920.23.1920.1057/0.23.1920.1010@0.23.1920.1010" timestamp="1616293470404" />
-    <state width="1878" height="339" key="GridCell.Tab.0.center" timestamp="1616293470404">
+    <state width="1878" height="274" key="GridCell.Tab.0.bottom/1920.23.1920.1057/0.23.1920.1010@0.23.1920.1010" timestamp="1616294930504" />
+    <state width="1878" height="274" key="GridCell.Tab.0.center" timestamp="1616294930503">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
-    <state width="1878" height="339" key="GridCell.Tab.0.center/1920.23.1920.1057/0.23.1920.1010@0.23.1920.1010" timestamp="1616293470404" />
-    <state width="1878" height="339" key="GridCell.Tab.0.left" timestamp="1616293470403">
+    <state width="1878" height="274" key="GridCell.Tab.0.center/1920.23.1920.1057/0.23.1920.1010@0.23.1920.1010" timestamp="1616294930503" />
+    <state width="1878" height="274" key="GridCell.Tab.0.left" timestamp="1616294930503">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
-    <state width="1878" height="339" key="GridCell.Tab.0.left/1920.23.1920.1057/0.23.1920.1010@0.23.1920.1010" timestamp="1616293470403" />
-    <state width="1878" height="339" key="GridCell.Tab.0.right" timestamp="1616293470404">
+    <state width="1878" height="274" key="GridCell.Tab.0.left/1920.23.1920.1057/0.23.1920.1010@0.23.1920.1010" timestamp="1616294930503" />
+    <state width="1878" height="274" key="GridCell.Tab.0.right" timestamp="1616294930504">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
-    <state width="1878" height="339" key="GridCell.Tab.0.right/1920.23.1920.1057/0.23.1920.1010@0.23.1920.1010" timestamp="1616293470404" />
+    <state width="1878" height="274" key="GridCell.Tab.0.right/1920.23.1920.1057/0.23.1920.1010@0.23.1920.1010" timestamp="1616294930504" />
     <state width="1878" height="339" key="GridCell.Tab.1.bottom" timestamp="1616293470405">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
