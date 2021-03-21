@@ -1,50 +1,36 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 public class Solution {
 
     public List<Integer> partitionLabels(String S) {
-
-        List<Integer> result = new ArrayList<>();
-
-        HashMap<Character, Integer> lastOccur = new HashMap<>();
-
+        int[] last = new int[26];
         for (int s = 0; s < S.length(); s++) {
-            char first = S.charAt(s);
-            for (int e = S.length()-1; e>s; e--) {
-                if (S.charAt(e) == first) {
-                    lastOccur.put(first, e);
+            int idx = S.charAt(s) - 'a';
+            for (int e = S.length()-1; e>=0; e--) {
+                int idx2 = S.charAt(e) - 'a';
+                if (idx == idx2 && last[idx] < e) {
+                    last[idx] = e;
                     break;
                 }
             }
         }
 
-        HashSet<Character> pending = new HashSet<>();
         int prevEnd = -1;
-        for (int s = 0; s < S.length(); s++) {
-            pending.add(S.charAt(s));
-
-            boolean completeString = true;
-            for (Character c : pending) {
-                if (lastOccur.get(c) > s) {
-                    completeString = false;
-                    break;
-                }
+        int end = 0;
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < S.length(); i++) {
+            int idx = S.charAt(i)-'a';
+            if (last[idx] > end) {
+                end = last[idx];
             }
-
-            if (completeString) {
-                result.add(s-prevEnd);
-                prevEnd = s;
-                s = prevEnd;
-                pending = new HashSet<>();
+            if (end == i) {
+                result.add(end-prevEnd);
+                prevEnd = end;
             }
         }
         return result;
-
     }
-
 }
