@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Stack;
 
 public class Solution {
 
@@ -14,7 +13,6 @@ public class Solution {
 
     for (int i=1; i<=9; i++) {
       queue.offer(i);
-
     }
 
     while (queue.size() != 0) {
