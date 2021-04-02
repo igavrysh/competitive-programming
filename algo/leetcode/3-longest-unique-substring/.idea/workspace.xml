@@ -20,10 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4626ef42-3754-4c1c-8894-26431fd9a415" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/leetcode/solutions/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/leetcode/solutions/Solution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/leetcode/solutions/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/leetcode/solutions/Solution.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +55,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1581786929210" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -100,7 +99,7 @@
       <workItem from="1581785559718" duration="1268000" />
       <workItem from="1582124489779" duration="337000" />
       <workItem from="1582772803391" duration="670000" />
-      <workItem from="1617399951247" duration="1812000" />
+      <workItem from="1617399951247" duration="2908000" />
     </task>
     <servers />
   </component>

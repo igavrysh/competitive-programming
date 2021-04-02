@@ -9,10 +9,6 @@ class Solution {
     int start = 0;
     int end = 0;
     while (end < s.length() && start <= end) {
-      int delta = end - start;
-      if (delta > maxLengthReached) {
-        maxLengthReached = delta;
-      }
       Character element = s.charAt(end);
       if (elements.contains(element)) {
         Character elementToRemove = s.charAt(start);
@@ -21,6 +17,10 @@ class Solution {
       } else {
         elements.add(element);
         end += 1;
+      }
+      int delta = end - start;
+      if (delta > maxLengthReached) {
+        maxLengthReached = delta;
       }
     }
     return maxLengthReached;
