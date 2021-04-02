@@ -11,9 +11,8 @@ public class Solution {
       int acc = (l1 == null ? 0 : l1.val)
           + (l2 == null ? 0 : l2.val)
           + carry;
-      ListNode node = new ListNode(acc % 10);
       carry = acc / 10;
-      currN.next = node;
+      currN.next = new ListNode(acc % 10);
       currN = currN.next;
       l1 = l1 != null ? l1.next : null;
       l2 = l2 != null ? l2.next : null;
