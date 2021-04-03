@@ -1,6 +1,5 @@
 package com.company;
 
-
 import java.util.Random;
 
 public class SolutionOptimized {
@@ -38,5 +37,4 @@ public class SolutionOptimized {
     }
     return r;
   }
-
 }
