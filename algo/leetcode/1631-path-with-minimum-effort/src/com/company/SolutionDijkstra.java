@@ -1,10 +1,10 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
+import java.util.PriorityQueue;
 
-public class Solution {
+public class SolutionDijkstra {
   public int minimumEffortPath(int[][] heights) {
     if (heights.length == 1 && heights[0].length == 1) {
       return 0;
@@ -59,49 +59,38 @@ public class Solution {
   }
 
   private int dijkstra(List<List<Integer[]>> G) {
-    boolean[] visited = new boolean[G.size()];
     int globalE = 0;
     Integer[] D = new Integer[G.size()];
-    for (int i = 0; i < visited.length; i++) {
-      visited[i] = false;
+    for (int i = 0; i < D.length; i++) {
       D[i] = Integer.MAX_VALUE;
     }
-    // front horizon
-    HashSet<Integer> F = new HashSet<>();
-
-    F.add(0);
-    visited[0] = true;
     D[0] = 0;
-    int cV = 0;
 
-    while (true) {
-      int nxtV = -1;
-      int minD = Integer.MAX_VALUE;
-      for (int vert : F) {
-        for (Integer[] nxt : G.get(vert)) {
-          if (!visited[nxt[0]]) {
-            if (D[nxt[0]] > Math.max(D[vert], nxt[1])) {
-              D[nxt[0]] = Math.max(D[vert], nxt[1]);
-            }
-            if (D[nxt[0]] < minD) {
-                minD = D[nxt[0]];
-                nxtV = nxt[0];
-            }
-          }
-        }
+    PriorityQueue<Integer> F = new PriorityQueue<>((Integer a, Integer b) -> {
+      return D[a] - D[b];
+    });
+    for (Integer i = 0; i < G.size(); i++) {
+      F.add(i);
+    }
+
+    while (F.size() != 0) {
+      Integer v = F.poll();
+
+      if (globalE < D[v]) {
+        globalE = D[v];
       }
 
-      if (nxtV == -1) {
-        break;
-      }
-
-      cV = nxtV;
-      visited[cV] = true;
-      globalE = Math.max(globalE, minD);
-      F.add(cV);
-
-      if (nxtV == G.size()-1) {
+      if (v == G.size()-1) {
         return globalE;
+      }
+
+      for (Integer[] nxt : G.get(v)) {
+        Integer nxtDist = Math.max(D[v], nxt[1]);
+        if (D[nxt[0]] > nxtDist) {
+          F.remove(nxt[0]);
+          D[nxt[0]] = nxtDist;
+          F.offer(nxt[0]);
+        }
       }
     }
     return -1;
