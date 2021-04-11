@@ -79,7 +79,7 @@ public class Main {
         {1,2,1,2,1},
         {1,1,1,2,1}
     };
-    Solution s = new Solution();
+    SolutionDijkstra s = new SolutionDijkstra();
     int output = s.minimumEffortPath(heights);
     boolean passed = output == 0;
     System.out.println("test7:" + (passed ? "passed" : "failed"));
