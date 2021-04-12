@@ -1,7 +1,6 @@
 package com.company;
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.Random;
 
 public class Main {
