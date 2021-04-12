@@ -25,19 +25,8 @@ Constraints:
 * 1 <= s.length, t.length <= 105
 * s and t consist of English letters.
 
- 
+
 Follow up: Could you find an algorithm that runs in O(n) time?
-
-ADOBECODEBANC   ABC   {A: 1, B:1, C:1}
-
-ADOBEC
-
-{A:1, D:1, O:1, B:1, E:1, C:1}
-sizeW = 3 
-l=0,
-r=4,
-
-BECODEBA
 
 
 
