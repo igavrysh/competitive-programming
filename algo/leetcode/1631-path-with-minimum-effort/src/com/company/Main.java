@@ -1,6 +1,8 @@
 package com.company;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Random;
 
 public class Main {
 
@@ -167,7 +169,7 @@ public class Main {
 
   public static void test21() {
     int[][] heights = new int[][] {{1,2,2},{3,8,2},{5,3,5}};
-    SolutionDijkstraOptimized s = new SolutionDijkstraOptimized();
+    SolutionDijkstraOptimized2 s = new SolutionDijkstraOptimized2();
     int output = s.minimumEffortPath(heights);
     boolean passed = output == 2;
     System.out.println("test21: " + (passed ? "passed" : "failed"));
@@ -175,7 +177,7 @@ public class Main {
 
   public static void test22() {
     int[][] heights = new int[][] {{2}};
-    SolutionDijkstraOptimized s = new SolutionDijkstraOptimized();
+    SolutionDijkstraOptimized2 s = new SolutionDijkstraOptimized2();
     int output = s.minimumEffortPath(heights);
     boolean passed = output == 0;
     System.out.println("test22: " + (passed ? "passed" : "failed"));
@@ -188,7 +190,7 @@ public class Main {
         {5,   8,  10, 10, 10, 7,  4,  2},
         {5,   1,  3,  1,  1,  3,  1,  9},
         {6,   4,  10, 6,  10, 9,  4,  6}};
-    SolutionDijkstraOptimized s = new SolutionDijkstraOptimized();
+    SolutionDijkstraOptimized2 s = new SolutionDijkstraOptimized2();
     int output = s.minimumEffortPath(heights);
     boolean passed = output == 5;
     System.out.println("test23: " + (passed ? "passed" : "failed"));
@@ -203,7 +205,7 @@ public class Main {
         {6, 1,  3},
         {5, 2,  4}};
 
-    SolutionDijkstraOptimized s = new SolutionDijkstraOptimized();
+    SolutionDijkstraOptimized2 s = new SolutionDijkstraOptimized2();
     int output = s.minimumEffortPath(heights);
     boolean passed = output == 2;
     System.out.println("test24: " + (passed ? "passed" : "failed"));
@@ -213,7 +215,7 @@ public class Main {
     int[][] heights = new int[][] {
         {1, 1000000}};
 
-    SolutionDijkstraOptimized s = new SolutionDijkstraOptimized();
+    SolutionDijkstraOptimized2 s = new SolutionDijkstraOptimized2();
     int output = s.minimumEffortPath(heights);
     boolean passed = output == 999999;
     System.out.println("test25: " + (passed ? "passed" : "failed"));
@@ -225,7 +227,7 @@ public class Main {
         {3,8,4},
         {5,3,5}
     };
-    SolutionDijkstraOptimized s = new SolutionDijkstraOptimized();
+    SolutionDijkstraOptimized2 s = new SolutionDijkstraOptimized2();
     int output = s.minimumEffortPath(heights);
     boolean passed = output == 1;
     System.out.println("test26: " + (passed ? "passed" : "failed"));
@@ -239,7 +241,7 @@ public class Main {
         {1,2,1,2,1},
         {1,1,1,2,1}
     };
-    SolutionDijkstraOptimized s = new SolutionDijkstraOptimized();
+    SolutionDijkstraOptimized2 s = new SolutionDijkstraOptimized2();
     int output = s.minimumEffortPath(heights);
     boolean passed = output == 0;
     System.out.println("test27: " + (passed ? "passed" : "failed"));
@@ -274,7 +276,7 @@ public class Main {
       }
       br.close();
 
-      SolutionDijkstraOptimized2 s = new SolutionDijkstraOptimized2();
+      SolutionExperiment s = new SolutionExperiment();
       int output = s.minimumEffortPath(input);
       boolean passed = output == 381458;
       System.out.println("test28: " + (passed ? "passed" : "failed"));
@@ -313,7 +315,7 @@ public class Main {
       }
       br.close();
 
-      SolutionDijkstraOptimized s = new SolutionDijkstraOptimized();
+      SolutionDijkstraOptimized2 s = new SolutionDijkstraOptimized2();
       int output = s.minimumEffortPath(input);
       boolean passed = output == 381458;
       System.out.println("test29: " + (passed ? "passed" : "failed"));
@@ -321,6 +323,45 @@ public class Main {
     } catch (IOException ex) {
       System.out.println("something wrong happened");
     }
+  }
+
+  public static void test30() {
+    boolean testFailed = false;
+    Random rand = new Random(); //instance of random class
+    int N = 3;
+    int upperbound = 15;
+    for (int e = 0; e < 1000000; e++) {
+      int[][] input = new int[N][N];
+      for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+          input[i][j] = rand.nextInt(upperbound);
+        }
+      }
+      SolutionDijkstraOptimized s1 = new SolutionDijkstraOptimized();
+      int output1 = s1.minimumEffortPath(input);
+      SolutionDijkstraOptimized2 s2 = new SolutionDijkstraOptimized2();
+      int output2 = s2.minimumEffortPath(input);
+      if (output1 != output2) {
+        System.out.println("test30: failed");
+        testFailed = true;
+      }
+    }
+
+    if (!testFailed) {
+      System.out.println("test31: succeeded");
+    }
+  }
+
+  public static void test31() {
+    int[][] heights = new int[][] {
+        {2, 7, 12},
+        {2, 12, 13},
+        {6, 5, 12}};
+
+    SolutionDijkstraOptimized2 s = new SolutionDijkstraOptimized2();
+    int output = s.minimumEffortPath(heights);
+    boolean passed = output == 5;
+    System.out.println("test31: " + (passed ? "passed" : "failed"));
   }
 
   public static void main(String[] args) {
@@ -341,11 +382,13 @@ public class Main {
     test21();
     test22();
     test23();
-    test24();
     test25();
     test26();
     test27();
-    test28();
     test29();
+    test30();
+    test31();
+    test24();
+
   }
 }

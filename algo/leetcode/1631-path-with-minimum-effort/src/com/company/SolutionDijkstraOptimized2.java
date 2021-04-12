@@ -13,12 +13,16 @@ public class SolutionDijkstraOptimized2 {
 
     PriorityQueue<int[]> q = new PriorityQueue<>((int[] a, int[] b) -> dist[a[0]][a[1]] - dist[b[0]][b[1]]);
     dist[0][0] = 0;
-    q.offer(new int[]{0,0});
+
+    int[][] map = new int[rows*cols][2];
+    map[0] = new int[]{0,0};
+    q.offer(map[0]);
 
     int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
     while (!q.isEmpty()) {
       int[] v = q.poll();
+      map[v[0] * cols + v[1]] = null;
       if (v[0] == rows-1 && v[1] == cols-1) {
         return dist[v[0]][v[1]];
       }
@@ -33,7 +37,9 @@ public class SolutionDijkstraOptimized2 {
         int adjDis = Math.max(dist[v[0]][v[1]], Math.abs(heights[r][c] - heights[v[0]][v[1]]));
         if (dist[r][c] == null || dist[r][c] > adjDis) {
           dist[r][c] = adjDis;
-          q.offer(new int[]{r, c});
+          q.remove(map[r * cols + c]);
+          map[r * cols + c] = new int[]{r, c};
+          q.offer(map[r * cols + c]);
         }
       }
     }
