@@ -1,9 +1,12 @@
 # 76. Minimum Window Substring
 Hard
 
-Given two strings s and t, return the minimum window in s which will contain all the characters in t. If there is no such window in s that covers all characters in t, return the empty string "".
+Given two strings s and t, return the minimum window in s which will contain all
+the characters in t. If there is no such window in s that covers all characters
+in t, return the empty string "".
 
-Note that If there is such a window, it is guaranteed that there will always be only one unique minimum window in s.
+Note that If there is such a window, it is guaranteed that there will always be
+only one unique minimum window in s.
 
 
 Example 1:
@@ -25,11 +28,18 @@ Constraints:
  
 Follow up: Could you find an algorithm that runs in O(n) time?
 
-ADOBECODEBANC
+ADOBECODEBANC   ABC   {A: 1, B:1, C:1}
 
 ADOBEC
+
+{A:1, D:1, O:1, B:1, E:1, C:1}
+sizeW = 3 
 l=0,
 r=4,
+
+BECODEBA
+
+
 
 
 
