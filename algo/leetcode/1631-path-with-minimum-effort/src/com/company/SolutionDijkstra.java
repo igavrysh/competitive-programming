@@ -16,41 +16,19 @@ public class SolutionDijkstra {
     int w = heights[0].length;
     Integer min = Integer.MAX_VALUE;
     Integer max = 0;
+    int [][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     for (int i = 0; i < h; i++) {
       for (int j = 0; j < w; j++) {
         List<Integer[]> N = new ArrayList<>();
-        int nI, nJ;
-        if (i != 0) {
-          nI = i-1;
-          nJ = j;
-          int val = Math.abs(heights[nI][nJ]-heights[i][j]);
-          N.add(new Integer[]{nI * w + nJ, val});
-          min = Math.min(min, val);
-          max = Math.max(max, val);
-        }
-        if (j != 0) {
-          nI = i;
-          nJ = j-1;
-          int val = Math.abs(heights[nI][nJ]-heights[i][j]);
-          N.add(new Integer[]{nI * w + nJ, val});
-          min = Math.min(min, val);
-          max = Math.max(max, val);
-        }
-        if (i != h-1) {
-          nI = i+1;
-          nJ = j;
-          int val = Math.abs(heights[nI][nJ]-heights[i][j]);
-          N.add(new Integer[]{nI * w + nJ, val});
-          min = Math.min(min, val);
-          max = Math.max(max, val);
-        }
-        if (j != w-1) {
-          nI = i;
-          nJ = j+1;
-          int val = Math.abs(heights[nI][nJ]-heights[i][j]);
-          N.add(new Integer[]{nI * w + nJ, val});
-          min = Math.min(min, val);
-          max = Math.max(max, val);
+        for (int[] d : dir) {
+          int nI = i+d[0];
+          int nJ = j+d[1];
+          if (nI >= 0 && nI < h && nJ >= 0 && nJ < w) {
+            int val = Math.abs(heights[nI][nJ]-heights[i][j]);
+            N.add(new Integer[]{nI * w + nJ, val});
+            min = Math.min(min, val);
+            max = Math.max(max, val);
+          }
         }
         G.add(N);
       }
@@ -75,15 +53,12 @@ public class SolutionDijkstra {
 
     while (F.size() != 0) {
       Integer v = F.poll();
-
       if (globalE < D[v]) {
         globalE = D[v];
       }
-
       if (v == G.size()-1) {
         return globalE;
       }
-
       for (Integer[] nxt : G.get(v)) {
         Integer nxtDist = Math.max(D[v], nxt[1]);
         if (D[nxt[0]] > nxtDist) {
