@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5b4bca7b-57b0-48e4-a482-c2ca19c4139d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../.idea/competitive-programming.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/description.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/project-template.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/865-smallest-subtree-with-all-the-deepest-nodes.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ex1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/TreeNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backtracking/hard/regular-expression-matching/regular-expression-matching.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backtracking/hard/remove-invalid-parentheses/remove-invalid-parentheses.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backtracking/hard/wildcard-matching/wildcard-matching.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynamic-programming/hard/best-time-to-buy-and-sell-stock-with-cooldown/best-time-to-buy-and-sell-stock-with-cooldown.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynamic-programming/hard/decode-ways/decode-ways.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynamic-programming/hard/perfect-squares/perfect-squares.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynamic-programming/hard/word-break-ii/word-break-ii.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynamic-programming/hard/word-break/word-break.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynamic-programming/medium/coin-change/coin-change.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynamic-programming/medium/longest-increasing-subsequence/longest-increasing-subsequence.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynamic-programming/medium/unique-paths/unique-paths.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../leetcode.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../101-symmetric-tree/101-symmetric-tree.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../101-symmetric-tree/101-symmetric-tree.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../102-binary-tree-level-order-traversal/102-binary-tree-level-order-traversal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../102-binary-tree-level-order-traversal/102-binary-tree-level-order-traversal.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1026-maximum-difference-between-node-and-ancestor/1026-maximum-difference-between-node-and-ancestor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1026-maximum-difference-between-node-and-ancestor/1026-maximum-difference-between-node-and-ancestor.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../104-maximum-depth-of-binary-tree/104-maximum-depth-of-binary-tree.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../104-maximum-depth-of-binary-tree/104-maximum-depth-of-binary-tree.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../106-construct-binary-tree-from-inorder-and-postorder-traversal/106-construct-binary-tree-from-inorder-and-postorder-traversal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../106-construct-binary-tree-from-inorder-and-postorder-traversal/106-construct-binary-tree-from-inorder-and-postorder-traversal.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../107-binary-tree-level-order-traversal-ii/107-binary-tree-level-order-traversal-ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../107-binary-tree-level-order-traversal-ii/107-binary-tree-level-order-traversal-ii.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../108-convert-sorted-array-to-binary-search-tree/108-convert-sorted-array-to-binary-search-tree.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../108-convert-sorted-array-to-binary-search-tree/108-convert-sorted-array-to-binary-search-tree.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../11-container-with-most-water/11-container-with-most-water.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../11-container-with-most-water/11-container-with-most-water.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1108-defanging-an-ip-address/1108-defanging-an-ip-address.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1108-defanging-an-ip-address/1108-defanging-an-ip-address.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../111-minimum-depth-of-binary-tree/111-minimum-depth-of-binary-tree.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../111-minimum-depth-of-binary-tree/111-minimum-depth-of-binary-tree.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../116-populating-next-right-pointers-in-each-node/116-populating-next-right-pointers-in-each-node.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../116-populating-next-right-pointers-in-each-node/116-populating-next-right-pointers-in-each-node.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12-integer-to-roman/12-integer-to-roman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../12-integer-to-roman/12-integer-to-roman.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../122-best-time-to-buy-and-sell-stock-ii/122-best-time-to-buy-and-sell-stock-ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../122-best-time-to-buy-and-sell-stock-ii/122-best-time-to-buy-and-sell-stock-ii.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1291-sequential-digits/1291-sequential-digits.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1291-sequential-digits/1291-sequential-digits.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1302-deepest-leaves-sum/1302-deepest-leaves-sum.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1302-deepest-leaves-sum/1302-deepest-leaves-sum.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1315-sum-of-nodes-with-even-valued-grandparent/1315-sum-of-nodes-with-even-valued-grandparent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1315-sum-of-nodes-with-even-valued-grandparent/1315-sum-of-nodes-with-even-valued-grandparent.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1338-reduce-array-size-to-the-half/1338-reduce-array-size-to-the-half.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1338-reduce-array-size-to-the-half/1338-reduce-array-size-to-the-half.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1367-linked-list-in-binary-tree/1367-linked-list-in-binary-tree.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1367-linked-list-in-binary-tree/1367-linked-list-in-binary-tree.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../139-word-break/139-word-break.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../139-word-break/139-word-break.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../14-longest-common-prefix/14-longest-common-prefix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../14-longest-common-prefix/14-longest-common-prefix.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../140-word-break-ii/140-word-break-ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../140-word-break-ii/140-word-break-ii.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../141-linked-list-cycle/141-linked-list-cycle.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../141-linked-list-cycle/141-linked-list-cycle.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../142-linked-list-cycle-ii/142-linked-list-cycle-ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../142-linked-list-cycle-ii/142-linked-list-cycle-ii.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1424-diagonal-traverse-ii/1424-diagonal-traverse-ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1424-diagonal-traverse-ii/1424-diagonal-traverse-ii.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../143-reorder-list/143-reorder-list.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../143-reorder-list/143-reorder-list.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1480-running-sum-of-1d-array/1480-running-sum-of-1d-array.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1480-running-sum-of-1d-array/1480-running-sum-of-1d-array.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15-3sum/15-3sum.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../15-3sum/15-3sum.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1514-path-with-maximum-probability/1514-path-with-maximum-probability.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1514-path-with-maximum-probability/1514-path-with-maximum-probability.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16-3sum-closest/16-3sum-closest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../16-3sum-closest/16-3sum-closest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../162-find-peak-element/162-find-peak-element.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../162-find-peak-element/162-find-peak-element.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1631-path-with-minimum-effort/1631-path-with-minimum-effort.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1631-path-with-minimum-effort/1631-path-with-minimum-effort.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1641-count-sorted-vowel-strings/1641-count-sorted-vowel-strings.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1641-count-sorted-vowel-strings/1641-count-sorted-vowel-strings.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1685-sum-of-absolute-differences-in-a-sorted-array/1685-sum-of-absolute-differences-in-a-sorted-array.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1685-sum-of-absolute-differences-in-a-sorted-array/1685-sum-of-absolute-differences-in-a-sorted-array.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1688-count-of-matches-in-tournament/1688-count-of-matches-in-tournament.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../1688-count-of-matches-in-tournament/1688-count-of-matches-in-tournament.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../18-4sum/18-4sum.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../18-4sum/18-4sum.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19-remove-nth-node-from-end-of-list/19-remove-nth-node-from-end-of-list.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../19-remove-nth-node-from-end-of-list/19-remove-nth-node-from-end-of-list.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../199-binary-tree-right-side-view/199-binary-tree-right-side-view.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../199-binary-tree-right-side-view/199-binary-tree-right-side-view.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../209-minimum-size-subarray-sum/209-minimum-size-subarray-sum.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../209-minimum-size-subarray-sum/209-minimum-size-subarray-sum.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../212-word-search-ii/212-word-search-ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../212-word-search-ii/212-word-search-ii.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../215-kth-largest-element-in-an-array/215-kth-largest-element-in-an-array.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../215-kth-largest-element-in-an-array/215-kth-largest-element-in-an-array.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24-swap-nodes-in-pairs/24-swap-nodes-in-pairs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../24-swap-nodes-in-pairs/24-swap-nodes-in-pairs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24-swap-nodes-in-pairs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../24-swap-nodes-in-pairs/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../25-reverse-nodes-in-k-group/25-reverse-nodes-in-k-group.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../25-reverse-nodes-in-k-group/25-reverse-nodes-in-k-group.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26-remove-duplicates-from-sorted-array/26-remove-duplicates-from-sorted-array.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../26-remove-duplicates-from-sorted-array/26-remove-duplicates-from-sorted-array.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27-remove-element/27-remove-element.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../27-remove-element/27-remove-element.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../279-perfect-squares/279-perfect-squares.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../279-perfect-squares/279-perfect-squares.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28-implement-strstr/28-implement-strstr.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../28-implement-strstr/28-implement-strstr.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29-divide-two-integers/29-divide-two-integers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../29-divide-two-integers/29-divide-two-integers.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../30-substring-with-concatenation-of-all-words/30-substring-with-concatenation-of-all-words.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../30-substring-with-concatenation-of-all-words/30-substring-with-concatenation-of-all-words.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../300-longest-increasing-subsequence/300-longest-increasing-subsequence.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../300-longest-increasing-subsequence/300-longest-increasing-subsequence.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../301-remove-invalid-parentheses/301-remove-invalid-parentheses.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../301-remove-invalid-parentheses/301-remove-invalid-parentheses.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../309-best-time-to-buy-and-sell-stock-with-cooldown/309-best-time-to-buy-and-sell-stock-with-cooldown.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../309-best-time-to-buy-and-sell-stock-with-cooldown/309-best-time-to-buy-and-sell-stock-with-cooldown.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../31-next-permutation/31-next-permutation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../31-next-permutation/31-next-permutation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../312-burst-balloons/312-burst-balloons.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../312-burst-balloons/312-burst-balloons.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../32-longest-valid-parentheses/32-longest-valid-parentheses.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../32-longest-valid-parentheses/32-longest-valid-parentheses.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../33-search-in-rotated-sorted-array/33-search-in-rotated-sorted-array.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../33-search-in-rotated-sorted-array/33-search-in-rotated-sorted-array.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../343-integer-break/343-integer-break.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../343-integer-break/343-integer-break.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../350-intersection-of-two-arrays-ii/350-intersection-of-two-arrays-ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../350-intersection-of-two-arrays-ii/350-intersection-of-two-arrays-ii.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../36-valid-sudoku/36-valid-sudoku.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../36-valid-sudoku/36-valid-sudoku.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../37-sudoku-solver/37-sudoku-solver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../37-sudoku-solver/37-sudoku-solver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../38-count-and-say/38-count-and-say.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../38-count-and-say/38-count-and-say.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../40-combination-sum-ii/40-combination-sum-ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../40-combination-sum-ii/40-combination-sum-ii.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../44-wildcard-matching/44-wildcard-matching.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../44-wildcard-matching/44-wildcard-matching.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../513-find-bottom-left-tree-value/513-find-bottom-left-tree-value.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../513-find-bottom-left-tree-value/513-find-bottom-left-tree-value.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../528-random-pick-with-weight/528-random-pick-with-weight.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../528-random-pick-with-weight/528-random-pick-with-weight.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../53-maximum-subarray/53-maximum-subarray.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../53-maximum-subarray/53-maximum-subarray.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../535-encode-and-decode-tinyurl/535-encode-and-decode-tinyurl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../535-encode-and-decode-tinyurl/535-encode-and-decode-tinyurl.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../559-maximum-depth-of-n-ary-tree/559-maximum-depth-of-n-ary-tree.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../559-maximum-depth-of-n-ary-tree/559-maximum-depth-of-n-ary-tree.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../6-zigzag-conversion/6-zigzag-conversion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../6-zigzag-conversion/6-zigzag-conversion.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../61-rotate-list/61-rotate-list.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../61-rotate-list/61-rotate-list.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../62-unique-paths/62-unique-paths.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../62-unique-paths/62-unique-paths.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../621-task-scheduler/621-task-scheduler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../621-task-scheduler/621-task-scheduler.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../64-minimum-path-sum/64-minimum-path-sum.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../64-minimum-path-sum/64-minimum-path-sum.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../690-employee-importance/690-employee-importance.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../690-employee-importance/690-employee-importance.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../7-reverse-integer/7-reverse-integer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../7-reverse-integer/7-reverse-integer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../709-to-lower-case/709-to-lower-case.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../709-to-lower-case/709-to-lower-case.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../743-network-delay-time/743-network-delay-time.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../743-network-delay-time/743-network-delay-time.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../746-min-cost-climbing-stairs/746-min-cost-climbing-stairs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../746-min-cost-climbing-stairs/746-min-cost-climbing-stairs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../76-minimum-window-substring/76-minimum-window-substring.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../76-minimum-window-substring/76-minimum-window-substring.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../763-partition-labels/763-partition-labels.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../763-partition-labels/763-partition-labels.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../771-jewels-and-stones/771-jewels-and-stones.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../771-jewels-and-stones/771-jewels-and-stones.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../784-letter-case-permutation/784-letter-case-permutation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../784-letter-case-permutation/784-letter-case-permutation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../797-all-paths-from-source-to-target/797-all-paths-from-source-to-target.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../797-all-paths-from-source-to-target/797-all-paths-from-source-to-target.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../8-string-to-integer-atoi/8-string-to-integer-atoi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../8-string-to-integer-atoi/8-string-to-integer-atoi.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../841-keys-and-rooms/841-keys-and-rooms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../841-keys-and-rooms/841-keys-and-rooms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../845-longest-mountain-in-array/845-longest-mountain-in-array.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../845-longest-mountain-in-array/845-longest-mountain-in-array.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../86-partition-list/86-partition-list.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../86-partition-list/86-partition-list.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../871-minimum-number-of-refueling-stops/871-minimum-number-of-refueling-stops.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../871-minimum-number-of-refueling-stops/871-minimum-number-of-refueling-stops.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../872-leaf-similar-trees/872-leaf-similar-trees.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../872-leaf-similar-trees/872-leaf-similar-trees.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../881-boats-to-save-people/881-boats-to-save-people.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../881-boats-to-save-people/881-boats-to-save-people.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../9-palindrome-number/9-palindrome-number.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../9-palindrome-number/9-palindrome-number.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../91-decode-ways/91-decode-ways.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../91-decode-ways/91-decode-ways.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../979-distribute-coins-in-binary-tree/979-distribute-coins-in-binary-tree.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../979-distribute-coins-in-binary-tree/979-distribute-coins-in-binary-tree.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../994-rotting-oranges/994-rotting-oranges.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../994-rotting-oranges/994-rotting-oranges.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dynamic-programming/hard/maximum-product-subarray/maximum-product-subarray.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../dynamic-programming/hard/maximum-product-subarray/maximum-product-subarray.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dynamic-programming/medium/jump-game/jump-game.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../dynamic-programming/medium/jump-game/jump-game.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1rJMJdblD58N5eESsPrTHtUXjTF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="compactDirectories" value="true" />
+    <option name="flattenModules" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="865-smallest-subtree-with-all-the-deepest-nodes" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5b4bca7b-57b0-48e4-a482-c2ca19c4139d" name="Default Changelist" comment="" />
+      <created>1618689670856</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618689670856</updated>
+      <workItem from="1618689671981" duration="4167000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
