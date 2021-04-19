@@ -56,6 +56,16 @@ public class Main {
     System.out.println("test6: " + (passed ? "passed" : "failed"));
   }
 
+  public static void test7() {
+    String num1 = "777";
+    String num2 = "0";
+    Solution s = new Solution();
+    String output = s.multiply(num1, num2);
+    boolean passed = output.equals("0");
+    System.out.println("test7: " + (passed ? "passed" : "failed"));
+  }
+
+
   public static void main(String[] args) {
     test1();
     test2();
@@ -63,5 +73,6 @@ public class Main {
     test4();
     test5();
     test6();
+    test7();
   }
 }
