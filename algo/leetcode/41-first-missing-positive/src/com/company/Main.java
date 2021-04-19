@@ -84,7 +84,7 @@ public class Main {
 
   public static void test21() {
     int[] input = {1,2,0};
-    SolutionConstantSpace s = new SolutionConstantSpace();
+    SolutionConstantSpace2 s = new SolutionConstantSpace2();
     int output = s.firstMissingPositive(input);
     boolean passed = output == 3;
     System.out.println("test21: " + (passed ? "passed" : "failed"));
@@ -92,7 +92,7 @@ public class Main {
 
   public static void test22() {
     int[] input = {3,4,-1,1};
-    SolutionConstantSpace s = new SolutionConstantSpace();
+    SolutionConstantSpace2 s = new SolutionConstantSpace2();
     int output = s.firstMissingPositive(input);
     boolean passed = output == 2;
     System.out.println("test22: " + (passed ? "passed" : "failed"));
@@ -100,7 +100,7 @@ public class Main {
 
   public static void test23() {
     int[] input = {7,8,9,11,12};
-    SolutionConstantSpace s = new SolutionConstantSpace();
+    SolutionConstantSpace2 s = new SolutionConstantSpace2();
     int output = s.firstMissingPositive(input);
     boolean passed = output == 1;
     System.out.println("test23: " + (passed ? "passed" : "failed"));
@@ -108,7 +108,7 @@ public class Main {
 
   public static void test24() {
     int[] input = {1};
-    SolutionConstantSpace s = new SolutionConstantSpace();
+    SolutionConstantSpace2 s = new SolutionConstantSpace2();
     int output = s.firstMissingPositive(input);
     boolean passed = output == 2;
     System.out.println("test24: " + (passed ? "passed" : "failed"));
@@ -116,7 +116,7 @@ public class Main {
 
   public static void test25() {
     int[] input = {0,2,2,1,1};
-    SolutionConstantSpace s = new SolutionConstantSpace();
+    SolutionConstantSpace2 s = new SolutionConstantSpace2();
     int output = s.firstMissingPositive(input);
     boolean passed = output == 3;
     System.out.println("test25: " + (passed ? "passed" : "failed"));
@@ -124,7 +124,7 @@ public class Main {
 
   public static void test26() {
     int[] input = {1,1};
-    SolutionConstantSpace s = new SolutionConstantSpace();
+    SolutionConstantSpace2 s = new SolutionConstantSpace2();
     int output = s.firstMissingPositive(input);
     boolean passed = output == 2;
     System.out.println("test26: " + (passed ? "passed" : "failed"));
