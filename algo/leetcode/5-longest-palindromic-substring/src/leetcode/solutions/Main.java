@@ -1,10 +1,12 @@
-package com.company;
+package leetcode.solutions;
+
+import com.company.Solution;
 
 public class Main {
 
   public static void test1() {
     String input = "babad";
-    Solution solution = new Solution();
+    com.company.Solution solution = new com.company.Solution();
     String output = solution.longestPalindrome(input);
     boolean passed = output.equals("bab") || output.equals("aba");
     System.out.println("test1:" + (passed ? "passed" : "failed"));
@@ -12,7 +14,7 @@ public class Main {
 
   public static void test2() {
     String input = "cbbd";
-    Solution solution = new Solution();
+    com.company.Solution solution = new com.company.Solution();
     String output = solution.longestPalindrome(input);
     boolean passed = output.equals("bb");
     System.out.println("test2:" + (passed ? "passed" : "failed"));
@@ -20,7 +22,7 @@ public class Main {
 
   public static void test3() {
     String input = "babaddtattarrattatddetartrateedredividerb";
-    Solution solution = new Solution();
+    com.company.Solution solution = new Solution();
     String output = solution.longestPalindrome(input);
     boolean passed = output.equals("ddtattarrattatdd");
     System.out.println("test3:" + (passed ? "passed" : "failed"));
