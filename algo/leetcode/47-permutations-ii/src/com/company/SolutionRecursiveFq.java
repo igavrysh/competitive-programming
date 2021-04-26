@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolutionRecursive {
+public class SolutionRecursiveFq {
   public List<List<Integer>> permuteUnique(int[] nums) {
     Integer[] fq = new Integer[21];
     for (int i = 0; i < nums.length; i++) {
