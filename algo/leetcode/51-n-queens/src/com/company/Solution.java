@@ -21,19 +21,20 @@ public class Solution {
   private static final int EMPTY = 99;
   private static final int QUEEN = 100;
 
-  private int hash(int[][] B) {
-    int[][] tmp = new int[B.length][B.length];
+  public int hash(int[][] B) {
+    int[] tmp = new int[B.length];
+    int idx = 0;
     for (int i = 0; i < B.length; i++) {
       for (int j = 0; j < B.length; j++) {
         if (B[i][j] == QUEEN) {
-          tmp[i][j] = QUEEN;
-        } else {
-          tmp[i][j] = EMPTY;
+          tmp[idx] = i * B.length + j;
+          idx++;
         }
       }
     }
     return Arrays.hashCode(tmp);
   }
+
 
   private void check(int currQ, int n, int[][] B, List<List<String>> output, HashSet<Integer> outputHashes) {
     for (int i = 0; i < n; i++) {

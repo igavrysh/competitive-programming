@@ -31,8 +31,15 @@ public class Main {
   private static void test4() {
     Solution s = new Solution();
     List<List<String>> output = s.solveNQueens(4);
-    boolean passed = output.size() == 0;
-    System.out.println("test3: " + (passed ? "passed" : "failed"));
+    boolean passed = output.size() == 2;
+    System.out.println("test4: " + (passed ? "passed" : "failed"));
+  }
+
+  private static void test8() {
+    Solution s = new Solution();
+    List<List<String>> output = s.solveNQueens(8);
+    boolean passed = output.size() == 2;
+    System.out.println("test8: " + (passed ? "passed" : "failed"));
   }
 
   private static void testArraysHash1() {
@@ -45,22 +52,12 @@ public class Main {
     System.out.println("testArraysHash1: hashT1 == hashT2 ? " + (hashT1 == hashT2 ? "true" : "false") );
   }
 
-  private static void testArraysHash2() {
-    int[][] t1 = {{99,100,99,100}, {99,99,100,100}, {100, 99, 100, 99}, {100, 100, 100, 100}};
-    int hashT1 = Arrays.deepHashCode(t1);
-
-    int[][] t2 = {{99,100,99,100}, {99,99,100,100}, {100, 99, 100, 99}, {100, 100, 100, 100}};
-    int hashT2 = Arrays.deepHashCode(t2);
-
-    System.out.println("testArraysHash2: hashT1 == hashT2 ? " + (hashT1 == hashT2 ? "true" : "false") );
-  }
-
   public static void main(String[] args) {
     test1();
     test2();
     test3();
     test4();
+    test8();
     testArraysHash1();
-    testArraysHash2();
   }
 }
