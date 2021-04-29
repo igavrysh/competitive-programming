@@ -2,29 +2,24 @@ package com.company;
 
 import java.util.*;
 
-import static java.util.Objects.hash;
-
 public class Solution {
   public List<List<String>> groupAnagrams(String[] strs) {
-    HashMap<Integer, List<String>> map = new HashMap<>();
+    HashMap<String, List<String>> map = new HashMap<>();
     for (String str : strs) {
-      char[] keyCh = str.toCharArray();
-      int [] keyInt = new int[26];
-      for (char c : keyCh) {
-        int idx = c-'a';
-        keyInt[c-'a']++;
-      }
-      Integer keyHashed = Arrays.hashCode(keyInt);
-      if (!map.containsKey(keyHashed)) {
+      char[] k = str.toCharArray();
+      Arrays.sort(k);
+      String key = String.valueOf(k);
+      if (!map.containsKey(key)) {
         List<String> a = new ArrayList<>();
         a.add(str);
-        map.put(keyHashed, new ArrayList<>(Arrays.asList(str)));
+        map.put(key, a);
       } else {
-        map.get(keyHashed).add(str);
+        List<String> a = map.get(key);
+        a.add(str);
       }
     }
     List<List<String>> output = new ArrayList<>();
-    for (Map.Entry<Integer, List<String>> entry : map.entrySet()) {
+    for (Map.Entry<String, List<String>> entry : map.entrySet()) {
       output.add(entry.getValue());
     }
     return output;
