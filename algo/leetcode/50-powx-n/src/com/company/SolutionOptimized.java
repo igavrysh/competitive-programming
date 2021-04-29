@@ -1,6 +1,6 @@
 package com.company;
 
-public class Solution {
+public class SolutionOptimized {
 
   public double myPow(double x, int n) {
     if (n == 0 || x == 1) {
@@ -19,10 +19,22 @@ public class Solution {
       return 0.0;
     }
 
-    double res = 1;
-    for (int i = 0; i < Math.abs(n); i++) {
-      res *= x;
+    if (n < 0) {
+      return myPow(1/x, -n);
     }
-    return n >= 0 ? res : 1/res;
+
+    double res = x;
+    int k = 1;
+    while (k < n) {
+      if (k*2 < n) {
+        res *= res;
+        k *= 2;
+      }
+      else {
+        res *= x;
+        k++;
+      }
+    }
+    return res;
   }
 }
