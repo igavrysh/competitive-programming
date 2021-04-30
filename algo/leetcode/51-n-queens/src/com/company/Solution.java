@@ -14,7 +14,7 @@ public class Solution {
       }
     }
     List<List<String>> output = new ArrayList<>();
-    check(1, n, B, output, new HashSet<>());
+    check(1, 0, n, B, output, new HashSet<>());
     return output;
   }
 
@@ -36,82 +36,83 @@ public class Solution {
   }
 
 
-  private void check(int currQ, int n, int[][] B, List<List<String>> output, HashSet<Integer> outputHashes) {
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-        if (B[i][j] == EMPTY) {
-          B[i][j] = QUEEN;
+  private void check(int currQ, int c, int n, int[][] B, List<List<String>> output, HashSet<Integer> outputHashes) {
+    int i = c;
 
-          if (currQ == n) {
-            int hashB = hash(B);
+    for (int j = 0; j < n; j++) {
+      if (B[i][j] == EMPTY) {
+        B[i][j] = QUEEN;
 
-            if (!outputHashes.contains(hashB)) {
+        if (currQ == n) {
+          int hashB = hash(B);
 
-              List<String> currBoard = new ArrayList<>();
-              for (int i1 = 0; i1 < n; i1++) {
-                StringBuilder sb = new StringBuilder();
-                for (int j1 = 0; j1 < n; j1++) {
-                  if (B[i1][j1] == QUEEN) {
-                    sb.append('Q');
-                  } else {
-                    sb.append('.');
-                  }
+          if (!outputHashes.contains(hashB)) {
+
+            List<String> currBoard = new ArrayList<>();
+            for (int i1 = 0; i1 < n; i1++) {
+              StringBuilder sb = new StringBuilder();
+              for (int j1 = 0; j1 < n; j1++) {
+                if (B[i1][j1] == QUEEN) {
+                  sb.append('Q');
+                } else {
+                  sb.append('.');
                 }
-                currBoard.add(sb.toString());
               }
+              currBoard.add(sb.toString());
+            }
 
-              output.add(currBoard);
-              outputHashes.add(hashB);
-            }
-            B[i][j] = EMPTY;
-            
-            continue;
+            output.add(currBoard);
+            outputHashes.add(hashB);
           }
-
-          for (int s = 0; s < n; s++) {
-            if (B[i][s] == EMPTY) {
-              B[i][s] = currQ;
-            }
-            if (B[s][j] == EMPTY) {
-              B[s][j] = currQ;
-            }
-            if (i + s < n && j + s < n && B[i + s][j + s] == EMPTY) {
-              B[i + s][j + s] = currQ;
-            }
-            if (i - s >= 0 && j + s < n && B[i - s][j + s] == EMPTY) {
-              B[i - s][j + s] = currQ;
-            }
-            if (i + s < n && j - s >= 0 && B[i + s][j - s] == EMPTY) {
-              B[i + s][j - s] = currQ;
-            }
-            if (i - s >= 0 && j - s >= 0 && B[i - s][j - s] == EMPTY) {
-              B[i - s][j - s] = currQ;
-            }
-          }
-          check(currQ+1, n, B, output, outputHashes);
           B[i][j] = EMPTY;
-          for (int s = 0; s < n; s++) {
-            if (B[i][s] == currQ) {
-              B[i][s] = EMPTY;
-            }
-            if (B[s][j] == currQ) {
-              B[s][j] = EMPTY;
-            }
-            if (i + s < n && j + s < n && B[i + s][j + s] == currQ) {
-              B[i + s][j + s] = EMPTY;
-            }
-            if (i - s >= 0 && j + s < n && B[i - s][j + s] == currQ) {
-              B[i - s][j + s] = EMPTY;
-            }
-            if (i + s < n && j - s >= 0 && B[i + s][j - s] == currQ) {
-              B[i + s][j - s] = EMPTY;
-            }
-            if (i - s >= 0 && j - s >= 0 && B[i - s][j - s] == currQ) {
-              B[i - s][j - s] = EMPTY;
-            }
+
+          continue;
+        }
+
+        for (int s = 0; s < n; s++) {
+          if (B[i][s] == EMPTY) {
+            B[i][s] = currQ;
+          }
+          if (B[s][j] == EMPTY) {
+            B[s][j] = currQ;
+          }
+          if (i + s < n && j + s < n && B[i + s][j + s] == EMPTY) {
+            B[i + s][j + s] = currQ;
+          }
+          if (i - s >= 0 && j + s < n && B[i - s][j + s] == EMPTY) {
+            B[i - s][j + s] = currQ;
+          }
+          if (i + s < n && j - s >= 0 && B[i + s][j - s] == EMPTY) {
+            B[i + s][j - s] = currQ;
+          }
+          if (i - s >= 0 && j - s >= 0 && B[i - s][j - s] == EMPTY) {
+            B[i - s][j - s] = currQ;
+          }
+        }
+        check(currQ+1, c+1, n, B, output, outputHashes);
+        B[i][j] = EMPTY;
+        for (int s = 0; s < n; s++) {
+          if (B[i][s] == currQ) {
+            B[i][s] = EMPTY;
+          }
+          if (B[s][j] == currQ) {
+            B[s][j] = EMPTY;
+          }
+          if (i + s < n && j + s < n && B[i + s][j + s] == currQ) {
+            B[i + s][j + s] = EMPTY;
+          }
+          if (i - s >= 0 && j + s < n && B[i - s][j + s] == currQ) {
+            B[i - s][j + s] = EMPTY;
+          }
+          if (i + s < n && j - s >= 0 && B[i + s][j - s] == currQ) {
+            B[i + s][j - s] = EMPTY;
+          }
+          if (i - s >= 0 && j - s >= 0 && B[i - s][j - s] == currQ) {
+            B[i - s][j - s] = EMPTY;
           }
         }
       }
     }
   }
+
 }

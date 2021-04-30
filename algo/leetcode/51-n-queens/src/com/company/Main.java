@@ -38,8 +38,15 @@ public class Main {
   private static void test8() {
     Solution s = new Solution();
     List<List<String>> output = s.solveNQueens(8);
-    boolean passed = output.size() == 2;
+    boolean passed = output.size() == 92;
     System.out.println("test8: " + (passed ? "passed" : "failed"));
+  }
+
+  private static void test9() {
+    Solution s = new Solution();
+    List<List<String>> output = s.solveNQueens(9);
+    boolean passed = output.size() == 352;
+    System.out.println("test9: " + (passed ? "passed" : "failed"));
   }
 
   private static void testArraysHash1() {
@@ -58,6 +65,7 @@ public class Main {
     test3();
     test4();
     test8();
+    test9();
     testArraysHash1();
   }
 }
