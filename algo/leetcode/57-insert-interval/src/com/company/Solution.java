@@ -34,18 +34,21 @@ public class Solution {
 
     int[][] output = new int[size + 1][2];
     int k = 0;
-    for (int i = 0; i < output.length; i++) {
+    for (int i = 0; i < size+1; i++) {
       if (i == insertPos) {
         output[i] = newInterval;
         continue;
       }
-      while (intervals[k][0] == 1 && intervals[k][1]== -1) {
+      while (k < intervals.length && intervals[k][0] == 1 && intervals[k][1]== -1) {
         k++;
+      }
+
+      if (k >= intervals.length) {
+        break;
       }
       output[i] = intervals[k];
       k++;
     }
-
     return output;
   }
 }

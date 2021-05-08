@@ -49,11 +49,21 @@ public class Main {
     System.out.println("test5: " + (passed ? "passed" : "failed"));
   }
 
+  public static void test6() {
+    int[][] input = {{1,5}};
+    int[] inputInsert = {6,8};
+    Solution s = new Solution();
+    int[][] output = s.insert(input, inputInsert);
+    boolean passed = Arrays.deepEquals(output, new int[][]{{1,5}, {6,8}});
+    System.out.println("test6: " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     test1();
     test2();
     test3();
     test4();
     test5();
+    test6();
   }
 }
