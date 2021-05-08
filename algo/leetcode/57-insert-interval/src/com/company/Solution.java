@@ -3,33 +3,49 @@ package com.company;
 public class Solution {
 
   public int[][] insert(int[][] intervals, int[] newInterval) {
-    int l = -1;
-    int r = -1;
-    int newSize = 0;
+    if (intervals.length == 0) {
+      int[][] res = new int[1][2];
+      res[0][0] = newInterval[0];
+      res[0][1] = newInterval[1];
+      return res;
+    }
+
+    int size = 0;
+    int insertPos = -1;
     for (int i = 0; i < intervals.length; i++) {
-      if (intervals[i][1] < newInterval[0] && l == -1) {
-        newSize++;
+      if (intervals[i][1] < newInterval[0]) {
+        size++;
       }
 
-      if (intervals[i][1] >= newInterval[0] && l == -1) {
-        l = Math.min(intervals[i][0], newInterval[0]);
-        r = Math.max(intervals[i][1], newInterval[1]);
-        intervals[i] = new int[]{0, 0};
-      }
-
-      if (r != -1) {
-        if (intervals[i][0] <= r) {
-          r = Math.max(intervals[i][1], r);
-          intervals[i] = new int[]{0, 0};
-        } else {
-          newSize += intervals.length - i;
-          i = intervals.length;
+      if (intervals[i][1] >= newInterval[0] && intervals[i][0] <= newInterval[1]) {
+        newInterval[0] = Math.min(intervals[i][0], newInterval[0]);
+        newInterval[1] = Math.max(intervals[i][1], newInterval[1]);
+        intervals[i][0] = 1;
+        intervals[i][1] = -1;
+        if (insertPos == -1) {
+          insertPos = size;
         }
+      }
+
+      if (intervals[i][0] > newInterval[0]) {
+        size++;
       }
     }
 
-    newSize += 1;
+    int[][] output = new int[size + 1][2];
+    int k = 0;
+    for (int i = 0; i < output.length; i++) {
+      if (i == insertPos) {
+        output[i] = newInterval;
+        continue;
+      }
+      while (intervals[k][0] == 1 && intervals[k][1]== -1) {
+        k++;
+      }
+      output[i] = intervals[k];
+      k++;
+    }
 
-    return null;
+    return output;
   }
 }
