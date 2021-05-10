@@ -58,6 +58,24 @@ public class Main {
     System.out.println("test6: " + (passed ? "passed" : "failed"));
   }
 
+  public static void test7() {
+    int[][] input = {{1,5}};
+    int[] inputInsert = {0, 0};
+    Solution s = new Solution();
+    int[][] output = s.insert(input, inputInsert);
+    boolean passed = Arrays.deepEquals(output, new int[][]{{0,0}, {1,5}});
+    System.out.println("test7: " + (passed ? "passed" : "failed"));
+  }
+
+  public static void test8() {
+    int[][] input = {{2,5},{6,7},{8,9}};
+    int[] inputInsert = {0,1};
+    Solution s = new Solution();
+    int[][] output = s.insert(input, inputInsert);
+    boolean passed = Arrays.deepEquals(output, new int[][]{{0,1},{2,5},{6,7},{8,9}});
+    System.out.println("test8: " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     test1();
     test2();
@@ -65,5 +83,7 @@ public class Main {
     test4();
     test5();
     test6();
+    test7();
+    test8();
   }
 }
