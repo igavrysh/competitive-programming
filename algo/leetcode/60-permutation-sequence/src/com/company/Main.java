@@ -44,6 +44,27 @@ public class Main {
     System.out.println("test13: " + (passed ? "passed" : "failed"));
   }
 
+  public static void test21() {
+    Solution3 s = new Solution3();
+    String output = s.getPermutation(3, 3);
+    boolean passed = output.equals("213");
+    System.out.println("test21: " + (passed ? "passed" : "failed"));
+  }
+
+  public static void test22() {
+    Solution3 s = new Solution3();
+    String output = s.getPermutation(4, 9);
+    boolean passed = output.equals("2314");
+    System.out.println("test22: " + (passed ? "passed" : "failed"));
+  }
+
+  public static void test23() {
+    Solution3 s = new Solution3();
+    String output = s.getPermutation(3, 1);
+    boolean passed = output.equals("123");
+    System.out.println("test23: " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     test1();
     test2();
@@ -51,5 +72,8 @@ public class Main {
     test11();
     test12();
     test13();
+    test21();
+    test22();
+    test23();
   }
 }
