@@ -40,3 +40,14 @@ Constraints:
 
 * `word1` and `word2` consist of lowercase English letters.
 
+**P.S.** 
+
+I was struggling understanding solutions provided in leetcode discussions tab and in separate 
+youtube channels, that were recommended ([link1](https://www.youtube.com/watch?v=MiqoA-yF-0M), 
+[link2](https://www.youtube.com/watch?v=Xxx0b7djCrs), 
+[link3](https://www.youtube.com/watch?v=We3YDTzNXEk))
+
+This video [MIT 6.006 Introduction to Algorithms, Fall 2011 Lectur: 21. DP III: Parenthesization, Edit Distance, Knapsack](https://www.youtube.com/watch?v=ocZMDMZwhCY) 
+
+helped me understand general approach and after watching and internalizing topics discussed in a 
+video I was able intuitively understand and come up with solution for this problem.
