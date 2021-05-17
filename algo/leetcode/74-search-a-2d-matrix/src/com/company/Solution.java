@@ -11,7 +11,7 @@ public class Solution {
       m = l+(r-l)/2;
       if (matrix[l][0] <= target && matrix[m][nCols-1] >= target) {
         r = m;
-      } else if (m+1 < nRows && matrix[m+1][nCols-1] <= target && matrix[r][nCols-1] >= target) {
+      } else if (m+1 < nRows && matrix[m+1][0] <= target && matrix[r][nCols-1] >= target) {
         l = m+1;
       } else {
         return false;
