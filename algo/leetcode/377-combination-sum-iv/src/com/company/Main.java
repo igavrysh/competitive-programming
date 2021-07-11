@@ -58,6 +58,20 @@ public class Main {
     System.out.println("test14: " + (passed ? "passed" : "failed"));
   }
 
+  public static void test21() {
+    SolutionWithoutCaching s = new SolutionWithoutCaching();
+    int result = s.combinationSum4(new int[] {1,2,3}, 4);
+    boolean passed = result == 7;
+    System.out.println("test21: " + (passed ? "passed" : "failed"));
+  }
+
+  public static void test24() {
+    SolutionWithoutCaching s = new SolutionWithoutCaching();
+    int result = s.combinationSum4(new int[] {2, 1, 3}, 35);
+    boolean passed = result == 1132436852;
+    System.out.println("test24: " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     test1();
     test2();
@@ -68,5 +82,9 @@ public class Main {
     test12();
     test13();
     test14();
+
+    //test24();
+
+    test21();
   }
 }
