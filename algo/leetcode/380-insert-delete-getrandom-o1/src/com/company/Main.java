@@ -94,31 +94,25 @@ public class Main {
     }
 
     passed = passed && s.remove(1);
-    System.out.println("test1: remove 1 " + (passed ? "passed" : "failed"));
-    if (!passed) {
-      return;
-    }
-
-    passed = passed && !s.insert(2);
-
-    System.out.println("test1: insert 2 " + (passed ? "passed" : "failed"));
+    System.out.println("test3: remove 1 " + (passed ? "passed" : "failed"));
     if (!passed) {
       return;
     }
 
     passed = passed && s.getRandom() == 2;
 
-    System.out.println("test1: getRandom " + (passed ? "passed" : "failed"));
+    System.out.println("test3: getRandom " + (passed ? "passed" : "failed"));
     if (!passed) {
       return;
     }
 
-    System.out.println("test1: " + (passed ? "passed" : "failed"));
+    System.out.println("test3: " + (passed ? "passed" : "failed"));
   }
 
 
   public static void main(String[] args) {
     test1();
     test2();
+    test3();
   }
 }

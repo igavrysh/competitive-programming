@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class RandomizedSet {
 
@@ -47,8 +44,11 @@ public class RandomizedSet {
   public boolean remove(int val) {
     Element e = get(val);
     if (e != null) {
+      Element lastElement = map.get(list.get(list.size()-1));
+      Collections.swap(list, e.indexInList, lastElement.indexInList);
+      lastElement.indexInList = e.indexInList;
       map.remove(val);
-      list.remove(e.indexInList.intValue());
+      list.remove(list.size()-1);
       return true;
     }
     return false;
@@ -59,7 +59,8 @@ public class RandomizedSet {
     if (list.size() == 0) {
       return -1;
     }
-    return list.get(random.nextInt(list.size()));
+    int randomIndex = random.nextInt(list.size());
+    return list.get(randomIndex);
   }
 }
 
