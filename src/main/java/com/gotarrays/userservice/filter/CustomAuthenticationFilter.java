@@ -1,10 +1,15 @@
 package com.gotarrays.userservice.filter;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -20,11 +25,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Slf4j
-public class CustomerAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
   private final AuthenticationManager authenticationManager;
 
-  public CustomerAuthenticationFilter(AuthenticationManager authenticationManager) {
+  public CustomAuthenticationFilter(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;
   }
 
@@ -59,7 +64,15 @@ public class CustomerAuthenticationFilter extends UsernamePasswordAuthentication
         .withIssuer(request.getRequestURL().toString())
         .sign(algorithm);
 
+    /*
     response.setHeader("access_token", access_token);
     response.setHeader("refresh_token", refresh_token);
+     */
+
+    Map<String, String> tokens = new HashMap<>();
+    tokens.put("access_token", access_token);
+    tokens.put("refresh_token", refresh_token);
+    response.setContentType(APPLICATION_JSON_VALUE);
+    new ObjectMapper().writeValue(response.getOutputStream(), tokens);
   }
 }

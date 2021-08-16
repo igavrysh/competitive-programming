@@ -1,6 +1,9 @@
 package com.gotarrays.userservice.security;
 
-import com.gotarrays.userservice.filter.CustomerAuthenticationFilter;
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
+
+import com.gotarrays.userservice.filter.CustomAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
@@ -28,10 +31,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
+    CustomAuthenticationFilter customerAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
+    customerAuthenticationFilter.setFilterProcessesUrl("/api/login");
     http.csrf().disable();
     http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    http.authorizeRequests().anyRequest().permitAll();
-    http.addFilter(new CustomerAuthenticationFilter(authenticationManagerBean()));
+    http.authorizeRequests().antMatchers("/api/login/**").permitAll();
+    http.authorizeRequests().antMatchers(GET, "/api/user/**").hasAuthority("ROLE_USER");
+    http.authorizeRequests().antMatchers(POST, "/api/user/save/**").hasAuthority("ROLE_ADMIN");
+    http.authorizeRequests().anyRequest().authenticated();
+    http.addFilter(customerAuthenticationFilter);
   }
 
   @Bean
