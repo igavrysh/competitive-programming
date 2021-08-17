@@ -3,13 +3,14 @@ package com.gotarrays.userservice.filter;
 import static java.util.Arrays.stream;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -52,8 +53,12 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
         } catch (Exception exception) {
           log.error("Error logging in: {}", exception.getMessage());
           response.setHeader("error", exception.getMessage());
-          response.sendError(FORBIDDEN.value());
+          response.setStatus(FORBIDDEN.value());
+          //response.sendError(FORBIDDEN.value());
           Map<String, String> error = new HashMap<>();
+          error.put("error_message", exception.getMessage());
+          response.setContentType(APPLICATION_JSON_VALUE);
+          new ObjectMapper().writeValue(response.getOutputStream(), error);
         }
       } else {
         filterChain.doFilter(request, response);
