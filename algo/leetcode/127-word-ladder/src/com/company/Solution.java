@@ -13,34 +13,26 @@ public class Solution {
   }
 
   private int BFS(String beginWord, String endWord, List<String> wordList) {
-    Queue<HashSet<String>> level = new LinkedList<>();
-    Queue<String> prevElemQ = new LinkedList<>();
-
-    HashSet<String> w = new HashSet<>();
-    w.add(beginWord);
-    level.offer(w);
-    prevElemQ.offer(beginWord);
+    HashSet<String> seen = new HashSet<>();
+    Queue<String> level = new LinkedList<>();
+    seen.add(beginWord);
+    level.offer(beginWord);
 
     int l = 0;
     while (level.size() > 0) {
       l++;
       int currSize = level.size();
-
-
       for (int i = 0; i < currSize; i++) {
-        HashSet<String> currPath = level.poll();
-        String prevElem = prevElemQ.poll();
+        String prevElem = level.poll();
 
         for (int j = 0; j < wordList.size(); j++) {
           String jW = wordList.get(j);
-          if (isOneCharDiff(jW, prevElem) && !currPath.contains(jW)) {
+          if (isOneCharDiff(jW, prevElem) && !seen.contains(jW)) {
             if (jW.equals(endWord)) {
               return l+1;
             }
-            HashSet<String> newW = new HashSet<>(currPath);
-            newW.add(jW);
-            level.add(newW);
-            prevElemQ.offer(jW);
+            seen.add(jW);
+            level.offer(jW);
           }
         }
 
