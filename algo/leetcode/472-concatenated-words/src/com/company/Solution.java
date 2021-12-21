@@ -15,22 +15,27 @@ public class Solution {
       maxLength = word.length() > maxLength ? word.length() : maxLength;
     }
 
+    ArrayList[] DP = new ArrayList[maxLength];
+    for (int i = 0; i < DP.length; i++) {
+      DP[i] = new ArrayList();
+    }
+
     List<String> output = new ArrayList<>();
     for (String word : words) {
-      if (compositeOfWords(word, wd, maxLength)) {
+      if (compositeOfWords(word, wd, maxLength, DP)) {
         output.add(word);
       }
     }
     return output;
   }
 
-  private boolean compositeOfWords(String word, Set<String> wd, int maxLength) {
+  private boolean compositeOfWords(String word, Set<String> wd, int maxLength, ArrayList[]DP) {
     if (word.length() == 0) {
       return false;
     }
-    ArrayList[] DP = new ArrayList[word.length()];
-    for (int i = 0; i < DP.length; i++) {
-      DP[i] = new ArrayList();
+
+    for (int i = 0; i < word.length(); i++) {
+      DP[i].clear();
     }
 
     for (int i = 0; i < word.length(); i++) {
@@ -41,7 +46,7 @@ public class Solution {
         }
       }
     }
-    return DP[DP.length-1].size() > 1;
+    return DP[word.length()-1].size() > 1;
   }
 
 }
