@@ -1,35 +1,27 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.List;
+import javafx.util.Pair;
 
 public class Solution {
 
   public int consecutiveNumbersSum(int n) {
     int counter = 0;
-    ArrayList<Double> results = new ArrayList<>();
 
-    for (int s = 1; s <= n; s++) {
-      double a = 1;
-      double b = (2.0*s + 1.0);
-      double c = 2.0*(s-n);
+    List<Pair<Double, Double>> result = new ArrayList<>();
 
-      double dSq = Math.pow(b, 2.0) - 4.0*a*c;
-      if (dSq < 0) {
-        continue;
+    for (int k = 0; k < n; k++) {
+      if (k > Math.sqrt(2 * n + 1/4.0) + 1/2.0) {
+        break;
       }
-      double d = Math.sqrt(dSq);
-      double s1 = (-b + d) / (2.0 * a);
-      double s2 = (-b - d) / (2.0 * a);
-
-      if (s1 >= 0 && Math.round(s1)-s1 == 0.0) {
-        results.add(s1);
-        counter++;
-      }
-      if (s2 >= 0 && Math.round(s1)-s1 == 0.0) {
-        results.add(s2);
+      double x = n / (k + 1.0) - k / 2.0;
+      if (x > 0 && Math.abs(x - Math.round(x)) == 0) {
+        result.add(new Pair<Double, Double>(x, (double)k));
         counter++;
       }
     }
+
     return counter;
   }
 
