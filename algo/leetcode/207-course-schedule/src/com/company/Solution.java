@@ -7,7 +7,7 @@ public class Solution {
 
   private int[] onStack;
   private int[] marked;
-  private List<Integer>[]G;
+  private List<Integer>[] G;
   private boolean isCycle;
 
   public boolean canFinish(int numCourses, int[][] prerequisites) {
