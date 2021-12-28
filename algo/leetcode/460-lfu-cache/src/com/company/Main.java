@@ -8,7 +8,7 @@ public class Main {
         .getMethodName();
   }
 
-  public static void test1() {
+  public static void testLFUCacheTwoHashMapsNMinFqVar1() {
     boolean passed = true;
 
     LFUCacheTwoHashMapsNMinFqVar cache = new LFUCacheTwoHashMapsNMinFqVar(2);
@@ -126,7 +126,7 @@ public class Main {
     System.out.println(getMethodName() + " - inserting element (3,3): " + (passed ? "passed" : "failed"));
   }
 
-  public static void test2() {
+  public static void testLFUCacheTwoHashMapsNMinFqVar2() {
     boolean passed = true;
 
     LFUCacheTwoHashMapsNMinFqVar cache = new LFUCacheTwoHashMapsNMinFqVar(1);
@@ -208,7 +208,7 @@ public class Main {
     System.out.println(getMethodName() + " - inserting element (3,3): " + (passed ? "passed" : "failed"));
   }
 
-  public static void test3() {
+  public static void testLFUCacheTwoHashMapsNMinFqVar3() {
     boolean passed = true;
     LFUCacheTwoHashMapsNMinFqVar cache = new LFUCacheTwoHashMapsNMinFqVar(0);
     cache.put(0, 0);
@@ -216,9 +216,75 @@ public class Main {
     System.out.println(getMethodName() + ": " + (passed ? "passed" : "failed"));
   }
 
+  public static void testLFUCacheThreeHashMaps1() {
+    boolean passed = true;
+
+    LFUCacheThreeHashMaps cache = new LFUCacheThreeHashMaps(2);
+
+    cache.put(1, 1);
+    passed = passed
+        && cache.get(1) == 1;
+    System.out.println(getMethodName() + " - inserting first element: " + (passed ? "passed" : "failed"));
+
+    cache.put(2,2);
+    passed = passed
+        && cache.get(2) == 2;
+    System.out.println(getMethodName() + " - inserting second element: " + (passed ? "passed" : "failed"));
+
+    int val = cache.get(1);
+    passed = passed && val == 1;
+    System.out.println(getMethodName() + " - getting element 1 - should rearrange list: " + (passed ? "passed" : "failed"));
+
+    val = cache.get(1);
+    passed = passed
+        && val == 1;
+    System.out.println(getMethodName() + " - getting element 1 again - no rearrangments are expected: " + (passed ? "passed" : "failed"));
+
+    cache.put(3, 3);
+    passed = passed
+        && cache.get(3) == 3;
+    System.out.println(getMethodName() + " - inserting element (3,3): " + (passed ? "passed" : "failed"));
+  }
+
+  public static void testLFUCacheThreeHashMaps2() {
+    boolean passed = true;
+
+    LFUCacheThreeHashMaps cache = new LFUCacheThreeHashMaps(1);
+
+    cache.put(1, 1);
+    passed = passed
+        && cache.get(1) == 1;
+    System.out.println(getMethodName() + " - inserting first element: " + (passed ? "passed" : "failed"));
+
+    cache.put(2,2);
+    passed = passed
+        && cache.get(2) == 2;
+    System.out.println(getMethodName() + " - inserting second element: " + (passed ? "passed" : "failed"));
+
+    int val = cache.get(2);
+    passed = passed && val == 2;
+    System.out.println(getMethodName() + " - getting element 2 - should rearrange list: " + (passed ? "passed" : "failed"));
+
+    cache.put(3, 3);
+    System.out.println(getMethodName() + " - inserting element (3,3): " + (passed ? "passed" : "failed"));
+  }
+
+
+  public static void testLFUCacheThreeHashMaps3() {
+    boolean passed = true;
+    LFUCacheThreeHashMaps cache = new LFUCacheThreeHashMaps(0);
+    cache.put(0, 0);
+    passed = passed && cache.get(0) == -1;
+    System.out.println(getMethodName() + ": " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
-    test1();
-    test2();
-    test3();
+    testLFUCacheTwoHashMapsNMinFqVar1();
+    testLFUCacheTwoHashMapsNMinFqVar2();
+    testLFUCacheTwoHashMapsNMinFqVar3();
+
+    testLFUCacheThreeHashMaps1();
+    testLFUCacheThreeHashMaps2();
+    testLFUCacheThreeHashMaps3();
   }
 }
