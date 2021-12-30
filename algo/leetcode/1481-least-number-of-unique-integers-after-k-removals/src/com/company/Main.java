@@ -35,9 +35,32 @@ public class Main {
     System.out.println(getMethodName() + ": " + (passed ? "passed" : "failed"));
   }
 
+  public static void testHashTreeMap1() {
+    int[] input = {1,1,2,2,3,3};
+    int k = 3;
+    SolutionHashTreeMap s = new SolutionHashTreeMap();
+    int output = s.findLeastNumOfUniqueInts(input, k);
+    boolean passed = output == 2;
+    System.out.println(getMethodName() + ": " + (passed ? "passed" : "failed"));
+  }
+
+  public static void testArray1() {
+    int[] input = {1,1,2,2,3,3};
+    int k = 3;
+    SolutionArray s = new SolutionArray();
+    int output = s.findLeastNumOfUniqueInts(input, k);
+    boolean passed = output == 2;
+    System.out.println(getMethodName() + ": " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
+
     test1();
     test2();
     test3();
+
+    testHashTreeMap1();
+
+    testArray1();
   }
 }
