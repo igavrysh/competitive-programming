@@ -1,51 +1,29 @@
 package com.company;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class Solution {
 
-  class El {
-    Integer[] d = new Integer[26];
-    int unique = 0;
-  }
-
   public int uniqueLetterString(String s) {
-    int[][] DP = new int[s.length()][s.length()];
-    Queue<El> Q = new LinkedList<>();
-
-    int output = 0;
-
-    for (int i = 0; i < s.length(); i++) {
-      DP[i][i] = 0;
-      El el = new El();
-      el.d[s.charAt(i)-'A'] = 1;
-      el.unique = 1;
-      Q.offer(el);
-      output += 1;
-    }
-
-    for (int k = 1; k < s.length(); k++) {
-      for (int t = k; t < s.length(); t++) {
-        El el = Q.poll();
-        char c = s.charAt(t);
-        if (el.d[c-'A'] == null) {
-          el.d[c-'A'] = 1;
-          el.unique++;
-          output += el.unique;
-        } else {
-          el.d[c-'A'] = el.d[c-'A']+1;
-          if (el.d[c-'A'] == 2) {
-            el.unique -= 1;
-          }
-          output += el.unique;
-        }
-        Q.add(el);
+    int N = s.length();
+    int[][] fq = new int[26][2];
+    int[] DP = new int[N];
+    DP[0] = 1;
+    fq[s.charAt(0)-'A'] = new int[]{0,1};
+    int result = DP[0];
+    for (int i = 1; i < N; i++) {
+      int cidx = s.charAt(i)-'A';
+      DP[i] = DP[i-1] + i+1;
+      if (fq[cidx][0] == 0 && fq[cidx][1] == 0) {
+        fq[cidx] = new int[]{0,i+1};
+      } else {
+        DP[i] = DP[i] - fq[cidx][0] - 2 * fq[cidx][1];
+        int[] newVal = new int[]{
+            fq[cidx][0]+fq[cidx][1],
+            i+1 - (fq[cidx][0]+fq[cidx][1])
+        };
+        fq[cidx] = newVal;
       }
-
-      Q.poll();
+      result += DP[i];
     }
-    return output;
+    return result;
   }
-
 }
