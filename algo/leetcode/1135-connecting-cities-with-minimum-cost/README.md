@@ -12,6 +12,7 @@ each pair of cities. If it is impossible to connect all the `n` cities, return `
 The cost is the sum of the connections' costs used.
 
 **Example 1**:
+
 ![ex1](ex1.png)
 ```
 Input: n = 3, connections = [[1,2,5],[1,3,6],[2,3,1]]
@@ -20,6 +21,7 @@ Explanation: Choosing any 2 edges will connect all cities so we choose the minim
 ```
 
 **Example 2**:
+
 ![ex2](ex2.png)
 ```
 Input: n = 4, connections = [[1,2,3],[3,4,4]]
