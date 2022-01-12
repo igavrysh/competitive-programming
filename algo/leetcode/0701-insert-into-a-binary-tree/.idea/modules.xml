@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/0382-linked-list-random-node.iml" filepath="$PROJECT_DIR$/0382-linked-list-random-node.iml" />
+      <module fileurl="file://$PROJECT_DIR$/0701-insert-into-a-binary-tree.iml" filepath="$PROJECT_DIR$/0701-insert-into-a-binary-tree.iml" />
     </modules>
   </component>
 </project>
