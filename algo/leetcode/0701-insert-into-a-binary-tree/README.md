@@ -12,8 +12,10 @@ as long as the tree remains a BST after insertion. You can return
 **any of them**.
 
 **Example 1**:
+
 ![ex1-1](ex1-1.jpg)
-![ex1-2](ex1-2.jpg)
+
+
 ![ex-3](ex1-3.jpg)
 
 
