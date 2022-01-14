@@ -1,59 +1,66 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
 
 public class Solution {
 
   public int longestStrChain(String[] words) {
     Arrays.sort(words, (String w1, String w2) -> { return w2.length() - w1.length(); });
+    int[] DP = new int[words.length];
     HashMap<String, Integer> index = new HashMap<>();
-    for(int i = 0; i < words.length; i++) {
+    int w = 0;
+    Stack<StringBuilder> S = new Stack<>();
+    for (int i = 0; i < words.length; i++) {
+      DP[i] = -1;
       index.put(words[i], i);
     }
-    int[] DP = new int[words.length];
-    for (int i = 0; i < DP.length; i++) {
-      DP[i] = 1;
-    }
 
-    for (int i = 0; i < words.length; i++) {
-      helper(words[i], i, index, words, DP);
-    }
+    int globalMax = 1;
 
-    int max = 1;
-    for (int i = 0; i< DP.length; i++) {
-      if (DP[i] > max) {
-        max = DP[i];
-      }
-    }
-    return max;
-  }
-
-  private void helper(String word, int indexOfWord, HashMap<String, Integer> index, String[] words, int[] DP) {
-    if (indexOfWord >= DP.length) {
-      return;
-    }
-    int max = DP[indexOfWord];
-    for (int i = 0; i < word.length(); i++) {
-      String wordToFind = removeAtIndex(word, i);
-      Integer indexOfWordToFind = index.get(wordToFind);
-      if (indexOfWordToFind != null) {
-        helper(wordToFind, indexOfWordToFind, index, words, DP);
-        int newVal = DP[indexOfWordToFind] + 1;
-        if (max < newVal) {
-          max = newVal;
+    while (w < words.length || !S.isEmpty()) {
+      if (S.isEmpty()) {
+        StringBuilder sb = new StringBuilder(words[w]);
+        S.push(sb);
+        w++;
+      } else {
+        StringBuilder sb = S.pop();
+        List<StringBuilder> toPush = new ArrayList<>();
+        int maxChain = 0;
+        for (int i = 0; i < sb.length(); i++) {
+          char c = sb.charAt(i);
+          sb.replace(i, i+1, "");
+          String str = sb.toString();
+          if (index.get(str) != null) {
+            Integer idx = index.get(str);
+            if (DP[idx] == -1) {
+              toPush.add(new StringBuilder(str));
+            } else {
+              if (maxChain < DP[idx]) {
+                maxChain = DP[idx];
+              }
+            }
+          }
+          sb.insert(i, c);
+        }
+        if (toPush.size() == 0) {
+          Integer idx = index.get(sb.toString());
+          DP[idx] = 1 + maxChain;
+          if (DP[idx] > globalMax) {
+            globalMax = DP[idx];
+          }
+        } else {
+          S.push(sb);
+          for (StringBuilder childSB : toPush) {
+            S.push(childSB);
+          }
         }
       }
     }
-    DP[indexOfWord] = max;
+    return globalMax;
   }
 
-  private String removeAtIndex(String word, int idx) {
-    return word.substring(0, idx) + word.substring(idx+1, word.length());
-  }
-
-  private String insertAtIndex(String word, int idx, char c) {
-    return word.substring(0, idx) + c +  word.substring(idx+1);
-
-  }
 }
