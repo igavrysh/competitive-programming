@@ -8,7 +8,7 @@ public class Main {
   public static void test1() {
     int k = 3;
     int n = 7;
-    Solution s = new Solution();
+    SolutionII s = new SolutionII();
     List<List<Integer>> result = s.combinationSum3(k, n);
     boolean passed = result.size() == 1
         && Arrays.equals(result.get(0).toArray(new Integer[result.size()]), new Integer[] {1, 2, 4});
