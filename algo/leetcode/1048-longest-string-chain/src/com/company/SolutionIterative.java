@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
-public class Solution {
+public class SolutionIterative {
 
   public int longestStrChain(String[] words) {
     Arrays.sort(words, (String w1, String w2) -> { return w2.length() - w1.length(); });
