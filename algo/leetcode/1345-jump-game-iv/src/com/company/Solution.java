@@ -2,7 +2,6 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -46,6 +45,7 @@ public class Solution {
           visited[n] = true;
         }
       }
+      M.put(arr[p.getKey()], new ArrayList<>());
     }
     return -1;
   }
