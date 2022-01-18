@@ -36,18 +36,37 @@ public class Main {
 
   public static void testSolutionOneHashMap1() {
     String pattern = "abba", s = "dog a a dog";
-    SolutionTwoHashMaps solutionTwoHashMaps = new SolutionTwoHashMaps();
+    SolutionOneHashMap solutionTwoHashMaps = new SolutionOneHashMap();
     boolean output = solutionTwoHashMaps.wordPattern(pattern, s);
     boolean passed = output == true;
     System.out.println("testSolutionOneHashMap1: " + (passed ? "passed" : "failed"));
   }
 
+  public static void testSolutionOneHashMap2() {
+    String pattern = "abbba", s = "dog a a dog";
+    SolutionOneHashMap solutionTwoHashMaps = new SolutionOneHashMap();
+    boolean output = solutionTwoHashMaps.wordPattern(pattern, s);
+    boolean passed = output == false;
+    System.out.println("testSolutionOneHashMap2: " + (passed ? "passed" : "failed"));
+  }
+
+  public static void testSolutionOneHashMap3() {
+    String pattern = "ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccdd";
+    String s = "s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s t t";
+    SolutionOneHashMap solutionTwoHashMaps = new SolutionOneHashMap();
+    boolean output = solutionTwoHashMaps.wordPattern(pattern, s);
+    boolean passed = output == true;
+    System.out.println("testSolutionOneHashMap3: " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     testSolutionTwoHashMaps1();
     testSolutionTwoHashMaps2();
-    testSolutionTwoHashMaps3();
-    testSolutionTwoHashMaps4();
+    //testSolutionTwoHashMaps3();
+    //testSolutionTwoHashMaps4();
 
-    testSolutionOneHashMap1();
+    //testSolutionOneHashMap1();
+    //testSolutionOneHashMap2();
+    testSolutionOneHashMap3();
   }
 }
