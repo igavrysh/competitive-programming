@@ -8,10 +8,10 @@ public class Main {
     Node n1 = new Node(1), n2 = new Node(2), n3 = new Node(3),
         n4 = new Node(4), n5 = new Node(5), n6 = new Node(6);
     n1.children = Arrays.asList(new Node[]{n2,n3,n4});
-    n3.children = Arrays.asList(new Node[]{n5,n6});
+    n2.children = Arrays.asList(new Node[]{n5,n6});
     Codec c = new Codec();
     String output = c.serialize(n1);
-    boolean passed = output.contentEquals("1,null,3,4,5,null,5,6,null,null,null,null,null");
+    boolean passed = output.contentEquals("1,null,2,3,4,null,5,6,null,null,null,null,null");
     System.out.println("testSerialization1: " + (passed ? "passed" : "failed"));
   }
 
@@ -31,11 +31,12 @@ public class Main {
     n11.children = Arrays.asList(new Node[]{n14});
     Codec c = new Codec();
     String output = c.serialize(n1);
-    boolean passed = output.contentEquals("1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14");
+    boolean passed = output.contentEquals("1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14,null,null,null,null");
     System.out.println("testSerialization2: " + (passed ? "passed" : "failed"));
   }
 
   public static void main(String[] args) {
     testSerialization1();
+    testSerialization2();
   }
 }
