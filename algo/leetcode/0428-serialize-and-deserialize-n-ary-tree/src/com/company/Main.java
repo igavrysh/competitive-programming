@@ -1,10 +1,11 @@
 package com.company;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Main {
 
-  public static void testSerialization1() {
+  public static void testSerializationDeserialization1() {
     Node n1 = new Node(1), n2 = new Node(2), n3 = new Node(3),
         n4 = new Node(4), n5 = new Node(5), n6 = new Node(6);
     n1.children = Arrays.asList(new Node[]{n2,n3,n4});
@@ -12,10 +13,27 @@ public class Main {
     Codec c = new Codec();
     String output = c.serialize(n1);
     boolean passed = output.contentEquals("1,null,2,3,4,null,5,6,null,null,null,null,null");
-    System.out.println("testSerialization1: " + (passed ? "passed" : "failed"));
+
+    Node root = c.deserialize(output);
+    passed = passed && root.val == n1.val;
+    passed = passed
+        && root.children.size() == 3
+        && root.children
+        .stream()
+        .map((Node n) -> { return n.val; } )
+        .collect(Collectors.toList())
+        .containsAll(Arrays.asList(new Integer[]{2,3,4}));
+    passed = passed
+        && root.children.get(0).children.size() == 2
+        && root.children.get(0).children
+        .stream()
+        .map((Node n) -> { return n.val; } )
+        .collect(Collectors.toList())
+        .containsAll(Arrays.asList(new Integer[]{5,6}));
+    System.out.println("testSerializationDeserialization1: " + (passed ? "passed" : "failed"));
   }
 
-  public static void testSerialization2() {
+  public static void testSerializationDeserialization2() {
     Node n1 = new Node(1), n2 = new Node(2), n3 = new Node(3),
         n4 = new Node(4), n5 = new Node(5), n6 = new Node(6),
         n7 = new Node(7), n8 = new Node(8), n9 = new Node(9),
@@ -35,8 +53,20 @@ public class Main {
     System.out.println("testSerialization2: " + (passed ? "passed" : "failed"));
   }
 
+  public static void testSerializationDeserialization3() {
+    Node n1 = null;
+    Codec c = new Codec();
+    String output = c.serialize(n1);
+    boolean passed = output.contentEquals("null");
+
+    Node root = c.deserialize(output);
+    passed = passed && root == null;
+    System.out.println("testSerializationDeserialization3: " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
-    testSerialization1();
-    testSerialization2();
+    testSerializationDeserialization1();
+    testSerializationDeserialization2();
+    testSerializationDeserialization3();
   }
 }
