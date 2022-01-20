@@ -114,18 +114,53 @@ public class Main {
       boolean passed = output == cycle;
       System.out.println(passed ? "passed" : "failed");
     }
-
-
   }
 
+  public static void testSolutionNew6() {
+    int[] inputArr = new int[] {
+        -21,10,17,8,4,
+        26,5,35,33,-7,
+        -16,27,-12,6,29,
+        -12,5,9,20,14,
+        14,2,13,-24,21,
+        23,-21,5
+    };
 
+    for (int i = 1; i < inputArr.length; i++) {
+      System.out.println("testSolutionNew6(" +  i + "):");
+      ListNode[] input = cycledListFromArray(inputArr, i);
+      ListNode head = input[0];
+      ListNode cycle = input[1];
+      SolutionNew s = new SolutionNew();
+      ListNode output = s.detectCycle(head);
+      boolean passed = output == cycle;
+      System.out.println(passed ? "passed" : "failed");
+    }
+  }
+
+  public static void testSolutionNew1() {
+    ListNode n3 = new ListNode(3), n2 = new ListNode(2), n0 = new ListNode(3), n_4 = new ListNode(-4);
+    n3.next = n2;
+    n2.next = n0;
+    n0.next = n_4;
+    n_4.next = n2;
+    SolutionNew s = new SolutionNew();
+    ListNode output = s.detectCycle(n3);
+    boolean passed = output == n2;
+    System.out.println("testSolutionNew1:" + (passed ? "passed" : "failed"));
+  }
 
   public static void main(String[] args) {
+    /*
     test1();
     test2();
     test3();
     test4();
     test5();
     test6();
+     */
+
+    testSolutionNew1();
+    testSolutionNew6();
   }
 }
