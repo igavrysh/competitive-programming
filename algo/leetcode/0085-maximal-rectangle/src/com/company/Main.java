@@ -83,6 +83,54 @@ public class Main {
     System.out.println("testSolutionDP4: " + (passed ? "passed" : "failed"));
   }
 
+  public static void testSolutionHistogram1() {
+    char[][] input = {
+        {'1','0','1','0','0'},
+        {'1','0','1','1','1'},
+        {'1','1','1','1','1'},
+        {'1','0','0','1','0'}
+    };
+    SolutionHistogram s = new SolutionHistogram();
+    int output = s.maximalRectangle(input);
+    boolean passed = output == 6;
+    System.out.println("testSolutionHistogram1: " + (passed ? "passed" : "failed"));
+  }
+
+  public static void testSolutionHistogram2() {
+    char[][] input = {
+        {'0'}
+    };
+    SolutionHistogram s = new SolutionHistogram();
+    int output = s.maximalRectangle(input);
+    boolean passed = output == 0;
+    System.out.println("testSolutionHistogram2: " + (passed ? "passed" : "failed"));
+  }
+
+  public static void testSolutionHistogram3() {
+    char[][] input = {
+        {'1'}
+    };
+    SolutionHistogram s = new SolutionHistogram();
+    int output = s.maximalRectangle(input);
+    boolean passed = output == 1;
+    System.out.println("testSolutionHistogram3: " + (passed ? "passed" : "failed"));
+  }
+
+  public static void testSolutionHistogram4() {
+    char[][] input = {
+        {'0','1','1','0','1'},
+        {'1','1','0','1','0'},
+        {'0','1','1','1','0'},
+        {'1','1','1','1','0'},
+        {'1','1','1','1','1'},
+        {'0','0','0','0','0'}
+    };
+    SolutionHistogram s = new SolutionHistogram();
+    int output = s.maximalRectangle(input);
+    boolean passed = output == 9;
+    System.out.println("testSolutionHistogram4: " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     testSolutionDPBruteForce1();
     testSolutionDPBruteForce2();
@@ -91,5 +139,9 @@ public class Main {
     testSolutionDP2();
     testSolutionDP3();
     testSolutionDP4();
+    testSolutionHistogram1();
+    testSolutionHistogram2();
+    testSolutionHistogram3();
+    testSolutionHistogram4();
   }
 }
