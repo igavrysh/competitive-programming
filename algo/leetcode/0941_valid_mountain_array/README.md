@@ -1,6 +1,6 @@
 ### 941. Valid Mountain Array
 
-Easy
+**Easy**
 
 Given an array of integers `arr`, return `true` if and only if it is a valid mountain array.
 
@@ -19,13 +19,14 @@ Recall that arr is a mountain array if and only if:
 Input: arr = [2,1]
 Output: false
 ```
+
 **Example 2**:
 ```
 Input: arr = [3,5,5]
 Output: false
 ```
 
-Example 3****:
+**Example 3**:
 ```
 Input: arr = [0,3,2,1]
 Output: true
