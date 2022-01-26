@@ -1,4 +1,4 @@
-# 85. Maximal Rectangle 
+### 85. Maximal Rectangle 
     
 Hard
 
@@ -27,7 +27,7 @@ Input: matrix = [["1"]]
 Output: 1
 ```
 
-Constraints:
+**Constraints**:
 
 * `rows == matrix.length`
 * `cols == matrix[i].length`
