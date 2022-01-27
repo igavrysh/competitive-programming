@@ -1,22 +1,65 @@
 package com.company;
 
 import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Solution {
-  public boolean isScramble(String s1, String s2) {
-    return true;
+
+  class Pair<K, V> {
+    K key;
+    V value;
+
+    Pair(K key, V value) {
+      this.key = key;
+      this.value = value;
+    }
   }
 
-  private boolean bt(int s, int e, String str, String res, HashSet<String> dict) {
-    for (int i = s+1; i < e; i++) {
-      String splitP1 = str.substring(s, i);
-      String splitP2 = str.substring(i, e+1);
-      
-      String strV1 = new String(str);
-      String strV2 = splitP2 + splitP1;
-    
+  public boolean isScramble(String s1, String s2) {
+    HashSet<String> dict = new HashSet<>();
+    dict.add(s1);
+    ArrayList<Pair<Integer, Integer>> ps = new ArrayList<>();
+    ps.add(new Pair<>(0, s1.length() - 1));
+    boolean res = bt(ps, s1, s2, dict);
+    return res;
+  }
 
+  private boolean bt(ArrayList<Pair<Integer, Integer>> pairs, String str, String toFind,
+      HashSet<String> dict) {
+    if (str.equals(toFind)) {
+      return true;
+    }
 
+    for (int j = 0; j < pairs.size(); j++) {
+      Pair<Integer, Integer> p = pairs.get(j);
+      if (p.value - p.key == 0) {
+        continue;
+      }
+      int s = p.key;
+      int e = p.value;
+      pairs.remove(j);
+      for (int i = s + 1; i <= e; i++) {
+        String w1 = str.substring(s, i);
+        String w2 = str.substring(i, e + 1);
+        String w = str.substring(0, s) + w2 + w1 + str.substring(e+1);
+        if (!dict.contains(w)) {
+          dict.add(w);
+
+          pairs.add(new Pair<>(s, s+(e-i)));
+          pairs.add(new Pair<>(s+(e-i)+1, e));
+          boolean res = bt(pairs, str, toFind, dict);
+          if (res) {
+            return true;
+          }
+          res = bt(pairs, w, toFind, dict);
+          if (res) {
+            return true;
+          }
+          pairs.remove(pairs.size() - 1);
+          pairs.remove(pairs.size() - 1);
+        }
+      }
+      pairs.add(j, p);
     }
     return false;
   }
