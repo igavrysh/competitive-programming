@@ -34,10 +34,19 @@ public class Main {
     System.out.println("test4: " + (passed ? "passed" : "failed"));
   }
 
+  public static void test5() {
+    String s1 = "abcdbdacbdac", s2 = "bdacabcdbdac";
+    Solution s = new Solution();
+    boolean output = s.isScramble(s1, s2);
+    boolean passed = output == true;
+    System.out.println("test5: " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     test1();
     test2();
     test3();
     test4();
+    test5();
   }
 }

@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.HashSet;
+import java.util.PriorityQueue;
 import java.util.ArrayList;
 
 public class Solution {
@@ -42,25 +43,45 @@ public class Solution {
         String w1 = str.substring(s, i);
         String w2 = str.substring(i, e + 1);
         String w = str.substring(0, s) + w2 + w1 + str.substring(e+1);
-        if (!dict.contains(w)) {
-          dict.add(w);
+        
+        pairs.add(new Pair<>(s, s+(e-i)));
+        pairs.add(new Pair<>(s+(e-i)+1, e));
+        String key = getKey(w, pairs);
+        if (!dict.contains(key)) {
+          dict.add(key);
+          boolean res = bt(pairs, w, toFind, dict);
+          if (res) {
+            return true;
+          }
+        }
+        pairs.remove(pairs.size() - 1);
+        pairs.remove(pairs.size() - 1);
 
-          pairs.add(new Pair<>(s, s+(e-i)));
-          pairs.add(new Pair<>(s+(e-i)+1, e));
+        pairs.add(new Pair<>(s, i-1));
+        pairs.add(new Pair<>(i, e));
+        key = getKey(str, pairs);
+        if (!dict.contains(key)) {
+          dict.add(key);
           boolean res = bt(pairs, str, toFind, dict);
           if (res) {
             return true;
           }
-          res = bt(pairs, w, toFind, dict);
-          if (res) {
-            return true;
-          }
-          pairs.remove(pairs.size() - 1);
-          pairs.remove(pairs.size() - 1);
         }
+        pairs.remove(pairs.size() - 1);
+        pairs.remove(pairs.size() - 1);
       }
       pairs.add(j, p);
     }
     return false;
+  }
+
+  private String getKey(String str, ArrayList<Pair<Integer, Integer>> pairs) {
+    StringBuilder sb = new StringBuilder(str);
+    for (Pair<Integer, Integer> p : pairs) {
+      sb.append("_");
+      sb.append(p.key);
+    }
+    String s = sb.toString();
+    return s;
   }
 }
