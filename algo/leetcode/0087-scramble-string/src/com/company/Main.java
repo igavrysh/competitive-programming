@@ -42,11 +42,20 @@ public class Main {
     System.out.println("test5: " + (passed ? "passed" : "failed"));
   }
 
+  public static void test6() {
+    String s1 = "eebaacbcbcadaaedceaaacadccd", s2 = "eadcaacabaddaceacbceaabeccd";
+    Solution s = new Solution();
+    boolean output = s.isScramble(s1, s2);
+    boolean passed = output == false;
+    System.out.println("test6: " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     test1();
     test2();
     test3();
     test4();
     test5();
+    test6();
   }
 }
