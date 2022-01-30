@@ -3,12 +3,10 @@ package com.company;
 class SolutionFaster {
   public void rotate(int[] nums, int k) {
     k=k%nums.length;
-    cycle(0, nums, k);
-    if (nums.length%2==0) {
-      for (int i = 1; i < k; i++) {
+    for (int i = 1; i < k; i++) {
         cycle(i, nums, k);
-      }
     }
+    
   }
 
   private void cycle(int s, int[] nums, int k) {
