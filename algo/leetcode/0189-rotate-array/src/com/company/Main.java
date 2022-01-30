@@ -36,7 +36,7 @@ class Main {
     int k = 3;
     SolutionFaster s = new SolutionFaster();
     s.rotate(nums, k);
-    boolean passed = Arrays.equals(nums, new int[]{-100,3,99,01});
+    boolean passed = Arrays.equals(nums, new int[]{-100,3,99,-1});
     System.out.println("testSolutionFaster3: " + (passed ? "passed" : "failed") );
   }
 
