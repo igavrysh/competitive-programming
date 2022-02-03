@@ -28,10 +28,20 @@ public class Main {
     System.out.println("test3: " + (passed ? "passed" : "failed"));
   }
 
+  public static void testSolutionKSum1() {
+    int[] nums1 = new int[]{1,2}, nums2 = new int[]{-2,-1}, 
+      nums3 = new int[]{-1,2}, nums4 = new int[]{0,2};
+    SolutionKSum s = new SolutionKSum();
+    int output = s.fourSumCount(nums1, nums2, nums3, nums4);
+    boolean passed = output == 2;
+    System.out.println("testSolutionKSum1: " + (passed ? "passed" : "failed"));
+  }
+
   public static void main(String[] args) {
     test1();
     test2();
     test3();
+    testSolutionKSum1();
   }
   
 }
