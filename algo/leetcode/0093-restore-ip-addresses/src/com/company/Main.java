@@ -38,7 +38,8 @@ public class Main {
     public static void test4() {
         Solution s = new Solution();
         List<String> output = s.restoreIpAddresses("101023");
-        List<String> expected = Arrays.asList(new String[] {"1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"});
+        List<String> expected = Arrays.asList(
+            new String[] {"1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"});
         boolean passed = output.size() == expected.size() && output.containsAll(expected);
         System.out.println("test4: " + (passed ? "passed" : "failed"));
     }
