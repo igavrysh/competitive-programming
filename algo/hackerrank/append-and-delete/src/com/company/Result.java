@@ -19,8 +19,8 @@ class Result {
         while (i < maxI && s.charAt(i) == t.charAt(i)) {
             i++;
         }
-        int matched = i;
 
+        int matched = i;
         int unmatched = s.length() + t.length() - 2 * matched;
 
         if (k < unmatched) {
