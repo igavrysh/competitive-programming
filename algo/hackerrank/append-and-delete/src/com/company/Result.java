@@ -31,10 +31,6 @@ class Result {
             return "Yes";
         }
 
-        if ((unmatched - k) % 2 == 0) {
-            return "Yes";
-        }
-
-        return "No";
+        return (unmatched - k) % 2 == 0 ? "Yes" : "No";
     }
 }
