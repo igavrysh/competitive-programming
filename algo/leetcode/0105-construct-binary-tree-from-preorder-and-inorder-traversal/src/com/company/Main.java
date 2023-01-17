@@ -12,6 +12,10 @@ public class Main {
         testSolution2_1();
         testSolution2_2();
         testSolution2_3();
+
+        testSolution3_1();
+        testSolution3_2();
+        testSolution3_3();
     }
 
     public static void testSolution1_1() {
@@ -38,7 +42,6 @@ public class Main {
         System.out.println("testSolution1_3: " + (passed ? "passed" : "failed"));
     }
 
-
     public static void testSolution2_1() {
         Solution2 s = new Solution2();
         TreeNode o = s.buildTree(new int[] {3,9,20,15,7}, new int[] {9,3,15,20,7});
@@ -61,5 +64,29 @@ public class Main {
         List<Integer> outputList = TreeNode.toList(o);
         boolean passed = Arrays.deepEquals(outputList.toArray(), new Integer[]{2, 1});
         System.out.println("testSolution2_3: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolution3_1() {
+        Solution3 s = new Solution3();
+        TreeNode o = s.buildTree(new int[] {3,9,20,15,7}, new int[] {9,3,15,20,7});
+        List<Integer> outputList = TreeNode.toList(o);
+        boolean passed = Arrays.deepEquals(outputList.toArray(), new Integer[]{3,9,20,null,null,15,7});
+        System.out.println("testSolution3_1: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolution3_2() {
+        Solution3 s = new Solution3();
+        TreeNode o = s.buildTree(new int[] {-1}, new int[] {-1});
+        List<Integer> outputList = TreeNode.toList(o);
+        boolean passed = Arrays.deepEquals(outputList.toArray(), new Integer[]{-1});
+        System.out.println("testSolution3_2: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolution3_3() {
+        Solution3 s = new Solution3();
+        TreeNode o = s.buildTree(new int[] {2,1}, new int[] {1,2});
+        List<Integer> outputList = TreeNode.toList(o);
+        boolean passed = Arrays.deepEquals(outputList.toArray(), new Integer[]{2, 1});
+        System.out.println("testSolution3_3: " + (passed ? "passed" : "failed"));
     }
 }

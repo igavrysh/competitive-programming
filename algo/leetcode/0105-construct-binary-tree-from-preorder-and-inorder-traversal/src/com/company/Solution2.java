@@ -21,11 +21,16 @@ public class Solution2 {
             }
         }
 
-        int[] inorderLeft = Arrays.copyOfRange(inorder, 0, inoRootIdx);;
-        int[] inorderRight = Arrays.copyOfRange(inorder, inoRootIdx+1, inorder.length);
-        int[] preoLeft = Arrays.copyOfRange(preorder, 1, inoRootIdx+1);
-        int[] preoRight = Arrays.copyOfRange(preorder, inoRootIdx+1, inorder.length);
-
-        return new TreeNode(currentRoot, buildTree(preoLeft, inorderLeft), buildTree(preoRight, inorderRight));
+        return new TreeNode(
+            currentRoot, 
+            buildTree(
+                Arrays.copyOfRange(preorder, 1, inoRootIdx+1), 
+                Arrays.copyOfRange(inorder, 0, inoRootIdx)
+            ), 
+            buildTree(
+                Arrays.copyOfRange(preorder, inoRootIdx+1, inorder.length),
+                Arrays.copyOfRange(inorder, inoRootIdx+1, inorder.length)
+            )
+        );
     }
 }
