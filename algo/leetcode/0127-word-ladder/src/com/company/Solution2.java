@@ -11,25 +11,7 @@ import java.util.Set;
 
 public class Solution2 {
 
-    class Pair<K, V> {
-        K k;
-        V v;
-        public Pair(K k, V v) {
-            this.k = k;
-            this.v = v;
-        }
-
-        public K getKey() {
-            return k;
-        }
-
-        public V getValue() {
-            return v;
-        }
-    }
-
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-
         int L = beginWord.length();
         Map<String, List<String>> comb = new HashMap<>();
         wordList.forEach(word -> {
@@ -71,7 +53,26 @@ public class Solution2 {
     }
 
     private String key(String word, int i) {
-        return word.substring(0, i) + "*" + word.substring(i + 1, word.length());
+        StringBuilder sb = new StringBuilder(word);
+        sb.setCharAt(i, '*');
+        return sb.toString();
+    }
+
+    class Pair<K, V> {
+        K k;
+        V v;
+        public Pair(K k, V v) {
+            this.k = k;
+            this.v = v;
+        }
+
+        public K getKey() {
+            return k;
+        }
+
+        public V getValue() {
+            return v;
+        }
     }
 
 }
