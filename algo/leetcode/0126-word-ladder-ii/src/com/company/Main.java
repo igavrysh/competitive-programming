@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 class Main {
     public static void main(String[] args) {
-        testSolution1();
-        testSolution2();
+        //testSolution1();
+        //testSolution2();
         testSolution3();
     }
 

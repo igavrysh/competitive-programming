@@ -9,7 +9,9 @@ import java.util.Queue;
 
 class Solution {
     private String keyFor(int i, String w) {
-        return w.substring(0, i) + "*" + w.substring(i+1, w.length());
+        StringBuilder sb = new StringBuilder(w);
+        sb.setCharAt(i, '*');
+        return sb.toString();
     }
 
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
