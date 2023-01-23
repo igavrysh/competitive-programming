@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Queue;
 
 class Solution {
+    private String keyFor(int i, String w) {
+        return w.substring(0, i) + "*" + w.substring(i+1, w.length());
+    }
 
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
         HashMap<String, List<String>> M = new HashMap<>();
@@ -26,19 +29,31 @@ class Solution {
         initialP.add(beginWord);
         Q.add(initialP);
 
+        int minSize = Integer.MAX_VALUE;
         boolean found = false;
         while (!Q.isEmpty() && !found) {
             int level = Q.size();
+            List<String> toMarkVisited = new ArrayList<>();
             while (level > 0) {
                 List<String> path = Q.poll();
                 String last = path.get(path.size()-1);
-                visited.add(last);
+                toMarkVisited.add(last);
+                if (last.equals(endWord)) {
+                    if (minSize >= path.size()) {
+                        minSize = path.size();
+                        Q.add(path);
+                    }
+                    found = true;
+                    level--;
+                    continue;
+                }
+        
                 for (int i = 0; i < last.length(); i++) {
                     String key = keyFor(i, last);
                     if (M.containsKey(key)) {
                         List<String> nextNodes = M.get(key);
                         for (String nextNode : nextNodes) {
-                            if (!visited.contains(nextNode)) {
+                            if (!visited.contains(nextNode) && nextNode != last) {
                                 List<String> newPath = new ArrayList<>(path);
                                 newPath.add(nextNode);
                                 Q.add(newPath);
@@ -48,22 +63,18 @@ class Solution {
                 }
                 level--;
             }
-            if (visited.contains(endWord)) {
-                found = true;
+            for (String v : toMarkVisited) {
+                visited.add(v);
             }
         }
 
         List<List<String>> output = new ArrayList<>();
         for (List<String> l : Q) {
-            if (l.get(l.size()-1).equals(endWord)) {
+            if (l.get(l.size()-1).equals(endWord) && l.size() == minSize) {
                 output.add(l);
             }
         }
 
         return output;
-    }
-
-    private String keyFor(int i, String w) {
-        return w.substring(0, i) + "*" + w.substring(i+1, w.length());
     }
 }
