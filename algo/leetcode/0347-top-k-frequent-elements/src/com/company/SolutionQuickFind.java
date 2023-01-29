@@ -13,6 +13,8 @@ class SolutionQuickFind {
         for (int num : inputNums) {
             M.put(num, M.getOrDefault(num, 0)+1);
         }
+
+
         int[] nums = new int[M.size()];
         int[] fq = new int[M.size()];
         int j = 0;
@@ -22,9 +24,14 @@ class SolutionQuickFind {
             j++;
         }
 
-        if (k == inputNums.length) {
+        if (k == M.size()) {
             return nums;
         }
+        
+        if (k > M.size()) {
+            return null;
+        }
+
 
         kThFqIndex(0, nums.length-1, k, nums, fq);
 
