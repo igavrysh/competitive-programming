@@ -11,6 +11,10 @@ class Main {
         testSolutionBuckets1();
         testSolutionBuckets2();
         testSolutionBuckets3();
+
+        testSolutionPriorityQueue1();
+        testSolutionPriorityQueue2();
+        testSolutionPriorityQueue3();
     }
 
     public static void testSolutionQuickFind1() {
@@ -59,5 +63,29 @@ class Main {
         int[] output = s.topKFrequent(nums, 2);
         boolean passed = output == null;
         System.out.println("testSolutionBuckets3: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionPriorityQueue1() {
+        int[] nums = new int[]{1,1,1,2,2,3};
+        SolutionPriorityQueue s = new SolutionPriorityQueue();
+        int[] output = s.topKFrequent(nums, 2);
+        boolean passed = Arrays.equals(output, new int[]{1,2}) || Arrays.equals(output, new int[]{2,1});
+        System.out.println("testSolutionPriorityQueue1: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionPriorityQueue2() {
+        int[] nums = new int[]{1};
+        SolutionPriorityQueue s = new SolutionPriorityQueue();
+        int[] output = s.topKFrequent(nums, 1);
+        boolean passed = Arrays.equals(output, new int[]{1}) || Arrays.equals(output, new int[]{1});
+        System.out.println("testSolutionPriorityQueue2: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionPriorityQueue3() {
+        int[] nums = new int[]{1};
+        SolutionPriorityQueue s = new SolutionPriorityQueue();
+        int[] output = s.topKFrequent(nums, 2);
+        boolean passed = output == null;
+        System.out.println("testSolutionPriorityQueue3: " + (passed ? "passed" : "failed"));
     }
 }
