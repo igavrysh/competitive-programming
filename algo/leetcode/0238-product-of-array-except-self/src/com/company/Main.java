@@ -8,9 +8,7 @@ public class Main {
     public static int g1(int N) {
         int acc = 0;
         for (int i = N/2; i > 0; i/=2) {
-            //System.out.println("i = " + i);
             for (int j = 0; j < i; ++j) {
-                //System.out.println("j = " + j);
                 acc++;
             }
         }
@@ -28,9 +26,14 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("g1 N = 10: " + g1(10));
-        System.out.println("g1 N = 100 " + g1(100));
-        System.out.println("g1 N = 1000 " + g1(1000));
+        int N = (int)Math.pow(2, 3);
+        System.out.println("g1 N = " + N + ": " + g1(N));
+        N = (int)Math.pow(2, 6);
+        System.out.println("g1 N = " + N + ": " + g1(N));
+        N = (int)Math.pow(2, 10);
+        System.out.println("g1 N = " + N + ": " + g1(N));
+        N = (int)Math.pow(2, 16);
+        System.out.println("g1 N = " + N + ": " + g1(N));
 
         //System.out.println("g1 N = 1_000: " + g1(1000));
         //System.out.println("g1 N = 1_000_000: " + g1(1_000_000));
