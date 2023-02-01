@@ -3,6 +3,9 @@ package com.company;
 public class Main {
 
   public static void main(String[] args) {
+
+    testFib();
+
     test01();
     test02();
     test03();
@@ -21,6 +24,33 @@ public class Main {
     test16();
     test17();
     test21();
+  }
+
+
+  public static void testFib() {
+    Fib fib = new Fib();
+    int N = 1;
+    N=1;
+    fib.fib(N);
+    System.out.println("N="+N + " T("+N+")=" + fib.T);
+    N=2;
+    fib.fib(N);
+    System.out.println("N="+N + " T("+N+")=" + fib.T);
+    N=4;
+    fib.fib(N);
+    System.out.println("N="+N + " T("+N+")=" + fib.T);
+    N=5;
+    fib.fib(N);
+    System.out.println("N="+N + " T("+N+")=" + fib.T);
+    N=8;
+    fib.fib(N);
+    System.out.println("N="+N + " T("+N+")=" + fib.T);
+    N=10;
+    fib.fib(N);
+    System.out.println("N="+N + " T("+N+")=" + fib.T);
+    N=20;
+    fib.fib(N);
+    System.out.println("N="+N + " T("+N+")=" + fib.T);
   }
 
   public static void test01() {
