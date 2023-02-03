@@ -3,6 +3,8 @@ package com.company;
 import java.util.HashMap;
 
 class SolutionHashMap {
+    // Time: O(N)
+    // Space: O(N)
     public int majorityElement(int[] nums) {
         HashMap<Integer, Integer> M = new HashMap<>();
         int maxFq = 0;

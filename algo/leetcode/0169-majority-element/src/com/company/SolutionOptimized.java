@@ -3,6 +3,8 @@ package com.company;
 // video with explanation:
 // https://www.youtube.com/watch?v=YA-nB2wjVcI
 public class SolutionOptimized {
+    // Time: O(N)
+    // Space: O(1), without input array modifications
     public int majorityElement(int[] nums) {
         int curr = nums[0];
         int currFq = 1;
@@ -20,7 +22,7 @@ public class SolutionOptimized {
         }
 
         // additional pass for exhaustiveness - not needed as in problem statement
-        // majority exists
+        // majority element always exists
         boolean checkForExhaustness = false;
         if (checkForExhaustness) {
             int counter = 0;
