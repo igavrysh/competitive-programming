@@ -10,6 +10,11 @@ class Main {
         testSolutionQuickFind2();
         testSolutionQuickFind3();
         testSolutionQuickFind4();
+
+        testSolutionOptimized1();
+        testSolutionOptimized2();
+        testSolutionOptimized3();
+        testSolutionOptimized4();
     }
 
     public static void testSolutionHashMap1() {
@@ -54,6 +59,36 @@ class Main {
         int output = s.majorityElement(nums);
         boolean passed = output == 1;
         System.out.println("testSolutionQuickFind4: " + (passed ? "passed" : "failed"));    
+    }
+
+    public static void testSolutionOptimized1() {
+        SolutionOptimized s = new SolutionOptimized();
+        int output = s.majorityElement(new int[]{3,2,3});
+        boolean passed = output == 3;
+        System.out.println("testSolutionOptimized1: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionOptimized2() {
+        SolutionOptimized s = new SolutionOptimized();
+        int output = s.majorityElement(new int[]{2,2,1,1,1,2,2});
+        boolean passed = output == 2;
+        System.out.println("testSolutionOptimized2: " + (passed ? "passed" : "failed"));    
+    }
+
+    public static void testSolutionOptimized3() {
+        SolutionOptimized s = new SolutionOptimized();
+        int[] nums = new int[]{6,6,6,7,7};
+        int output = s.majorityElement(nums);
+        boolean passed = output == 6;
+        System.out.println("testSolutionOptimized3: " + (passed ? "passed" : "failed"));    
+    }
+
+    public static void testSolutionOptimized4() {
+        SolutionOptimized s = new SolutionOptimized();
+        int[] nums = new int[]{-1,1,1,1,2,1};
+        int output = s.majorityElement(nums);
+        boolean passed = output == 1;
+        System.out.println("testSolutionOptimized4: " + (passed ? "passed" : "failed"));    
     }
 
 }
