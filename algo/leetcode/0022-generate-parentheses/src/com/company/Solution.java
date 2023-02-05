@@ -6,49 +6,30 @@ import java.util.List;
 
 public class Solution {
 
-  public List<String> generateParenthesis(int n) {
-    return generateParenthesisInternal(
-        n,
-        "",
-        0,
-        0);
-  }
-
-  private List<String> generateParenthesisInternal(
-      int n,
-      String expression,
-      int leftBrackets,
-      int rightBrackets) {
-
-    if (leftBrackets == n
-        && leftBrackets == rightBrackets) {
-      return Arrays.asList(expression);
+    public List<String> generateParenthesis(int n) {
+        return BT(n,"", 0, 0);
     }
 
-    List<String> lResult = new ArrayList<>();
-    List<String> rResult = new ArrayList<>();
+    private List<String> BT(int n, String exp, int leftBrackets, int rightBrackets) {
+        if (leftBrackets == n
+            && leftBrackets == rightBrackets) {
+            return Arrays.asList(exp);
+        }
 
-    if (leftBrackets >= rightBrackets) {
-      if (leftBrackets < n) {
-        lResult = generateParenthesisInternal(
-            n,
-            expression + "(",
-            leftBrackets + 1,
-            rightBrackets);
+        List<String> lResult = new ArrayList<>();
+        List<String> rResult = new ArrayList<>();
 
-      }
+        if (leftBrackets >= rightBrackets) {
+            if (leftBrackets < n) {
+                lResult = BT(n, exp + "(", leftBrackets + 1, rightBrackets);
+            }
 
-      if (rightBrackets < n) {
-        rResult = generateParenthesisInternal(
-            n,
-            expression + ")",
-            leftBrackets,
-            rightBrackets + 1
-        );
-      }
+            if (rightBrackets < n) {
+                rResult = BT(n, exp + ")", leftBrackets, rightBrackets + 1);
+            }
 
-      lResult.addAll(rResult);
+            lResult.addAll(rResult);
+        }
+        return lResult;
     }
-    return lResult;
-  }
 }
