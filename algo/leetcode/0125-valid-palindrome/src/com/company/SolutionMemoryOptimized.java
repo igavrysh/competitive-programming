@@ -26,8 +26,4 @@ public class SolutionMemoryOptimized {
         }
         return true;
     }
-
-    private boolean isAlpabetical(char c) {
-        return (c-'A'>=0 && c-'A' < 26) || (c-'a'>=0 && c-'a' < 26) || (c-'0' >= 0 && c-'0' <= 9);
-    }
 }
