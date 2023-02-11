@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-class Solution {
+class SolutionNaive {
     private String keyFor(int i, String w) {
         StringBuilder sb = new StringBuilder(w);
         sb.setCharAt(i, '*');
@@ -19,7 +19,7 @@ class Solution {
         for (String word : wordList) {
             for (int i = 0; i < word.length(); i++) {
                 String key = keyFor(i, word);
-                ArrayList<String> l =  (ArrayList<String>)M.getOrDefault(key, new ArrayList<>());
+                ArrayList<String> l = (ArrayList<String>)M.getOrDefault(key, new ArrayList<>());
                 l.add(word);
                 M.put(key, l);
             }
@@ -38,6 +38,7 @@ class Solution {
             List<String> toMarkVisited = new ArrayList<>();
             while (level > 0) {
                 List<String> path = Q.poll();
+
                 String last = path.get(path.size()-1);
                 toMarkVisited.add(last);
                 if (last.equals(endWord)) {
@@ -55,7 +56,7 @@ class Solution {
                     if (M.containsKey(key)) {
                         List<String> nextNodes = M.get(key);
                         for (String nextNode : nextNodes) {
-                            if (!visited.contains(nextNode) && nextNode != last) {
+                            if (visited.contains(nextNode) && nextNode != last) {
                                 List<String> newPath = new ArrayList<>(path);
                                 newPath.add(nextNode);
                                 Q.add(newPath);
