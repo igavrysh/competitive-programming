@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 class Main {
     public static void main(String[] args) {
-        testSolutionGraphBothSides1();
-        testSolutionGraphBothSides2();
+        //testSolutionGraphBothSides1();
+        //testSolutionGraphBothSides2();
         testSolutionGraphBothSides4();
         
         //testSolutionGraph1();
