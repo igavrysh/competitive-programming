@@ -3,7 +3,6 @@ package com.company;
 import java.util.PriorityQueue;
 
 public class MaxStackPQnDLinkedList {
-
     class Node {
         public int val;
         public long time;
@@ -19,6 +18,7 @@ public class MaxStackPQnDLinkedList {
     private long counter = 0;
     private PriorityQueue<Node> queue;
 
+    // O(1)
     public MaxStackPQnDLinkedList() {
         head = null;
         queue = new PriorityQueue<>((Node a, Node b) -> { 
@@ -26,6 +26,7 @@ public class MaxStackPQnDLinkedList {
         });
     }
 
+    // O(logn)
     public void push(int x) {
         Node n = new Node(x, counter++);
         if (head != null) {
@@ -36,6 +37,7 @@ public class MaxStackPQnDLinkedList {
         queue.offer(n);
     }
 
+    // O(logn)
     public int pop() {
         if (head == null) { throw new RuntimeException("cannot pop empty stack"); }
         queue.remove(head);
@@ -44,16 +46,19 @@ public class MaxStackPQnDLinkedList {
         return currHead.val;
     }
 
+    // O(1)
     public int top() {
         if (head == null) { throw new RuntimeException("cannot top empty stack"); }
         return head == null ? -1 : head.val;
     }
 
+    // O(logn)
     public int peekMax() {
         if (head == null) { throw new RuntimeException("cannot peek empty stack"); }
         return queue.peek().val;
     }
 
+    // O(logn)
     public int popMax() {
         if (head == null) { throw new RuntimeException("cannot pop empty stack"); }
         Node n = queue.poll();
