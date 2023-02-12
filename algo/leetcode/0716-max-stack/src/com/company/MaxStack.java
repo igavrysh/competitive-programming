@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.PriorityQueue;
 
-public class MaxStackPQnDLinkedList {
+public class MaxStack {
     class Node {
         public int val;
         public long time;
@@ -19,7 +19,7 @@ public class MaxStackPQnDLinkedList {
     private PriorityQueue<Node> queue;
 
     // O(1)
-    public MaxStackPQnDLinkedList() {
+    public MaxStack() {
         head = null;
         queue = new PriorityQueue<>((Node a, Node b) -> { 
             return a.val - b.val == 0 ? (a.time - b.time > 0 ? -1 : 1) : (a.val - b.val > 0 ? -1 : 1); 
@@ -27,7 +27,7 @@ public class MaxStackPQnDLinkedList {
     }
 
     // O(logn)
-    public void push(int x) {
+    public void Push(int x) {
         Node n = new Node(x, counter++);
         if (head != null) {
             head.next = n;
@@ -38,7 +38,7 @@ public class MaxStackPQnDLinkedList {
     }
 
     // O(logn)
-    public int pop() {
+    public int Pop() {
         if (head == null) { throw new RuntimeException("cannot pop empty stack"); }
         queue.remove(head);
         Node currHead = head;
@@ -47,19 +47,19 @@ public class MaxStackPQnDLinkedList {
     }
 
     // O(1)
-    public int top() {
+    public int Top() {
         if (head == null) { throw new RuntimeException("cannot top empty stack"); }
         return head == null ? -1 : head.val;
     }
 
     // O(logn)
-    public int peekMax() {
+    public int PeekMax() {
         if (head == null) { throw new RuntimeException("cannot peek empty stack"); }
         return queue.peek().val;
     }
 
     // O(logn)
-    public int popMax() {
+    public int PopMax() {
         if (head == null) { throw new RuntimeException("cannot pop empty stack"); }
         Node n = queue.poll();
         Node sntnl = new Node(-1, 0);
