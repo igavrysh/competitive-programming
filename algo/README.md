@@ -1,6 +1,8 @@
 * [competetive programming books](https://cses.fi/book/index.php)
 
 
+* Max Stack https://leetcode.com/problems/max-stack/
+
 Unifinished problems
 Backtracking
 
@@ -25,3 +27,4 @@ Geometry
 
 * Hard
   * 587. Erect the Fence https://leetcode.com/problems/erect-the-fence/
+
