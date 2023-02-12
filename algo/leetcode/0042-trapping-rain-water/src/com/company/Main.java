@@ -2,16 +2,27 @@ package com.company;
 
 public class Main {
     public static void main(String[] args) {
-        test1();
-        test2();
-        test3();
-        test4();
-        test5();
-        test6();
-        test7();
-        test8();
-        test9();
-        test10();
+        testSolutionTwoPointers1();
+        testSolutionTwoPointers2();
+        testSolutionTwoPointers3();
+        testSolutionTwoPointers4();
+        testSolutionTwoPointers5();
+        testSolutionTwoPointers6();
+        testSolutionTwoPointers7();
+        testSolutionTwoPointers8();
+        testSolutionTwoPointers9();
+        testSolutionTwoPointers10();
+
+        testSolutionStack1();
+        testSolutionStack2();
+        testSolutionStack3();
+        testSolutionStack4();
+        testSolutionStack5();
+        testSolutionStack6();
+        testSolutionStack7();
+        testSolutionStack8();
+        testSolutionStack9();
+        testSolutionStack10();
 
         testSolutionDPPractice2_1();
         testSolutionDPPractice2_2();
@@ -25,74 +36,144 @@ public class Main {
         testSolutionDPPractice2_10();
     }
 
-    public static void test1() {
+    public static void testSolutionStack1() {
+        SolutionStack s = new SolutionStack();
+        int output = s.trap(new int[] { 0 });
+        boolean passed = output == 0;
+        System.out.println("testSolutionStack1:" + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionStack2() {
+        SolutionStack s = new SolutionStack();
+        int output = s.trap(new int[] { 0, 0, 0 });
+        boolean passed = output == 0;
+        System.out.println("testSolutionStack2:" + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionStack3() {
+        SolutionStack s = new SolutionStack();
+        int output = s.trap(new int[] { 0, 1, 2, 3 });
+        boolean passed = output == 0;
+        System.out.println("testSolutionStack3:" + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionStack4() {
+        SolutionStack s = new SolutionStack();
+        int output = s.trap(new int[] { 0, 0, 10, 0, 0 });
+        boolean passed = output == 0;
+        System.out.println("testSolutionStack4:" + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionStack5() {
+        SolutionStack s = new SolutionStack();
+        int output = s.trap(new int[] { 1, 0, 1 });
+        boolean passed = output == 1;
+        System.out.println("testSolutionStack5:" + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionStack6() {
+        SolutionStack s = new SolutionStack();
+        int output = s.trap(new int[] { 0, 1, 1, 0 });
+        boolean passed = output == 0;
+        System.out.println("testSolutionStack6:" + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionStack7() {
+        SolutionStack s = new SolutionStack();
+        int output = s.trap(new int[] { 0, 1, 0, 1, 0, 1 });
+        boolean passed = output == 2;
+        System.out.println("testSolutionStack7:" + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionStack8() {
+        SolutionStack s = new SolutionStack();
+        int output = s.trap(new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 });
+        boolean passed = output == 6;
+        System.out.println("testSolutionStack8:" + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionStack9() {
+        SolutionStack s = new SolutionStack();
+        int output = s.trap(new int[] { 4, 2, 0, 3, 2, 5 });
+        boolean passed = output == 9;
+        System.out.println("testSolutionStack9:" + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionStack10() {
+        SolutionStack s = new SolutionStack();
+        int output = s.trap(new int[] { 0, 7, 1, 4, 6 });
+        boolean passed = output == 7;
+        System.out.println("testSolutionStack10:" + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionTwoPointers1() {
         SolutionTwoPointers s = new SolutionTwoPointers();
         int output = s.trap(new int[] { 0 });
         boolean passed = output == 0;
-        System.out.println("test1:" + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionTwoPointers1:" + (passed ? "passed" : "failed"));
     }
 
-    public static void test2() {
+    public static void testSolutionTwoPointers2() {
         SolutionTwoPointers s = new SolutionTwoPointers();
         int output = s.trap(new int[] { 0, 0, 0 });
         boolean passed = output == 0;
-        System.out.println("test2:" + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionTwoPointers2:" + (passed ? "passed" : "failed"));
     }
 
-    public static void test3() {
+    public static void testSolutionTwoPointers3() {
         SolutionTwoPointers s = new SolutionTwoPointers();
         int output = s.trap(new int[] { 0, 1, 2, 3 });
         boolean passed = output == 0;
-        System.out.println("test3:" + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionTwoPointers3:" + (passed ? "passed" : "failed"));
     }
 
-    public static void test4() {
+    public static void testSolutionTwoPointers4() {
         SolutionTwoPointers s = new SolutionTwoPointers();
         int output = s.trap(new int[] { 0, 0, 10, 0, 0 });
         boolean passed = output == 0;
-        System.out.println("test4:" + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionTwoPointers4:" + (passed ? "passed" : "failed"));
     }
 
-    public static void test5() {
+    public static void testSolutionTwoPointers5() {
         SolutionTwoPointers s = new SolutionTwoPointers();
         int output = s.trap(new int[] { 1, 0, 1 });
         boolean passed = output == 1;
-        System.out.println("test5:" + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionTwoPointers5:" + (passed ? "passed" : "failed"));
     }
 
-    public static void test6() {
+    public static void testSolutionTwoPointers6() {
         SolutionTwoPointers s = new SolutionTwoPointers();
         int output = s.trap(new int[] { 0, 1, 1, 0 });
         boolean passed = output == 0;
-        System.out.println("test6:" + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionTwoPointers6:" + (passed ? "passed" : "failed"));
     }
 
-    public static void test7() {
+    public static void testSolutionTwoPointers7() {
         SolutionTwoPointers s = new SolutionTwoPointers();
         int output = s.trap(new int[] { 0, 1, 0, 1, 0, 1 });
         boolean passed = output == 2;
-        System.out.println("test7:" + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionTwoPointers7:" + (passed ? "passed" : "failed"));
     }
 
-    public static void test8() {
+    public static void testSolutionTwoPointers8() {
         SolutionTwoPointers s = new SolutionTwoPointers();
         int output = s.trap(new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 });
         boolean passed = output == 6;
-        System.out.println("test8:" + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionTwoPointers8:" + (passed ? "passed" : "failed"));
     }
 
-    public static void test9() {
+    public static void testSolutionTwoPointers9() {
         SolutionTwoPointers s = new SolutionTwoPointers();
         int output = s.trap(new int[] { 4, 2, 0, 3, 2, 5 });
         boolean passed = output == 9;
-        System.out.println("test9:" + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionTwoPointers9:" + (passed ? "passed" : "failed"));
     }
 
-    public static void test10() {
+    public static void testSolutionTwoPointers10() {
         SolutionTwoPointers s = new SolutionTwoPointers();
         int output = s.trap(new int[] { 0, 7, 1, 4, 6 });
         boolean passed = output == 7;
-        System.out.println("test10:" + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionTwoPointers10:" + (passed ? "passed" : "failed"));
     }
 
     public static void testSolutionDPPractice2_1() {
