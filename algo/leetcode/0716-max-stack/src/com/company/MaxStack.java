@@ -76,7 +76,9 @@ public class MaxStack {
         }
         // update head (in case head should be removed)
         head = sntnl.prev;
-        head.next = null;
+        if (head != null) {
+            head.next = null;
+        }
         return n.val;
     }
 }
