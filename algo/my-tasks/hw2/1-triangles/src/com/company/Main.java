@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         int[][] points = readPoints();
-        SolutionON3 s = new SolutionON3();
+        SolutionBruteForce s = new SolutionBruteForce();
         double perimeter = s.longestPerimeter(points);
         printResult(perimeter);
     }

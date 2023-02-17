@@ -1,16 +1,17 @@
-# to compile and create jar 
-javac -d ./build -sourcepath src src/com/company/*.java
-cd build
-jar cfm ./triangles.jar ../META-INF/MANIFEST.MF com/company/*.class
-cd ..
+# 1. Трикутники
 
-# to run jar
-java -jar ./build triangles.jar
+Програма отримує на вхід набір точок на площині. Напочатку задано кількість точок `n` (`2 < n < 101`), далі йде послідовність з `n` рядків, кожен з яких містить `2` числа — координати точки. Усі координати — це цілі числа не більше `1000`. Серед заданих точок знайдіть `3`, які утворюють трикутник з максимальним периметром та виведіть його з точністю в `15` значущих цифр.
 
-# to check contents
-jar tvf triangles.jar
+**Вхід**
+```
+4 
+0 0
+0 1
+1 0
+1 1
+```
 
-# to extract contents of jar
-jar xf triangles.jar
-
-
+**Вихід**
+```
+3.41421356237309
+```

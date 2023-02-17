@@ -1,6 +1,6 @@
 package com.company;
 
-class SolutionON3 {
+public class SolutionBruteForce {
     public double longestPerimeter(int[][] points) {
         int N = points.length;
         double maxPerimeter = 0;
