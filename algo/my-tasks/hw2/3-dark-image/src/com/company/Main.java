@@ -47,15 +47,15 @@ public class Main {
     private static Function<byte[][], Boolean> impr2 = (image) -> {
         int N = image.length;
         int filter = N * N / 2;
-        int filterLog = (int)(Math.log(filter) / Math.log(2));
+        //filterLog = (int)(Math.log(filter) / Math.log(2));
         int count = 0;
-        int offset = 0;
+        //int offset = 0;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 int val = (int)(image[i][j] & 0xFF);
                 count += (val >> 7) & 1;
 
-                //offset = ((count >> filterLog) & 1) * N;
+                //offset = ((count >> filterLog) & 1) * 4096;
                 //i += offset;
                 //j += offset;
             } 
