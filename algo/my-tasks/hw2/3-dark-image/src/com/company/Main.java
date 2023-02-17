@@ -43,6 +43,26 @@ public class Main {
         return count < N * N / 2;
     };
 
+
+    private static Function<byte[][], Boolean> impr2 = (image) -> {
+        int N = image.length;
+        int filter = N * N / 2;
+        int filterLog = (int)(Math.log(filter) / Math.log(2));
+        int count = 0;
+        int offset = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                int val = (int)(image[i][j] & 0xFF);
+                count += (val >> 7) & 1;
+
+                //offset = ((count >> filterLog) & 1) * N;
+                //i += offset;
+                //j += offset;
+            } 
+        }
+        return count < N * N / 2;
+    };
+
     private static void experimet() {
         int imgSize = 4096;
         int[] experimentTimes = new int[] {1, 5, 10, 20, 30};
@@ -51,10 +71,7 @@ public class Main {
         df.setMaximumFractionDigits(8);
 
         for (int i = 0; i < experimentTimes.length; i++) {
-            long accTimeSlow = 0;
-
-            long accTimeImpr1 = 0;
-
+            long accTimeSlow = 0, accTimeImpr1 = 0, accTimeImpr2 = 0;
             for (int j = 0; j < experimentTimes[i]; j++) {
                 byte[][] img = randomImage(imgSize);
 
@@ -66,8 +83,6 @@ public class Main {
                     accTimeSlow += stopTime - startTime;
                 }
 
-                img = randomImage(imgSize);
-
                 boolean isDarkImpr1 = false;
                 {
                     long startTime = System.nanoTime();
@@ -75,16 +90,28 @@ public class Main {
                     long stopTime = System.nanoTime();
                     accTimeImpr1 += stopTime - startTime;
                 }
-                /* 
-                if (isDarkImpr1 != isDarkSlow) {
+
+                boolean isDarkImpr2 = false;
+                {
+                    long startTime = System.nanoTime();
+                    isDarkImpr2 = impr2.apply(img);
+                    long stopTime = System.nanoTime();
+                    accTimeImpr2 += stopTime - startTime;
+                }
+                
+
+                if (isDarkImpr1 != isDarkSlow || isDarkImpr2 != isDarkSlow) {
                     System.out.println("ERROR! mismatch in func results");
                 }
-                */
+                
             }
 
             double avgTimeSlow = accTimeSlow * 1.0 / experimentTimes[i];
 
             double avgTimeImpr1 = accTimeImpr1 * 1.0 / experimentTimes[i];
+
+            double avgTimeImpr2 = accTimeImpr2 * 1.0 / experimentTimes[i];
+
            
             System.out.println("Number of experiments: " + experimentTimes[i] 
                 + "; avg time slow: \t" + df.format(avgTimeSlow) + " micros" 
@@ -92,6 +119,10 @@ public class Main {
 
             System.out.println("Number of experiments: " + experimentTimes[i] 
                 + "; avg time impr1: \t" + df.format(avgTimeImpr1) + " micros" 
+            );
+
+            System.out.println("Number of experiments: " + experimentTimes[i] 
+                + "; avg time impr2: \t" + df.format(avgTimeImpr2) + " micros" 
             );
         }
     }

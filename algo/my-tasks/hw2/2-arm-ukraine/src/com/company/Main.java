@@ -6,6 +6,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+class SolutionBruteForce {
+    public int numCombinations(int x, int y, int z, int w) {
+        int result = 0;
+        for (int nX = 0; nX <= 100; nX++) {
+            for (int nY = 0; nY <= 100; nY++) {
+                for (int nZ = 0; nZ <= 100; nZ++) {
+                    if (nX*x + nY*y + nZ*z == w) {
+                        result++;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+}
+
 public class Main {
     public static void main(String[] args) throws IOException {
         int[] input = readInput();
