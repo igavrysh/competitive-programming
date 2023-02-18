@@ -27,12 +27,14 @@ class SolutionBruteForce {
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        /* 
         testSolutionBruteForce1();
         testSolutionBruteForce2();
         testSolutionBruteForce3();
         testSolutionBruteForce4();
         testSolutionBruteForce5();
-        //testWithConsoleReadWrite();
+        */
+        testWithConsoleReadWrite();
     }
 
     public static void testWithConsoleReadWrite() throws IOException {
