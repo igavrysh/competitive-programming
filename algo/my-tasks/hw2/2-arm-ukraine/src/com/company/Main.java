@@ -11,11 +11,10 @@ class SolutionBruteForce {
         // edge cases, include for exhaustiveness, should be filtered out by problem definition
         if (w <= 0 || x < 0 || y < 0 || z < 0) return 0;
         if (x <= 0 && y == 0 && z == 0) return 0;
-
         int result = 0;
-        for (int nX = 0; nX <= 100; nX++) {
-            for (int nY = 0; nY <= 100; nY++) {
-                for (int nZ = 0; nZ <= 100; nZ++) {
+        for (int nX = 0; nX*x <= w; nX++) {
+            for (int nY = 0; nY*y <= (w-nX*x); nY++) {
+                for (int nZ = 0; nZ*z <= (w-nX*x-nY*y); nZ++) {
                     if (nX*x + nY*y + nZ*z == w) {
                         result++;
                     }

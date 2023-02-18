@@ -34,10 +34,11 @@ public class Main {
                 if (val >= 128) {
                     count += 1; 
                 }
-
+                /* 
                 if (count >= filter) {
                     return false;
                 }
+                */
             } 
         }
         return count < N * N / 2;
