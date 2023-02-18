@@ -33,6 +33,7 @@ public class Main {
         testSolutionBruteForce3();
         testSolutionBruteForce4();
         testSolutionBruteForce5();
+        testSolutionBruteForce6();
         */
         testWithConsoleReadWrite();
     }
@@ -102,5 +103,12 @@ public class Main {
         int output = s.numCombinations(1, 1, 1, 3);
         boolean passed = output == 10;
         System.out.println("testSolutionBruteForce5: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionBruteForce6() {
+        SolutionBruteForce s = new SolutionBruteForce();
+        int output = s.numCombinations(10, 25, 15, 60);
+        boolean passed = output == 5;
+        System.out.println("testSolutionBruteForce6: " + (passed ? "passed" : "failed"));
     }
 }
