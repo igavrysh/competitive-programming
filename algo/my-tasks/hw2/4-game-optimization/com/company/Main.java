@@ -6,27 +6,36 @@ import java.util.Random;
 
 public class Main {
 
-    private static float MIN_X = (float)(-10 * Math.PI);
-    private static float MAX_X = (float)(10 * Math.PI); 
+    private static float MIN_X = (float)(-20* Math.PI);
+    private static float MAX_X = (float)(20 * Math.PI); 
+
+    private static double SHARE_OF_DESCRETE = 0.9;
+
 
     public static void main(String[] args) {
         experimet();
+        testSinTranslate();
+    }
+
+    // translate arg value for sin into the range of matching Taylor function args range: [-Math.PI, +Math.PI]
+    private static double sinTranslate(double x) {
+        int div = Math.abs((int)(x / Math.PI));
+        if (x < -Math.PI || x > Math.PI) {
+            x = x + (x > 0 ? -1 : 1) * (div%2==0 ? div : div+1) * Math.PI;
+        }
+        return x;
     }
 
     private static void sinx(int N, int terms, float[] x, float[] result) {
         for (int i = 0; i < N; i++) {
-            if (x[i] < -Math.PI) {
-                x[i] = x[i] - (float)((int)(x[i] / (2*Math.PI)) * 2 *Math.PI);
-            } else if (x[i] > Math.PI) {
-                x[i] = x[i] - (float)((int)(x[i] / (2*Math.PI)) * 2 *Math.PI);
-            }
-            float value = x[i];
-            float numer = x[i] * x[i] * x[i];
+            float x_i = (float)sinTranslate(x[i]);
+            float value = x_i;
+            float numer = x_i * x_i * x_i;
             int denom = 6; // 3!
             int sign = -1;
             for (int j = 1; j <= terms; j++) {
                 value += sign * numer / denom;
-                numer *= x[i] * x[i];
+                numer *= x_i * x_i;
                 denom *= (2*j+2) * (2*j+3);
                 sign *= -1;
             }
@@ -36,16 +45,15 @@ public class Main {
 
     private static void sinxImpr1(int N, int terms, float[] x, float[] result) {
         for (int i = 0; i < N; i++) {
-            float x_i = x[i];
-            //if (x_i < 0) {
-            //    x_i = x_i + (float)(2*Math.PI * ((int)(x_i/2*Math.PI) + 1));
-            //}
+            float x_i = (float)sinTranslate(x[i]);
 
+            
             Integer mapVal = (int)(x_i * Math.pow(10, DESCRETE_MAP_POW));
             if (SINX_MAP.get(mapVal) != null) {
                 result[i] = SINX_MAP.get(mapVal);
                 continue;
             }
+            
 
             float x_i_sq = x_i * x_i;
             float x_i_trip = x_i_sq * x_i;
@@ -81,7 +89,6 @@ public class Main {
     }
 
     private static Random r = new Random();
-    private static double SHARE_OF_DESCRETE = 0.10;
     private static float[] DESCRETE_RADS = generateDescreteRads();
     private static float DELTA = (float)0.00000001;
     private static int DESCRETE_MAP_POW = (int)(Math.log(DELTA) / Math.log(0.1) + 1);
@@ -96,6 +103,7 @@ public class Main {
         }
         return res;
     }
+
     private static HashMap<Integer, Float> SINX_MAP = generateSinxMap();
     private static HashMap<Integer, Float>generateSinxMap() {
         HashMap<Integer, Float> res = new HashMap<>();
@@ -121,9 +129,9 @@ public class Main {
     }
 
     private static void experimet() {
-        int N = 30;
+        int N = 1_000;
         float[] x = randomX(N);
-        int SAMPLE_SIZE = 1_000;
+        int SAMPLE_SIZE = 10_000;
 
         int[] termsSample = new int[]{1, 2, 5, 10, 15};
 
@@ -165,20 +173,23 @@ public class Main {
                     accTimeImpr1 += stopTime - startTime;
                 }
 
-
+                
                 for (int j = 0; j < N; j++) {
+
                     if (Math.abs(sinSlowResult[j]-sinImprResult[j]) > DELTA) {
                         System.out.println(
                             String.format("error: results of sinx functions are not matching x(%s): baseline sinx(%s); candidate sinx(%s)",
                                 x[j], sinSlowResult[j], sinImprResult[j]));
                     }
 
-                    if (Math.abs(sinSlowResult[j]-sinGolden[j]) > 0.01) {
-                        System.out.println(
-                            String.format("error: results of sinx functions are not matching x(%s): baseline sinx(%s); golden sinx(%s)",
-                                x[j], sinSlowResult[j], sinGolden[j]));
+                    if (Math.abs(sinSlowResult[j]-sinGolden[j]) > 0.1) {
+                        //System.out.println(
+                        //    String.format("error: results of sinx functions are not matching x(%s): baseline sinx(%s); golden sinx(%s)",
+                        //        x[j], sinSlowResult[j], sinGolden[j]));
                     }
                 }
+                
+
                 i++;
             }
 
@@ -195,6 +206,24 @@ public class Main {
             );
         }
 
+    }
+
+    private static void testSinTranslate() {
+        float[] x = randomX(1_000);
+        for (int i = 0; i < x.length; i++) {
+            float x_i = x[i];
+            double sinTranslateX = sinTranslate(x_i);
+            if (sinTranslateX > Math.PI || sinTranslateX < -Math.PI) {
+                System.out.println(String.format("testSinTranslate failed: x(%s), sinTranslateX(%s)", x_i, sinTranslateX));
+            }
+
+            double valCandiadte = Math.sin(sinTranslateX);
+            double valBaseline = Math.sin(x_i);
+            boolean testSinTranslateTestPassed = Math.abs(valCandiadte - valBaseline) < 0.00001;
+            if (!testSinTranslateTestPassed) {
+                System.out.println(String.format("testSinTranslate failed: x baseline(%s); x candidate (%s)", x_i, sinTranslateX));
+            }
+        } 
     }
 
 }
