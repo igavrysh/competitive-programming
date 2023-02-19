@@ -6,8 +6,9 @@ import java.util.Random;
 
 public class Main {
 
-    private static float MIN_X = (float)(-20* Math.PI);
-    private static float MAX_X = (float)(20 * Math.PI); 
+    // reduce bounds so that Taylor approximation works correctly
+    private static float MIN_X = (float)(-1* Math.PI);
+    private static float MAX_X = (float)(1* Math.PI); 
 
     private static double SHARE_OF_DESCRETE = 0.9;
 
@@ -28,6 +29,22 @@ public class Main {
 
     private static void sinx(int N, int terms, float[] x, float[] result) {
         for (int i = 0; i < N; i++) {
+            float value = x[i];
+            float numer = x[i] * x[i] * x[i];
+            int denom = 6; // 3!
+            int sign = -1;
+            for (int j = 1; j <= terms; j++) {
+                value += sign * numer / denom;
+                numer *= x[i] * x[i];
+                denom *= (2*j+2) * (2*j+3);
+                sign *= -1;
+            }
+            result[i] = value;
+        }
+    }
+
+    private static void sinxWithTranslation(int N, int terms, float[] x, float[] result) {
+        for (int i = 0; i < N; i++) {
             float x_i = (float)sinTranslate(x[i]);
             float value = x_i;
             float numer = x_i * x_i * x_i;
@@ -45,14 +62,15 @@ public class Main {
 
     private static void sinxImpr1(int N, int terms, float[] x, float[] result) {
         for (int i = 0; i < N; i++) {
-            float x_i = (float)sinTranslate(x[i]);
-
-            
+            //float x_i = (float)sinTranslate(x[i]);
+            float x_i = x[i];
+            /* 
             Integer mapVal = (int)(x_i * Math.pow(10, DESCRETE_MAP_POW));
             if (SINX_MAP.get(mapVal) != null) {
                 result[i] = SINX_MAP.get(mapVal);
                 continue;
             }
+            */
             
 
             float x_i_sq = x_i * x_i;
@@ -175,13 +193,13 @@ public class Main {
 
                 
                 for (int j = 0; j < N; j++) {
-
+                    /* 
                     if (Math.abs(sinSlowResult[j]-sinImprResult[j]) > DELTA) {
                         System.out.println(
                             String.format("error: results of sinx functions are not matching x(%s): baseline sinx(%s); candidate sinx(%s)",
                                 x[j], sinSlowResult[j], sinImprResult[j]));
                     }
-
+                    */
                     if (Math.abs(sinSlowResult[j]-sinGolden[j]) > 0.1) {
                         //System.out.println(
                         //    String.format("error: results of sinx functions are not matching x(%s): baseline sinx(%s); golden sinx(%s)",
