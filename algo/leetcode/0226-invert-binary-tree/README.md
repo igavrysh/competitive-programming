@@ -1,4 +1,5 @@
 # 226. Invert Binary Tree
+
 Easy
 
 Invert a binary tree.

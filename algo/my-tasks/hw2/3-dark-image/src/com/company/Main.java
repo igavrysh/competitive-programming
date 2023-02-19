@@ -26,7 +26,7 @@ public class Main {
 
     private static Function<byte[][], Boolean> impr1 = (image) -> {
         int N = image.length;
-        int filter = N * N / 2;
+        //int filter = N * N / 2;
         int count = 0;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
@@ -35,6 +35,8 @@ public class Main {
                     count += 1; 
                 }
                 /* 
+                // Can use sentinel tech to get rid of that, but cannot modify byte[][] array locally
+                // e.g. add MAX_BYTE in the end 
                 if (count >= filter) {
                     return false;
                 }
@@ -138,5 +140,4 @@ public class Main {
         }
         return img;
     }
-
 }
