@@ -10,12 +10,14 @@ public class Main {
     private static float MIN_X = (float)(-1* Math.PI);
     private static float MAX_X = (float)(1* Math.PI); 
 
-    private static double SHARE_OF_DESCRETE = 0.9;
-
+    private static double SHARE_OF_DESCRETE = 0.25;
 
     public static void main(String[] args) {
         experimet();
-        testSinTranslate();
+
+        //testSinTranslate();
+        //testSinX();
+
     }
 
     // translate arg value for sin into the range of matching Taylor function args range: [-Math.PI, +Math.PI]
@@ -31,7 +33,8 @@ public class Main {
         for (int i = 0; i < N; i++) {
             float value = x[i];
             float numer = x[i] * x[i] * x[i];
-            int denom = 6; // 3!
+            // change from `int denom = 6;` as otherwise int overflows with high term values
+            float denom = 6; // 3!
             int sign = -1;
             for (int j = 1; j <= terms; j++) {
                 value += sign * numer / denom;
@@ -39,7 +42,7 @@ public class Main {
                 denom *= (2*j+2) * (2*j+3);
                 sign *= -1;
             }
-            result[i] = value;
+            result[i] = (float)value;
         }
     }
 
@@ -72,13 +75,12 @@ public class Main {
             }
             */
             
-
             float x_i_sq = x_i * x_i;
             float x_i_trip = x_i_sq * x_i;
             float value = x_i;
             float numer = x_i_trip;
             for (int j = 1; j <= terms; j++) {
-                value += numer / DENOM[j];
+                value += numer * MULT[j];
                 numer *= x_i_sq;
             }
             result[i] = value;
@@ -91,33 +93,47 @@ public class Main {
         }
     }
 
-    private static int[] DENOM = generateDenom(20);
-    private static int[] generateDenom(int N) {
-        int[] res = new int[N];
+    private static float[] MULT = generateDenom(100);
+    private static float[] generateDenom(int N) {
+        float[] res = new float[N];
         int denom = 1;
         res[0] = 1;
         int sign = -1;
         for (int i = 1; i < res.length; i++) {
             denom *= (2*i) * (2*i+1);
-            res[i] = sign * denom;
+            res[i] = (float)(sign * 1.0 / denom);
             // silly as one time optimization, still...
             sign = ~sign + 1;
         }
         return res;
     }
 
+    private static float[] DESCRETE_SINX_DELTA_DEG_15 = generateDescreteSinxDeltaDeg15();
+    private static float[] generateDescreteSinxDeltaDeg15() {
+        float[] res = new float[13];
+        float x = 0;
+        float delta = (float)(Math.PI / 12);
+        for (int i=0; i<res.length; i++) {
+            res[i] = (float)Math.sin(x);
+            x += delta;
+        }
+        return res;
+    }
+
     private static Random r = new Random();
     private static float[] DESCRETE_RADS = generateDescreteRads();
-    private static float DELTA = (float)0.00000001;
+    private static float DELTA = (float)0.0001;
     private static int DESCRETE_MAP_POW = (int)(Math.log(DELTA) / Math.log(0.1) + 1);
     private static float[] generateDescreteRads() {
         // -2Pi, -2Pi+Pi/12, ..., 0, Pi/12, 2PI/12=Pi/6, 3Pi/12=Pi/4, 4Pi/12, 5Pi/12, 6Pi/12=Pi/2, ..., +2Pi
         // -360Deg, -345Deg, ..., 0, 15Deg, 30Deg, 45Deg, 60Deg, 75Deg, 90Deg, ..., 345Deg, 360Deg 
-        float[] res = new float[24*4];
         float delta = (float)(Math.PI/12);
-        for (int i = 0; i < res.length/2; i++) {
-            res[2*i] = i*delta;
-            res[2*i+1] = -i*delta;
+        int size = (int)((MAX_X - MIN_X) / (delta)) + 1;
+        float[] res = new float[size];
+        float currx = MIN_X;
+        for (int i = 0; i < size; i++) {
+            res[i] = currx;
+            currx += delta;
         }
         return res;
     }
@@ -149,9 +165,9 @@ public class Main {
     private static void experimet() {
         int N = 1_000;
         float[] x = randomX(N);
-        int SAMPLE_SIZE = 10_000;
+        int SAMPLE_SIZE = 1_000;
 
-        int[] termsSample = new int[]{1, 2, 5, 10, 15};
+        int[] termsSample = new int[]{3, 5};
 
         DecimalFormat df = new DecimalFormat("#");
         df.setMaximumFractionDigits(8);
@@ -183,31 +199,32 @@ public class Main {
                     accTimeSlow += stopTime - startTime;
                 }
 
-                float[] sinImprResult = new float[N]; 
+                float[] sinImpr1Result = new float[N]; 
                 {
                     long startTime = System.nanoTime();
-                    sinxImpr1(N, terms, x, sinImprResult);
+                    sinxImpr1(N, terms, x, sinImpr1Result);
                     long stopTime = System.nanoTime();
                     accTimeImpr1 += stopTime - startTime;
                 }
 
-                
                 for (int j = 0; j < N; j++) {
-                    /* 
-                    if (Math.abs(sinSlowResult[j]-sinImprResult[j]) > DELTA) {
+                    
+                    if (Math.abs(sinSlowResult[j]-sinImpr1Result[j]) > DELTA) {
+                        float xJ = x[j];
+                        float sinSlowResultJ = sinSlowResult[j];
+                        float sinImpr1ResultJ = sinImpr1Result[j];
+
                         System.out.println(
-                            String.format("error: results of sinx functions are not matching x(%s): baseline sinx(%s); candidate sinx(%s)",
-                                x[j], sinSlowResult[j], sinImprResult[j]));
+                            String.format("error res-s not matching:\tx:%s\tbaseline sinx(%s)\tcandidate sinx(%s)\tterms:%s",
+                                xJ, sinSlowResultJ, sinImpr1ResultJ, termsSample[t]));
                     }
-                    */
+         
                     if (Math.abs(sinSlowResult[j]-sinGolden[j]) > 0.1) {
                         //System.out.println(
                         //    String.format("error: results of sinx functions are not matching x(%s): baseline sinx(%s); golden sinx(%s)",
                         //        x[j], sinSlowResult[j], sinGolden[j]));
                     }
                 }
-                
-
                 i++;
             }
 
@@ -223,7 +240,17 @@ public class Main {
                 + "; avg time impr1: \t" + df.format(avgTimeImpr1) + " nanos" 
             );
         }
+    }
 
+    private static void testSinX() {
+        float[] x = new float[] {(float)-1.595149, (float)(-1 * Math.PI), (float)(-1 * Math.PI + 0.00001)  };
+        float[] resultSinx = new float[x.length];
+        float[] resultImpr1Sinx = new float[x.length];
+
+        sinx(1, 15, x, resultSinx);
+        sinxImpr1(1, 15, x, resultImpr1Sinx);
+
+        int t = 1;
     }
 
     private static void testSinTranslate() {
