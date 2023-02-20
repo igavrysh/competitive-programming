@@ -1,7 +1,6 @@
 package com.company;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
 import java.util.Random;
 
 public class Main {
@@ -10,7 +9,13 @@ public class Main {
     private static float MIN_X = (float)(-1* Math.PI);
     private static float MAX_X = (float)(1* Math.PI); 
 
-    private static double SHARE_OF_DESCRETE = 0.25;
+    private static double SHARE_OF_WELL_KNOWN_VALUES = 0.25;
+    private static double DELTA = 0.0001;
+
+    private static int[] termsSample = new int[]{3, 5, 10, 15};
+
+    private static Random r = new Random();
+
 
     public static void main(String[] args) {
         experimet();
@@ -67,14 +72,6 @@ public class Main {
         for (int i = 0; i < N; i++) {
             //float x_i = (float)sinTranslate(x[i]);
             float x_i = x[i];
-            /* 
-            Integer mapVal = (int)(x_i * Math.pow(10, DESCRETE_MAP_POW));
-            if (SINX_MAP.get(mapVal) != null) {
-                result[i] = SINX_MAP.get(mapVal);
-                continue;
-            }
-            */
-            
             float x_i_sq = x_i * x_i;
             float x_i_trip = x_i_sq * x_i;
             float value = x_i;
@@ -93,10 +90,10 @@ public class Main {
         }
     }
 
-    private static float[] MULT = generateDenom(100);
-    private static float[] generateDenom(int N) {
+    private static float[] MULT = generateMult(100);
+    private static float[] generateMult(int N) {
         float[] res = new float[N];
-        int denom = 1;
+        float denom = 1;
         res[0] = 1;
         int sign = -1;
         for (int i = 1; i < res.length; i++) {
@@ -108,44 +105,21 @@ public class Main {
         return res;
     }
 
-    private static float[] DESCRETE_SINX_DELTA_DEG_15 = generateDescreteSinxDeltaDeg15();
-    private static float[] generateDescreteSinxDeltaDeg15() {
-        float[] res = new float[13];
-        float x = 0;
+    private static float[] WELL_KNOWN_RAD_X_VALS = generateWellKnownRadXVals();
+    private static float[] generateWellKnownRadXVals() {
+        float[] res = new float[25];
         float delta = (float)(Math.PI / 12);
         for (int i=0; i<res.length; i++) {
-            res[i] = (float)Math.sin(x);
-            x += delta;
+            res[i] = (float)(-Math.PI + i*delta);
         }
         return res;
     }
 
-    private static Random r = new Random();
-    private static float[] DESCRETE_RADS = generateDescreteRads();
-    private static float DELTA = (float)0.0001;
-    private static int DESCRETE_MAP_POW = (int)(Math.log(DELTA) / Math.log(0.1) + 1);
-    private static float[] generateDescreteRads() {
-        // -2Pi, -2Pi+Pi/12, ..., 0, Pi/12, 2PI/12=Pi/6, 3Pi/12=Pi/4, 4Pi/12, 5Pi/12, 6Pi/12=Pi/2, ..., +2Pi
-        // -360Deg, -345Deg, ..., 0, 15Deg, 30Deg, 45Deg, 60Deg, 75Deg, 90Deg, ..., 345Deg, 360Deg 
-        float delta = (float)(Math.PI/12);
-        int size = (int)((MAX_X - MIN_X) / (delta)) + 1;
-        float[] res = new float[size];
-        float currx = MIN_X;
-        for (int i = 0; i < size; i++) {
-            res[i] = currx;
-            currx += delta;
-        }
-        return res;
-    }
-
-    private static HashMap<Integer, Float> SINX_MAP = generateSinxMap();
-    private static HashMap<Integer, Float>generateSinxMap() {
-        HashMap<Integer, Float> res = new HashMap<>();
-        for (int i = 0; i < DESCRETE_RADS.length; i++) {
-            res.put(
-                (int)(DESCRETE_RADS[i] * Math.pow(10, DESCRETE_MAP_POW)), 
-                (float)Math.sin(DESCRETE_RADS[i])
-            );
+    private static float[] WELL_KNOWN_RAD_SINX_VALS = generateWellKnownSinxVals();
+    private static float[] generateWellKnownSinxVals() {
+        float[] res = new float[WELL_KNOWN_RAD_X_VALS.length];
+        for (int i=0; i<res.length; i++) {
+            res[i] = (float)Math.sin(WELL_KNOWN_RAD_X_VALS[i]);
         }
         return res;
     }
@@ -153,8 +127,8 @@ public class Main {
     private static float[] randomX(int N) {
         float[] x = new float[N];
         for (int i = 0; i < N; i++) {
-            if (r.nextDouble() < SHARE_OF_DESCRETE) {
-                x[i] = DESCRETE_RADS[r.nextInt(DESCRETE_RADS.length)];
+            if (r.nextDouble() < SHARE_OF_WELL_KNOWN_VALUES) {
+                x[i] = WELL_KNOWN_RAD_X_VALS[r.nextInt(WELL_KNOWN_RAD_X_VALS.length)];
             } else {
                 x[i] = MIN_X + r.nextFloat() * (MAX_X - MIN_X);
             }
@@ -167,7 +141,6 @@ public class Main {
         float[] x = randomX(N);
         int SAMPLE_SIZE = 1_000;
 
-        int[] termsSample = new int[]{3, 5};
 
         DecimalFormat df = new DecimalFormat("#");
         df.setMaximumFractionDigits(8);
@@ -215,14 +188,17 @@ public class Main {
                         float sinImpr1ResultJ = sinImpr1Result[j];
 
                         System.out.println(
-                            String.format("error res-s not matching:\tx:%s\tbaseline sinx(%s)\tcandidate sinx(%s)\tterms:%s",
+                            String.format("error res-s not matching b/w slow & improved sin func:\tx:%s\tbaseline sinx(%s)\tcandidate sinx(%s)\tterms:%s",
                                 xJ, sinSlowResultJ, sinImpr1ResultJ, termsSample[t]));
                     }
          
-                    if (Math.abs(sinSlowResult[j]-sinGolden[j]) > 0.1) {
-                        //System.out.println(
-                        //    String.format("error: results of sinx functions are not matching x(%s): baseline sinx(%s); golden sinx(%s)",
-                        //        x[j], sinSlowResult[j], sinGolden[j]));
+                    if (Math.abs(sinSlowResult[j]-sinGolden[j]) > DELTA) {
+                        float xJ = x[j];
+                        float sinSlowResultJ = sinSlowResult[j];
+                        float sinGoldenResultJ = sinGolden[j];
+                        System.out.println(
+                            String.format("error res-s not matching b/w slow & golden standard func:\tx:%s\tbaseline sinx(%s)\tcandidate sinx(%s)\tterms:%s",
+                                xJ, sinSlowResultJ, sinGoldenResultJ, termsSample[t]));
                     }
                 }
                 i++;
