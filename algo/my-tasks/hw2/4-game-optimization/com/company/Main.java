@@ -69,10 +69,23 @@ public class Main {
         }
     }
 
+    private static double MathPIDiv12Inv = 12/Math.PI;
+    private static double MathPIDiv1 = Math.PI/12;
+
     private static void sinxImpr1(int N, int terms, float[] x, float[] result) {
         for (int i = 0; i < N; i++) {
             //float x_i = (float)sinTranslate(x[i]);
             float x_i = x[i];
+
+            /* 
+            int wellKnownRate = (int)(x_i * MathPIDiv12Inv) ;
+            if (Math.abs(x_i -  wellKnownRate * MathPIDiv1) < MAX_DELTA) {
+                int idx = wellKnownRate + 12; 
+                result[i] = WELL_KNOWN_RAD_SINX_VALS[idx];
+                continue;
+            }
+            */ 
+
             float x_i_sq = x_i * x_i;
             float x_i_trip = x_i_sq * x_i;
             float value = x_i;
@@ -187,6 +200,7 @@ public class Main {
                     // will loose remainder upper bound assesment with MAX_DELTA due to possible errors in calculation
                     double maxDeltaRemainder = termsSample[t] >= 5 ? MAX_DELTA : Math.pow(Math.abs(x[j]), 2*termsSample[t]-3) / factorial(2*termsSample[t]-3);
                     
+                    /* 
                     if (Math.abs(sinSlowResult[j]-sinImpr1Result[j]) >= maxDeltaRemainder) {
                         float xJ = x[j];
                         double sinSlowResultJ = sinSlowResult[j];
@@ -198,6 +212,7 @@ public class Main {
                             String.format("err no match b/w slow & impr sin func:\tx:%s\tbaseline sinx(%s)\tcandidate sinx(%s)\tterms:%s\tdiff:%s\tmaxdelta:%s",
                                 xJ, sinSlowResultJ, sinImpr1ResultJ, termsSample[t], Math.abs(sinSlowResult[j]-sinImpr1Result[j]), maxDeltaRemainder));
                     }
+                    */
                 
                     if (Math.abs(sinGolden[j]-sinImpr1Result[j]) >= maxDeltaRemainder) {
                         float xJ = x[j];
