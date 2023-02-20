@@ -9,7 +9,7 @@ public class Main {
     private static float MIN_X = (float)(-1* Math.PI);
     private static float MAX_X = (float)(1* Math.PI); 
 
-    private static double SHARE_OF_WELL_KNOWN_VALUES = 0.25;
+    private static double SHARE_OF_WELL_KNOWN_VALUES = 0.50;
     // although Taylor sequence remainder has upper bound, its not working 
     // for my case, and will use MAX_DELTA here for cases with terms >= 5
     private static double MAX_DELTA = 0.001;
@@ -77,14 +77,14 @@ public class Main {
             //float x_i = (float)sinTranslate(x[i]);
             float x_i = x[i];
 
-            /* 
+            
             int wellKnownRate = (int)(x_i * MathPIDiv12Inv) ;
             if (Math.abs(x_i -  wellKnownRate * MathPIDiv1) < MAX_DELTA) {
                 int idx = wellKnownRate + 12; 
                 result[i] = WELL_KNOWN_RAD_SINX_VALS[idx];
                 continue;
             }
-            */ 
+            
 
             float x_i_sq = x_i * x_i;
             float x_i_trip = x_i_sq * x_i;
