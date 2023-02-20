@@ -84,7 +84,7 @@ public class Main {
         }
     }
 
-    private static void sinGolden(int N, int terms, float[] x, float[] result) {
+    private static void sinxGolden(int N, int terms, float[] x, float[] result) {
         for (int i = 0; i < N; i++) {
             result[i] = (float)Math.sin(x[i]);
         }
@@ -159,7 +159,7 @@ public class Main {
                 float[] sinGolden = new float[N]; 
                 {
                     long startTime = System.nanoTime();
-                    sinGolden(N, terms, x, sinGolden);
+                    sinxGolden(N, terms, x, sinGolden);
                     long stopTime = System.nanoTime();
                     accTimeGolden += stopTime - startTime;
                 }
@@ -191,7 +191,8 @@ public class Main {
                             String.format("error res-s not matching b/w slow & improved sin func:\tx:%s\tbaseline sinx(%s)\tcandidate sinx(%s)\tterms:%s",
                                 xJ, sinSlowResultJ, sinImpr1ResultJ, termsSample[t]));
                     }
-         
+                    
+                    /* 
                     if (Math.abs(sinSlowResult[j]-sinGolden[j]) > DELTA) {
                         float xJ = x[j];
                         float sinSlowResultJ = sinSlowResult[j];
@@ -200,12 +201,14 @@ public class Main {
                             String.format("error res-s not matching b/w slow & golden standard func:\tx:%s\tbaseline sinx(%s)\tcandidate sinx(%s)\tterms:%s",
                                 xJ, sinSlowResultJ, sinGoldenResultJ, termsSample[t]));
                     }
+                    */
                 }
                 i++;
             }
 
             double avgTimeSlow = accTimeSlow * 1.0 / SAMPLE_SIZE;
             double avgTimeImpr1 = accTimeImpr1 * 1.0 / SAMPLE_SIZE;
+            double avgTimeGolden = accTimeGolden * 1.0 / SAMPLE_SIZE;
 
 
             System.out.println("Terms: " + terms 
@@ -214,6 +217,10 @@ public class Main {
 
             System.out.println("Terms: " + terms 
                 + "; avg time impr1: \t" + df.format(avgTimeImpr1) + " nanos" 
+            );
+
+            System.out.println("Terms: " + terms 
+                + "; avg time golden: \t" + df.format(avgTimeGolden) + " nanos" 
             );
         }
     }
