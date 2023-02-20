@@ -10,9 +10,11 @@ public class Main {
     private static float MAX_X = (float)(1* Math.PI); 
 
     private static double SHARE_OF_WELL_KNOWN_VALUES = 0.25;
-    private static double DELTA = 0.0001;
+    // although Taylor sequence remainder has upper bound, its not working 
+    // for my case, and will use MAX_DELTA here for cases with terms >= 5
+    private static double MAX_DELTA = 0.001;
 
-    private static int[] termsSample = new int[]{3, 5, 10, 15};
+    private static int[] termsSample = new int[]{3, 4, 5, 10, 15};
 
     private static Random r = new Random();
 
@@ -22,7 +24,6 @@ public class Main {
 
         //testSinTranslate();
         //testSinX();
-
     }
 
     // translate arg value for sin into the range of matching Taylor function args range: [-Math.PI, +Math.PI]
@@ -56,7 +57,7 @@ public class Main {
             float x_i = (float)sinTranslate(x[i]);
             float value = x_i;
             float numer = x_i * x_i * x_i;
-            int denom = 6; // 3!
+            float denom = 6; // 3!
             int sign = -1;
             for (int j = 1; j <= terms; j++) {
                 value += sign * numer / denom;
@@ -181,27 +182,32 @@ public class Main {
                 }
 
                 for (int j = 0; j < N; j++) {
+                    // O(|x|^k/k!), where k is next odd number after last used Taylor sequence element
+                    // double maxDeltaRemainder = Math.pow(Math.abs(x[j]), 2*termsSample[t]-1) / factorial(2*termsSample[t]-1);
+                    // will loose remainder upper bound assesment with MAX_DELTA due to possible errors in calculation
+                    double maxDeltaRemainder = termsSample[t] >= 5 ? MAX_DELTA : Math.pow(Math.abs(x[j]), 2*termsSample[t]-3) / factorial(2*termsSample[t]-3);
                     
-                    if (Math.abs(sinSlowResult[j]-sinImpr1Result[j]) > DELTA) {
+                    if (Math.abs(sinSlowResult[j]-sinImpr1Result[j]) >= maxDeltaRemainder) {
                         float xJ = x[j];
-                        float sinSlowResultJ = sinSlowResult[j];
-                        float sinImpr1ResultJ = sinImpr1Result[j];
+                        double sinSlowResultJ = sinSlowResult[j];
+                        double sinImpr1ResultJ = sinImpr1Result[j];
+                        double delta = Math.abs(sinSlowResultJ-sinImpr1ResultJ);
+
 
                         System.out.println(
-                            String.format("error res-s not matching b/w slow & improved sin func:\tx:%s\tbaseline sinx(%s)\tcandidate sinx(%s)\tterms:%s",
-                                xJ, sinSlowResultJ, sinImpr1ResultJ, termsSample[t]));
+                            String.format("err no match b/w slow & impr sin func:\tx:%s\tbaseline sinx(%s)\tcandidate sinx(%s)\tterms:%s\tdiff:%s\tmaxdelta:%s",
+                                xJ, sinSlowResultJ, sinImpr1ResultJ, termsSample[t], Math.abs(sinSlowResult[j]-sinImpr1Result[j]), maxDeltaRemainder));
                     }
-                    
-                    /* 
-                    if (Math.abs(sinSlowResult[j]-sinGolden[j]) > DELTA) {
+                
+                    if (Math.abs(sinGolden[j]-sinImpr1Result[j]) >= maxDeltaRemainder) {
                         float xJ = x[j];
-                        float sinSlowResultJ = sinSlowResult[j];
-                        float sinGoldenResultJ = sinGolden[j];
+                        double sinGoldenResultJ = sinGolden[j];
+                        double sinImpr1ResultJ = sinImpr1Result[j];
+                        double delta = Math.abs(sinGoldenResultJ-sinImpr1ResultJ);
                         System.out.println(
-                            String.format("error res-s not matching b/w slow & golden standard func:\tx:%s\tbaseline sinx(%s)\tcandidate sinx(%s)\tterms:%s",
-                                xJ, sinSlowResultJ, sinGoldenResultJ, termsSample[t]));
+                            String.format("err no match b/w golden & impr sin func:\tx:%s\tbaseline sinx(%s)\tcandidate sinx(%s)\tterms:%s\tdiff:%s\tmaxdelta:%s",
+                                xJ, sinGoldenResultJ, sinImpr1ResultJ, termsSample[t], delta, maxDeltaRemainder));
                     }
-                    */
                 }
                 i++;
             }
@@ -209,7 +215,6 @@ public class Main {
             double avgTimeSlow = accTimeSlow * 1.0 / SAMPLE_SIZE;
             double avgTimeImpr1 = accTimeImpr1 * 1.0 / SAMPLE_SIZE;
             double avgTimeGolden = accTimeGolden * 1.0 / SAMPLE_SIZE;
-
 
             System.out.println("Terms: " + terms 
                 + "; avg time slow: \t" + df.format(avgTimeSlow) + " nanos" 
@@ -254,4 +259,11 @@ public class Main {
         } 
     }
 
+    private static float factorial(int n) {
+        float fact = 1;
+        for (int i = 2; i <= n; i++) {
+            fact = fact * i;
+        }
+        return fact;
+    }
 }
