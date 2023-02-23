@@ -9,7 +9,7 @@ class Solution {
             if (weights[i] < lCap) { lCap = weights[i]; }
         }
         rCap *= weights.length;
-        while (rCap-lCap>1) {
+        while (rCap-lCap>1)  {
             int m = lCap + (rCap-lCap)/2;
             int d = 0;
             int curr = 0;
