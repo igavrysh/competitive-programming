@@ -32,11 +32,9 @@ public class Main {
                 }
             } else {
                 int pFq = fq.getOrDefault(a[l], 0);
-                
+
                 l++;
             } 
-
-
         }
 
         return 0;
