@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -39,6 +39,4 @@ public class Main {
 
         return 0;
     }
-
-
 }
