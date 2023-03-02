@@ -6,7 +6,7 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Solution {
+public class RaskinBobbins {
 
     private int[][] c;
     private int[] m;
@@ -34,7 +34,7 @@ public class Solution {
 
     public static void main(String[] args) throws IOException {
         //testSolution1();
-        Solution s = new Solution();
+        RaskinBobbins s = new RaskinBobbins();
         s.readInput();
         s.output = s.findFlavours(s.c, s.m);
         s.writeOutput();
@@ -72,7 +72,7 @@ public class Solution {
     private static void testSolution1() {
         int[][] c = new int[][]{{1,4,5,3,2},{2,2,4,3}};
         int[] m = new int[]{4,4};
-        Solution s = new Solution();
+        RaskinBobbins s = new RaskinBobbins();
         int[][] output = s.findFlavours(c, m);
         boolean passed = Arrays.equals(output[0], new int[]{1,4}) && Arrays.equals(output[1], new int[]{1,2});
         System.out.println("testSolution1: " + (passed ? "passed" : "failed"));
