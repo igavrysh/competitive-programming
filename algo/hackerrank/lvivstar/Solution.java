@@ -16,7 +16,7 @@ class Solution {
 
     public static void main(String[] args) throws IOException {
         //test1();
-        test2();
+        //test2();
 
         Input input = Solution.readInput();
         Solution lvivstar = new Solution(input.C);
@@ -45,18 +45,25 @@ class Solution {
     }
 
     private int getSum(int l, int r) {
-        int segsumL = (l+1)/segLen;
-        int segsumR = (r-1)/segLen;
+        int segsumL = l/segLen + (l%segLen == 0 ? 0 : 1);
+        int segsumR = r/segLen + ((r+1)%segLen == 0 ? 0 : -1);
         int acc = 0;
         for (int i = segsumL; i <= segsumR; i++) {
             acc += segsum[i];
         }
-        for (int i = l; i < segsumL*segLen; i++) {
-            acc += C[i];
+        if (segsumL<=segsumR) {
+            for (int i = l; i < segsumL*segLen; i++) {
+                acc += C[i];
+            }
+            for (int i = (segsumR+1)*segLen; i <= r; i++) {
+                acc += C[i];
+            }
+        } else {
+            for (int i = l; i <= r; i++) {
+                acc += C[i];
+            }
         }
-        for (int i = (segsumR+1)*segLen; i <= r; i++) {
-            acc += C[i];
-        }
+
         return acc;
     }
 
@@ -184,14 +191,14 @@ class Solution {
         };
 
         Integer [] expectedOutput = {
-            2,
+            3,
             16,
             13
         };
 
         Solution lvivstar = new Solution(C);
         List<Integer> output = lvivstar.process(Q);
-        boolean passed = Arrays.deepEquals(output.toArray(), new Integer[]{5,6,3,2,3});
+        boolean passed = Arrays.deepEquals(output.toArray(), expectedOutput);
         System.out.println("test2: " + (passed ? "passed" : "failed"));
     }
 }
