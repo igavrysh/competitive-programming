@@ -18,10 +18,11 @@ class Solution {
     public static void main(String[] args) throws IOException {
         test1();
         test2();
+        test3();
 
         Input input = Solution.readInput();
         Solution lvivstar = new Solution(input.C);
-        List<Integer> output = lvivstar.process(input.Q);
+        List<Long> output = lvivstar.process(input.Q);
         Solution.writeOutput(output);
     }
 
@@ -29,8 +30,8 @@ class Solution {
     private int[][] Q;
     private int n;
 
-    private int[] segsum;
-    private int nSeg; 
+    private long[] segsum;
+    private int nSeg;
     private int segLen;
 
     public Solution(int[] C) {
@@ -38,17 +39,17 @@ class Solution {
         segLen = (int)Math.sqrt(n);
         nSeg = segLen + (segLen*segLen==n ? 0 : 1);
         this.C = new int[n];
-        this.segsum = new int[nSeg];
+        this.segsum = new long[nSeg];
         for (int i = 0; i < n; i++) {
             this.C[i] = C[i];
             this.segsum[i/segLen] += C[i];
         }
     }
 
-    private int getSum(int l, int r) {
+    private long getSum(int l, int r) {
         int segsumL = l/segLen + (l%segLen == 0 ? 0 : 1);
         int segsumR = r/segLen + ((r+1)%segLen == 0 ? 0 : -1);
-        int acc = 0;
+        long acc = 0;
         for (int i = segsumL; i <= segsumR; i++) {
             acc += segsum[i];
         }
@@ -83,8 +84,8 @@ class Solution {
     public static final int ENTER = 2;
     public static final int LEAVE = 3;
 
-    public List<Integer> process(int[][] Q) {
-        List<Integer> output = new ArrayList<>();
+    public List<Long> process(int[][] Q) {
+        List<Long> output = new ArrayList<>();
         for (int i = 0; i < Q.length; i++) {
             if (Q[i][0] == ENTER) {
                 this.increment(Q[i][1]-1);
@@ -137,7 +138,7 @@ class Solution {
         return input;
     }
 
-    private static void writeOutput(List<Integer> output) throws IOException {
+    private static void writeOutput(List<Long> output) throws IOException {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out))) {
             for (int i = 0; i < output.size(); i++) {
                 String outputStr = String.valueOf(output.get(i)); 
@@ -161,16 +162,16 @@ class Solution {
             { COUNT, 1, 2 }
         };
 
-        Integer [] expectedOutput = {
-            5,
-            6,
-            3,
-            2,
-            3
+        Long [] expectedOutput = {
+            5l,
+            6l,
+            3l,
+            2l,
+            3l
         };
 
         Solution lvivstar = new Solution(C);
-        List<Integer> output = lvivstar.process(Q);
+        List<Long> output = lvivstar.process(Q);
         boolean passed = Arrays.deepEquals(output.toArray(), expectedOutput);
         System.out.println("test1: " + (passed ? "passed" : "failed"));
     }
@@ -193,30 +194,53 @@ class Solution {
             { COUNT, 13, 23 }
         };
 
-        Integer [] expectedOutput = {
-            3,
-            16,
-            13, 
-            27,
-            11
+        Long[] expectedOutput = new Long[] {
+            3l,
+            16l,
+            13l, 
+            27l,
+            11l
         };
 
         Solution lvivstar = new Solution(C);
-        List<Integer> output = lvivstar.process(Q);
-        boolean passed = Arrays.deepEquals(output.toArray(), expectedOutput);
+        boolean passed = true;
+        List<Long> output = lvivstar.process(Q);
+        for (int i = 0; i < expectedOutput.length; i++) {
+            if (output.get(i).compareTo(new Long(expectedOutput[i])) != 0) {
+                passed = false;
+                break;
+            }
+        }
         System.out.println("test2: " + (passed ? "passed" : "failed"));
     }
 
-
-    public void test3() {
-        int genN = 10;
-        int iterations = 100;
-        Random r = new Random();
+    public static void test3() {
+        int maxGenCVal = 1_000_000;
+        int genN = 1_000;
+        int iterations = 10;
+        Random random = new Random();
+        boolean testsPassed = true;
         for (int iter = 0; iter < iterations; iter++) {
             int[] genC = new int[genN];
             for (int s = 0; s < genC.length; s++) {
-                
+                genC[s] = random.nextInt(maxGenCVal);
+            }
+
+            for (int l = 0; l < genN-1; l++) {
+                for (int r = l+1; r < genN; r++) {
+                    long expctedAcc = 0;
+                    for (int i = l; i <= r; i++) {
+                        expctedAcc += genC[i];
+                    }
+                    Solution lv = new Solution(genC);
+                    List<Long> output = lv.process(new int[][]{{COUNT, l+1, r+1}});
+                    boolean passed = output.get(0) == expctedAcc;
+                    if (!passed) {
+                        testsPassed = false;
+                    }
+                }
             }
         }
+        System.out.println("test3: " + (testsPassed ? "passed" : "failed"));
     }
 }
