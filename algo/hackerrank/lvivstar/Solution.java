@@ -6,6 +6,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 class Solution {
 
@@ -15,8 +16,8 @@ class Solution {
     }
 
     public static void main(String[] args) throws IOException {
-        //test1();
-        //test2();
+        test1();
+        test2();
 
         Input input = Solution.readInput();
         Solution lvivstar = new Solution(input.C);
@@ -69,13 +70,13 @@ class Solution {
 
     private void increment(int i) {
         C[i]++;
-        segsum[i/segLen]++;
+        segsum[i/segLen] = segsum[i/segLen]+1;
     }
 
     private void decrement(int i) {
         if (C[i] < 0) { return; }
         C[i]--;
-        segsum[i/segLen]--;
+        segsum[i/segLen] = segsum[i/segLen]-1;
     }
 
     public static final int COUNT = 1;
@@ -187,18 +188,35 @@ class Solution {
         int[][] Q = {
             { COUNT, 2, 4 }, 
             { COUNT, 10, 25 },
-            { COUNT, 13, 25 }
+            { COUNT, 13, 25 },
+            { COUNT, 1, 27 },
+            { COUNT, 13, 23 }
         };
 
         Integer [] expectedOutput = {
             3,
             16,
-            13
+            13, 
+            27,
+            11
         };
 
         Solution lvivstar = new Solution(C);
         List<Integer> output = lvivstar.process(Q);
         boolean passed = Arrays.deepEquals(output.toArray(), expectedOutput);
         System.out.println("test2: " + (passed ? "passed" : "failed"));
+    }
+
+
+    public void test3() {
+        int genN = 10;
+        int iterations = 100;
+        Random r = new Random();
+        for (int iter = 0; iter < iterations; iter++) {
+            int[] genC = new int[genN];
+            for (int s = 0; s < genC.length; s++) {
+                
+            }
+        }
     }
 }
