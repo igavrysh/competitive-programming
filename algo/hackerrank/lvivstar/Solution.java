@@ -16,10 +16,13 @@ class Solution {
     }
 
     public static void main(String[] args) throws IOException {
+        /* 
         test1();
         test2();
         test3();
-
+        test3_edge_cases();
+        */
+        
         Input input = Solution.readInput();
         Solution lvivstar = new Solution(input.C);
         List<Long> output = lvivstar.process(input.Q);
@@ -37,7 +40,7 @@ class Solution {
     public Solution(int[] C) {
         n = C.length;
         segLen = (int)Math.sqrt(n);
-        nSeg = segLen + (segLen*segLen==n ? 0 : 1);
+        nSeg = n/segLen + ((int)(n/segLen)*segLen < n ? 1 : 0);
         this.C = new int[n];
         this.segsum = new long[nSeg];
         for (int i = 0; i < n; i++) {
@@ -214,20 +217,49 @@ class Solution {
         System.out.println("test2: " + (passed ? "passed" : "failed"));
     }
 
-    public static void test3() {
-        int maxGenCVal = 1_000_000;
-        int genN = 1_000;
-        int iterations = 10;
+    public static void test3_edge_cases() {
+        int GEN_MAX_C_VAL = 1_000_000;
+        int MAX_GEN_N = 255;
         Random random = new Random();
         boolean testsPassed = true;
-        for (int iter = 0; iter < iterations; iter++) {
+        for (int genN = 1; genN < MAX_GEN_N; genN++) {
             int[] genC = new int[genN];
             for (int s = 0; s < genC.length; s++) {
-                genC[s] = random.nextInt(maxGenCVal);
+                genC[s] = random.nextInt(GEN_MAX_C_VAL);
             }
 
             for (int l = 0; l < genN-1; l++) {
                 for (int r = l+1; r < genN; r++) {
+                    long expctedAcc = 0;
+                    for (int i = l; i <= r; i++) {
+                        expctedAcc += genC[i];
+                    }
+                    Solution lv = new Solution(genC);
+                    List<Long> output = lv.process(new int[][]{{COUNT, l+1, r+1}});
+                    boolean passed = output.get(0) == expctedAcc;
+                    if (!passed) {
+                        testsPassed = false;
+                    }
+                }
+            }
+        }
+        System.out.println("test3_edge_cases: " + (testsPassed ? "passed" : "failed"));
+    }
+
+    public static void test3() {
+        int GEN_N = 1_000;
+        int GEN_MAX_C_VAL = 1_000_000;
+        int ITERATIONS = 10;
+        Random random = new Random();
+        boolean testsPassed = true;
+        for (int iter = 0; iter < ITERATIONS; iter++) {
+            int[] genC = new int[GEN_N];
+            for (int s = 0; s < genC.length; s++) {
+                genC[s] = random.nextInt(GEN_MAX_C_VAL);
+            }
+
+            for (int l = 0; l < GEN_N-1; l++) {
+                for (int r = l+1; r < GEN_N; r++) {
                     long expctedAcc = 0;
                     for (int i = l; i <= r; i++) {
                         expctedAcc += genC[i];
