@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class Solution {
-
+public class SolutionConstant {
     private int[] x;
     private int[] v;
     private double output;
@@ -15,7 +14,7 @@ public class Solution {
         double goodT = Math.pow(10, 9);
 
         double guessT, min, max;
-        while (goodT-badT > 0.0000001) {
+        for (int j = 0; j < 100; j++) {
             guessT = badT + (goodT - badT) / 2;
             min = x[0] - v[0] * guessT;
             max = x[0] + v[0] * guessT;
@@ -31,7 +30,6 @@ public class Solution {
                 goodT = guessT;
             }
         }
-
         return goodT;
     }
 
@@ -41,14 +39,14 @@ public class Solution {
         test2();
         */
 
-        Solution s = new Solution();
+        SolutionConstant s = new SolutionConstant();
         s.readInput();
         s.output = s.meetingPoint(s.x, s.v);
         s.writeOutput();
     }
 
     public static void test2() {
-        Solution s = new Solution();
+        SolutionConstant s = new SolutionConstant();
         double output = s.meetingPoint(new int[]{ 5, 10, 3, 2 }, new int[]{ 2, 3, 2, 4 });
         double expectedOutput = 1.4;
         boolean passed = Math.abs(output - expectedOutput) / Math.max(1, expectedOutput) < 0.000001;
@@ -56,7 +54,7 @@ public class Solution {
     }
 
     public static void test1() {
-        Solution s = new Solution();
+        SolutionConstant s = new SolutionConstant();
         double output = s.meetingPoint(new int[]{ 7, 1, 3 }, new int[]{ 1,2,1 });
         double expectedOutput = 2.0;
         boolean passed = Math.abs(output - expectedOutput) / Math.max(1, expectedOutput) < 0.000001;
