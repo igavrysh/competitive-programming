@@ -22,9 +22,5 @@ The expressions in RPN form, one per line.
 | ((a+b)*(z+x))                 | ab+zx+*       |
 | ((a+t)*((b+(a+c))^(c+d)))     | at+bac++cd+^* |
 
-3 
-(a+(b*c)) 
-((a+b)*(z+x))
-((a+t)*((b+(a+c))^(c+d)))
 
 

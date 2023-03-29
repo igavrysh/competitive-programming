@@ -7,6 +7,42 @@ import java.io.*;
 /* Name of the class has to be "Main" only if the class is public. */
 class Codechef {
 
+    class MyStack<T> {
+        private List<T> data;
+
+        public MyStack() {
+            data = new ArrayList<>();
+        }
+
+        public void push(T val) {
+            data.add(val);
+        }
+
+        public int size() {
+            return data.size();
+        }
+
+        public T pop() {
+            if (size() == 0) {
+                throw new RuntimeException("empty stack");
+            }
+            return data.remove(size()-1);
+        }
+
+        public T peek() {
+            if (size() == 0) {
+                throw new RuntimeException("empty stack");
+
+            }
+            return data.get(size()-1);
+        }
+
+        public boolean isEmpty() {
+            return size() == 0;
+        }
+
+    }
+
     public static void main (String[] args) throws IOException {
 
         /*
@@ -28,8 +64,8 @@ class Codechef {
     }
 
     private String rpn(String str) {
-        Deque<String> ops = new ArrayDeque<>();
-        Deque<String> operands  = new ArrayDeque<>();
+        MyStack<String> ops = new MyStack<>();
+        MyStack<String> operands  = new MyStack<>();
 
         char[] chrs = str.toCharArray();
         for (int i = 0; i < chrs.length; i++) {
