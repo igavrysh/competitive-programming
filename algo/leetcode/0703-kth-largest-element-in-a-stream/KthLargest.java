@@ -5,18 +5,6 @@ class KthLargest {
     int size = 0;
     int k = 0;
 
-    private int left(int i) {
-        return i*2;
-    }
-
-    private int right(int i) {
-        return i*2+1;
-    }
-
-    private int parent(int i) {
-        return i/2;
-    }
-
     private void swap(int i, int j) {
         int tmp = a[i];
         a[i] = a[j];
@@ -24,12 +12,16 @@ class KthLargest {
     }
 
     private void siftdown(int i) {
-        while (2*i < a.length) {
+        siftdown(i, a.length);
+    } 
+
+    private void siftdown(int i, int n) {
+        while (2*i < n) {
             int j = i;
             if (a[2*i] < a[j]) {
                 j = 2*i;
             }
-            if (2*i+1<a.length && a[2*i+1] < a[j]) {
+            if (2*i+1<n && a[2*i+1] < a[j]) {
                 j = 2*i+1;
             }
             if (i==j) {
@@ -54,33 +46,36 @@ class KthLargest {
         this.k = k;
         a = new int[k+1];
 
-        int n = nums.length;
-        if (k <= n) {
-            heapifyPlusInsert(nums);
-        } else {
-        }
+        heapifyAndInsert(nums);
     }
 
-    private void heapifyPlusInsert(int[] nums) {
-        size = k;
-        for (int i = 0; i < k; i++) {
+    private void heapifyAndInsert(int[] nums) {
+        size = Math.min(nums.length, k);
+        for (int i = 0; i < size; i++) {
             a[i+1] = nums[i];
         }
 
-        for (int i = k/2; i>=1; i--) {
-            siftdown(i);
+        int currK = Math.min(nums.length, k);
+        for (int i = currK/2; i>=1; i--) {
+            siftdown(i, currK+1);
         }
 
-        int n = nums.length;
-        for (int i = k; i < n; i++) {
+        // size = currK, used size name here not to confuse with heapify notation
+        for (int i = size; i < nums.length; i++) {
             add(nums[i]);
         }
     }
     
     public int add(int val) {
-        if (val > a[1]) { 
-            a[1] = val; 
-            siftdown(1);
+        if (size == k) {
+            if (val > a[1]) { 
+                a[1] = val; 
+                siftdown(1);
+            }
+        } else {
+            size++;
+            a[size] = val;
+            siftup(size);
         }
 
         return a[1];
