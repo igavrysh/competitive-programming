@@ -2,41 +2,40 @@ package com.company;
 
 public class Main {
 
-  public static void test1() {
-    boolean passed = true;
-    MedianFinder obj = new MedianFinder();
-    obj.addNum(1);
-    obj.addNum(2);
-    passed &= obj.findMedian() == 1.5;
-    obj.addNum(3);
-    passed &= obj.findMedian() == 2.0;
-    System.out.println("test1: " + (passed ? "passed" : "failed"));
-  }
-
-  public static void test2() {
-    boolean passed = true;
-    MedianFinder obj = new MedianFinder();
-    obj.addNum(1);
-    passed &= obj.findMedian() == 1;
-    System.out.println("test2: " + (passed ? "passed" : "failed"));
-  }
-
-  public static void test3() {
-    boolean passed = true;
-    MedianFinder obj = new MedianFinder();
-
-    for (int i = 1; i <= 1_000_000; i++) {
-      obj.addNum(i);
+    public static void main(String[] args) {
+        test1();
+        test2();
+        test3();
     }
-    double output = obj.findMedian();
-    passed &= Math.abs(output - (500_000 + 500_001) / 2.0) < 0.00001;
-    System.out.println("test3: " + (passed ? "passed" : "failed"));
-  }
 
+    public static void test1() {
+        boolean passed = true;
+        MedianFinder obj = new MedianFinder();
+        obj.addNum(1);
+        obj.addNum(2);
+        passed &= obj.findMedian() == 1.5;
+        obj.addNum(3);
+        passed &= obj.findMedian() == 2.0;
+        System.out.println("test1: " + (passed ? "passed" : "failed"));
+    }
 
-  public static void main(String[] args) {
-    test1();
-    test2();
-    test3();
-  }
+    public static void test2() {
+        boolean passed = true;
+        MedianFinder obj = new MedianFinder();
+        obj.addNum(1);
+        passed &= obj.findMedian() == 1;
+        System.out.println("test2: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test3() {
+        boolean passed = true;
+        MedianFinder obj = new MedianFinder();
+
+        for (int i = 1; i <= 1_000_000; i++) {
+            obj.addNum(i);
+        }
+        double output = obj.findMedian();
+        passed &= Math.abs(output - (500_000 + 500_001) / 2.0) < 0.00001;
+        System.out.println("test3: " + (passed ? "passed" : "failed"));
+    }
 }
