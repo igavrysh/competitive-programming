@@ -1,5 +1,4 @@
 class KthLargest {
-
     // minheap
     int [] a;
     int size = 0;
