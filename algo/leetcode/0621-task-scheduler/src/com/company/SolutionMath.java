@@ -1,7 +1,6 @@
 package com.company;
 
 public class SolutionMath {
-
     public int leastInterval(char[] tasks, int n) {
         int maxFQ = 0;
         int[] FQ = new int[26];
