@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
@@ -6,6 +8,7 @@ class Main {
         testSolutionHashMap1();
         testSolutionHashMap2();
         testSolutionHashMap3();
+        testSolutionHashMap4();
     }
 
     public static void testSolutionHashMap1() {
@@ -30,7 +33,6 @@ class Main {
         System.out.println("testSolutionHashMap2: " + (passed ? "passed" : "failed"));
     }
 
-
     public static void testSolutionHashMap3() {
         String[] words = new String[]{ "a", "" };
         SolutionHashMap s = new SolutionHashMap();
@@ -39,5 +41,18 @@ class Main {
             && output.contains(Arrays.asList(new Integer[]{ 0, 1 }))
             && output.contains(Arrays.asList(new Integer[]{ 1, 0 }));
         System.out.println("testSolutionHashMap3: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionHashMap4() {
+
+        String str = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        String[] words = new String[5_000];
+        for (int i = 0; i < words.length; i++) {
+            words[i] = new String(str);
+        }
+        SolutionHashMap s = new SolutionHashMap();
+        List<List<Integer>> output = s.palindromePairs(words);
+        boolean passed = output.size() == 0;
+        System.out.println("testSolutionHashMap4: " + (passed ? "passed" : "failed"));
     }
 }

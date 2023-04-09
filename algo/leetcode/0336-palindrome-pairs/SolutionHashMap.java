@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 public class SolutionHashMap {
 
     public List<List<Integer>> palindromePairs(String[] words) {
@@ -10,26 +11,50 @@ public class SolutionHashMap {
             map.put(words[i], i);
         }
 
-        for (int i = 0; i < words.length; i++) {
-            String w = words[i];
-            for (int j = 0; j < w.length(); j++) {
-                String s1 = w.substring(0, j);
-                String s2 = w.substring(j, w.length());
-
-                String s1reverse = reverse(s1);
-                String s2reverse = reverse(s2);
-
-                Integer s2RevIdx = map.get(s2reverse);
-                if (isPalindrome(s1) && s2RevIdx != null && s2RevIdx != i) {
-                    output.add(pair(s2RevIdx, i));
-                }
-
-                Integer s1RevIdx = map.get(s1reverse);
-                if (isPalindrome(s2) && s1RevIdx != null && s1RevIdx != i) {
-                    output.add(pair(i, s1RevIdx));
+        if (map.containsKey("")) {
+            int idxEmptyStr = map.get("");
+            for (int i = 0; i < words.length; i++) {
+                if (i != idxEmptyStr && isPalindrome(words[i])) {
+                    output.add(pair(i, idxEmptyStr));
+                    output.add(pair(idxEmptyStr, i));
                 }
             }
         }
+
+        for (int i = 0; i < words.length; i++) {
+            String reverse = reverse(words[i]);
+            Integer reverseI = map.get(reverse);
+            if (reverseI != null && i != reverseI 
+                && isPalindrome(words[i]+reverse)) {
+                output.add(pair(i, reverseI));
+            }
+        }
+
+        for (int i = 0; i < words.length; i++) {
+            String w = words[i];
+            for (int j = 1; j < w.length(); j++) {
+                String s1 = w.substring(0, j);
+                String s2 = w.substring(j, w.length());
+                if (isPalindrome(s1)) {
+                    String s2Rev = reverse(s2);
+                    Integer s2RevI = map.get(s2Rev);
+
+                    if (s2RevI != null && i != s2RevI) {
+                        output.add(pair(s2RevI, i));
+                    }
+                }
+                
+                if (isPalindrome(s2)) {
+                    String s1Rev = reverse(s1);
+                    Integer s1RevI = map.get(s1Rev);
+
+                    if (s1RevI != null && i != s1RevI) {
+                        output.add(pair(i, s1RevI));
+                    }
+                }
+            }
+        }
+
         return output;
     }
 
@@ -50,13 +75,12 @@ public class SolutionHashMap {
     }
 
     private boolean isPalindrome(String s) {
-        char[] chrs = s.toCharArray();
-        for (int i = 0; i < chrs.length/2; i++) {
-            if (chrs[i] != chrs[chrs.length-1-i]) {
+        int n = s.length();
+        for (int i = 0; i < n/2; i++) {
+            if (s.charAt(i) != s.charAt(n-1-i)) {
                 return false;
             }
         }
         return true;
     }
-
 }
