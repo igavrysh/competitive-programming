@@ -1,5 +1,3 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,13 +42,12 @@ class Main {
     }
 
     public static void testSolutionHashMap4() {
-
         String str = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
         String[] words = new String[5_000];
         for (int i = 0; i < words.length; i++) {
             words[i] = new String(str);
         }
-        SolutionHashMap s = new SolutionHashMap();
+        SolutionHMFromDiscussion s = new SolutionHMFromDiscussion();
         List<List<Integer>> output = s.palindromePairs(words);
         boolean passed = output.size() == 0;
         System.out.println("testSolutionHashMap4: " + (passed ? "passed" : "failed"));

@@ -66,12 +66,8 @@ public class SolutionHashMap {
     }
 
     private String reverse(String s) {
-        char[] chrs = s.toCharArray();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < chrs.length; i++) {
-            sb.append(chrs[chrs.length-1-i]);
-        }
-        return sb.toString();
+        StringBuilder sb = new StringBuilder(s);
+        return sb.reverse().toString();
     }
 
     private boolean isPalindrome(String s) {
