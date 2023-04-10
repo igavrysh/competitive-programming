@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class SolutionHMSuperOptimized {
+public class SolutionHMSuperOptimizedDiscussion {
     public List<List<Integer>> palindromePairs(String[] words) {
         //1- null + palindrome, palindrome + null
         //2- s1 + s1.reverse
