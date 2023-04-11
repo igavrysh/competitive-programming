@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 class MyHashMapArrayOfLists {
@@ -32,7 +33,7 @@ class MyHashMapArrayOfLists {
         int hash = hash(key);
         List<Pair> l = buckets[hash];
         if (l == null) {
-            l = new ArrayList<>();
+            l = new LinkedList<>();
         }
 
         boolean inserted = false;
@@ -58,7 +59,7 @@ class MyHashMapArrayOfLists {
                 for (Pair p : buckets[i]) {
                     int newHash = hash(p.key, newCapacity);
                     if (b[newHash] == null) {
-                        b[newHash] = new ArrayList<Pair>();
+                        b[newHash] = new LinkedList<Pair>();
                     }
                     b[newHash].add(p);
                 }
@@ -90,9 +91,11 @@ class MyHashMapArrayOfLists {
         if (l == null) {
             return;
         }
-        for (int i = 0; i < l.size(); i++) {
-            if (l.get(i).key == key) {
-                l.remove(i);
+        
+        Iterator<Pair> each = l.iterator();
+        while (each.hasNext()) {
+            if (each.next().key == key) {
+                each.remove();
                 count--;
                 break;
             }

@@ -1,4 +1,3 @@
-
 public class Main {
     
     public static void main(String[] args) {
@@ -99,7 +98,7 @@ public class Main {
                 m = new MyHashMapArrayOfLists();
             } else if (ops[i].equals("get")) {
                 passed = passed && m.get(args[i][0]) == expectedOutput[i];
-                System.out.println("i = " + i + "; passed = " + passed);
+                //System.out.println("i = " + i + "; passed = " + passed);
             } else if (ops[i].equals("remove")) {
                 m.remove(args[i][0]);
             } else if (ops[i].equals("put")) {
