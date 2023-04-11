@@ -32,8 +32,8 @@ public class MyHashMapArray {
     }
 
     public void put(int key, int value) {
-        int sIdx = hash(key);
-        int idx = sIdx;
+        int hashKey = hash(key);
+        int idx = hashKey;
 
         thumbstone[idx] = false;
 
@@ -88,6 +88,7 @@ public class MyHashMapArray {
     }
 
     public void remove(int key) {
+        int hashKey = hash(key);
         int i = hash(key);
 
         while (thumbstone[i] == true || (a[i] != null && a[i].key != key)) {
@@ -98,9 +99,10 @@ public class MyHashMapArray {
             return;
         }
 
-        if (i != hash(key)) {
+        if (i != hashKey) {
             thumbstone[i] = true;
         }
+        
         a[i] = null;
         count--;
 
