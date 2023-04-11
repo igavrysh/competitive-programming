@@ -1,11 +1,9 @@
-import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.List;
 
-class MyHashMapArrayOfLists {
-
-    private static double LOAD_FACTOR = 0.75;
-
+public class MyHashMapAoLNoResize {
+    
     int capacity = 2048;
 
     int count = 0;
@@ -22,14 +20,10 @@ class MyHashMapArrayOfLists {
         }
     }
 
-    public MyHashMapArrayOfLists() {
+    public MyHashMapAoLNoResize() {
     }
     
     public void put(int key, int value) {
-        if (count / capacity > LOAD_FACTOR) {
-            resizeBuckets(capacity*2);
-        }
-
         int hash = hash(key);
         List<Pair> l = buckets[hash];
         if (l == null) {
@@ -50,23 +44,6 @@ class MyHashMapArrayOfLists {
         }
 
         buckets[hash] = l;
-    }
-
-    private void resizeBuckets(int newCapacity) {
-        List<Pair>[] b = new List[newCapacity];
-        for (int i = 0; i < capacity; i++) {
-            if (buckets[i] != null) {
-                for (Pair p : buckets[i]) {
-                    int newHash = hash(p.key, newCapacity);
-                    if (b[newHash] == null) {
-                        b[newHash] = new LinkedList<Pair>();
-                    }
-                    b[newHash].add(p);
-                }
-            }
-        }
-        buckets = b;
-        capacity = newCapacity;
     }
     
     public int get(int key) {
@@ -99,10 +76,6 @@ class MyHashMapArrayOfLists {
                 count--;
                 break;
             }
-        }
-
-        if (count/capacity < LOAD_FACTOR / 2.0) {
-            resizeBuckets(Math.max(10, capacity / 2));
         }
     }
 
