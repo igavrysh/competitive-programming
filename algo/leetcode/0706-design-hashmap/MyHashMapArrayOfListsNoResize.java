@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MyHashMapAoLNoResize {
+public class MyHashMapArrayOfListsNoResize {
     
     int capacity = 2048;
 
@@ -20,7 +20,7 @@ public class MyHashMapAoLNoResize {
         }
     }
 
-    public MyHashMapAoLNoResize() {
+    public MyHashMapArrayOfListsNoResize() {
     }
     
     public void put(int key, int value) {
