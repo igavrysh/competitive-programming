@@ -1,10 +1,17 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Main {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, IOException { 
         testMyHashMapArray1();
         testMyHashMapArray3();
         testMyHashMapArray2();
         testMyHashMapArray4();
+        testMyHashMapArray6();
+        testMyHashMapArray5();
 
         testMyHashMapArrayOfLists1();
         testMyHashMapArrayOfLists2();
@@ -227,7 +234,26 @@ public class Main {
         passed = passed && m.get(10) == 1;
         passed = passed && m.get(26) == 42;
         passed = passed && m.get(42) == 3;
+        passed = passed && m.thumbstone[10] == false;
+        passed = passed && m.thumbstone[11] == false;
+        passed = passed && m.thumbstone[12] == false;
 
+        m.put(58, 101);
+        passed = passed && m.get(10) == 1;
+        passed = passed && m.get(26) == 42;
+        passed = passed && m.get(42) == 3;
+        passed = passed && m.get(58) == 101;
+
+        m.remove(26);
+        m.remove(42);
+        passed = passed && m.get(10) == 1;
+        passed = passed && m.get(26) == -1;
+        passed = passed && m.get(42) == -1;
+        passed = passed && m.get(58) == 101;
+        passed = passed && m.thumbstone[10] == false;
+        passed = passed && m.thumbstone[11] == true;
+        passed = passed && m.thumbstone[12] == true;
+        passed = passed && m.thumbstone[13] == false;
 
         System.out.println("testMyHashMapArray4: " + (passed ? "passed" : "failed"));
     }
@@ -334,5 +360,80 @@ public class Main {
         }
 
         System.out.println("testMyHashMap2: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testMyHashMapArray5() throws FileNotFoundException, IOException {
+        try (BufferedReader inputBR = new BufferedReader(new FileReader("test1.input")); 
+            BufferedReader outputBR = new BufferedReader(new FileReader("test1.output"))
+        ) {
+            String opsString = inputBR.readLine();
+            String[] ops =  opsString.substring(1, opsString.length()-1).replaceAll("\\\"", "").replaceAll("\\\"", "").split(",");
+            
+            String argsString = inputBR.readLine();
+            String[] args = argsString.substring(2, argsString.length()-2).split("\\]\\,\\[");
+
+            String outString = outputBR.readLine();
+            String[] out = outString.substring(1, outString.length()-1).split(",");
+
+            if (ops.length != args.length || ops.length != out.length) {
+                System.out.println("testMyHashMapArray5: input/files icorrect format - not matching array lengths");
+                return;
+            }
+
+            MyHashMapArray m = null;
+            boolean passed = true;
+            for (int i = 0; i < ops.length; i++) {
+                if (ops[i].equals("MyHashMap")) {
+                    m = new MyHashMapArray();
+                } else if (ops[i].equals("get")) {
+                    String[] expectedInputStrings = args[i].split(",");
+                    Integer expectedInput1 = Integer.valueOf(expectedInputStrings[0]);
+                    Integer expectedOutput = Integer.parseInt(out[i]);
+                    int output = m.get(expectedInput1);
+                    passed = passed && output == expectedOutput;
+                    //System.out.println("i = " + i + "; passed = " + passed);
+                } else if (ops[i].equals("remove")) {
+                    String[] a = args[i].split(",");
+                    Integer expectedInput1 = Integer.valueOf(a[0]);
+                    m.remove(expectedInput1);
+                } else if (ops[i].equals("put")) {
+                    String[] expectedInputStrings = args[i].split(",");
+                    Integer expectedInput1 = Integer.valueOf(expectedInputStrings[0]);
+                    Integer expectedInput2 = Integer.valueOf(expectedInputStrings[1]);
+                    m.put(expectedInput1, expectedInput2);
+                }
+            }
+        }
+    }
+
+    public static void testMyHashMapArray6() {
+        String[] ops = new String[] {
+            "MyHashMap","put","remove","get","put","remove","remove","put","put","get"
+        };
+
+        Integer[][] args =  {
+            {},{504,155},{89},{334},{570,521},{504},{504},{507,661},{175,641},{504}
+        };
+
+        Integer[] expectedOutput = {
+            null,null,null,-1,null,null,null,null,null,-1
+        };
+
+        MyHashMapArray m = null;
+        boolean passed = true;
+        for (int i = 0; i < ops.length; i++) {
+            if (ops[i].equals("MyHashMap")) {
+                m = new MyHashMapArray();
+            } else if (ops[i].equals("get")) {
+                passed = passed && m.get(args[i][0]) == expectedOutput[i];
+                //System.out.println("i = " + i + "; passed = " + passed);
+            } else if (ops[i].equals("remove")) {
+                m.remove(args[i][0]);
+            } else if (ops[i].equals("put")) {
+                m.put(args[i][0], args[i][1]);
+            }
+        }
+
+        System.out.println("testMyHashMapArray6: " + (passed ? "passed" : "failed"));
     }
 }

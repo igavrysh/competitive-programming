@@ -37,7 +37,7 @@ public class MyHashMapArray {
 
         int counter = 1;
 
-        while (a[idx] != null && a[idx].key != key && thumbstone[idx] == false && counter < capacity) {
+        while (((a[idx] != null && a[idx].key != key) || thumbstone[idx] == true) && counter < capacity) {
             idx = nextHash(idx);
             counter++;
         }
@@ -55,12 +55,12 @@ public class MyHashMapArray {
             a[idx].value = value;
         }
 
-        if (count * 1.0 / capacity >= LOAD_FACTOR) {
-            resizeA((int)(capacity * RESIZE_MULT));
+        if ((count * 1.0 / capacity) >= LOAD_FACTOR) {
+            resize((int)(capacity * RESIZE_MULT));
         }
     }
 
-    private void resizeA(int newCapacity) {
+    private void resize(int newCapacity) {
         if (capacity == newCapacity) {
             return;
         }
@@ -81,17 +81,17 @@ public class MyHashMapArray {
 
     public int get(int key) {
         int i = hash(key);
-        while (thumbstone[i] == true || (a[i] != null && a[i].key != key)) {
+        while ((a[i] != null && a[i].key != key) || thumbstone[i] == true) {
             i = nextHash(i);
         }
-        return a[i] == null ? -1 : a[i].value;
+        return a[i] == null || a[i].key != key ? -1 : a[i].value;
     }
 
     public void remove(int key) {
         int hashKey = hash(key);
         int i = hash(key);
 
-        while (thumbstone[i] == true || (a[i] != null && a[i].key != key)) {
+        while ((a[i] != null && a[i].key != key) || thumbstone[i] == true) {
             i = nextHash(i);
         }
 
@@ -99,31 +99,29 @@ public class MyHashMapArray {
             return;
         }
 
-        if (i != hashKey) {
-            thumbstone[i] = true;
-        }
-
+        thumbstone[i] = true;
         a[i] = null;
         count--;
-
+        
+         
         if (count * 1.0 / capacity <= LOAD_FACTOR_FLOOR) {
-            resizeA(Math.max(INITIAL_CAPACITY, (int)(capacity / RESIZE_MULT)));
+            resize(Math.max(INITIAL_CAPACITY, (int)(capacity / RESIZE_MULT)));
         }
     }
 
-    private int hash(int key, int capacity) {
+    protected int hash(int key, int capacity) {
         return key % capacity;
     }
 
-    private int hash(int key) {
+    protected int hash(int key) {
         return hash(key, this.capacity);
     }
 
-    private int nextHash(int hash) {
+    protected int nextHash(int hash) {
         return nextHash(hash, this.capacity);
     }
     
-    private int nextHash(int hash, int capacity) {
+    protected int nextHash(int hash, int capacity) {
         return (hash+1)%capacity;
     }
 }
