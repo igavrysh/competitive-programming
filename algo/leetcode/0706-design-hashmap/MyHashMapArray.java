@@ -8,7 +8,7 @@ public class MyHashMapArray {
     private int capacity = INITIAL_CAPACITY;
     private int count = 0;
     private Pair[] a;
-    private boolean[] thumbstone;
+    protected boolean[] thumbstone;
 
     class Pair {
         public int key;
@@ -35,11 +35,9 @@ public class MyHashMapArray {
         int hashKey = hash(key);
         int idx = hashKey;
 
-        thumbstone[idx] = false;
-
         int counter = 1;
 
-        while (a[idx] != null && a[idx].key != key && counter < capacity) {
+        while (a[idx] != null && a[idx].key != key && thumbstone[idx] == false && counter < capacity) {
             idx = nextHash(idx);
             counter++;
         }
@@ -47,6 +45,8 @@ public class MyHashMapArray {
         if (counter == capacity) {
             throw new RuntimeException("loop in internal array, values overflow");
         }
+
+        thumbstone[idx] = false;
 
         if (a[idx] == null) {
             a[idx] = new Pair(key, value);
@@ -102,12 +102,12 @@ public class MyHashMapArray {
         if (i != hashKey) {
             thumbstone[i] = true;
         }
-        
+
         a[i] = null;
         count--;
 
         if (count * 1.0 / capacity <= LOAD_FACTOR_FLOOR) {
-            resizeA(Math.min(INITIAL_CAPACITY, (int)(capacity / RESIZE_MULT)));
+            resizeA(Math.max(INITIAL_CAPACITY, (int)(capacity / RESIZE_MULT)));
         }
     }
 

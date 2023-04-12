@@ -4,6 +4,7 @@ public class Main {
         testMyHashMapArray1();
         testMyHashMapArray3();
         testMyHashMapArray2();
+        testMyHashMapArray4();
 
         testMyHashMapArrayOfLists1();
         testMyHashMapArrayOfLists2();
@@ -204,6 +205,31 @@ public class Main {
     }
 
     public static void testMyHashMapArray4() {
+        MyHashMapArray m = new MyHashMapArray();
+        boolean passed = true;
+
+        m.put(10, 1);
+        m.put(26, 2);
+        m.put(42, 3);
+        passed = passed && m.get(10) == 1;
+        passed = passed && m.get(26) == 2;
+        passed = passed && m.get(42) == 3;
+
+        m.remove(26);
+        passed = passed && m.thumbstone[10] == false;
+        passed = passed && m.thumbstone[11] == true;
+        passed = passed && m.thumbstone[12] == false;
+        passed = passed && m.get(10) == 1;
+        passed = passed && m.get(26) == -1;
+        passed = passed && m.get(42) == 3;
+
+        m.put(26, 42);
+        passed = passed && m.get(10) == 1;
+        passed = passed && m.get(26) == 42;
+        passed = passed && m.get(42) == 3;
+
+
+        System.out.println("testMyHashMapArray4: " + (passed ? "passed" : "failed"));
     }
 
     public static void testMyHashMapArrayOfLists1() {
