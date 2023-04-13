@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolutionBtOptimized {
+public class SolutionBTOptimized {
     public List<String> generateParenthesis(int n) {
         List<String> output = new ArrayList<>();
         BT(0, 0, n, new char[2*n], output);
@@ -21,7 +21,7 @@ public class SolutionBtOptimized {
             BT(l+1, r, n, acc, output);
         }
 
-        if (r < l) {
+        if (l>r) {
             acc[l+r] = ')';
             BT(l, r+1, n, acc, output);
         }
