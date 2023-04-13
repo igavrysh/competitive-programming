@@ -486,20 +486,17 @@ public class Main {
             String[] args = argsString.substring(2, argsString.length()-2).split("\\]\\,\\[");
 
             String outString = outputBR.readLine();
-            /*String[] out = outString.substring(1, outString.length()-1).split(",");
+            String[] out = outString.substring(1, outString.length()-1).split(",");
 
             if (ops.length != args.length || ops.length != out.length) {
                 System.out.println("testMyHashMapArray5: input/files icorrect format - not matching array lengths");
                 return;
             }
-            */
 
             MyHashMapArray m = null;
             boolean passed = true;
             for (int i = 0; i < ops.length; i++) {
                 //System.out.println("i=" + i);
-
-
                 if (i == 31) {
                     int t = 1;
                 }
@@ -509,9 +506,9 @@ public class Main {
                 } else if (ops[i].equals("get")) {
                     String[] expectedInputStrings = args[i].split(",");
                     Integer expectedInput1 = Integer.valueOf(expectedInputStrings[0]);
-                    //Integer expectedOutput = Integer.parseInt(out[i]);
-                    //int output = m.get(expectedInput1);
-                    //passed = passed && output == expectedOutput;
+                    Integer expectedOutput = Integer.parseInt(out[i]);
+                    int output = m.get(expectedInput1);
+                    passed = passed && output == expectedOutput;
                     //System.out.println("i = " + i + "; passed = " + passed);
                 } else if (ops[i].equals("remove")) {
                     String[] a = args[i].split(",");
