@@ -5,12 +5,12 @@ import java.util.List;
 class MyHashMapArrayOfLists {
 
     private static double LOAD_FACTOR = 0.75;
+    private static double LOAD_FACTOR_FLOOR = 0.1;
+    private static int INITIAL_CAPACITY = 16;
 
-    int capacity = 2048;
-
-    int count = 0;
-
-    List<Pair>[] buckets = new List[capacity];
+    private int capacity = INITIAL_CAPACITY;
+    private int count = 0;
+    private List<Pair>[] buckets = new List[capacity];
 
     class Pair {
         public int key;
@@ -26,10 +26,6 @@ class MyHashMapArrayOfLists {
     }
     
     public void put(int key, int value) {
-        if (count / capacity > LOAD_FACTOR) {
-            resizeBuckets(capacity*2);
-        }
-
         int hash = hash(key);
         List<Pair> l = buckets[hash];
         if (l == null) {
@@ -41,6 +37,7 @@ class MyHashMapArrayOfLists {
             if (p.key == key) {
                 p.value = value;
                 inserted = true;
+                break;
             }
         }
 
@@ -50,25 +47,12 @@ class MyHashMapArrayOfLists {
         }
 
         buckets[hash] = l;
+
+        if (count/capacity > LOAD_FACTOR) {
+            resizeBuckets(capacity*2);
+        }
     }
 
-    private void resizeBuckets(int newCapacity) {
-        List<Pair>[] b = new List[newCapacity];
-        for (int i = 0; i < capacity; i++) {
-            if (buckets[i] != null) {
-                for (Pair p : buckets[i]) {
-                    int newHash = hash(p.key, newCapacity);
-                    if (b[newHash] == null) {
-                        b[newHash] = new LinkedList<Pair>();
-                    }
-                    b[newHash].add(p);
-                }
-            }
-        }
-        buckets = b;
-        capacity = newCapacity;
-    }
-    
     public int get(int key) {
         int hash = hash(key);
         List<Pair> l = buckets[hash];
@@ -101,9 +85,29 @@ class MyHashMapArrayOfLists {
             }
         }
 
-        if (count/capacity < LOAD_FACTOR / 2.0) {
-            resizeBuckets(Math.max(10, capacity / 2));
+        if (count/capacity < LOAD_FACTOR_FLOOR) {
+            resizeBuckets(Math.max(INITIAL_CAPACITY, capacity / 2));
         }
+    }
+
+    private void resizeBuckets(int newCapacity) {
+        if (capacity == newCapacity) {
+            return;
+        }
+        List<Pair>[] b = new List[newCapacity];
+        for (int i = 0; i < capacity; i++) {
+            if (buckets[i] != null) {
+                for (Pair p : buckets[i]) {
+                    int newHash = hash(p.key, newCapacity);
+                    if (b[newHash] == null) {
+                        b[newHash] = new LinkedList<Pair>();
+                    }
+                    b[newHash].add(p);
+                }
+            }
+        }
+        buckets = b;
+        capacity = newCapacity;
     }
 
     private int hash(int key, int capacity) {
