@@ -6,18 +6,17 @@ import java.io.IOException;
 public class Main {
     
     public static void main(String[] args) throws FileNotFoundException, IOException { 
-        testMyHashMapArray7();
-        /*
-        testMyHashMapArray1();
-        testMyHashMapArray3();
-        testMyHashMapArray2();
-        testMyHashMapArray4();
-        testMyHashMapArray6();
-        testMyHashMapArray5();
 
+        testMyHashMapArray1();
+        testMyHashMapArray2();
+        testMyHashMapArray3();
+        testMyHashMapArray4();
+        testMyHashMapArray5();
+        testMyHashMapArray6();
+        testMyHashMapArray7();
+ 
         testMyHashMapArrayOfLists1();
         testMyHashMapArrayOfLists2();
-        */
     }
 
     public static void testMyHashMapArray1() {
@@ -217,15 +216,16 @@ public class Main {
     public static void testMyHashMapArray4() {
         MyHashMapArray m = new MyHashMapArray();
         boolean passed = true;
-
         m.put(10, 1);
         m.put(26, 2);
         m.put(42, 3);
+        // [10, 26, 42]
         passed = passed && m.get(10) == 1;
         passed = passed && m.get(26) == 2;
         passed = passed && m.get(42) == 3;
 
         m.remove(26);
+        // [10, -1, 42]
         passed = passed && m.thumbstone[10] == false;
         passed = passed && m.thumbstone[11] == true;
         passed = passed && m.thumbstone[12] == false;
@@ -234,21 +234,30 @@ public class Main {
         passed = passed && m.get(42) == 3;
 
         m.put(26, 42);
+        // [10, -1, 42, 26]
         passed = passed && m.get(10) == 1;
         passed = passed && m.get(26) == 42;
         passed = passed && m.get(42) == 3;
         passed = passed && m.thumbstone[10] == false;
-        passed = passed && m.thumbstone[11] == false;
+        passed = passed && m.thumbstone[11] == true;
         passed = passed && m.thumbstone[12] == false;
+        passed = passed && m.thumbstone[13] == false;
 
         m.put(58, 101);
+        // [10, -1, 42, 26, 58]
         passed = passed && m.get(10) == 1;
         passed = passed && m.get(26) == 42;
         passed = passed && m.get(42) == 3;
         passed = passed && m.get(58) == 101;
+        passed = passed && m.thumbstone[10] == false;
+        passed = passed && m.thumbstone[11] == true;
+        passed = passed && m.thumbstone[12] == false;
+        passed = passed && m.thumbstone[13] == false;
+        passed = passed && m.thumbstone[14] == false;
 
         m.remove(26);
         m.remove(42);
+        // [10, -1, -1, -1, 58]
         passed = passed && m.get(10) == 1;
         passed = passed && m.get(26) == -1;
         passed = passed && m.get(42) == -1;
@@ -256,7 +265,9 @@ public class Main {
         passed = passed && m.thumbstone[10] == false;
         passed = passed && m.thumbstone[11] == true;
         passed = passed && m.thumbstone[12] == true;
-        passed = passed && m.thumbstone[13] == false;
+        passed = passed && m.thumbstone[13] == true;
+        passed = passed && m.thumbstone[14] == false;
+        passed = passed && m.thumbstone[15] == false;
 
         System.out.println("testMyHashMapArray4: " + (passed ? "passed" : "failed"));
     }
@@ -385,23 +396,45 @@ public class Main {
             MyHashMapArray m = null;
             boolean passed = true;
             for (int i = 0; i < ops.length; i++) {
+                if (i == 652) {
+                    int t = 1;
+                }
                 if (ops[i].equals("MyHashMap")) {
                     m = new MyHashMapArray();
                 } else if (ops[i].equals("get")) {
                     String[] expectedInputStrings = args[i].split(",");
                     Integer expectedInput1 = Integer.valueOf(expectedInputStrings[0]);
                     Integer expectedOutput = Integer.parseInt(out[i]);
+
+                    if (expectedInput1 == 623) {
+                        int t = 1;
+                    }
+                    int hash = m.hash(expectedInput1);
+
                     int output = m.get(expectedInput1);
                     passed = passed && output == expectedOutput;
                     //System.out.println("i = " + i + "; passed = " + passed);
                 } else if (ops[i].equals("remove")) {
                     String[] a = args[i].split(",");
                     Integer expectedInput1 = Integer.valueOf(a[0]);
+
+                    if (expectedInput1 == 623) {
+                        int t = 1;
+                    }
+                    int hash = m.hash(expectedInput1);
+
+
                     m.remove(expectedInput1);
                 } else if (ops[i].equals("put")) {
                     String[] expectedInputStrings = args[i].split(",");
                     Integer expectedInput1 = Integer.valueOf(expectedInputStrings[0]);
                     Integer expectedInput2 = Integer.valueOf(expectedInputStrings[1]);
+
+                    if (expectedInput1 == 623) {
+                        int t = 1;
+                    }
+                    int hash = m.hash(expectedInput1);
+
                     m.put(expectedInput1, expectedInput2);
                 }
             }
@@ -464,6 +497,13 @@ public class Main {
             MyHashMapArray m = null;
             boolean passed = true;
             for (int i = 0; i < ops.length; i++) {
+                //System.out.println("i=" + i);
+
+
+                if (i == 31) {
+                    int t = 1;
+                }
+
                 if (ops[i].equals("MyHashMap")) {
                     m = new MyHashMapArray();
                 } else if (ops[i].equals("get")) {

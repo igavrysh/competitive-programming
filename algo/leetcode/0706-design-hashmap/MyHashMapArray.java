@@ -32,13 +32,13 @@ public class MyHashMapArray {
     }
 
     public void put(int key, int value) {
-        int hashKey = hash(key);
-        int idx = hashKey;
+        int initialI = hash(key);
+        int i = initialI;
 
         int counter = 1;
 
-        while (((a[idx] != null && a[idx].key != key) || thumbstone[idx] == true) && counter < capacity) {
-            idx = nextHash(idx);
+        while ((a[i] != null && a[i].key != key) || thumbstone[i] == true) {
+            i = nextHash(i);
             counter++;
         }
 
@@ -46,17 +46,56 @@ public class MyHashMapArray {
             throw new RuntimeException("loop in internal array, values overflow");
         }
 
-        thumbstone[idx] = false;
+        thumbstone[i] = false;
 
-        if (a[idx] == null) {
-            a[idx] = new Pair(key, value);
+        if (a[i] == null) {
+            a[i] = new Pair(key, value);
             count++;
         } else {
-            a[idx].value = value;
+            a[i].value = value;
         }
 
         if ((count * 1.0 / capacity) >= LOAD_FACTOR) {
             resize((int)(capacity * RESIZE_MULT));
+        }
+    }
+
+    public int get(int key) {
+        Integer idx = find(key);
+        return idx == null ? -1 : a[idx].value;
+    }
+
+    private Integer find(int key) {
+        int i = hash(key);
+        int counter = 0;
+        while ((a[i] != null || thumbstone[i] == true) && counter++ < capacity) {
+            if (a[i] != null && a[i].key == key) {
+                return i;
+            }
+            i = nextHash(i);
+        }
+        return null;
+    }
+
+    public void remove(int key) {
+        Integer idx = find(key);
+        if (idx == null) {
+            return;
+        }
+
+        a[idx] = null;
+        count--;
+
+        Integer nextIdx = nextHash(idx);
+
+        if (a[nextIdx] != null || thumbstone[nextIdx] == true) {
+            thumbstone[idx] = true;
+        } else {
+            thumbstone[idx] = false;
+        }
+         
+        if (count * 1.0 / capacity <= LOAD_FACTOR_FLOOR) {
+            resize(Math.max(INITIAL_CAPACITY, (int)(capacity / RESIZE_MULT)));
         }
     }
 
@@ -77,36 +116,6 @@ public class MyHashMapArray {
         this.thumbstone = tmp.thumbstone;
         this.capacity = tmp.capacity;
         this.count = tmp.count;
-    }
-
-    public int get(int key) {
-        int i = hash(key);
-        while ((a[i] != null && a[i].key != key) || thumbstone[i] == true) {
-            i = nextHash(i);
-        }
-        return a[i] == null || a[i].key != key ? -1 : a[i].value;
-    }
-
-    public void remove(int key) {
-        int hashKey = hash(key);
-        int i = hash(key);
-
-        while ((a[i] != null && a[i].key != key) || thumbstone[i] == true) {
-            i = nextHash(i);
-        }
-
-        if (a[i] == null) {
-            return;
-        }
-
-        thumbstone[i] = true;
-        a[i] = null;
-        count--;
-        
-         
-        if (count * 1.0 / capacity <= LOAD_FACTOR_FLOOR) {
-            resize(Math.max(INITIAL_CAPACITY, (int)(capacity / RESIZE_MULT)));
-        }
     }
 
     protected int hash(int key, int capacity) {
