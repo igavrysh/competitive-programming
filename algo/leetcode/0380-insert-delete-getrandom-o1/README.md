@@ -1,7 +1,10 @@
 # 380. Insert Delete GetRandom O(1)
-Medium
 
-Implement the RandomizedSet class:
+https://leetcode.com/problems/insert-delete-getrandom-o1/
+
+**Medium**
+
+Implement the `RandomizedSet` class:
 
 * `RandomizedSet()` Initializes the RandomizedSet object.
 * `bool insert(int val)` Inserts an item val into the set if not present. 
@@ -18,14 +21,14 @@ works in average O(1) time complexity.
 **Example 1:**
 
 ```
-**Input**
+Input
 ["RandomizedSet", "insert", "remove", "insert", "getRandom", 
 "remove", "insert", "getRandom"]
 [[], [1], [2], [2], [], [1], [2], []]
-**Output**
+Output
 [null, true, false, true, 2, true, false, 2]
 
-**Explanation**
+Explanation
 RandomizedSet randomizedSet = new RandomizedSet();
 randomizedSet.insert(1); // Inserts 1 to the set. Returns true as 1 was inserted 
 successfully.
