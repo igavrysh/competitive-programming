@@ -8,6 +8,8 @@ public class Main {
         test1();
         test2();
         test3();
+
+        testPractice2_1();
     }
 
     public static void test1() {
@@ -113,5 +115,100 @@ public class Main {
         }
 
         System.out.println("test3: " + (passed ? "passed" : "failed"));
+    }
+
+
+    public static void testPractice2_1() {
+        boolean passed = true;
+        RandomizedSetPractice2 s = new RandomizedSetPractice2();
+        passed = passed && s.insert(1);
+        System.out.println("testPractice2_1: insert 1 " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        passed = passed && !s.remove(2);
+        System.out.println("test1: remove 2 " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        passed = passed && s.insert(2);
+        System.out.println("test1: insert 2 " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        int rV = s.getRandom();
+        passed = passed && (rV == 1 || rV == 2);
+        System.out.println("test1: get Random " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        passed = passed && s.remove(1);
+        System.out.println("test1: remove 1 " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        passed = passed && !s.insert(2);
+
+        System.out.println("test1: insert 2 " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        passed = passed && s.getRandom() == 2;
+
+        System.out.println("test1: getRandom " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        System.out.println("test1: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testPractice2_3() {
+        boolean passed = true;
+        RandomizedSetPractice2 s = new RandomizedSetPractice2();
+        passed = passed && s.insert(0);
+        System.out.println("testPractice2_3: insert 1 " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        passed = passed && s.insert(1);
+        System.out.println("testPractice2_3: insert 1 " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        passed = passed && s.remove(0);
+        System.out.println("testPractice2_3: remove 0 " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        passed = passed && s.insert(2);
+        System.out.println("testPractice2_3: insert 2 " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        passed = passed && s.remove(1);
+        System.out.println("testPractice2_3: remove 1 " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        passed = passed && s.getRandom() == 2;
+
+        System.out.println("testPractice2_3: getRandom " + (passed ? "passed" : "failed"));
+        if (!passed) {
+            return;
+        }
+
+        System.out.println("testPractice2_3: " + (passed ? "passed" : "failed"));
     }
 }
