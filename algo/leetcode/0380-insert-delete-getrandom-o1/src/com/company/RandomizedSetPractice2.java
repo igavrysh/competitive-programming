@@ -12,8 +12,7 @@ public class RandomizedSetPractice2 {
     private List<Integer> a = new ArrayList<>();
     private Random random = new Random();
     
-    public RandomizedSetPractice2() {
-    }
+    public RandomizedSetPractice2() {}
     
     public boolean insert(int val) {
         if (map.get(val) != null) {
@@ -29,9 +28,15 @@ public class RandomizedSetPractice2 {
         if (idx == null) {
             return false;
         }
-        a.set(idx, a.get(a.size()-1));
+
+        Integer valToMove = a.get(a.size()-1);
+
+        a.set(idx, valToMove);
+        map.put(valToMove, idx);
+
         a.remove(a.size()-1);
         map.remove(val);
+
         return true;
     }
     
@@ -121,8 +126,9 @@ class MyHashMap {
 
         Iterator<Pair> each = l.iterator();
         while (each.hasNext()) {
-            if (each.next().key == key) {
-                removedPair = each.next();
+            Pair nextPair = each.next();
+            if (nextPair.key == key) {
+                removedPair = nextPair;
                 each.remove();
                 count--;
                 break;

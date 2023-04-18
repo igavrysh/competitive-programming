@@ -10,6 +10,7 @@ public class Main {
         test3();
 
         testPractice2_1();
+        testPractice2_3();
     }
 
     public static void test1() {
@@ -210,5 +211,11 @@ public class Main {
         }
 
         System.out.println("testPractice2_3: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testPractice2_4() {
+        String[] ops = {"RandomizedSet","insert","remove","insert","getRandom","remove","insert","getRandom"};
+        Integer[][] args = {{},{-1},{-2},{-2},{},{-1},{-2},{}};
+        
     }
 }
