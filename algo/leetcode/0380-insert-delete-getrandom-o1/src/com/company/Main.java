@@ -11,6 +11,7 @@ public class Main {
 
         testPractice2_1();
         testPractice2_3();
+        testPractice2_4();
     }
 
     public static void test1() {
@@ -216,6 +217,18 @@ public class Main {
     public static void testPractice2_4() {
         String[] ops = {"RandomizedSet","insert","remove","insert","getRandom","remove","insert","getRandom"};
         Integer[][] args = {{},{-1},{-2},{-2},{},{-1},{-2},{}};
-        
+
+        RandomizedSetPractice2 set = null;
+        for (int i = 0; i < ops.length; i++) {
+            if (ops[i].equals("RandomizedSet")) {
+                set = new RandomizedSetPractice2();
+            } else if (ops[i].equals("insert")) {
+                set.insert(args[i][0]);
+            } else if (ops[i].equals("remove")) {
+                set.remove(args[i][0]);
+            } else if (ops[i].equals("getRandom")) {
+                set.getRandom();
+            }
+        } 
     }
 }

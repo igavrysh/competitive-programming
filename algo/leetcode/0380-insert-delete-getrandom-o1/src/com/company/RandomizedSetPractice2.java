@@ -163,7 +163,7 @@ class MyHashMap {
     }
 
     private int hash(int key, int capacity) {
-        return key % capacity;
+        return (key & 0x7fffffff) % capacity;
     }
 
     private int hash(int key) {
