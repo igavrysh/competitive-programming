@@ -1,18 +1,13 @@
 public class Main {
-    public static void main(String[] args) {
-        testSolutionStack5();
 
-        testSolutionStack4();
+    public static void main(String[] args) {
+        testSolutionStack6();
 
         testSolutionStack1();
         testSolutionStack2();
         testSolutionStack3();
         testSolutionStack4();
-        /* 
-        testSolution3();
-        testSolution4();
-        testSolution5();
-        */
+        testSolutionStack5();
     }
 
     public static void testSolutionStack1() {
@@ -53,5 +48,13 @@ public class Main {
         int output = s.calculate(str);
         boolean passed = output == 6;
         System.out.println("testSolutionStack5: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolutionStack6() {
+        String str = "1+1-1";
+        SolutionStack s = new SolutionStack();
+        int output = s.calculate(str);
+        boolean passed = output == 1;
+        System.out.println("testSolutionStack6: " + (passed ? "passed" : "failed"));
     }
 }
