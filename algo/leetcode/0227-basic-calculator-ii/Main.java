@@ -1,13 +1,21 @@
 public class Main {
 
     public static void main(String[] args) {
-        testSolutionStack6();
-
+        testSolutionOptimal1();
         testSolutionStack1();
         testSolutionStack2();
         testSolutionStack3();
         testSolutionStack4();
         testSolutionStack5();
+        testSolutionStack6();
+    }
+
+    public static void testSolutionOptimal1() {
+        String str = "12+2*5/4";
+        SolutionOptimal s = new SolutionOptimal();
+        int output = s.calculate(str);
+        boolean passed = output == 14;
+        System.out.println("testSolutionOptimal1: " + (passed ? "passed" : "failed"));
     }
 
     public static void testSolutionStack1() {
