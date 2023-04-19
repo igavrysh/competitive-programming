@@ -20,13 +20,13 @@ public class Solution {
         */
     }
 
-    public int cost(int[][] cost) {
-        int[] DP = new int[] { cost[0][0], cost[0][1], cost[0][2]};
+    public int cost(int[][] rgb) {
+        int[] DP = new int[] { rgb[0][0], rgb[0][1], rgb[0][2]};
         int[] tmpDP = new int[3];
-        for (int i = 1; i < cost.length; i++) {
-            tmpDP[0] = cost[i][0] + Math.min(DP[1], DP[2]);
-            tmpDP[1] = cost[i][1] + Math.min(DP[0], DP[2]);
-            tmpDP[2] = cost[i][2] + Math.min(DP[0], DP[1]);
+        for (int i = 1; i < rgb.length; i++) {
+            tmpDP[0] = rgb[i][0] + Math.min(DP[1], DP[2]);
+            tmpDP[1] = rgb[i][1] + Math.min(DP[0], DP[2]);
+            tmpDP[2] = rgb[i][2] + Math.min(DP[0], DP[1]);
             DP[0] = tmpDP[0];
             DP[1] = tmpDP[1];
             DP[2] = tmpDP[2];
