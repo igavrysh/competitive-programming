@@ -25,6 +25,7 @@ public class Solution {
         testSolution_3();
         testSolution_4();
         testSolution_4abc();
+        testSolution_4abcd();
     
         //testSolution_5();
 
@@ -187,6 +188,26 @@ public class Solution {
         
         boolean passed = passedCasses == output.length;
         System.out.println("testSolution_4abc: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testSolution_4abcd() {
+        int n = 6;
+        Solution s = new Solution();
+        int[] inputK =  {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
+        long[] output = {1,2,2,3,3,4,4,4,5, 5, 6, 6, 8, 8, 9,10,10,12,12,15,15,16,20,20,25};
+        int passedCasses = 0;
+        for (int i = 0; i < inputK.length; i++) {
+            long outputI = s.kthElement(n, inputK[i]);
+            boolean passed = outputI == output[i];
+            if (!passed) {
+                System.out.println("testSolution_4abcd: k = " + inputK[i] + "; " + (passed ? "passed" : "failed"));
+            } else {
+                passedCasses++;
+            }
+        }
+        
+        boolean passed = passedCasses == output.length;
+        System.out.println("testSolution_4abcdg: " + (passed ? "passed" : "failed"));
     }
 
     public static void testSolution_5() {
