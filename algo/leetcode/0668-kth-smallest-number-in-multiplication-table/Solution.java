@@ -6,6 +6,11 @@ class Solution {
     }
 
     public int findKthNumber(int m, int n, int k) {
+        if (n > m) {
+            int tmp = n;
+            n = m;
+            m = tmp;
+        }
         long bad = 0;
         long good = ((long)m)*n+1;
 
