@@ -4,17 +4,14 @@ import java.util.HashMap;
 
 class Solution {
 
-    public static void main(String[] args) {
-        testSolution_1();
-        testSolution_2();
-    }
-
     public boolean isNStraightHand(int[] hand, int groupSize) {
-        Arrays.sort(hand);
         int n = hand.length;
+
         if (n%groupSize != 0) {
             return false;
         }
+
+        Arrays.sort(hand);
 
         HashMap<Integer, ArrayList<ArrayList<Integer>>> m = new HashMap<>();
         for (int i = 0; i < n; i++) {
@@ -62,6 +59,11 @@ class Solution {
         return acc == hand.length;
     }
 
+    public static void main(String[] args) {
+        testSolution_1();
+        testSolution_2();
+    }
+
     public static void testSolution_1() {
         int[] hand = {1,2,3,6,2,3,4,7,8};
         int groupSize = 3;
@@ -83,27 +85,3 @@ class Solution {
     }
 
 }
-
-/*
-
-
-1, 2, 2, 3, 3, 4, 6, 7, 8
-
-
-3: [2] 
-5: [1, 2, 3, 4]
-7: [6, 7, 8]
-
-1, 2, 3, 4, 5
-
-
-1
-
-2
-
-
-
-
-
-
-*/
