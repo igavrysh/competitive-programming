@@ -1,4 +1,4 @@
-public class SolutionOptimized {
+public class SolutionGreedy {
 
     public static void main(String[] args) {
         testSolution_1();
@@ -11,21 +11,30 @@ public class SolutionOptimized {
 
     public boolean checkValidString(String s) {
         int n = s.length();
-        int lo = 0;
-        int hi = 0;
+        int leftBrkLo = 0, leftBrkHi = 0;
         for (int i = 0; i < n; i++) {
-            char c = s.charAt(i);
-            lo += c == '(' ? 1 : -1;
-            hi += c != ')' ? 1 : -1;
-            if (hi < 0) break;
-            lo = Math.max(lo, 0);
+            char ch = s.charAt(i);
+            if (ch == '(') {
+                leftBrkLo += 1;
+                leftBrkHi += 1;
+            } else if (ch == ')') {
+                leftBrkLo = Math.max(0, leftBrkLo-1);
+                leftBrkHi -= 1;
+            } else if (ch == '*') {
+                leftBrkHi += 1;
+                leftBrkLo = Math.max(0, leftBrkLo-1);
+            }
+
+            if (leftBrkHi < 0) {
+                return false;
+            }
         }
-        return lo == 0; 
+        return leftBrkLo == 0;
     }
 
     public static void testSolution_1() {
         String s = "(*))";
-        SolutionOptimized sol = new SolutionOptimized();
+        SolutionGreedy sol = new SolutionGreedy();
         boolean expectedOutput = true;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;
@@ -34,7 +43,7 @@ public class SolutionOptimized {
 
     public static void testSolution_2() {
         String s = "(*)";
-        SolutionOptimized sol = new SolutionOptimized();
+        SolutionGreedy sol = new SolutionGreedy();
         boolean expectedOutput = true;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;
@@ -43,7 +52,7 @@ public class SolutionOptimized {
 
     public static void testSolution_3() {
         String s = "(";
-        SolutionOptimized sol = new SolutionOptimized();
+        SolutionGreedy sol = new SolutionGreedy();
         boolean expectedOutput = false;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;
@@ -52,7 +61,7 @@ public class SolutionOptimized {
 
     public static void testSolution_40() {
         String s = "((((()(()()()*()(((((*)()*(**(())))))(())()())(((())())())))))))(((((())*)))()))(()((*()*(*)))(*)()";
-        SolutionOptimized sol = new SolutionOptimized();
+        SolutionGreedy sol = new SolutionGreedy();
         boolean expectedOutput = true;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;
@@ -61,7 +70,7 @@ public class SolutionOptimized {
 
     public static void testSolution_4() {
         String s = "((((()(()()()*()(((((*)()*(**(())))))(())()())(((())())())))))))(((((())*)))()))(()((*()*(*)))(*)()";
-        SolutionOptimized sol = new SolutionOptimized();
+        SolutionGreedy sol = new SolutionGreedy();
         boolean expectedOutput = true;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;
@@ -70,7 +79,7 @@ public class SolutionOptimized {
 
     public static void testSolution_5() {
         String s = "((()))()(())(*()()())**(())()()()()((*()*))((*()*)";
-        SolutionOptimized sol = new SolutionOptimized();
+        SolutionGreedy sol = new SolutionGreedy();
         boolean expectedOutput = true;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;

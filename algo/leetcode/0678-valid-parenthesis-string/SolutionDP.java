@@ -1,4 +1,4 @@
-public class SolutionBF {
+public class SolutionDP {
     // ! NOT WORKING
     public static void main(String[] args) {
         testSolution_1();
@@ -86,7 +86,7 @@ public class SolutionBF {
 
     public static void testSolution_1() {
         String s = "(*))";
-        SolutionBF sol = new SolutionBF();
+        SolutionDP sol = new SolutionDP();
         boolean expectedOutput = true;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;
@@ -95,7 +95,7 @@ public class SolutionBF {
 
     public static void testSolution_2() {
         String s = "(*)";
-        SolutionBF sol = new SolutionBF();
+        SolutionDP sol = new SolutionDP();
         boolean expectedOutput = true;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;
@@ -104,7 +104,7 @@ public class SolutionBF {
 
     public static void testSolution_3() {
         String s = "(";
-        SolutionBF sol = new SolutionBF();
+        SolutionDP sol = new SolutionDP();
         boolean expectedOutput = false;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;
@@ -113,7 +113,7 @@ public class SolutionBF {
 
     public static void testSolution_40() {
         String s = "((((()(()()()*()(((((*)()*(**(())))))(())()())(((())())())))))))(((((())*)))()))(()((*()*(*)))(*)()";
-        SolutionBF sol = new SolutionBF();
+        SolutionDP sol = new SolutionDP();
         boolean expectedOutput = true;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;
@@ -122,7 +122,7 @@ public class SolutionBF {
 
     public static void testSolution_4() {
         String s = "((((()(()()()*()(((((*)()*(**(())))))(())()())(((())())())))))))(((((())*)))()))(()((*()*(*)))(*)()";
-        SolutionBF sol = new SolutionBF();
+        SolutionDP sol = new SolutionDP();
         boolean expectedOutput = true;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;
@@ -131,7 +131,7 @@ public class SolutionBF {
 
     public static void testSolution_5() {
         String s = "((()))()(())(*()()())**(())()()()()((*()*))((*()*)";
-        SolutionBF sol = new SolutionBF();
+        SolutionDP sol = new SolutionDP();
         boolean expectedOutput = true;
         boolean output = sol.checkValidString(s);
         boolean passed = output == expectedOutput;
@@ -144,13 +144,7 @@ public class SolutionBF {
 /*
 (( () )) () (()) (* ()()() ) ** ( () ) ()()()() ((* () *)) ((*()*)
 
-
-
-
 ( ( ( ( () ( ()()() * () ( ( ( ( (*)()*(**(())))))(())()())(((())())())))))))(((((())*)))()))(()((*()*(*)))(*)()"
-
-
-
 
 (((( () ( ()()() * () (((((*) ()*(**(())))))(())()())(((())())())))))))(((((())*)))()))(()((*()*(*)))(*)() 
 
