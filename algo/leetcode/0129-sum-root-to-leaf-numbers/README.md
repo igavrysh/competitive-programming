@@ -1,15 +1,22 @@
 # 129. Sum Root to Leaf Numbers
-Medium
 
-Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
+https://leetcode.com/problems/sum-root-to-leaf-numbers
 
-An example is the root-to-leaf path 1->2->3 which represents the number 123.
+**Medium**
 
-Find the total sum of all root-to-leaf numbers.
+You are given the `root` of a binary tree containing digits from `0` to `9` only.
 
-Note: A leaf is a node with no children.
+Each root-to-leaf path in the tree represents a number.
 
-Example:
+* For example, the root-to-leaf path `1 -> 2 -> 3` represents the number `123`.
+Return the total sum of all root-to-leaf numbers. Test cases are generated so that the answer will fit in a 32-bit integer.
+
+A leaf node is a node with no children.
+
+**Example 1**:
+
+![ex1](num1tree.jpg)
+
 ```
 Input: [1,2,3]
     1
@@ -22,7 +29,10 @@ The root-to-leaf path 1->3 represents the number 13.
 Therefore, sum = 12 + 13 = 25.
 ```
 
-Example 2:
+**Example 2**:
+
+![ex2](num2tree.jpg)
+
 ```
 Input: [4,9,0,5,1]
     4
