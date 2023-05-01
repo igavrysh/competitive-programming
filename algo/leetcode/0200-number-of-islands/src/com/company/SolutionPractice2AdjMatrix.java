@@ -1,6 +1,6 @@
 package com.company;
 
-public class SolutionPractice2 {
+public class SolutionPractice2AdjMatrix {
 
     public static void main(String[] args) {
         testSolutionPractice2_1();
@@ -48,7 +48,7 @@ public class SolutionPractice2 {
                 { '1', '1', '0', '0', '0' },
                 { '0', '0', '0', '0', '0' }
         };
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionPractice2AdjMatrix s = new SolutionPractice2AdjMatrix();
         int output = s.numIslands(input);
         boolean passed = output == 1;
         System.out.println("testSolutionPractice2_1:" + (passed ? "passed" : "failed"));
@@ -61,7 +61,7 @@ public class SolutionPractice2 {
                 { '0', '0', '1', '0', '0' },
                 { '0', '0', '0', '1', '1' }
         };
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionPractice2AdjMatrix s = new SolutionPractice2AdjMatrix();
         int output = s.numIslands(input);
         boolean passed = output == 3;
         System.out.println("testSolutionPractice2_2:" + (passed ? "passed" : "failed"));
@@ -74,7 +74,7 @@ public class SolutionPractice2 {
                 { '0', '0', '1', '0', '0' },
                 { '0', '0', '0', '1', '1' }
         };
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionPractice2AdjMatrix s = new SolutionPractice2AdjMatrix();
         int output = s.numIslands(input);
         boolean passed = output == 3;
         System.out.println("testSolutionPractice2_3:" + (passed ? "passed" : "failed"));
@@ -85,7 +85,7 @@ public class SolutionPractice2 {
                 { '1' },
                 { '1' }
         };
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionPractice2AdjMatrix s = new SolutionPractice2AdjMatrix();
         int output = s.numIslands(input);
         boolean passed = output == 1;
         System.out.println("testSolutionPractice2_4:" + (passed ? "passed" : "failed"));
@@ -98,7 +98,7 @@ public class SolutionPractice2 {
                 { '1', '1', '0', '0', '0' },
                 { '0', '0', '0', '0', '0' }
         };
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionPractice2AdjMatrix s = new SolutionPractice2AdjMatrix();
         int output = s.numIslands(input);
         boolean passed = output == 1;
         System.out.println("testSolutionPractice2_5:" + (passed ? "passed" : "failed"));
@@ -111,7 +111,7 @@ public class SolutionPractice2 {
                 { '0', '0', '1', '0', '0' },
                 { '0', '0', '0', '1', '1' }
         };
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionPractice2AdjMatrix s = new SolutionPractice2AdjMatrix();
         int output = s.numIslands(input);
         boolean passed = output == 3;
         System.out.println("testSolutionPractice2_6:" + (passed ? "passed" : "failed"));
@@ -124,7 +124,7 @@ public class SolutionPractice2 {
                 { '0', '0', '1', '0', '0' },
                 { '0', '0', '0', '1', '1' }
         };
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionPractice2AdjMatrix s = new SolutionPractice2AdjMatrix();
         int output = s.numIslands(input);
         boolean passed = output == 3;
         System.out.println("testSolutionPractice2_7:" + (passed ? "passed" : "failed"));
@@ -135,7 +135,7 @@ public class SolutionPractice2 {
                 { '1' },
                 { '1' }
         };
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionPractice2AdjMatrix s = new SolutionPractice2AdjMatrix();
         int output = s.numIslands(input);
         boolean passed = output == 1;
         System.out.println("testSolutionPractice2_8:" + (passed ? "passed" : "failed"));
