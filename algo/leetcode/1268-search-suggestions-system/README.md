@@ -1,6 +1,8 @@
-# 1268. Search Suggestions System
+### 1268. Search Suggestions System
+
+https://leetcode.com/problems/search-suggestions-system/
       
-Medium
+`Medium`
       
 You are given an array of strings `products` and a string `searchWord`.
 
@@ -10,33 +12,29 @@ more than three products with a common prefix return the three lexicographically
 
 Return a list of lists of the suggested products after each character of `searchWord` is typed.
 
-Example 1:
+**Example 1**:
 ```
 Input: products = ["mobile","mouse","moneypot","monitor","mousepad"], searchWord = "mouse"
-Output: [
-["mobile","moneypot","monitor"],
-["mobile","moneypot","monitor"],
-["mouse","mousepad"],
-["mouse","mousepad"],
-["mouse","mousepad"]
-]
-Explanation: products sorted lexicographically = ["mobile","moneypot","monitor","mouse","mousepad"]
-After typing m and mo all products match and we show user ["mobile","moneypot","monitor"]
-After typing mou, mous and mouse the system suggests ["mouse","mousepad"]
+Output: [["mobile","moneypot","monitor"],["mobile","moneypot","monitor"],["mouse","mousepad"],["mouse","mousepad"],["mouse","mousepad"]]
+Explanation: products sorted lexicographically = ["mobile","moneypot","monitor","mouse","mousepad"].
+After typing m and mo all products match and we show user ["mobile","moneypot","monitor"].
+After typing mou, mous and mouse the system suggests ["mouse","mousepad"].
 ```
 
-Example 2:
+**Example 2**:
 ```
 Input: products = ["havana"], searchWord = "havana"
 Output: [["havana"],["havana"],["havana"],["havana"],["havana"],["havana"]]
+Explanation: The only word "havana" will be always suggested while typing the search word.  
 ```
-Example 3:
+
+**Example 3**:
 ```
 Input: products = ["bags","baggage","banner","box","cloths"], searchWord = "bags"
 Output: [["baggage","bags","banner"],["baggage","bags","banner"],["baggage","bags"],["bags"]]
 ```
 
-Constraints:
+**Constraints**:
 
 * `1 <= products.length <= 1000`
 * `1 <= products[i].length <= 3000`
