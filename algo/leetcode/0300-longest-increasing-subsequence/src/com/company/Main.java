@@ -1,7 +1,6 @@
 package com.company;
 
 public class Main {
-
   public static void test1() {
     Solution s = new Solution();
     int output = s.lengthOfLIS(new int[] { 10,9,2,5,3,7,101,18 });
