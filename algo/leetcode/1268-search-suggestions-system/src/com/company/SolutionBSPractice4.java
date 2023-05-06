@@ -4,76 +4,66 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SolutionBSPractice3 {
-
+public class SolutionBSPractice4 {
     public static void main(String[] args) {
-        testSolutionBSPractice3_1();
-        testSolutionBSPractice3_2();
-        testSolutionBSPractice3_3();
-        testSolutionBSPractice3_4();
+        testSolutionBSPractice4_1();
+        testSolutionBSPractice4_2();
+        testSolutionBSPractice4_3();
+        testSolutionBSPractice4_4();
     }
 
     public List<List<String>> suggestedProducts(String[] products, String searchWord) {
         Arrays.sort(products);
+        int l = 0, r = products.length-1;
         List<List<String>> output = new ArrayList<>();
-        int idx = 0;
-        boolean globalMatch = true;
-        for (int i = 1; i <= searchWord.length(); i++) {
+        for (int i = 0; i < searchWord.length(); i++) {
             List<String> o = new ArrayList<>();
-
-            if (globalMatch) {
-                idx = bs(products, searchWord.substring(0, i), idx);
-                if (idx >= 0 && idx < products.length) {
-                    globalMatch = matchPrefix(products[idx], searchWord, i);
-                    if (globalMatch) {
-                        o.add(products[idx]);
-                        int delta = 1;
-                        while (idx+delta < products.length && delta < 3) {
-                            String candidate = products[idx+delta];
-                            if (!matchPrefix(candidate, searchWord, i)) {
-                                break;
-                            }
-                            o.add(candidate);
-                            delta++;
-                        }
-                    } 
+            l = bsLeft(l, r, i, products, searchWord);
+            r = bsRight(l, r, i, products, searchWord);
+            if (l<=r) {
+                for (int j = 0; j < 3; j++) {
+                    if (l+j<=r && l+j < products.length) {
+                        o.add(products[l+j]);
+                    }
                 }
             }
-            output.add(o);            
+            output.add(o);
         }
         return output;
     }
 
-    private boolean matchPrefix(String product, String searchWord, int end) {
-        if (end > searchWord.length() || end > product.length()) {
-            return false;
-        }
-        for (int i = 0; i < end; i++) {
-            if (product.charAt(i) != searchWord.charAt(i)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private int bs(String[] products, String search, int startIndex) {
-        int bad = startIndex-1, good = products.length;
+    private int bsLeft(int startL, int startR, int i, String[] products, String product) {
+        int good = startR+1;
+        int bad = startL-1; 
         while (good-bad > 1) {
-            int m = bad + (good-bad) / 2;
-            int res = products[m].compareTo(search);
-            if (res <= -1) {
-                bad = m;
-            } else {
+            int m = bad + (good -bad) / 2;
+            if (products[m].length() > i && products[m].charAt(i) >= product.charAt(i)) {
                 good = m;
+            }  else {
+                bad = m;
             }
         }
         return good;
     }
 
-    public static void testSolutionBSPractice3_1() {
+    private int bsRight(int startL, int startR, int i, String[] products, String product) {
+        int good = startR+1;
+        int bad = startL-1; 
+        while (good-bad > 1) {
+            int m = bad + (good -bad) / 2;
+            if (products[m].length() <= i || products[m].charAt(i) > product.charAt(i)) {
+                good = m;
+            }  else {
+                bad = m;
+            }
+        }
+        return good-1;
+    }
+
+    public static void testSolutionBSPractice4_1() {
         String[] products = { "mobile", "mouse", "moneypot", "monitor", "mousepad" };
         String searchWord = "mouse";
-        SolutionBSPractice3 s = new SolutionBSPractice3();
+        SolutionBSPractice4 s = new SolutionBSPractice4();
         List<List<String>> output = s.suggestedProducts(products, searchWord);
         boolean passed = output.size() == 5
                 && Arrays.deepEquals(output.get(0).toArray(), new String[] { "mobile", "moneypot", "monitor" })
@@ -84,10 +74,10 @@ public class SolutionBSPractice3 {
         System.out.println(getMethodName() + ": " + (passed ? "passed" : "failed"));
     }
 
-    public static void testSolutionBSPractice3_2() {
+    public static void testSolutionBSPractice4_2() {
         String[] products = { "havana" };
         String searchWord = "havana";
-        SolutionBSPractice3 s = new SolutionBSPractice3();
+        SolutionBSPractice4 s = new SolutionBSPractice4();
         List<List<String>> output = s.suggestedProducts(products, searchWord);
         boolean passed = output.size() == 6
                 && Arrays.deepEquals(output.get(0).toArray(), new String[] { "havana" })
@@ -99,10 +89,10 @@ public class SolutionBSPractice3 {
         System.out.println(getMethodName() + ": " + (passed ? "passed" : "failed"));
     }
 
-    public static void testSolutionBSPractice3_3() {
+    public static void testSolutionBSPractice4_3() {
         String[] products = { "bags", "baggage", "banner", "box", "cloths" };
         String searchWord = "bags";
-        SolutionBSPractice3 s = new SolutionBSPractice3();
+        SolutionBSPractice4 s = new SolutionBSPractice4();
         List<List<String>> output = s.suggestedProducts(products, searchWord);
         boolean passed = output.size() == 4
                 && Arrays.deepEquals(output.get(0).toArray(), new String[] { "baggage", "bags", "banner" })
@@ -112,10 +102,10 @@ public class SolutionBSPractice3 {
         System.out.println(getMethodName() + ": " + (passed ? "passed" : "failed"));
     }
 
-    public static void testSolutionBSPractice3_4() {
+    public static void testSolutionBSPractice4_4() {
         String[] products = { "havana" };
         String searchWord = "tatiana";
-        SolutionBSPractice3 s = new SolutionBSPractice3();
+        SolutionBSPractice4 s = new SolutionBSPractice4();
         List<List<String>> output = s.suggestedProducts(products, searchWord);
         boolean passed = output.size() == 7
                 && Arrays.deepEquals(output.get(0).toArray(), new String[] {})
@@ -133,4 +123,5 @@ public class SolutionBSPractice3 {
                 .getStackTrace()[1]
                 .getMethodName();
     }
+
 }
