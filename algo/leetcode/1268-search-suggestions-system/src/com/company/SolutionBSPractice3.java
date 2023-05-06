@@ -4,85 +4,76 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SolutionTriePractice2 {
+public class SolutionBSPractice3 {
 
     public static void main(String[] args) {
-        testSolutionTriePractice2_1();
-        testSolutionTriePractice2_2();
-        testSolutionTriePractice2_3();
-        testSolutionTriePractice2_4();
+        testSolutionBSPractice2_1();
+        testSolutionBSPractice2_2();
+        testSolutionBSPractice2_3();
+        testSolutionBSPractice2_4();
     }
 
-    private TreeNode root = new TreeNode();
-
     public List<List<String>> suggestedProducts(String[] products, String searchWord) {
-        for (int i = 0; i < products.length; i++) {
-            add(products[i]);
-        }
-        TreeNode node = root;
+        Arrays.sort(products);
         List<List<String>> output = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < searchWord.length(); i++) {
-            int idx = searchWord.charAt(i) - 'a';
-            if (node != null) {
-                node = node.children[idx];
+        int idx = 0;
+        boolean globalMatch = true;
+        for (int i = 1; i <= searchWord.length(); i++) {
+            List<String> o = new ArrayList<>();
+
+            if (globalMatch) {
+                idx = bs(products, searchWord.substring(0, i), idx);
+                if (idx >= 0 && idx < products.length) {
+                    globalMatch = matchPrefix(products[idx], searchWord, i);
+                    if (globalMatch) {
+                        o.add(products[idx]);
+                        int delta = 1;
+                        while (idx+delta < products.length && delta < 3) {
+                            String candidate = products[idx+delta];
+                            if (!matchPrefix(candidate, searchWord, i)) {
+                                break;
+                            }
+                            o.add(candidate);
+                            delta++;
+                        }
+                    } 
+                }
             }
-            
-            if (node == null) {
-                output.add(new ArrayList<>());
-            } else {
-                sb.append(searchWord.charAt(i));
-                List<String> acc = new ArrayList<>();
-                dfs3(node, acc, sb);
-                output.add(acc);
-            }
+            output.add(o);            
         }
         return output;
     }
 
-    public class TreeNode {
-        public TreeNode[] children = new TreeNode[26];
-        public boolean isEOW = false;
+    private boolean matchPrefix(String product, String searchWord, int end) {
+        if (end > searchWord.length() || end > product.length()) {
+            return false;
+        }
+        for (int i = 0; i < end; i++) {
+            if (product.charAt(i) != searchWord.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    private void add(String s) {
-        int n = s.length();
-        TreeNode node = root;
-        for (int i = 0; i < n; i++) {
-            int idx = s.charAt(i) - 'a';
-            if (node.children[idx] != null) {
-                node = node.children[idx];
+    private int bs(String[] products, String search, int startIndex) {
+        int bad = startIndex-1, good = products.length;
+        while (good-bad > 1) {
+            int m = bad + (good-bad) / 2;
+            int res = products[m].compareTo(search);
+            if (res <= -1) {
+                bad = m;
             } else {
-                TreeNode newNode = new TreeNode();
-                node.children[idx] = newNode;
-                node = newNode;
+                good = m;
             }
         }
-        node.isEOW = true;
+        return good;
     }
 
-    private void dfs3(TreeNode node, List<String> acc, StringBuilder sb) {
-        if (acc.size() == 3) {
-            return;
-        }
-
-        if (node.isEOW) {
-            acc.add(sb.toString());
-        }
-
-        for (int i = 0; i < node.children.length; i++) {
-            if (node.children[i] != null) {
-                sb.append((char)('a'+i));
-                dfs3(node.children[i], acc, sb);
-                sb.deleteCharAt(sb.length()-1);
-            }
-        }
-    }
-
-    public static void testSolutionTriePractice2_1() {
+    public static void testSolutionBSPractice2_1() {
         String[] products = { "mobile", "mouse", "moneypot", "monitor", "mousepad" };
         String searchWord = "mouse";
-        SolutionTriePractice2 s = new SolutionTriePractice2();
+        SolutionBSPractice3 s = new SolutionBSPractice3();
         List<List<String>> output = s.suggestedProducts(products, searchWord);
         boolean passed = output.size() == 5
                 && Arrays.deepEquals(output.get(0).toArray(), new String[] { "mobile", "moneypot", "monitor" })
@@ -93,10 +84,10 @@ public class SolutionTriePractice2 {
         System.out.println(getMethodName() + ": " + (passed ? "passed" : "failed"));
     }
 
-    public static void testSolutionTriePractice2_2() {
+    public static void testSolutionBSPractice2_2() {
         String[] products = { "havana" };
         String searchWord = "havana";
-        SolutionTriePractice2 s = new SolutionTriePractice2();
+        SolutionBSPractice3 s = new SolutionBSPractice3();
         List<List<String>> output = s.suggestedProducts(products, searchWord);
         boolean passed = output.size() == 6
                 && Arrays.deepEquals(output.get(0).toArray(), new String[] { "havana" })
@@ -108,10 +99,10 @@ public class SolutionTriePractice2 {
         System.out.println(getMethodName() + ": " + (passed ? "passed" : "failed"));
     }
 
-    public static void testSolutionTriePractice2_3() {
+    public static void testSolutionBSPractice2_3() {
         String[] products = { "bags", "baggage", "banner", "box", "cloths" };
         String searchWord = "bags";
-        SolutionTriePractice2 s = new SolutionTriePractice2();
+        SolutionBSPractice3 s = new SolutionBSPractice3();
         List<List<String>> output = s.suggestedProducts(products, searchWord);
         boolean passed = output.size() == 4
                 && Arrays.deepEquals(output.get(0).toArray(), new String[] { "baggage", "bags", "banner" })
@@ -121,10 +112,10 @@ public class SolutionTriePractice2 {
         System.out.println(getMethodName() + ": " + (passed ? "passed" : "failed"));
     }
 
-    public static void testSolutionTriePractice2_4() {
+    public static void testSolutionBSPractice2_4() {
         String[] products = { "havana" };
         String searchWord = "tatiana";
-        SolutionTriePractice2 s = new SolutionTriePractice2();
+        SolutionBSPractice3 s = new SolutionBSPractice3();
         List<List<String>> output = s.suggestedProducts(products, searchWord);
         boolean passed = output.size() == 7
                 && Arrays.deepEquals(output.get(0).toArray(), new String[] {})
@@ -141,5 +132,5 @@ public class SolutionTriePractice2 {
         return new Throwable()
                 .getStackTrace()[1]
                 .getMethodName();
-    }
+    }   
 }
