@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class SolutionPractice2 {
+class SolutionRecursiveBTPractice2 {
     public static void main(String[] args) {
         testSolutionPractice2_1();
         testSolutionPractice2_2();
@@ -30,7 +30,7 @@ class SolutionPractice2 {
 
     private static void testSolutionPractice2_1() {
         int[] nums = {1,2,3};
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionRecursiveBTPractice2 s = new SolutionRecursiveBTPractice2();
         List<List<Integer>> output = s.subsets(nums);
         boolean passed = output.size() == 8;
         for (int i = 0; i < output.size(); i++) {
@@ -49,7 +49,7 @@ class SolutionPractice2 {
 
     private static void testSolutionPractice2_2() {
         int[] nums = {0};
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionRecursiveBTPractice2 s = new SolutionRecursiveBTPractice2();
         List<List<Integer>> output = s.subsets(nums);
         boolean passed = output.size() == 8;
         for (int i = 0; i < output.size(); i++) {
