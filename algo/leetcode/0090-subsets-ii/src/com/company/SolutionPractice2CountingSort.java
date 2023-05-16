@@ -1,15 +1,14 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.company.Util.lst2ToSet2;
 import static com.company.Util.arr2ToLst2;
 
-public class SolutionPractice2 {
+public class SolutionPractice2CountingSort {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        Arrays.sort(nums);
+        countSort(nums);
         List<List<Integer>> output = new ArrayList<>();
         BT(0, new ArrayList<>(), output, nums);
         return output;
@@ -30,17 +29,40 @@ public class SolutionPractice2 {
         }
     }
 
-    public static void main(String[] args) {
-        testSolutionPractice2_1();
-        testSolutionPractice2_2();
-        testSolutionPractice2_3();
+    private void countSort(int[] nums) {
+        int min = nums[0];
+        int max = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            min = Math.min(nums[i], min);
+            max = Math.max(nums[i], max);
+        }
+
+        int[] fq = new int[max-min+1];
+        for (int i = 0; i < nums.length; i++) {
+            fq[nums[i]-min]++;
+        }
+
+        int idx = 0;
+        for (int i = 0; i < fq.length; i++) {
+            while (fq[i] > 0) {
+                fq[i]--;
+                nums[idx] = i+min;
+                idx++;
+            }
+        }
     }
 
-    public static void testSolutionPractice2_1() {
+    public static void main(String[] args) {
+        testSolutionPractice2CountingSort_1();
+        testSolutionPractice2CountingSort_2();
+        testSolutionPractice2CountingSort_3();
+    }
+
+    public static void testSolutionPractice2CountingSort_1() {
         int[] nums = {1,2,2};
         Integer[][] expectedArray = {{},{1},{2},{2,2},{1,2},{1,2,2}};    
         
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionPractice2CountingSort s = new SolutionPractice2CountingSort();
         List<List<Integer>> output = s.subsetsWithDup(nums);
 
         boolean passed = lst2ToSet2.apply(arr2ToLst2.apply(expectedArray))
@@ -48,14 +70,14 @@ public class SolutionPractice2 {
                 lst2ToSet2.apply(output)
             );
 
-        System.out.println("testSolutionPractice2_1: " + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionPractice2CountingSort_1: " + (passed ? "passed" : "failed"));
     }
 
-    public static void testSolutionPractice2_2() {
+    public static void testSolutionPractice2CountingSort_2() {
         int[] nums = {1,2};
         Integer[][] expectedArray = {{},{1},{2},{1,2}};
 
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionPractice2CountingSort s = new SolutionPractice2CountingSort();
         List<List<Integer>> output = s.subsetsWithDup(nums);
 
         boolean passed = lst2ToSet2.apply(arr2ToLst2.apply(expectedArray))
@@ -63,14 +85,14 @@ public class SolutionPractice2 {
                 lst2ToSet2.apply(output)
             );
 
-        System.out.println("testSolutionPractice2_2: " + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionPractice2CountingSort_2: " + (passed ? "passed" : "failed"));
     }
 
-    public static void testSolutionPractice2_3() {
+    public static void testSolutionPractice2CountingSort_3() {
         int[] nums = {1,1,2,2};
         Integer[][] expectedArray = {{},{1},{2},{1,1},{1,2},{2,2},{1,1,2},{2,2,1},{1,1,2,2}};
 
-        SolutionPractice2 s = new SolutionPractice2();
+        SolutionPractice2CountingSort s = new SolutionPractice2CountingSort();
         List<List<Integer>> output = s.subsetsWithDup(nums);
 
         boolean passed = lst2ToSet2.apply(arr2ToLst2.apply(expectedArray))
@@ -78,7 +100,6 @@ public class SolutionPractice2 {
                 lst2ToSet2.apply(output)
             );
 
-        System.out.println("testSolutionPractice2_3: " + (passed ? "passed" : "failed"));
+        System.out.println("testSolutionPractice2CountingSort_3: " + (passed ? "passed" : "failed"));
     }
-
 }
