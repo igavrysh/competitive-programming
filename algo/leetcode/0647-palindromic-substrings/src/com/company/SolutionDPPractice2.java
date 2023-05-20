@@ -1,6 +1,6 @@
 package com.company;
 
-public class SolutionPractice2 {
+public class SolutionDPPractice2 {
     public int countSubstrings(String s) {
         int n = s.length();
         boolean[] DP = new boolean[n];

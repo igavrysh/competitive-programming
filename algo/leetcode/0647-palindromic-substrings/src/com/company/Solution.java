@@ -1,7 +1,6 @@
 package com.company;
 
 public class Solution {
-
     public int countSubstrings(String s) {
         boolean[][] DP = new boolean[s.length()][s.length()];
         int result = 0;
@@ -9,14 +8,12 @@ public class Solution {
             DP[i][i] = true;
             result++;
         }
-
         for (int j = 1; j < s.length(); j++) {
             if (s.charAt(j - 1) == s.charAt(j)) {
                 DP[j - 1][j] = true;
                 result++;
             }
         }
-
         for (int j = 2; j < s.length(); j++) {
             for (int i = 0; i < s.length() - j; i++) {
                 int start = i;
