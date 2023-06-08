@@ -1,17 +1,20 @@
-# 98. Validate Binary Search Tree
-Medium
+### 98. Validate Binary Search Tree
 
-Given a binary tree, determine if it is a valid binary search tree (BST).
+https://leetcode.com/problems/validate-binary-search-tree/
 
-Assume a BST is defined as follows:
+`Medium`
 
-    The left subtree of a node contains only nodes with keys less than the node's key.
-    The right subtree of a node contains only nodes with keys greater than the node's key.
-    Both the left and right subtrees must also be binary search trees.
+Given the `root` of a binary tree, determine if it is a valid binary search tree (BST).
 
- 
+A valid BST is defined as follows:
 
-Example 1:
+* The left subtree of a node contains only nodes with keys less than the node's key.
+* The right subtree of a node contains only nodes with keys greater than the node's key.
+* Both the left and right subtrees must also be binary search trees.
+
+**Example 1**:
+
+![tree1](tree1.jpg)
 ```
 
     2
@@ -21,7 +24,11 @@ Example 1:
 Input: [2,1,3]
 Output: true
 ```
-Example 2:
+
+**Example 2**:
+
+![tree2](tree2.jpg)
+
 ```
 
     5
@@ -34,7 +41,8 @@ Input: [5,1,4,null,null,3,6]
 Output: false
 Explanation: The root node's value is 5 but its right child's value is 4.
 ```
-Example 3:
+
+**Example 3**:
 ```
 
     10
@@ -46,3 +54,8 @@ Input: [10, 5, 15, null, null, 6, 20]
 Output: false
 Explanation 6 contradicts 10
 ```
+
+**Constraints**:
+
+* The number of nodes in the tree is in the range `[1, 10^4]`.
+* `-2^31 <= Node.val <= 2^31 - 1`
