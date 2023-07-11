@@ -1,8 +1,7 @@
 import java.util.Arrays;
 import java.util.Stack;
 
-class SolutionDPMonotonic {
-
+class SolutionDPMonotonicStack {
     public int oddEvenJumps(int[] arr) {
         
         int n = arr.length;
@@ -72,7 +71,7 @@ class SolutionDPMonotonic {
     public static void test1() {
         int[] arr = {10,13,12,14,15};
         int expOutput = 2;
-        SolutionDPMonotonic s = new SolutionDPMonotonic();
+        SolutionDPMonotonicStack s = new SolutionDPMonotonicStack();
         int output = s.oddEvenJumps(arr);
         boolean passed = output == expOutput;
         System.out.println("test1: " + (passed ? "passed" : "failed"));
@@ -81,7 +80,7 @@ class SolutionDPMonotonic {
     public static void test2() {
         int[] arr = {2,3,1,1,4};
         int expOutput = 3;
-        SolutionDPMonotonic s = new SolutionDPMonotonic();
+        SolutionDPMonotonicStack s = new SolutionDPMonotonicStack();
         int output = s.oddEvenJumps(arr);
         boolean passed = output == expOutput;
         System.out.println("test2: " + (passed ? "passed" : "failed"));
@@ -90,7 +89,7 @@ class SolutionDPMonotonic {
     public static void test3() {
         int[] arr = {5,1,3,4,2};
         int expOutput = 3;
-        SolutionDPMonotonic s = new SolutionDPMonotonic();
+        SolutionDPMonotonicStack s = new SolutionDPMonotonicStack();
         int output = s.oddEvenJumps(arr);
         boolean passed = output == expOutput;
         System.out.println("test3: " + (passed ? "passed" : "failed"));
