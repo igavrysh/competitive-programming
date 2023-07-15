@@ -12,12 +12,16 @@ Return an edge that can be removed so that the resulting graph is a tree of n no
 
  
 **Example 1**:
+
+![ex1](ex1.jpg)
 ```
 Input: edges = [[1,2],[1,3],[2,3]]
 Output: [2,3]
 ```
 
 **Example 2**:
+
+![ex2](ex2.jpg)
 ```
 Input: edges = [[1,2],[2,3],[3,4],[1,4],[1,5]]
 Output: [1,4]
