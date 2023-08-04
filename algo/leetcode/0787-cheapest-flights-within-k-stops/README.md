@@ -1,14 +1,14 @@
-# 787. Cheapest Flights Within K Stops
-Medium
+### 787. Cheapest Flights Within K Stops
 
-There are n cities connected by m flights. Each flight starts from city u and 
-arrives at v with a price w.
+https://leetcode.com/problems/cheapest-flights-within-k-stops/
 
-Now given all the cities and flights, together with starting city src and the 
-destination dst, your task is to find the cheapest price from src to dst with 
-up to k stops. If there is no such route, output -1.
+`Medium`
 
-Example 1:
+There are `n` cities connected by `m` flights. Each `flight` where `flights[i] = [fromi, toi, pricei]` indicates that there is a flight from city `fromi` to city `toi` with cost `pricei`.
+
+You are also given three integers `src`, `dst`, and `k`, return the cheapest price from `src` to `dst` with at most `k` stops. If there is no such route, return `-1`.
+
+**Example 1:**
 
 ![ex1](ex1.png)
 ```
@@ -21,7 +21,7 @@ The graph looks like this:
 ```
 The cheapest price from city 0 to city 2 with at most 1 stop costs 200, as marked red in the picture.
 
-Example 2:
+**Example 2:**
 
 ![ex2](ex2.png)
 
@@ -34,13 +34,17 @@ Explanation:
 The graph looks like this:
 
 ```
+
 The cheapest price from city 0 to city 2 with at most 0 stop costs 500, as marked blue in the picture.
 
-Constraints:
-* The number of nodes n will be in range [1, 100], with nodes labeled from 0 to n - 1.
-* The size of flights will be in range [0, n * (n - 1) / 2].
-* The format of each flight will be (src, dst, price).
-* The price of each flight will be in the range [1, 10000].
-* k is in the range of [0, n - 1].
-* There will not be any duplicated flights or self cycles.
+**Constraints**:
 
+* `1 <= n <= 100``
+* `0 <= flights.length <= (n * (n - 1) / 2)``
+* `flights[i].length == 3`
+* `0 <= fromi, toi < n`
+* `fromi != toi`
+* `1 <= pricei <= 10^4``
+* There will not be any multiple flights between two cities.
+* `0 <= src, dst, k < n`
+* `src != dst`
