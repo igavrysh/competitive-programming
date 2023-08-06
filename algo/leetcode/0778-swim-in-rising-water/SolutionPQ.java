@@ -31,7 +31,7 @@ class SolutionPQ {
         }
         return level;
     }
-
+    
     public static void main(String[] args) {
         testSolutionPQ_1();
         testSolutionPQ_2();
