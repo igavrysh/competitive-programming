@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SolutionUF",
+            "request": "launch",
+            "mainClass": "SolutionUF",
+            "projectName": "0778-swim-in-rising-water_981947ee"
+        },
+        {
+            "type": "java",
             "name": "SolutionBS",
             "request": "launch",
             "mainClass": "SolutionBS",
