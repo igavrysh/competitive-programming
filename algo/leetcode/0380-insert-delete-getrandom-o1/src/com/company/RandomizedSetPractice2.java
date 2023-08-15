@@ -12,7 +12,7 @@ public class RandomizedSetPractice2 {
     private List<Integer> a = new ArrayList<>();
     private Random random = new Random();
     
-    public RandomizedSetPractice2() {}
+    public RandomizedSetPractice2() { /* TODO document why this constructor is empty */ }
     
     public boolean insert(int val) {
         if (map.get(val) != null) {
@@ -70,6 +70,7 @@ class MyHashMap {
     }
 
     public MyHashMap() {
+      // TODO document why this constructor is empty
     }
     
     public void put(int key, int value) {
