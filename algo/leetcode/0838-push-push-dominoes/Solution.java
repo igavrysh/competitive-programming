@@ -58,7 +58,6 @@ class Solution {
     }
 
     public static void testSolution_1() {
-        
         String dominoes = "RR.L";
         Solution s = new Solution();
         String output = s.pushDominoes(dominoes);
