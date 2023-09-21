@@ -1,4 +1,3 @@
-package com.company;
 
 public class SolutionDPPractice2 {
     public int lengthOfLIS(int[] nums) {
