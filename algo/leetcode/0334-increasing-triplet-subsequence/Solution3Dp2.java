@@ -17,11 +17,9 @@ public class Solution3Dp2 {
                 if (nums[j] < nums[i]) {
                     dp_i = Math.max(dp_i, DP[j] + 1);
 
-
                     if (dp_i == 3) {
                         return true;
                     }
-
 
                     if (longestSeen == DP[j]) {
                         break;
