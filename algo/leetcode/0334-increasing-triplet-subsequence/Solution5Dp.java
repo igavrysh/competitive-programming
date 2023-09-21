@@ -1,3 +1,6 @@
+// Time: O(N)
+// Space: O(1)
+
 public class Solution5Dp {
     public boolean increasingTriplet(int[] nums) {
         // dp[i] = index of last minimal element of strictly increasing sequence of length i
