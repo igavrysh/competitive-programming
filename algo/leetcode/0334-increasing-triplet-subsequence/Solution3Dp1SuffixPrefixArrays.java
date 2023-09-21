@@ -3,7 +3,7 @@ Time complexity: O(N)
 Space complexity: O(N)
  */
 
-public class Solution3DpSuffixPrefixArrays {
+public class Solution3Dp1SuffixPrefixArrays {
     public boolean increasingTriplet(int[] nums) {
         int n = nums.length; 
         if (n < 3) {
@@ -45,7 +45,7 @@ public class Solution3DpSuffixPrefixArrays {
 
     public static void testSolution3DpSuffixPrefixArrays1() {
         int[] nums = {1,2,3,4,5};
-        Solution3DpSuffixPrefixArrays s = new Solution3DpSuffixPrefixArrays();
+        Solution3Dp1SuffixPrefixArrays s = new Solution3Dp1SuffixPrefixArrays();
         boolean output = s.increasingTriplet(nums);
         boolean expected = true;
         boolean passed = output == expected;
@@ -54,7 +54,7 @@ public class Solution3DpSuffixPrefixArrays {
 
     public static void testSolution3DpSuffixPrefixArrays2() {
         int[] nums = {5,4,3,2,1};
-        Solution3DpSuffixPrefixArrays s = new Solution3DpSuffixPrefixArrays();
+        Solution3Dp1SuffixPrefixArrays s = new Solution3Dp1SuffixPrefixArrays();
         boolean output = s.increasingTriplet(nums);
         boolean expected = false;
         boolean passed = output == expected;
@@ -63,7 +63,7 @@ public class Solution3DpSuffixPrefixArrays {
 
     public static void testSolution3DpSuffixPrefixArrays3() {
         int[] nums = {2,1,5,0,4,6};
-        Solution3DpSuffixPrefixArrays s = new Solution3DpSuffixPrefixArrays();
+        Solution3Dp1SuffixPrefixArrays s = new Solution3Dp1SuffixPrefixArrays();
         boolean output = s.increasingTriplet(nums);
         boolean expected = true;
         boolean passed = output == expected;
@@ -72,7 +72,7 @@ public class Solution3DpSuffixPrefixArrays {
 
     public static void testSolution3DpSuffixPrefixArrays4() {
         int[] nums = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
-        Solution3DpSuffixPrefixArrays s = new Solution3DpSuffixPrefixArrays();
+        Solution3Dp1SuffixPrefixArrays s = new Solution3Dp1SuffixPrefixArrays();
         boolean output = s.increasingTriplet(nums);
         boolean expected = false;
         boolean passed = output == expected;

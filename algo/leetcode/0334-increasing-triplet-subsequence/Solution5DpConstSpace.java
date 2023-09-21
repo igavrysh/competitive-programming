@@ -1,7 +1,7 @@
 // Time: O(N)
 // Space: O(1)
 
-public class Solution5Dp {
+public class Solution5DpConstSpace {
     public boolean increasingTriplet(int[] nums) {
         // dp[L] = stores indexe of minimal tail element of strictly increasing sequence of length L
         // update dp[1], dp[2], to maintain invariant - as you progress thru array of nums
@@ -48,7 +48,7 @@ public class Solution5Dp {
 
     public static void testSolution5Dp1() {
         int[] nums = {1,2,3,4,5};
-        Solution5Dp s = new Solution5Dp();
+        Solution5DpConstSpace s = new Solution5DpConstSpace();
         boolean output = s.increasingTriplet(nums);
         boolean expected = true;
         boolean passed = output == expected;
@@ -57,7 +57,7 @@ public class Solution5Dp {
 
     public static void testSolution5Dp2() {
         int[] nums = {5,4,3,2,1};
-        Solution5Dp s = new Solution5Dp();
+        Solution5DpConstSpace s = new Solution5DpConstSpace();
         boolean output = s.increasingTriplet(nums);
         boolean expected = false;
         boolean passed = output == expected;
@@ -66,7 +66,7 @@ public class Solution5Dp {
 
     public static void testSolution5Dp3() {
         int[] nums = {2,1,5,0,4,6};
-        Solution5Dp s = new Solution5Dp();
+        Solution5DpConstSpace s = new Solution5DpConstSpace();
         boolean output = s.increasingTriplet(nums);
         boolean expected = true;
         boolean passed = output == expected;
