@@ -1,4 +1,4 @@
-public class Solution4Greedy {
+public class Solution4GreedyStart {
     public boolean increasingTriplet(int[] nums) {
         int n = nums.length; 
         if (n < 3) {
