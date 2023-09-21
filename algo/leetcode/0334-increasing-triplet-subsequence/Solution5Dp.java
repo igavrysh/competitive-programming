@@ -3,7 +3,16 @@
 
 public class Solution5Dp {
     public boolean increasingTriplet(int[] nums) {
-        // dp[i] = index of last minimal element of strictly increasing sequence of length i
+        // dp[l] = index of minimal last minimal element of strictly increasing sequence of length l
+        // update dp[1], dp[2], to maintain invariant - as you progress thru array of nums, e.g. 
+        // e.g. with arrival of nums[i] there are 2 possibilies of for the sequence of length = 2
+        // 1) nums[i] does not change anything, e.g. increasing sequence with a length of 2 does not 
+        //  change its minimal tail, as its tail (nums[dp[2]]) is less than new elem (nums[i]))
+        // 2) nums[i] changes the sequence of length 2, as it becomes a new minimal tail for sequence of length 2, 
+        //  the following conditions should hold:
+        //      1) new tail should be less than previous tail for seq of length 2: nums[i] < nums[dp[2]]
+        //      2) new tail should be a "valid" tail: new tail value should be greater than minimal tail of sequence of length 1:
+        //          nums[dp[1]] < nums[i] 
         int[] dp = new int[3];
         dp[0] = -1; // just filler - not used
         dp[1] = 0;
