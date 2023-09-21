@@ -34,3 +34,33 @@ Explanation: The triplet (3, 4, 5) is valid because nums[3] == 0 < nums[4] == 4 
 * `-2^31 <= nums[i] <= 2^31 - 1`
 
 **Follow up**: Could you implement a solution that runs in O(n) time complexity and O(1) space complexity?
+
+
+JS Solution
+
+```
+var increasingTriplet = function(nums) {
+  let left = Infinity;
+  let mid = Infinity;
+
+  for(let num of nums) {  
+    if(num > mid) return true;
+    if(num < left) {
+      left = num;
+      continue;
+    }
+    if(num > left && num < mid) {
+      mid = num;
+      continue;
+    }
+  }
+  return false;
+};
+
+
+increasingTriplet([])
+increasingTriplet([1])
+increasingTriplet([1, 2])
+increasingTriplet([4, 2])
+increasingTriplet([4, 2])
+```

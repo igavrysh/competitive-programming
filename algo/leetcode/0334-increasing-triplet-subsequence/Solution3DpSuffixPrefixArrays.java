@@ -1,3 +1,8 @@
+/*
+Time complexity: O(N)
+Space complexity: O(N)
+ */
+
 public class Solution3DpSuffixPrefixArrays {
     public boolean increasingTriplet(int[] nums) {
         int n = nums.length; 
