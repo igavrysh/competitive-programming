@@ -12,8 +12,38 @@ class SolutionBs {
                     j = m;
             }
             tails[i] = x;
-            if (i == size) ++size;
+            if (i == size) {
+                size++;
+            }
         }
         return size;
     }
+
+    public static void main(String[] args) {
+        test1();
+    }
+
+    public static void test1() {
+        int[] nums = {10,9,2,5,3,7,101,18};
+        SolutionBs s = new SolutionBs();
+        int output = s.lengthOfLIS(nums);
+        int expectedOutput = 4;
+        boolean passed = output == expectedOutput;
+        System.out.println("test1: " + (passed ? "passed" : "failed"));
+    }
 }
+
+// n = 6
+// 0,1,0,3,2,3
+// length = 1
+/*
+tails = 
+[0,0,0,0,0,0]
+i = 0, size = 0
+
+tails
+[0,0,0,0,0,0]
+
+
+
+ */

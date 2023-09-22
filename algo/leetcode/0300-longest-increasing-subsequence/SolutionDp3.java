@@ -1,4 +1,4 @@
-class Solution {
+class SolutionDp3 {
    public int lengthOfLIS(int[] nums) {
         int n = nums.length;
         // dp[i] -> last index of lis in [0...i]

@@ -3,7 +3,7 @@
 
 public class Solution5DpConstSpace {
     public boolean increasingTriplet(int[] nums) {
-        // dp[L] = stores indexe of minimal tail element of strictly increasing sequence of length L
+        // dp[L] = stores index of minimal tail element of strictly increasing sequence of length L
         // update dp[1], dp[2], to maintain invariant - as you progress thru array of nums
         int[] dp = new int[3];
         dp[0] = -1; // just filler - not used
