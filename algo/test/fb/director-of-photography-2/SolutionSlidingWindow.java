@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class SolutionSlidingWindow {
     public long getArtisticPhotographCount(int N, String C, int X, int Y) {
-
         ArrayList<Integer>[] pos = new ArrayList[3];
         pos[0] = new ArrayList<>(); pos[1] = new ArrayList<>(); pos[2] = new ArrayList<>();
         for (int i = 0; i < C.length(); i++) {
@@ -15,72 +14,95 @@ public class SolutionSlidingWindow {
             }
         }
 
-        long[] toRightPartialSum = new long[pos[1].size()];
-        long[] toLeftPartialSum = new long[pos[1].size()];
-        int wdwToRightL = -1, wdwToRightR = -1;
-        int wdwToLeftL = pos[2].size(), wdwToLeftR = pos[2].size();
+        int l, r;
+        long wSum;
 
-        for (int i = 0; i < pos[1].size(); i++) {
+        int pos1Size = pos[1].size();
+        int pos2Size = pos[2].size();
+        long[] toR = new long[pos[1].size()];
+        l = -1;
+        r = 0; // l.incl r exclusive 
+        wSum = 0;
+        for (int i = 0; i < pos1Size; i++) {
             //  P A B
-            while (wdwToRightR+1 < pos[2].size() && pos[2].get(wdwToRightR+1) - pos[1].get(i) <= Y) {
-                wdwToRightR++;
+            while (r < pos2Size && pos[2].get(r) - pos[1].get(i) <= Y) {
+                wSum+=1;
+                r++;
             }
-            while (wdwToRightL+1 <= wdwToRightR && pos[2].get(wdwToRightL+1) - pos[1].get(i) < X) {
-                wdwToRightL++;
-            }
-            toRightPartialSum[i] = wdwToRightR - wdwToRightL + 1;
 
-            //  B A P
-            int size = pos[1].size();
-            while (wdwToLeftL-1 >= 0 && pos[1].get(size-1-i) - pos[2].get(wdwToLeftL-1) <= Y) {
-                wdwToLeftL--;
+            while (l == -1 || (l < r && pos[2].get(l) - pos[1].get(i) < X)) {
+                if (l!=-1) {
+                    wSum-=1;
+                }
+                l++;
             }
-            while (wdwToLeftL <= wdwToLeftR-1 && pos[1].get(size-1-i) - pos[2].get(wdwToLeftR-1) < X) {
-               wdwToLeftR--;
-            }
-            toLeftPartialSum[size-1-i] = wdwToLeftR-wdwToLeftL+1;
+            toR[i] = wSum;
         }
 
+        long[] toL = new long[pos[1].size()];
+        l = pos2Size-1; // exclusive
+        r = pos2Size; // inclusive
+        wSum = 0;
+        for (int i = pos1Size-1; i >= 0; i--) {
+            while (l >= 0 && pos[1].get(i)-pos[2].get(l) <= Y) {
+                wSum++;
+                l--;
+            }
 
-        long[] toRightPartialSum2 = new long[pos[0].size()];
-        long[] toLeftPartialSum2 = new long[pos[0].size()];
-        wdwToRightL = -1; wdwToRightR = -1;
-        long wdwToRightSz = 0;
-        wdwToLeftL = pos[1].size(); wdwToLeftR = pos[1].size();
-        long wdwToLeftSz = 0;
-        for (int i = 0; i < pos[0].size(); i++) {
+            while (r == pos2Size || (l < r && pos[1].get(i) - pos[2].get(r) < X)) {
+                if (r!=pos2Size) {
+                    wSum-=1;
+                }
+                r--;
+            }
+            toL[i] = wSum;
+        }
+
+        int pos0Size = pos[0].size();
+
+        long[] toR2 = new long[pos0Size];
+        l = -1;
+        r = 0; // l.incl r exclusive 
+        wSum = 0;
+        for (int i = 0; i < pos0Size; i++) {
             //  P A B
-            while (wdwToRightR+1 < pos[1].size() && pos[1].get(wdwToRightR+1) - pos[0].get(i) <= Y) {
-                wdwToRightR++;
-                wdwToRightSz += toRightPartialSum[wdwToRightR];
+            while (r < pos1Size && pos[1].get(r) - pos[0].get(i) <= Y) {
+                wSum+=toR[r];
+                r++;
             }
-            while (wdwToRightL+1 <= wdwToRightR && pos[1].get(wdwToRightL+1) - pos[0].get(i) < X) {
-                if (wdwToRightL >= 0) {
-                    wdwToRightSz -= toRightPartialSum[wdwToRightL];
-                }
-                wdwToRightL++;
-            }
-            toRightPartialSum[i] = wdwToRightSz;
 
-            //  B A P
-            int size = pos[0].size();
-            while (wdwToLeftL-1 >= 0 && pos[0].get(size-1-i) - pos[1].get(wdwToLeftL-1) <= Y) {
-                wdwToLeftL--;
-                wdwToLeftSz += toLeftPartialSum[wdwToLeftL];
-            }
-            while (wdwToLeftL <= wdwToLeftR-1 && pos[1].get(size-1-i) - pos[2].get(wdwToLeftR-1) < X) {
-                if (wdwToLeftR < toLeftPartialSum.length) {
-                    wdwToLeftSz -= toLeftPartialSum[wdwToLeftR];
+            while (l == -1 || (l < r && pos[1].get(l) - pos[0].get(i) < X)) {
+                if (l!=-1) {
+                    wSum-=toR[l];
                 }
-                wdwToLeftR--;
+                l++;
             }
-            toLeftPartialSum2[size-1-i] = wdwToLeftSz;
+            toR2[i] = wSum;
+        }
+
+        long[] toL2 = new long[pos0Size];
+        l = pos1Size-1; // exclusive
+        r = pos1Size; // inclusive
+        wSum = 0;
+        for (int i = pos0Size-1; i >= 0; i--) {
+            while (l >= 0 && pos[0].get(i)-pos[1].get(l) <= Y) {
+                wSum += toL[l];
+                l--;
+            }
+
+            while (r == pos1Size || (l < r && pos[0].get(i) - pos[1].get(r) < X)) {
+                if (r!=pos1Size) {
+                    wSum-=toL[r];
+                }
+                r--;
+            }
+            toL2[i] = wSum;
         }
 
         long acc = 0;
-        for (int i = 0; i < toRightPartialSum2.length; i++) {
-            acc += toRightPartialSum2[i];
-            acc += toLeftPartialSum2[i];
+        for (int i = 0; i < pos0Size; i++) {
+            acc += toR2[i];
+            acc += toL2[i];
         }
 
         return acc;
@@ -88,8 +110,9 @@ public class SolutionSlidingWindow {
 
     public static void main(String[] args) {
         test1();
+        test2();
+        test3();
     }
-
 
     public static void test1() {
         int N = 5;
@@ -103,8 +126,27 @@ public class SolutionSlidingWindow {
         System.out.println("test1: " + (passed ? "passed" : "failed"));
     }
 
+    public static void test2() {
+        int N = 5;
+        String C = "APABA";
+        int X = 1, Y = 2;
 
+        SolutionSlidingWindow s = new SolutionSlidingWindow();
+        long output = s.getArtisticPhotographCount(N, C, X, Y);
+        long expectedOutput = 1;
+        boolean passed = output == expectedOutput;
+        System.out.println("test2: " + (passed ? "passed" : "failed"));
+    }
 
-     
+    public static void test3() {
+        int N = 5;
+        String C = "APABA";
+        int X = 2, Y = 3;
 
+        SolutionSlidingWindow s = new SolutionSlidingWindow();
+        long output = s.getArtisticPhotographCount(N, C, X, Y);
+        long expectedOutput = 0;
+        boolean passed = output == expectedOutput;
+        System.out.println("test3: " + (passed ? "passed" : "failed"));
+    }
 }
