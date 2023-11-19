@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
-class Solution {
+class SolutionBS {
   
     public long getArtisticPhotographCount(int N, String C, int X, int Y) {
         ArrayList<Integer>[] pos = new ArrayList[3];
@@ -117,7 +116,7 @@ class Solution {
             pos.add(a[i]);
         }
         int val = 147;
-        Solution s = new Solution();
+        SolutionBS s = new SolutionBS();
         int output = s.bs_to_left(pos, val);
         int expectedOutput = 12;
         boolean passed = output == expectedOutput;
@@ -129,7 +128,7 @@ class Solution {
         String C = ".PBAAP.B";
         int X = 1, Y = 3;
 
-        Solution s = new Solution();
+        SolutionBS s = new SolutionBS();
         long output = s.getArtisticPhotographCount(N, C, X, Y);
         long expectedOutput = 3;
         boolean passed = output == expectedOutput;
@@ -141,7 +140,7 @@ class Solution {
         String C = "APABA";
         int X = 1, Y = 2;
 
-        Solution s = new Solution();
+        SolutionBS s = new SolutionBS();
         long output = s.getArtisticPhotographCount(N, C, X, Y);
         long expectedOutput = 1;
         boolean passed = output == expectedOutput;
@@ -153,7 +152,7 @@ class Solution {
         String C = "APABA";
         int X = 2, Y = 3;
 
-        Solution s = new Solution();
+        SolutionBS s = new SolutionBS();
         long output = s.getArtisticPhotographCount(N, C, X, Y);
         long expectedOutput = 0;
         boolean passed = output == expectedOutput;
