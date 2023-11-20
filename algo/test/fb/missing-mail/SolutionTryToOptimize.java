@@ -2,32 +2,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-class Solution {
-
-    public double getMaxExpectedProfit(int N, int[] V, int C, double S) {
-        HashMap<Long, Double> mem = new HashMap<>();
-        return DP(0, 0, N, V, C, S, mem);
-    }
-
-    private double DP(int idx, double delta, int N, int[] V, int C, double S, HashMap<Long, Double> mem) {
-        Long key = (long)(delta * Math.pow(10, 7) * Math.pow(10, 6)) + idx;
-        if (mem.get(key) != null) {
-            return mem.get(key);
-        }
-
-        double take = 0.0;
-        if (V[idx] + delta - C > 0) {
-            take = V[idx] + delta - C + (idx == N-1 ? 0 : DP(idx+1, 0, N, V, C, S, mem));
-        }
-
-        double keep = idx == N-1 ? 0 : DP(idx+1, (1-S) * (delta + V[idx]), N, V, C, S, mem);
-
-        double val = Math.max(take, keep);
-
-        mem.put(key, val);
-
-        return  val;
-    }
+public class SolutionTryToOptimize {
 
     public static void main(String[] args) {
         test1();
@@ -37,8 +12,59 @@ class Solution {
         testGenRandom5();
     }
 
+    int N;
+    int[] V;
+    int C;
+    double S;
+    HashMap<Long, Double> mem;
+
+    public double getMaxExpectedProfit(int N, int[] V, int C, double S) {
+        this.N = N;
+        this.V = V;
+        this.C = C;
+        this.S = S;
+        this.mem = new HashMap<>();
+
+        long totalRemSum = 0;
+        for (int i = 0; i < V.length; i++) {
+            totalRemSum += V[i];
+        }
+
+        return DP(0, 0, totalRemSum);
+    }
+
+    private double DP(int idx, double delta, double totalRemSum) {
+        Long key = (long)(delta * Math.pow(10, 6) * Math.pow(10, 6))  + idx;
+
+        if (mem.get(key) != null) {
+            return mem.get(key);
+        }
+
+        double take = 0.0;
+        if (V[idx] + delta - C >= 0) {
+            take = V[idx] + delta - C;
+            if (totalRemSum - V[idx] - delta >= C && idx != N-1) {
+                take += DP(idx+1, 0, totalRemSum - V[idx] - delta);
+            }
+        }
+
+        double keep = 0; 
+        if (idx != N-1) {
+            double newDelta = (1-S) * (delta + V[idx]);
+            if (totalRemSum - V[idx] - delta + newDelta >= C) {
+                keep = DP(idx+1, newDelta, totalRemSum - V[idx] - delta + newDelta);
+            }
+        }
+        
+        double val = Math.max(take, keep);
+
+        mem.put(key, val);
+
+        return  val;
+    }
+
     public static void testGenRandom5() {
-        int N = 3000;
+        int N = 4000;
         int minV = 0, maxV = 1000;
         int minC = 1, maxC = 1000;
         double minS = 0.0, maxS = 1.0;
@@ -50,12 +76,11 @@ class Solution {
 
         int C = ThreadLocalRandom.current().nextInt(minC, maxC + 1);
         Random r = new Random();
-        double S = minC + (maxC - minC) * r.nextDouble();
+        double S = minS + (maxS - minS) * r.nextDouble();
 
-        Solution sol = new Solution();
+        SolutionTryToOptimize sol = new SolutionTryToOptimize();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         System.out.println("testGenRandom5 output = " + Double.toString(output));
-
     }
 
     public static void test1() {
@@ -65,7 +90,7 @@ class Solution {
         double S = 0.0;
         double delta = 0.0001;
         double expectedOutput = 25.0;
-        Solution sol = new Solution();
+        SolutionTryToOptimize sol = new SolutionTryToOptimize();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test1: " + (passed ? "passed" :  "failed"));
@@ -78,7 +103,7 @@ class Solution {
         double S = 1.0;
         double delta = 0.0001;
         double expectedOutput = 9.0;
-        Solution sol = new Solution();
+        SolutionTryToOptimize sol = new SolutionTryToOptimize();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test2: " + (passed ? "passed" :  "failed"));
@@ -91,7 +116,7 @@ class Solution {
         double S = 0.5;
         double delta = 0.0001;
         double expectedOutput = 17.0;
-        Solution sol = new Solution();
+        SolutionTryToOptimize sol = new SolutionTryToOptimize();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test3: " + (passed ? "passed" :  "failed"));
@@ -104,7 +129,7 @@ class Solution {
         double S = 0.15;
         double delta = 0.0001;
         double expectedOutput = 20.10825;
-        Solution sol = new Solution();
+        SolutionTryToOptimize sol = new SolutionTryToOptimize();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test4: " + (passed ? "passed" :  "failed"));
