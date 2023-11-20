@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-class SolutionInitialAttempt {
+class SolutionTry1InitialAttempt {
 
     public double getMaxExpectedProfit(int N, int[] V, int C, double S) {
         HashMap<Long, Double> mem = new HashMap<>();
@@ -52,7 +52,7 @@ class SolutionInitialAttempt {
         Random r = new Random();
         double S = minC + (maxC - minC) * r.nextDouble();
 
-        SolutionInitialAttempt sol = new SolutionInitialAttempt();
+        SolutionTry1InitialAttempt sol = new SolutionTry1InitialAttempt();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         System.out.println("testGenRandom5 output = " + Double.toString(output));
 
@@ -65,7 +65,7 @@ class SolutionInitialAttempt {
         double S = 0.0;
         double delta = 0.0001;
         double expectedOutput = 25.0;
-        SolutionInitialAttempt sol = new SolutionInitialAttempt();
+        SolutionTry1InitialAttempt sol = new SolutionTry1InitialAttempt();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test1: " + (passed ? "passed" :  "failed"));
@@ -78,7 +78,7 @@ class SolutionInitialAttempt {
         double S = 1.0;
         double delta = 0.0001;
         double expectedOutput = 9.0;
-        SolutionInitialAttempt sol = new SolutionInitialAttempt();
+        SolutionTry1InitialAttempt sol = new SolutionTry1InitialAttempt();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test2: " + (passed ? "passed" :  "failed"));
@@ -91,7 +91,7 @@ class SolutionInitialAttempt {
         double S = 0.5;
         double delta = 0.0001;
         double expectedOutput = 17.0;
-        SolutionInitialAttempt sol = new SolutionInitialAttempt();
+        SolutionTry1InitialAttempt sol = new SolutionTry1InitialAttempt();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test3: " + (passed ? "passed" :  "failed"));
@@ -104,7 +104,7 @@ class SolutionInitialAttempt {
         double S = 0.15;
         double delta = 0.0001;
         double expectedOutput = 20.10825;
-        SolutionInitialAttempt sol = new SolutionInitialAttempt();
+        SolutionTry1InitialAttempt sol = new SolutionTry1InitialAttempt();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test4: " + (passed ? "passed" :  "failed"));

@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SolutionOptimizationsLastTestNotPassingDueSOException {
+public class SolutionTry3OptimizationsLastTestNotPassingDueSOException {
 
     public static void main(String[] args) {
         test1();
@@ -97,7 +97,7 @@ public class SolutionOptimizationsLastTestNotPassingDueSOException {
         Random r = new Random();
         double S = minS + (maxS - minS) * r.nextDouble();
 
-        SolutionOptimizationsLastTestNotPassingDueSOException sol = new SolutionOptimizationsLastTestNotPassingDueSOException();
+        SolutionTry3OptimizationsLastTestNotPassingDueSOException sol = new SolutionTry3OptimizationsLastTestNotPassingDueSOException();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         System.out.println("testGenRandom5 output = " + Double.toString(output));
         System.out.println("reuse counter = " + Integer.toString(sol.reuseCounter) + " totalCalls = " + sol.totalCalls + " checkOk = " + sol.checkOk + " checkFail = " + sol.checkFail);
@@ -112,14 +112,12 @@ public class SolutionOptimizationsLastTestNotPassingDueSOException {
         double S = 0.0;
         double delta = 0.0001;
         double expectedOutput = 25.0;
-        SolutionOptimizationsLastTestNotPassingDueSOException sol = new SolutionOptimizationsLastTestNotPassingDueSOException();
+        SolutionTry3OptimizationsLastTestNotPassingDueSOException sol = new SolutionTry3OptimizationsLastTestNotPassingDueSOException();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test1: " + (passed ? "passed" :  "failed"));
         System.out.println("reuse counter = " + Integer.toString(sol.reuseCounter) + " totalCalls = " + sol.totalCalls + " checkOk = " + sol.checkOk + " checkFail = " + sol.checkFail);
         System.out.println("keys = " + sol.keys.toString());
-
-
     }
 
     public static void test2() {
@@ -129,7 +127,7 @@ public class SolutionOptimizationsLastTestNotPassingDueSOException {
         double S = 1.0;
         double delta = 0.0001;
         double expectedOutput = 9.0;
-        SolutionOptimizationsLastTestNotPassingDueSOException sol = new SolutionOptimizationsLastTestNotPassingDueSOException();
+        SolutionTry3OptimizationsLastTestNotPassingDueSOException sol = new SolutionTry3OptimizationsLastTestNotPassingDueSOException();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test2: " + (passed ? "passed" :  "failed"));
@@ -145,7 +143,7 @@ public class SolutionOptimizationsLastTestNotPassingDueSOException {
         double S = 0.5;
         double delta = 0.0001;
         double expectedOutput = 17.0;
-        SolutionOptimizationsLastTestNotPassingDueSOException sol = new SolutionOptimizationsLastTestNotPassingDueSOException();
+        SolutionTry3OptimizationsLastTestNotPassingDueSOException sol = new SolutionTry3OptimizationsLastTestNotPassingDueSOException();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test3: " + (passed ? "passed" :  "failed"));
@@ -161,12 +159,11 @@ public class SolutionOptimizationsLastTestNotPassingDueSOException {
         double S = 0.15;
         double delta = 0.0001;
         double expectedOutput = 20.10825;
-        SolutionOptimizationsLastTestNotPassingDueSOException sol = new SolutionOptimizationsLastTestNotPassingDueSOException();
+        SolutionTry3OptimizationsLastTestNotPassingDueSOException sol = new SolutionTry3OptimizationsLastTestNotPassingDueSOException();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test4: " + (passed ? "passed" :  "failed"));
         System.out.println("reuse counter = " + Integer.toString(sol.reuseCounter) + " totalCalls = " + sol.totalCalls + " checkOk = " + sol.checkOk + " checkFail = " + sol.checkFail);
         System.out.println("keys = " + sol.keys.toString());
     }
-
 }

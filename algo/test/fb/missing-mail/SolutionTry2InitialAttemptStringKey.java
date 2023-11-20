@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class SolutionInitialAttemptStringKey {
+public class SolutionTry2InitialAttemptStringKey {
     public double getMaxExpectedProfit(int N, int[] V, int C, double S) {
         HashMap<String, Double> mem = new HashMap<>();
         return DP(0, 0, N, V, C, S, mem);
@@ -40,7 +40,7 @@ public class SolutionInitialAttemptStringKey {
         double S = 0.0;
         double delta = 0.0001;
         double expectedOutput = 25.0;
-        SolutionInitialAttemptStringKey sol = new SolutionInitialAttemptStringKey();
+        SolutionTry2InitialAttemptStringKey sol = new SolutionTry2InitialAttemptStringKey();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("SolutionStringKey test4: " + (passed ? "passed" :  "failed"));
@@ -53,7 +53,7 @@ public class SolutionInitialAttemptStringKey {
         double S = 1.0;
         double delta = 0.0001;
         double expectedOutput = 9.0;
-        SolutionInitialAttemptStringKey sol = new SolutionInitialAttemptStringKey();
+        SolutionTry2InitialAttemptStringKey sol = new SolutionTry2InitialAttemptStringKey();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("SolutionStringKey test2: " + (passed ? "passed" :  "failed"));
@@ -66,7 +66,7 @@ public class SolutionInitialAttemptStringKey {
         double S = 0.5;
         double delta = 0.0001;
         double expectedOutput = 17.0;
-        SolutionInitialAttemptStringKey sol = new SolutionInitialAttemptStringKey();
+        SolutionTry2InitialAttemptStringKey sol = new SolutionTry2InitialAttemptStringKey();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("SolutionStringKey test3: " + (passed ? "passed" :  "failed"));
@@ -79,7 +79,7 @@ public class SolutionInitialAttemptStringKey {
         double S = 0.15;
         double delta = 0.0001;
         double expectedOutput = 20.10825;
-        SolutionInitialAttemptStringKey sol = new SolutionInitialAttemptStringKey();
+        SolutionTry2InitialAttemptStringKey sol = new SolutionTry2InitialAttemptStringKey();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("SolutionStringKey test4: " + (passed ? "passed" :  "failed"));
