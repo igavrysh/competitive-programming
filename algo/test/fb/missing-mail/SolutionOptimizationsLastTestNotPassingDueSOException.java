@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SolutionTryToOptimize {
+public class SolutionOptimizationsLastTestNotPassingDueSOException {
 
     public static void main(String[] args) {
         test1();
@@ -55,9 +55,11 @@ public class SolutionTryToOptimize {
         if (V[idx] + delta - C >= 0) {
             take = V[idx] + delta - C;
             if (totalRemSum - V[idx] - delta >= C && idx != N-1) {
+                checkOk++;
                 take += DP(idx+1, 0, totalRemSum - V[idx] - delta);
+            } else {
+                checkFail++;
             }
-            checkOk++;
         } else {
             checkFail++;
         }
@@ -66,8 +68,8 @@ public class SolutionTryToOptimize {
         if (idx != N-1) {
             double newDelta = (1-S) * (delta + V[idx]);
             if (totalRemSum - V[idx] - delta + newDelta >= C) {
-                keep = DP(idx+1, newDelta, totalRemSum - V[idx] - delta + newDelta);
                 checkOk++;
+                keep = DP(idx+1, newDelta, totalRemSum - V[idx] - delta + newDelta);
             } else {
                 checkFail++;
             }
@@ -95,7 +97,7 @@ public class SolutionTryToOptimize {
         Random r = new Random();
         double S = minS + (maxS - minS) * r.nextDouble();
 
-        SolutionTryToOptimize sol = new SolutionTryToOptimize();
+        SolutionOptimizationsLastTestNotPassingDueSOException sol = new SolutionOptimizationsLastTestNotPassingDueSOException();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         System.out.println("testGenRandom5 output = " + Double.toString(output));
         System.out.println("reuse counter = " + Integer.toString(sol.reuseCounter) + " totalCalls = " + sol.totalCalls + " checkOk = " + sol.checkOk + " checkFail = " + sol.checkFail);
@@ -110,7 +112,7 @@ public class SolutionTryToOptimize {
         double S = 0.0;
         double delta = 0.0001;
         double expectedOutput = 25.0;
-        SolutionTryToOptimize sol = new SolutionTryToOptimize();
+        SolutionOptimizationsLastTestNotPassingDueSOException sol = new SolutionOptimizationsLastTestNotPassingDueSOException();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test1: " + (passed ? "passed" :  "failed"));
@@ -127,7 +129,7 @@ public class SolutionTryToOptimize {
         double S = 1.0;
         double delta = 0.0001;
         double expectedOutput = 9.0;
-        SolutionTryToOptimize sol = new SolutionTryToOptimize();
+        SolutionOptimizationsLastTestNotPassingDueSOException sol = new SolutionOptimizationsLastTestNotPassingDueSOException();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test2: " + (passed ? "passed" :  "failed"));
@@ -143,7 +145,7 @@ public class SolutionTryToOptimize {
         double S = 0.5;
         double delta = 0.0001;
         double expectedOutput = 17.0;
-        SolutionTryToOptimize sol = new SolutionTryToOptimize();
+        SolutionOptimizationsLastTestNotPassingDueSOException sol = new SolutionOptimizationsLastTestNotPassingDueSOException();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test3: " + (passed ? "passed" :  "failed"));
@@ -159,7 +161,7 @@ public class SolutionTryToOptimize {
         double S = 0.15;
         double delta = 0.0001;
         double expectedOutput = 20.10825;
-        SolutionTryToOptimize sol = new SolutionTryToOptimize();
+        SolutionOptimizationsLastTestNotPassingDueSOException sol = new SolutionOptimizationsLastTestNotPassingDueSOException();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test4: " + (passed ? "passed" :  "failed"));

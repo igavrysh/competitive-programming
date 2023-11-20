@@ -1,13 +1,16 @@
 import java.util.HashMap;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class SolutionStringKey {
+class SolutionInitialAttempt {
+
     public double getMaxExpectedProfit(int N, int[] V, int C, double S) {
-        HashMap<String, Double> mem = new HashMap<>();
+        HashMap<Long, Double> mem = new HashMap<>();
         return DP(0, 0, N, V, C, S, mem);
     }
 
-    private double DP(int idx, double delta, int N, int[] V, int C, double S, HashMap<String, Double> mem) {
-        String key = Integer.toString((int)(delta * Math.pow(10, 6))) +  "_" + Integer.toString(idx);
+    private double DP(int idx, double delta, int N, int[] V, int C, double S, HashMap<Long, Double> mem) {
+        Long key = (long)(delta * Math.pow(10, 7) * Math.pow(10, 6)) + idx;
         if (mem.get(key) != null) {
             return mem.get(key);
         }
@@ -31,6 +34,28 @@ public class SolutionStringKey {
         test2();
         test3();
         test4();
+        testGenRandom5();
+    }
+
+    public static void testGenRandom5() {
+        int N = 3000;
+        int minV = 0, maxV = 1000;
+        int minC = 1, maxC = 1000;
+        double minS = 0.0, maxS = 1.0;
+        int[] V = new int[N];
+    
+        for (int i = 0; i < N; i++) {
+            V[i] = ThreadLocalRandom.current().nextInt(minV, maxV + 1);
+        }
+
+        int C = ThreadLocalRandom.current().nextInt(minC, maxC + 1);
+        Random r = new Random();
+        double S = minC + (maxC - minC) * r.nextDouble();
+
+        SolutionInitialAttempt sol = new SolutionInitialAttempt();
+        double output = sol.getMaxExpectedProfit(N, V, C, S);
+        System.out.println("testGenRandom5 output = " + Double.toString(output));
+
     }
 
     public static void test1() {
@@ -40,10 +65,10 @@ public class SolutionStringKey {
         double S = 0.0;
         double delta = 0.0001;
         double expectedOutput = 25.0;
-        SolutionStringKey sol = new SolutionStringKey();
+        SolutionInitialAttempt sol = new SolutionInitialAttempt();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
-        System.out.println("SolutionStringKey test4: " + (passed ? "passed" :  "failed"));
+        System.out.println("test1: " + (passed ? "passed" :  "failed"));
     }
 
     public static void test2() {
@@ -53,10 +78,10 @@ public class SolutionStringKey {
         double S = 1.0;
         double delta = 0.0001;
         double expectedOutput = 9.0;
-        SolutionStringKey sol = new SolutionStringKey();
+        SolutionInitialAttempt sol = new SolutionInitialAttempt();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
-        System.out.println("SolutionStringKey test2: " + (passed ? "passed" :  "failed"));
+        System.out.println("test2: " + (passed ? "passed" :  "failed"));
     }
 
     public static void test3() {
@@ -66,10 +91,10 @@ public class SolutionStringKey {
         double S = 0.5;
         double delta = 0.0001;
         double expectedOutput = 17.0;
-        SolutionStringKey sol = new SolutionStringKey();
+        SolutionInitialAttempt sol = new SolutionInitialAttempt();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
-        System.out.println("SolutionStringKey test3: " + (passed ? "passed" :  "failed"));
+        System.out.println("test3: " + (passed ? "passed" :  "failed"));
     }
 
     public static void test4() {
@@ -79,10 +104,10 @@ public class SolutionStringKey {
         double S = 0.15;
         double delta = 0.0001;
         double expectedOutput = 20.10825;
-        SolutionStringKey sol = new SolutionStringKey();
+        SolutionInitialAttempt sol = new SolutionInitialAttempt();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
-        System.out.println("SolutionStringKey test4: " + (passed ? "passed" :  "failed"));
+        System.out.println("test4: " + (passed ? "passed" :  "failed"));
     }
 
 }
