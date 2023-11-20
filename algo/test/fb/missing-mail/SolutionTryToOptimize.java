@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -18,6 +19,12 @@ public class SolutionTryToOptimize {
     double S;
     HashMap<Long, Double> mem;
 
+    private int reuseCounter = 0;
+    private int totalCalls = 0;
+    private int checkOk = 0;
+    private int checkFail = 0;
+    private HashSet<Long> keys = new HashSet<>();
+
     public double getMaxExpectedProfit(int N, int[] V, int C, double S) {
         this.N = N;
         this.V = V;
@@ -34,9 +41,13 @@ public class SolutionTryToOptimize {
     }
 
     private double DP(int idx, double delta, double totalRemSum) {
-        Long key = (long)(delta * Math.pow(10, 6) * Math.pow(10, 6))  + idx;
+        totalCalls++;
+        Long key = (long)(delta * Math.pow(10, 4) * Math.pow(10, 6))  + idx;
+        keys.add(key);
+
 
         if (mem.get(key) != null) {
+            reuseCounter++;
             return mem.get(key);
         }
 
@@ -46,6 +57,9 @@ public class SolutionTryToOptimize {
             if (totalRemSum - V[idx] - delta >= C && idx != N-1) {
                 take += DP(idx+1, 0, totalRemSum - V[idx] - delta);
             }
+            checkOk++;
+        } else {
+            checkFail++;
         }
 
         double keep = 0; 
@@ -53,6 +67,9 @@ public class SolutionTryToOptimize {
             double newDelta = (1-S) * (delta + V[idx]);
             if (totalRemSum - V[idx] - delta + newDelta >= C) {
                 keep = DP(idx+1, newDelta, totalRemSum - V[idx] - delta + newDelta);
+                checkOk++;
+            } else {
+                checkFail++;
             }
         }
         
@@ -81,6 +98,9 @@ public class SolutionTryToOptimize {
         SolutionTryToOptimize sol = new SolutionTryToOptimize();
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         System.out.println("testGenRandom5 output = " + Double.toString(output));
+        System.out.println("reuse counter = " + Integer.toString(sol.reuseCounter) + " totalCalls = " + sol.totalCalls + " checkOk = " + sol.checkOk + " checkFail = " + sol.checkFail);
+        //System.out.println("keys = " + sol.keys.toString());
+
     }
 
     public static void test1() {
@@ -94,6 +114,10 @@ public class SolutionTryToOptimize {
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test1: " + (passed ? "passed" :  "failed"));
+        System.out.println("reuse counter = " + Integer.toString(sol.reuseCounter) + " totalCalls = " + sol.totalCalls + " checkOk = " + sol.checkOk + " checkFail = " + sol.checkFail);
+        System.out.println("keys = " + sol.keys.toString());
+
+
     }
 
     public static void test2() {
@@ -107,6 +131,9 @@ public class SolutionTryToOptimize {
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test2: " + (passed ? "passed" :  "failed"));
+        System.out.println("reuse counter = " + Integer.toString(sol.reuseCounter) + " totalCalls = " + sol.totalCalls + " checkOk = " + sol.checkOk + " checkFail = " + sol.checkFail);
+        System.out.println("keys = " + sol.keys.toString());
+
     }
 
     public static void test3() {
@@ -120,6 +147,9 @@ public class SolutionTryToOptimize {
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test3: " + (passed ? "passed" :  "failed"));
+        System.out.println("reuse counter = " + Integer.toString(sol.reuseCounter) + " totalCalls = " + sol.totalCalls + " checkOk = " + sol.checkOk + " checkFail = " + sol.checkFail);
+        System.out.println("keys = " + sol.keys.toString());
+
     }
 
     public static void test4() {
@@ -133,6 +163,8 @@ public class SolutionTryToOptimize {
         double output = sol.getMaxExpectedProfit(N, V, C, S);
         boolean passed = Math.abs(output - expectedOutput) < delta;
         System.out.println("test4: " + (passed ? "passed" :  "failed"));
+        System.out.println("reuse counter = " + Integer.toString(sol.reuseCounter) + " totalCalls = " + sol.totalCalls + " checkOk = " + sol.checkOk + " checkFail = " + sol.checkFail);
+        System.out.println("keys = " + sol.keys.toString());
     }
 
 }
