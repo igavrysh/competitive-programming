@@ -17,7 +17,7 @@ class SolutionTry4AnotherFailureToOptimize {
     int[] V;
     int C;
     double S;
-    HashMap<Long, Double> mem;
+    Double[][] mem;
     ArrayList<Double> maxAtLevels;
 
     int reuseCounter = 0;
@@ -31,7 +31,7 @@ class SolutionTry4AnotherFailureToOptimize {
         this.V = V;
         this.C = C;
         this.S = S;
-        this.mem = new HashMap<>();
+        this.mem = new Double[4000][10000];
 
         long totalRemSum = 0;
         for (int i = 0; i < V.length; i++) {
@@ -46,12 +46,16 @@ class SolutionTry4AnotherFailureToOptimize {
 
     private double DP(int idx, double delta, double totalRemSum, int lvl) {
         totalCalls++;
-        Long key = (long)(delta * Math.pow(10, 4) * Math.pow(10, 6))  + idx;
-        keys.add(key);
+        //Long key = (long)((long)(delta * Math.pow(10, 6)) * Math.pow(10, 4)) + idx;
+        //Long key = (long)((long)(idx * Math.pow(10, 3)) * Math.pow(10, 3)) + (long)(delta * Math.pow(10, 2));
 
-        if (mem.get(key) != null) {
+        //keys.add(key);
+        int key_idx = idx;
+        int key_delta = (int)delta;
+
+        if (mem[key_idx][key_delta] != null) {
             reuseCounter++;
-            return mem.get(key);
+            return mem[key_idx][key_delta];
         }
 
         if (maxAtLevels.size() == lvl+1) {
@@ -86,7 +90,7 @@ class SolutionTry4AnotherFailureToOptimize {
 
         maxAtLevels.set(lvl, Math.max(maxAtLevels.get(lvl), val));
 
-        mem.put(key, val);
+        mem[key_idx][key_delta] = val;
 
         return  val;
     }
