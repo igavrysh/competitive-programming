@@ -127,7 +127,7 @@ public class Solution {
         System.out.println("testRandom, output = " + String.valueOf(output));
         long elapsedTime = System.nanoTime() - startTime;
         System.out.println("Solution execution time for testRandom: "
-                + elapsedTime/1000000000.0 + "s");
+            + elapsedTime/1000000000.0 + "s");
     }
 
 }
