@@ -1,37 +1,46 @@
-import java.util.Arrays;
-
 class Solution {
 
-    public double getMaxDamageDealt(int N, int[] H, int[] D, int B) {
-        double[][] dh = new double[N][3];
-        for (int i = 0; i < N; i++) {
-            dh[i] = new double[]{D[i], H[i], D[i]*H[i]};
+    private void getMax(int idx, boolean isFirst, double[] globalMax, int N, int[] H, int[] D, int B) {
+        double currMax = 0;
+        int currMaxIdx = -1;
+        for (int idx2 = 0; idx2 < N; idx2++) {
+            if (idx == idx2) {
+                continue;
+            }
+
+            double val = 0;
+            if (isFirst) {
+                val = ((double) D[idx]) * H[idx]
+                        + ((double) H[idx]) * D[idx2]
+                        + ((double) D[idx2]) * H[idx2];
+            } else {
+                val = ((double) D[idx2]) * H[idx2]
+                        + ((double) H[idx2]) * D[idx]
+                        + ((double) D[idx]) * H[idx];
+            }
+
+            if (currMax < val) {
+                currMax = val;
+                currMaxIdx = idx2;
+            }
         }
-        Arrays.sort(dh, (double[] a1, double[] a2) -> -1*Double.compare(a1[2], a2[2]));
-        return Math.max(findMax(0, 1, N, dh), findMax(1, 0, N, dh)) / B;
+
+        if (currMaxIdx != -1) {
+            if (globalMax[0] < currMax) {
+                globalMax[0] = currMax;
+                getMax(currMaxIdx, !isFirst, globalMax, N, H, D, B);
+            } else {
+                return;
+            }
+        }
     }
 
-    private double findMax(int i, int j, int N, double[][] dh) {
-        double val = dh[i][2] + dh[j][2] + dh[j][0] * dh[i][1];
-
-        int inc = i+1 != j ? 1 : 2;
-        double valIPlus = 0, valJPlus = 0;
-        if (i+inc < N) {
-            valIPlus = dh[i+inc][2] + dh[j][2] + dh[j][0] * dh[i+inc][1];
-            if (val > valIPlus) {
-                valIPlus = findMax(i+inc, j, N, dh);
-            }
-        }
-
-        inc = j+1 != i ? 1 : 2;
-        if (j+inc < N) {
-            valJPlus = dh[i][2] + dh[j+inc][2] + dh[j+inc][0] * dh[i][1];
-            if (val > valIPlus) {
-                valIPlus = findMax(i, j+inc, N, dh);
-            }
-        }
-
-        return Math.max(val, Math.max(valIPlus, valJPlus));
+    public double getMaxDamageDealt(int N, int[] H, int[] D, int B) {
+        double[] globalMax1 = { 0D };
+        double[] globalMax2 = { 0D };
+        getMax(0, true, globalMax1, N, H, D, B);
+        getMax(0, false, globalMax2, N, H, D, B);
+        return Math.max(globalMax1[0], globalMax2[0]) / B;
     }
 
     public static void main(String[] args) {
@@ -42,8 +51,8 @@ class Solution {
 
     public static void test1() {
         int N = 3;
-        int[] H = {2,1,4};
-        int[] D = {3,1,2};
+        int[] H = { 2, 1, 4 };
+        int[] D = { 3, 1, 2 };
         int B = 4;
         double expectedOutput = 6.5;
         double delta = Math.pow(10, -6);
@@ -55,8 +64,8 @@ class Solution {
 
     public static void test2() {
         int N = 4;
-        int[] H = {1,1,2,100};
-        int[] D = {1,2,1,3};
+        int[] H = { 1, 1, 2, 100 };
+        int[] D = { 1, 2, 1, 3 };
         int B = 8;
         double expectedOutput = 62.75;
         double delta = Math.pow(10, -6);
@@ -68,8 +77,8 @@ class Solution {
 
     public static void test3() {
         int N = 4;
-        int[] H = {1,1,2,3};
-        int[] D = {1,2,1,100};
+        int[] H = { 1, 1, 2, 3 };
+        int[] D = { 1, 2, 1, 100 };
         int B = 8;
         double expectedOutput = 62.75;
         double delta = Math.pow(10, -6);
