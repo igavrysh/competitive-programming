@@ -38,7 +38,11 @@ class Solution {
     private Stack<Integer> dfsPostOrder(int N, HashMap<Integer, ArrayList<Integer>> G) {
         Stack<Integer> order = new Stack<>();
         boolean[] visited = new boolean[N];
-        dfsPostOrderHelper(0, visited, order, N, G);
+        for (int v = 0; v < N; v++) {
+            if (!visited[v]) {
+                dfsPostOrderHelper(v, visited, order, N, G);
+            }
+        }
         return order;
     }
 
@@ -52,7 +56,7 @@ class Solution {
                 dfsPostOrderHelper(w, visited, order, N, G);
             }
         }
-        order.add(v);
+        order.push(v);
     }
 
     private void KosarajuSCC( int N, HashMap<Integer, ArrayList<Integer>> G, int[] id, int[] weight) {
@@ -60,7 +64,8 @@ class Solution {
         Stack<Integer> order = dfsPostOrder(N, revG);
         boolean[] visited = new boolean[N];
         boolean[] visited2 = new boolean[N];
-        for (Integer s : order) {
+        while (!order.isEmpty()) {
+            Integer s = order.pop();
             if (!visited[s]) {
                 int[] counter = {0};
                 dfsKosarajuSCC(s, visited, id, weight, s, N, G, counter, false);
@@ -95,11 +100,51 @@ class Solution {
         for (int i = 0; i < N; i++) {
             weight[i] *= -1;
         }
-        return 0;
+
+        ArrayList<Integer> adj = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            adj.add(i);
+        }
+        G.put(N, adj);
+
+        for (int i = 0; i < N; i++) {
+            ArrayList<Integer> adj2 = G.get(i);
+            adj2.add(N+1);
+        }
+        G.put(N+1, new ArrayList<>());
+
+        id[N] = N;
+        id[N+1] = N+1;
+        weight[N] = 0;
+        weight[N+1] = 0;
+
+        int[] dist = new int[N+2];
+        for (int i = 0; i < N+2; i++) {
+            dist[i] = Integer.MAX_VALUE;
+        }
+
+        Stack<Integer> order = dfsPostOrder(N+2, G);
+
+        dist[N] = 0;
+        while (!order.isEmpty()) {
+            Integer v = order.pop();
+            Integer vP = id[v];
+            for (Integer w : G.get(v)) {
+                Integer wP = id[w];
+                Integer weightWP = wP != vP ? weight[wP] : 0;
+                if (dist[wP] > dist[vP] + weightWP) {
+                    dist[wP] = dist[vP] + weightWP;
+                }
+            }
+        }
+
+        return -1*dist[N+1];
     }
 
     public static void main(String[] args) {
         test1();
+        test2();
+        test3();
     }
 
     public static void test1() {
@@ -112,5 +157,29 @@ class Solution {
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test1: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test2() {
+        int N = 5;
+        int M = 6;
+        int[] A = {3,5,3,1,3,2};
+        int[] B = {2,1,2,4,5,4};
+        int expectedOutput = 4;
+        Solution sol = new Solution();
+        int output = sol.getMaxVisitableWebpages(N, M, A, B);
+        boolean passed = output == expectedOutput;
+        System.out.println("test2: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test3() {
+        int N = 10;
+        int M = 9;
+        int[] A = {3,2,5,9,10,3,3,9,4};
+        int[] B = {9,5,7,8, 6,4,5,3,9};
+        int expectedOutput = 5;
+        Solution sol = new Solution();
+        int output = sol.getMaxVisitableWebpages(N, M, A, B);
+        boolean passed = output == expectedOutput;
+        System.out.println("test3: " + (passed ? "passed" : "failed"));
     }
 }
