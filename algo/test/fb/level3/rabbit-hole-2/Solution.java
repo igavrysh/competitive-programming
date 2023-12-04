@@ -18,7 +18,9 @@ class Solution {
         return G;
     }
 
-    private HashMap<Integer, ArrayList<Integer>> reverse(int N, HashMap<Integer, ArrayList<Integer>> G) {
+    private HashMap<Integer, ArrayList<Integer>> reverse(int N, HashMap<Integer, 
+        ArrayList<Integer>> G
+    ) {
         HashMap<Integer, ArrayList<Integer>> revG = new HashMap<>();
         for (int i = 0; i < N; i++) {
             revG.put(i, new ArrayList<>());
@@ -59,7 +61,9 @@ class Solution {
         order.push(v);
     }
 
-    private void KosarajuSCC( int N, HashMap<Integer, ArrayList<Integer>> G, int[] id, int[] weight) {
+    private void KosarajuSCC( int N, HashMap<Integer, ArrayList<Integer>> G, int[] id, 
+        int[] weight
+    ) {
         HashMap<Integer, ArrayList<Integer>> revG = reverse(N, G);
         Stack<Integer> order = dfsPostOrder(N, revG);
         boolean[] visited = new boolean[N];
@@ -142,9 +146,14 @@ class Solution {
     }
 
     public static void main(String[] args) {
+        test8();
+        test7();
+        test6();
         test1();
         test2();
         test3();
+        test4();
+        test5();
     }
 
     public static void test1() {
@@ -182,4 +191,66 @@ class Solution {
         boolean passed = output == expectedOutput;
         System.out.println("test3: " + (passed ? "passed" : "failed"));
     }
+
+    public static void test4() {
+        int N = 2;
+        int M = 2;
+        int[] A = {1,2};
+        int[] B = {1,2};
+        int expectedOutput = 1;
+        Solution sol = new Solution();
+        int output = sol.getMaxVisitableWebpages(N, M, A, B);
+        boolean passed = output == expectedOutput;
+        System.out.println("test4: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test5() {
+        int N = 2;
+        int M = 1;
+        int[] A = {1};
+        int[] B = {2};
+        int expectedOutput = 2;
+        Solution sol = new Solution();
+        int output = sol.getMaxVisitableWebpages(N, M, A, B);
+        boolean passed = output == expectedOutput;
+        System.out.println("test5: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test6() {
+        int N = 8;
+        int M = 12;
+        int[] A = {1,2,3,2,4,3,5,6,8,7,8,5};
+        int[] B = {2,3,4,4,1,5,7,7,5,8,6,6};
+        int expectedOutput = 8;
+        Solution sol = new Solution();
+        int output = sol.getMaxVisitableWebpages(N, M, A, B);
+        boolean passed = output == expectedOutput;
+        System.out.println("test6: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test7() {
+        int N = 6;
+        int M = 6;
+        int[] A = {1,1,1,1,1};
+        int[] B = {2,3,4,5,6};
+        int expectedOutput = 2;
+        Solution sol = new Solution();
+        int output = sol.getMaxVisitableWebpages(N, M, A, B);
+        boolean passed = output == expectedOutput;
+        System.out.println("test7: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test8() {
+        int N = 6;
+        int M = 6;
+        int[] A = {1,1,1,1,1,6};
+        int[] B = {2,3,4,5,6,1};
+        int expectedOutput = 3;
+        Solution sol = new Solution();
+        int output = sol.getMaxVisitableWebpages(N, M, A, B);
+        boolean passed = output == expectedOutput;
+        System.out.println("test8: " + (passed ? "passed" : "failed"));
+    }
+
+
 }
