@@ -1,6 +1,4 @@
-
 class Solution {
-
     public int getMinProblemCount(int N, int[] S) {
         boolean remOne = false, remTwo = false;
         boolean hasOne = false;

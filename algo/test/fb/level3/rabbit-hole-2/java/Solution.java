@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 class Solution {
 
@@ -73,7 +75,7 @@ class Solution {
             if (!visited[s]) {
                 int[] counter = {0};
                 dfsKosarajuSCC(s, visited, id, weight, s, N, G, counter, false);
-                dfsKosarajuSCC(s, visited2, id, weight, s, N, G, counter, true);
+                dfsKosarajuSCC(s, visited2, id, weight, -1, N, G, counter, true);
             }
         }
     }
@@ -110,16 +112,15 @@ class Solution {
             adj.add(i);
         }
         G.put(N, adj);
+        id[N] = N;
+        weight[N] = 0;
 
         for (int i = 0; i < N; i++) {
             ArrayList<Integer> adj2 = G.get(i);
             adj2.add(N+1);
         }
         G.put(N+1, new ArrayList<>());
-
-        id[N] = N;
         id[N+1] = N+1;
-        weight[N] = 0;
         weight[N+1] = 0;
 
         int[] dist = new int[N+2];
@@ -141,11 +142,12 @@ class Solution {
                 }
             }
         }
-
         return -1*dist[N+1];
     }
 
     public static void main(String[] args) {
+        testGenerateRandom();
+        /*
         test8();
         test7();
         test6();
@@ -154,6 +156,9 @@ class Solution {
         test3();
         test4();
         test5();
+        test9();
+        test10();
+        */
     }
 
     public static void test1() {
@@ -250,5 +255,88 @@ class Solution {
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test8: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test9() {
+        int N = 12;
+        int M = 1;
+        int[] A = {1};
+        int[] B = {2};
+        int expectedOutput = 2;
+        Solution sol = new Solution();
+        int output = sol.getMaxVisitableWebpages(N, M, A, B);
+        boolean passed = output == expectedOutput;
+        System.out.println("test9: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test10() {
+        int N = 12;
+        int M = 4;
+        int[] A = {1,2,3,4};
+        int[] B = {2,3,4,1};
+        int expectedOutput = 4;
+        Solution sol = new Solution();
+        int output = sol.getMaxVisitableWebpages(N, M, A, B);
+        boolean passed = output == expectedOutput;
+        System.out.println("test10: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testGenerateRandom() {
+        int N = 15;
+        int M = 150;
+
+        int[] A = new int[M];
+        int[] B = new int[M];
+
+        int expSize = 1000;
+        int currSize = 0;
+        boolean stop = false;
+
+        while (currSize++ < expSize && !stop) {
+            for (int i = 0; i < M; i++) {
+                boolean seen = true;
+                while (seen) {
+                    seen = false;
+                    int ai = ThreadLocalRandom.current().nextInt(1, N+1);
+                    int bi = ThreadLocalRandom.current().nextInt(1, N+1);
+
+                    for (int j = 0; j < i; j++) {
+                        if (A[j] == ai && B[j] == bi) {
+                            seen = true;
+                            break;
+                        }
+                    }
+
+                    if (!seen) {
+                        A[i] = ai;
+                        B[i] = bi;
+                    }
+                }
+            }
+
+            Solution sol1 = new Solution();
+            int outputSol1 = sol1.getMaxVisitableWebpages(N, M, A, B);
+
+            Solution2 sol2 = new Solution2();
+            int outputSol2 = sol2.getMaxVisitableWebpages(N, M, A, B);
+
+            if (outputSol1 != outputSol2) {
+                System.out.println("Not matching - ERROR!!!");
+                System.out.println("A: ");
+                for (int i = 0; i < M; i++) {
+                    System.out.print(A[i] + " ");
+                }
+
+                System.out.println("B: ");
+                for (int i = 0; i < M; i++) {
+                    System.out.print(B[i] + " ");
+                }
+
+                stop = true;
+            } else {
+                //System.out.println("testGenerateRandom matching!");
+            }
+        }
+
     }
 }
