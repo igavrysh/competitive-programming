@@ -4,7 +4,7 @@ import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
 
 
-class Solution {
+class SolutionBuggy {
 
     public HashMap<Integer, ArrayList<Integer>> graph(int N, int[] A, int[]B) {
         HashMap<Integer, ArrayList<Integer>> G = new HashMap<>();
@@ -20,9 +20,7 @@ class Solution {
         return G;
     }
 
-    public HashMap<Integer, ArrayList<Integer>> reverse(int N, HashMap<Integer, 
-        ArrayList<Integer>> G
-    ) {
+    public HashMap<Integer, ArrayList<Integer>> reverse(int N, HashMap<Integer, ArrayList<Integer>> G) {
         HashMap<Integer, ArrayList<Integer>> revG = new HashMap<>();
         for (int i = 0; i < N; i++) {
             revG.put(i, new ArrayList<>());
@@ -50,9 +48,7 @@ class Solution {
         return order;
     }
 
-    private void dfsPostOrderHelper(Integer v, boolean[] visited, Stack<Integer> order, 
-        int N, HashMap<Integer, ArrayList<Integer>> G
-    ) {
+    private void dfsPostOrderHelper(Integer v, boolean[] visited, Stack<Integer> order, int N, HashMap<Integer, ArrayList<Integer>> G) {
         visited[v] = true;
         ArrayList<Integer> adj = G.get(v);
         for (Integer w : adj) {
@@ -63,9 +59,7 @@ class Solution {
         order.push(v);
     }
 
-    private void KosarajuSCC( int N, HashMap<Integer, ArrayList<Integer>> G, int[] id, 
-        int[] weight
-    ) {
+    private void KosarajuSCC( int N, HashMap<Integer, ArrayList<Integer>> G, int[] id, int[] weight) {
         HashMap<Integer, ArrayList<Integer>> revG = reverse(N, G);
         Stack<Integer> order = dfsPostOrder(N, revG);
         boolean[] visited = new boolean[N];
@@ -88,7 +82,7 @@ class Solution {
             weight[v] = counter[0]; 
         } else {
             id[v] = newId;
-            counter[0]++;
+            counter[0] = counter[0] + 1;
         }
         ArrayList<Integer> adj = G.get(v);
         for (Integer w : adj) {
@@ -145,9 +139,94 @@ class Solution {
         return -1*dist[N+1];
     }
 
+    public static void testGenerateRandom() {
+        int N = 25;
+        int SAMPLE_SIZE = 1000;
+        int currSize = 0;
+        boolean stop = false;
+
+        long startS1, finishS1;
+        ArrayList<Double> ratiosS1 = new ArrayList<>();
+        long startS2, finishS2;
+        ArrayList<Double> ratiosS2 = new ArrayList<>();
+
+
+        for (int k = 1; k < N*(N-1) / 2; k++) {
+            int M = k;
+            int[] A = new int[M];
+            int[] B = new int[M];
+            if (stop) {
+                break;
+            }
+            currSize = 0;
+            while (currSize++ < SAMPLE_SIZE && !stop) {
+                for (int i = 0; i < M; i++) {
+                    boolean seen = true;
+                    while (seen) {
+                        seen = false;
+                        int ai = ThreadLocalRandom.current().nextInt(1, N+1);
+                        int bi = ThreadLocalRandom.current().nextInt(1, N+1);
+
+                        for (int j = 0; j < i; j++) {
+                            if (A[j] == ai && B[j] == bi) {
+                                seen = true;
+                                break;
+                            }
+                        }
+
+                        if (!seen) {
+                            A[i] = ai;
+                            B[i] = bi;
+                        }
+                    }
+                }
+
+                startS1 = System.nanoTime();
+                SolutionBuggy sol1 = new SolutionBuggy();
+                int outputSol1 = sol1.getMaxVisitableWebpages(N, M, A, B);
+                finishS1 = System.nanoTime();
+                ratiosS1.add((finishS1-startS1*1.0)/(N+M));
+
+                startS2 = System.nanoTime();
+                SolutionNegWeightLongestPath sol2 = new SolutionNegWeightLongestPath();
+                int outputSol2 = sol2.getMaxVisitableWebpages(N, M, A, B);
+                finishS2 = System.nanoTime();
+                ratiosS2.add((finishS2-startS2*1.0)/(N+M));
+
+                //System.out.println("---");
+                //printAB(A, B);
+                //System.out.println("sol1 output = " + outputSol1 + "; sol2 output = " + outputSol2);
+
+
+                if (outputSol1 != outputSol2) {
+                    System.out.println("Not matching - ERROR!!!");
+                    printAB(A, B);
+                    stop = true;
+                } else {
+                    //System.out.println("testGenerateRandom matching!");
+                }
+            }
+        }
+        int tmp = 1;
+    }
+
+    private static void printAB(int[] A, int[] B) {
+        System.out.print("A: ");
+        for (int i = 0; i < A.length; i++) {
+            System.out.print(A[i] + " ");
+        }
+
+        System.out.print("\nB: ");
+        for (int i = 0; i < B.length; i++) {
+            System.out.print(B[i] + " ");
+        }
+        System.out.println("");
+    }
+
     public static void main(String[] args) {
         testGenerateRandom();
         /*
+        test0();
         test8();
         test7();
         test6();
@@ -161,13 +240,25 @@ class Solution {
         */
     }
 
+    public static void test0() {
+        int N = 2;
+        int M = 2;
+        int[] A = {1,2};
+        int[] B = {2,1};
+        int expectedOutput = 2;
+        SolutionBuggy sol = new SolutionBuggy();
+        int output = sol.getMaxVisitableWebpages(N, M, A, B);
+        boolean passed = output == expectedOutput;
+        System.out.println("test0: " + (passed ? "passed" : "failed"));
+    }
+
     public static void test1() {
         int N = 4;
         int M = 4;
         int[] A = {1,2,3,4};
         int[] B = {4,1,2,1};
         int expectedOutput = 4;
-        Solution sol = new Solution();
+        SolutionBuggy sol = new SolutionBuggy();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test1: " + (passed ? "passed" : "failed"));
@@ -179,7 +270,7 @@ class Solution {
         int[] A = {3,5,3,1,3,2};
         int[] B = {2,1,2,4,5,4};
         int expectedOutput = 4;
-        Solution sol = new Solution();
+        SolutionBuggy sol = new SolutionBuggy();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test2: " + (passed ? "passed" : "failed"));
@@ -191,7 +282,7 @@ class Solution {
         int[] A = {3,2,5,9,10,3,3,9,4};
         int[] B = {9,5,7,8, 6,4,5,3,9};
         int expectedOutput = 5;
-        Solution sol = new Solution();
+        SolutionBuggy sol = new SolutionBuggy();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test3: " + (passed ? "passed" : "failed"));
@@ -203,7 +294,7 @@ class Solution {
         int[] A = {1,2};
         int[] B = {1,2};
         int expectedOutput = 1;
-        Solution sol = new Solution();
+        SolutionBuggy sol = new SolutionBuggy();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test4: " + (passed ? "passed" : "failed"));
@@ -215,7 +306,7 @@ class Solution {
         int[] A = {1};
         int[] B = {2};
         int expectedOutput = 2;
-        Solution sol = new Solution();
+        SolutionBuggy sol = new SolutionBuggy();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test5: " + (passed ? "passed" : "failed"));
@@ -227,7 +318,7 @@ class Solution {
         int[] A = {1,2,3,2,4,3,5,6,8,7,8,5};
         int[] B = {2,3,4,4,1,5,7,7,5,8,6,6};
         int expectedOutput = 8;
-        Solution sol = new Solution();
+        SolutionBuggy sol = new SolutionBuggy();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test6: " + (passed ? "passed" : "failed"));
@@ -239,7 +330,7 @@ class Solution {
         int[] A = {1,1,1,1,1};
         int[] B = {2,3,4,5,6};
         int expectedOutput = 2;
-        Solution sol = new Solution();
+        SolutionBuggy sol = new SolutionBuggy();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test7: " + (passed ? "passed" : "failed"));
@@ -251,7 +342,7 @@ class Solution {
         int[] A = {1,1,1,1,1,6};
         int[] B = {2,3,4,5,6,1};
         int expectedOutput = 3;
-        Solution sol = new Solution();
+        SolutionBuggy sol = new SolutionBuggy();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test8: " + (passed ? "passed" : "failed"));
@@ -263,7 +354,7 @@ class Solution {
         int[] A = {1};
         int[] B = {2};
         int expectedOutput = 2;
-        Solution sol = new Solution();
+        SolutionBuggy sol = new SolutionBuggy();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test9: " + (passed ? "passed" : "failed"));
@@ -275,68 +366,9 @@ class Solution {
         int[] A = {1,2,3,4};
         int[] B = {2,3,4,1};
         int expectedOutput = 4;
-        Solution sol = new Solution();
+        SolutionBuggy sol = new SolutionBuggy();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test10: " + (passed ? "passed" : "failed"));
-    }
-
-    public static void testGenerateRandom() {
-        int N = 15;
-        int M = 150;
-
-        int[] A = new int[M];
-        int[] B = new int[M];
-
-        int expSize = 1000;
-        int currSize = 0;
-        boolean stop = false;
-
-        while (currSize++ < expSize && !stop) {
-            for (int i = 0; i < M; i++) {
-                boolean seen = true;
-                while (seen) {
-                    seen = false;
-                    int ai = ThreadLocalRandom.current().nextInt(1, N+1);
-                    int bi = ThreadLocalRandom.current().nextInt(1, N+1);
-
-                    for (int j = 0; j < i; j++) {
-                        if (A[j] == ai && B[j] == bi) {
-                            seen = true;
-                            break;
-                        }
-                    }
-
-                    if (!seen) {
-                        A[i] = ai;
-                        B[i] = bi;
-                    }
-                }
-            }
-
-            Solution sol1 = new Solution();
-            int outputSol1 = sol1.getMaxVisitableWebpages(N, M, A, B);
-
-            Solution2 sol2 = new Solution2();
-            int outputSol2 = sol2.getMaxVisitableWebpages(N, M, A, B);
-
-            if (outputSol1 != outputSol2) {
-                System.out.println("Not matching - ERROR!!!");
-                System.out.println("A: ");
-                for (int i = 0; i < M; i++) {
-                    System.out.print(A[i] + " ");
-                }
-
-                System.out.println("B: ");
-                for (int i = 0; i < M; i++) {
-                    System.out.print(B[i] + " ");
-                }
-
-                stop = true;
-            } else {
-                //System.out.println("testGenerateRandom matching!");
-            }
-        }
-
     }
 }

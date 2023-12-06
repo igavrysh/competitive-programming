@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Stack;
 
-public class Solution2 {
+public class SolutionNegWeightLongestPath {
     public HashMap<Integer, HashSet<Integer>> graph(int N, int[] A, int[]B) {
         HashMap<Integer, HashSet<Integer>> G = new HashMap<>();
         for (int i = 0; i < N; i++) {
@@ -183,7 +183,7 @@ public class Solution2 {
         int[] A = {1,2,3,4};
         int[] B = {4,1,2,1};
         int expectedOutput = 4;
-        Solution2 sol = new Solution2();
+        SolutionNegWeightLongestPath sol = new SolutionNegWeightLongestPath();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test1: " + (passed ? "passed" : "failed"));
@@ -195,7 +195,7 @@ public class Solution2 {
         int[] A = {3,5,3,1,3,2};
         int[] B = {2,1,2,4,5,4};
         int expectedOutput = 4;
-        Solution2 sol = new Solution2();
+        SolutionNegWeightLongestPath sol = new SolutionNegWeightLongestPath();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test2: " + (passed ? "passed" : "failed"));
@@ -207,7 +207,7 @@ public class Solution2 {
         int[] A = {3,2,5,9,10,3,3,9,4};
         int[] B = {9,5,7,8, 6,4,5,3,9};
         int expectedOutput = 5;
-        Solution2 sol = new Solution2();
+        SolutionNegWeightLongestPath sol = new SolutionNegWeightLongestPath();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test3: " + (passed ? "passed" : "failed"));
@@ -219,7 +219,7 @@ public class Solution2 {
         int[] A = {1,2};
         int[] B = {1,2};
         int expectedOutput = 1;
-        Solution2 sol = new Solution2();
+        SolutionNegWeightLongestPath sol = new SolutionNegWeightLongestPath();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test4: " + (passed ? "passed" : "failed"));
@@ -231,7 +231,7 @@ public class Solution2 {
         int[] A = {1};
         int[] B = {2};
         int expectedOutput = 2;
-        Solution2 sol = new Solution2();
+        SolutionNegWeightLongestPath sol = new SolutionNegWeightLongestPath();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test5: " + (passed ? "passed" : "failed"));
@@ -243,7 +243,7 @@ public class Solution2 {
         int[] A = {1,2,3,2,4,3,5,6,8,7,8,5};
         int[] B = {2,3,4,4,1,5,7,7,5,8,6,6};
         int expectedOutput = 8;
-        Solution2 sol = new Solution2();
+        SolutionNegWeightLongestPath sol = new SolutionNegWeightLongestPath();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test6: " + (passed ? "passed" : "failed"));
@@ -255,7 +255,7 @@ public class Solution2 {
         int[] A = {1,1,1,1,1};
         int[] B = {2,3,4,5,6};
         int expectedOutput = 2;
-        Solution2 sol = new Solution2();
+        SolutionNegWeightLongestPath sol = new SolutionNegWeightLongestPath();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test7: " + (passed ? "passed" : "failed"));
@@ -267,7 +267,7 @@ public class Solution2 {
         int[] A = {1,1,1,1,1,6};
         int[] B = {2,3,4,5,6,1};
         int expectedOutput = 3;
-        Solution2 sol = new Solution2();
+        SolutionNegWeightLongestPath sol = new SolutionNegWeightLongestPath();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test8: " + (passed ? "passed" : "failed"));
@@ -279,7 +279,7 @@ public class Solution2 {
         int[] A = {1,2,3,4};
         int[] B = {2,3,4,1};
         int expectedOutput = 4;
-        Solution2 sol = new Solution2();
+        SolutionNegWeightLongestPath sol = new SolutionNegWeightLongestPath();
         int output = sol.getMaxVisitableWebpages(N, M, A, B);
         boolean passed = output == expectedOutput;
         System.out.println("test10: " + (passed ? "passed" : "failed"));
