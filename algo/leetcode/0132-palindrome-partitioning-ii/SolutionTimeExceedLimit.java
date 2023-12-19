@@ -1,4 +1,4 @@
-class Solution {
+class SolutionTimeExceedLimit {
     public int minCut(String s) {
         int N = s.length();
         boolean[][] isP = new boolean[N][N];
@@ -61,7 +61,7 @@ class Solution {
 
     public static void test1() {
         String s = "aapam";
-        Solution sol = new Solution();
+        SolutionTimeExceedLimit sol = new SolutionTimeExceedLimit();
         int expectedOutput = 2;
         int output = sol.minCut(s);
         boolean passed = output == expectedOutput;
@@ -70,7 +70,7 @@ class Solution {
 
     public static void test2() {
         String s = "aab";
-        Solution sol = new Solution();
+        SolutionTimeExceedLimit sol = new SolutionTimeExceedLimit();
         int expectedOutput = 1;
         int output = sol.minCut(s);
         boolean passed = output == expectedOutput;
@@ -79,7 +79,7 @@ class Solution {
 
     public static void test3() {
         String s = "a";
-        Solution sol = new Solution();
+        SolutionTimeExceedLimit sol = new SolutionTimeExceedLimit();
         int expectedOutput = 0;
         int output = sol.minCut(s);
         boolean passed = output == expectedOutput;
@@ -88,7 +88,7 @@ class Solution {
 
     public static void test4() {
         String s = "ab";
-        Solution sol = new Solution();
+        SolutionTimeExceedLimit sol = new SolutionTimeExceedLimit();
         int expectedOutput = 1;
         int output = sol.minCut(s);
         boolean passed = output == expectedOutput;
@@ -97,7 +97,7 @@ class Solution {
 
     public static void test5() {
         String s = "eegiicgaeadbcfacfhifdbiehbgejcaeggcgbahfcajfhjjdgj";
-        Solution sol = new Solution();
+        SolutionTimeExceedLimit sol = new SolutionTimeExceedLimit();
         int expectedOutput = 42;
         int output = sol.minCut(s);
         boolean passed = output == expectedOutput;
@@ -106,7 +106,7 @@ class Solution {
 
     public static void test6() {
         String s = "fiefhgdcdcgfeibggchibffahiededbbegegdfibdbfdadfbdbceaadeceeefiheibahgececggaehbdcgebaigfacifhdbecbebfhiefchaaheiichgdbheacfbhfiaffaecicbegdgeiaiccghggdfggbebdaefcagihbdhhigdgbghbahhhdagbdaefeccfiaifffcfehfcdiiieibadcedibbedgfegibefagfccahfcbegdfdhhdgfhgbchiaieehdgdabhidhfeecgfiibediiafacagigbhchcdhbaigdcedggehhgdhedaebchcafcdehcffdiagcafcgiidhdhedgaaegdchibhdaegdfdaiiidcihifbfidechicighbcbgibadbabieaafgeagfhebfaheaeeibagdfhadifafghbfihehgcgggffgbfccgafigieadfehieafaehaggeeaaaehggffccddchibegfhdfafhadgeieggiigacbfgcagigbhbhefcadafhafdiegahbhccidbeeagcgebehheebfaechceefdiafgeddhdfcadfdafbhiifigcbddahbabbeedidhaieagheihhgffbfbiacgdaifbedaegbhigghfeiahcdieghhdabdggfcgbafgibiifdeefcbegcfcdihaeacihgdchihdadifeifdgecbchgdgdcifedacfddhhbcagaicbebbiadgbddcbagbafeadhddaeebdgdebafabghcabdhdgieiahggddigefddccfccibifgbfcdccghgceigdfdbghdihechfabhbacifgbiiiihcgifhdbhfcaiefhccibebcahidachfabicbdabibiachahggffiibbgchbidfbbhfcicfafgcagaaadbacddfiigdiiffhbbehaaacidggfbhgeaghigihggfcdcidbfccahhgaffiibbhidhdacacdfebedbiacaidaachegffaiiegeabfdgdcgdacfcfhdcbfiaaifgfaciacfghagceaaebhhibbieehhcbiggabefbeigcbhbcidbfhfcgdddgdffghidbbbfbdhcgabaagddcebaechbbiegeiggbabdhgghciheabdibefdfghbfbfebidhicdhbeghebeddgfdfhefebiiebdchifbcbahaddhbfafbbcebiigadhgcfbebgbebhfddgdeehhgdegaeedfadegfeihcgeefbbagbbacbgggciehdhiggcgaaicceeaefgcehfhfdciaghcbbgdihbhecfbgffefhgiefgeiggcebgaacefidghdfdhiabgibchdicdehahbibeddegfciaeaffgbefbbeihbafbagagedgbdadfdggfeaebaidchgdbcifhahgfdcehbahhdggcdggceiabhhafghegfdiegbcadgaecdcdddfhicabdfhbdiiceiegiedecdifhbhhfhgdbhibbdgafhgdcheefdhifgddchadbdggiidhbhegbdfdidhhfbehibiaacdfbiagcbheabaaebfeaeafbgigiefeaeheabifgcfibiddadicheahgbfhbhddaheghddceedigddhchecaghdegigbegcbfgbggdgbbigegffhcfcbbebdchffhddbfhhfgegggibhafiebcfgeaeehgdgbccbfghagfdbdfcbcigbigaccecfehcffahiafgabfcaefbghccieehhhiighcfeabffggfchfdgcfhadgidabdceediefdccceidcfbfiiaidechhbhdccccaigeegcaicabbifigcghcefaafaefd";
-        Solution sol = new Solution();
+        SolutionTimeExceedLimit sol = new SolutionTimeExceedLimit();
         int expectedOutput = 1345;
         int output = sol.minCut(s);
         boolean passed = output == expectedOutput;
