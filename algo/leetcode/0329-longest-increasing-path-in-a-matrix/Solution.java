@@ -93,12 +93,17 @@ class Solution {
                 }
             }
         }
+        if (!marked[R*C+1]) {
+            dfs(R*C+1, marked, order, R, C, matrix);
+        }
         marked[curr] = true;
         order.push(curr);
     }
 
     public static void main(String[] args) {
         test1();
+        test2();
+        test3();
     }
 
     public static void test1() {
@@ -112,5 +117,29 @@ class Solution {
         int output = sol.longestIncreasingPath(matrix);
         boolean passed = output == expectedOutput;
         System.out.println("test1: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test2() {
+        int[][] matrix = {
+            {3,4,5},
+            {3,2,6},
+            {2,2,1}
+        };
+        int expectedOutput = 4;
+        Solution sol = new Solution();
+        int output = sol.longestIncreasingPath(matrix);
+        boolean passed = output == expectedOutput;
+        System.out.println("test2: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test3() {
+        int[][] matrix = {
+            {1}
+        };
+        int expectedOutput = 1;
+        Solution sol = new Solution();
+        int output = sol.longestIncreasingPath(matrix);
+        boolean passed = output == expectedOutput;
+        System.out.println("test3: " + (passed ? "passed" : "failed"));
     }
 }
