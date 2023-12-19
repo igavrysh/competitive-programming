@@ -1,40 +1,28 @@
+import java.util.Arrays;
+
 class Solution {
     public int candy(int[] ratings) {
-        int n = ratings.length;
-        int minRating = ratings[0];
-        int minI = 0;
-        for (int i = 0; i < n; i++) {
-            if (ratings[i] < minRating) {
-                minRating = ratings[i];
-                minI = i;
-            }
-        }
-
-        int amount = 1;
-        int prevCandy = 1;
-
-        for (int i=minI+1; i < n; i++) {
+        int N = ratings.length;
+        int[] cand = new int[N];
+        Arrays.fill(cand, 1);
+        for (int i = 1; i < N; i++) {
             if (ratings[i] > ratings[i-1]) {
-                amount += prevCandy+1;
-                prevCandy = prevCandy+1;
-            } else {
-                amount += 1;
-                prevCandy = 1;
+                cand[i] = cand[i-1]+1;
             }
         }
 
-        prevCandy = 1;
-        for (int i=minI-1; i >=0 ; i--) {
-            if (ratings[i] > ratings[i+1]) {
-                amount += prevCandy+1;
-                prevCandy = prevCandy+1;
-            } else {
-                amount += 1;
-                prevCandy = 1;
+        for (int i = N-1; i > 0; i--) {
+            if (ratings[i-1] > ratings[i]) {
+                cand[i-1] = Math.max(cand[i-1], cand[i]+1);
             }
         }
-        
-        return amount;
+
+        int res = 0;
+        for (int i = 0; i < N; i++) {
+            res += cand[i];
+        }
+
+        return res;        
     }
 
     public static void main(String[] args) {
@@ -48,7 +36,7 @@ class Solution {
         Solution s = new Solution();
         int output = s.candy(ratings);
         boolean passed = output == expOutput;
-        System.out.println("test1: " + (passed ? "passed" : "faile"));
+        System.out.println("test1: " + (passed ? "passed" : "failed"));
     }
 
     public static void test2() {
@@ -57,7 +45,7 @@ class Solution {
         Solution s = new Solution();
         int output = s.candy(ratings);
         boolean passed = output == expOutput;
-        System.out.println("test2: " + (passed ? "passed" : "faile"));
+        System.out.println("test2: " + (passed ? "passed" : "failed"));
     }
 
     public static void test3() {
