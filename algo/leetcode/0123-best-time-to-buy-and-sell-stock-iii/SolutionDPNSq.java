@@ -1,6 +1,4 @@
-
-public class Solution {
-
+public class SolutionDPNSq {
 	public int maxProfit(int[] prices) {
 		int N = prices.length;
 		int[][] DP = new int[2][N];
@@ -18,14 +16,35 @@ public class Solution {
 
 	public static void main(String[] args) {
 		test1();
+		test2();
+		test3();
 	}
 
 	public static void test1() {
 		int[] prices = {3,3,5,0,0,3,1,4};
 		int expectedOutput = 6;
-		Solution sol = new Solution();
+		SolutionDPNSq sol = new SolutionDPNSq();
 		int output = sol.maxProfit(prices);
 		boolean passed = output == expectedOutput;
 		System.out.println("test1: " + (passed ? "passed" : "failed"));
 	}
+
+	public static void test2() {
+		int[] prices = {1,2,3,4,5};
+		int expectedOutput = 4;
+		SolutionDPNSq sol = new SolutionDPNSq();
+		int output = sol.maxProfit(prices);
+		boolean passed = output == expectedOutput;
+		System.out.println("test2: " + (passed ? "passed" : "failed"));
+	}
+
+	public static void test3() {
+		int[] prices = {7,6,4,3,1};
+		int expectedOutput = 0;
+		SolutionDPNSq sol = new SolutionDPNSq();
+		int output = sol.maxProfit(prices);
+		boolean passed = output == expectedOutput;
+		System.out.println("test3: " + (passed ? "passed" : "failed"));
+	}
+
 }
