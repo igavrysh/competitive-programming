@@ -1,33 +1,23 @@
-class Solution {
+public class Solution {
     public int findMin(int[] nums) {
-        return BS(0, nums.length-1, nums);
-    }
+        int l = 0, r = nums.length - 1;
+        while (l < r) {
+            int m = (l + r) / 2;
 
-    private int BS(int l, int r, int[] nums) {
-        while (r-l > 1) {
-            int m = l + (r-l)/2;
-
-            if (nums[l] < nums[m] && nums[m] < nums[r]) {
+            // Can be skipped - small optimization for early exit
+            if (nums[m] > nums[l] && nums[r] > nums[m]) {
                 return nums[l];
             }
 
-            if (nums[l] > nums[m] && nums[m] < nums[r]) {
+            if (nums[m] > nums[r]) {
+                l = m + 1;
+            } else if (nums[m] < nums[r]) {
                 r = m;
-                continue;
+            } else {
+                r--;
             }
-
-            if (nums[l] < nums[m] && nums[m] > nums[r]) {
-                l = m+1;
-                continue;
-            }
-
-            int resL = BS(l, m, nums);
-            int resR = BS(m+1, r, nums);
-            return Math.min(resL, resR);
-
         }
-
-        return Math.min(nums[l], nums[r]);
+        return nums[l];
     }
 
     public static void main(String[] args) {
@@ -72,6 +62,4 @@ class Solution {
         boolean passed = output == exepctedOutput;
         System.out.println("test4: " + (passed ? "passed" : "failed"));
     }
-
-    
 }
