@@ -10,11 +10,15 @@ class Solution {
                 if (j < C-1) {
                     if (toSurvive + dungeon[i][j] < DP[i][j+1]) {
                         min = Math.min(min, DP[i][j+1]-(toSurvive + dungeon[i][j]));
+                    } else {
+                        min = 0;
                     }
                 }
                 if (i < R-1) {
                     if (toSurvive + dungeon[i][j] < DP[i+1][j]) {
                         min = Math.min(min, DP[i+1][j]-(toSurvive + dungeon[i][j]));
+                    } else {
+                        min = 0;
                     }
                 }
                 DP[i][j] = toSurvive + (min < Integer.MAX_VALUE ? min : 0);
@@ -24,10 +28,11 @@ class Solution {
     }
 
     public static void main(String[] args) {
+        test4();
+
         test1();
         test2();
         test3();
-        test4();
     }
 
     public static void test1() {
