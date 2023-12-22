@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class SolutionNSqNotPassing {
+public class SolutionNSq {
     public String shortestPalindrome(String s) {
         if (s.length() == 0) {
             return s;
@@ -19,15 +19,18 @@ public class SolutionNSqNotPassing {
 
         int rPnt = N-1;
         int lPnt = 0;
+        int addedSymbols = 0;
 
-        while (!equal(chrs, lHashS, lHashE, rHashS, rHashE)) {
+        while (!equal(chrs, lHashS + addedSymbols, lHashE, rHashS-addedSymbols, rHashE)) {
             if (chrs.size() % 2 == 0) {
                 Character chrToAddToL = chrs.get(rPnt);
                 chrs.add(lPnt, chrToAddToL);
+                addedSymbols++;
                 partSize++;
             } else {
                 Character chrToAddToL = chrs.get(rPnt);
                 chrs.add(lPnt, chrToAddToL);
+                addedSymbols++;
             }
 
             lPnt++;
@@ -71,7 +74,7 @@ public class SolutionNSqNotPassing {
     public static void test9() {
         String s = "ababbbabbaba";
         String expOutput = "ababbabbbababbbabbaba";
-        SolutionNSqNotPassing sol = new SolutionNSqNotPassing();
+        SolutionNSq sol = new SolutionNSq();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test9: " + (passed ? "passed" : "failed"));
@@ -80,7 +83,7 @@ public class SolutionNSqNotPassing {
     public static void test7() {
         String s = "abc";
         String expOutput = "cbabc";
-        SolutionNSqNotPassing sol = new SolutionNSqNotPassing();
+        SolutionNSq sol = new SolutionNSq();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test7: " + (passed ? "passed" : "failed"));
@@ -89,7 +92,7 @@ public class SolutionNSqNotPassing {
     public static void test8() {
         String s = "bbc";
         String expOutput = "cbbc";
-        SolutionNSqNotPassing sol = new SolutionNSqNotPassing();
+        SolutionNSq sol = new SolutionNSq();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test8: " + (passed ? "passed" : "failed"));
@@ -98,7 +101,7 @@ public class SolutionNSqNotPassing {
     public static void test5() {
         String s = "ab";
         String expOutput = "bab";
-        SolutionNSqNotPassing sol = new SolutionNSqNotPassing();
+        SolutionNSq sol = new SolutionNSq();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test5: " + (passed ? "passed" : "failed"));
@@ -107,7 +110,7 @@ public class SolutionNSqNotPassing {
     public static void test6() {
         String s = "abcdef";
         String expOutput = "fedcbabcdef";
-        SolutionNSqNotPassing sol = new SolutionNSqNotPassing();
+        SolutionNSq sol = new SolutionNSq();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test6: " + (passed ? "passed" : "failed"));
@@ -116,7 +119,7 @@ public class SolutionNSqNotPassing {
     public static void test4() {
         String s = "abcd";
         String expOutput = "dcbabcd";
-        SolutionNSqNotPassing sol = new SolutionNSqNotPassing();
+        SolutionNSq sol = new SolutionNSq();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test4: " + (passed ? "passed" : "failed"));
@@ -125,7 +128,7 @@ public class SolutionNSqNotPassing {
     public static void test1() {
         String s = "aacecaaa";
         String expOutput = "aaacecaaa";
-        SolutionNSqNotPassing sol = new SolutionNSqNotPassing();
+        SolutionNSq sol = new SolutionNSq();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test1: " + (passed ? "passed" : "failed"));
@@ -134,7 +137,7 @@ public class SolutionNSqNotPassing {
     public static void test2() {
         String s = "a";
         String expOutput = "a";
-        SolutionNSqNotPassing sol = new SolutionNSqNotPassing();
+        SolutionNSq sol = new SolutionNSq();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test2: " + (passed ? "passed" : "failed"));
@@ -143,7 +146,7 @@ public class SolutionNSqNotPassing {
     public static void test3() {
         String s = "";
         String expOutput = "";
-        SolutionNSqNotPassing sol = new SolutionNSqNotPassing();
+        SolutionNSq sol = new SolutionNSq();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test3: " + (passed ? "passed" : "failed"));
