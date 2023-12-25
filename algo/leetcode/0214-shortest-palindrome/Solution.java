@@ -1,13 +1,6 @@
 import java.util.ArrayList;
 
 class Solution {
-    
-    private int insertIntoLeftHash(char chr, int insertPosFromLeft, int inputHash) {
-        int splitter = (int)Math.pow(27, insertPosFromLeft);
-        int lside = inputHash % splitter;
-        int rside = inputHash / splitter;
-        return lside + h(chr) * splitter + rside * splitter * 27;
-    }
 
     public String shortestPalindrome(String s) {
         if (s.length() == 0) {
@@ -25,34 +18,57 @@ class Solution {
         int rHashS = N-1;
         int rHashE = rHashS - (partSize-1);
 
-        int lHash = hashCode(chrs, lHashS, lHashE);
-        int rHash = hashCode(chrs, rHashS, rHashE);
+        long lHash = hashCode(chrs, lHashS, lHashE);
+        long  rHash = hashCode(chrs, rHashS, rHashE);
 
         int rPnt = N-1;
         int lPnt = 0;
 
-        int mult = (int)Math.pow(27, rHashS-rHashE);
-
-        while (lHash != rHash || !equal(chrs, lHashS, lHashE, rHashS, rHashE)) {
+        // ... lHashS ... lHashEnd < or <= rHashE ... rHashS ...
+        while ((lHash != rHash || !equal(chrs, lHashS, lHashE, rHashS, rHashE)) && lHashS <= lHashE) {
             if (chrs.size() % 2 == 0) {
-                mult *= 27;
-                Character chrToAddToR = chrs.get(rHashE-1);
-                rHash += h(chrToAddToR) * mult;
+                Character chrToAddToR = chrs.get(lHashE);
                 Character chrToAddToL = chrs.get(rPnt);
                 chrs.add(lPnt, chrToAddToL);
-                lHash = insertIntoLeftHash(chrToAddToL, lPnt, lHash);
-                partSize++;
+
+                lHashS += 1;
+                lHashE += 1;
+
+                int h_chrToAddToL = h(chrToAddToL);
+                rHash = rHash - h(chrToAddToL);
+                rHash = rHash / 27;
+
+                long tmp = hashCode(chrs, rHashS, rHashE+1);
+
+                rHash = (rHash + h(chrToAddToR) * (long)powerWithMod(27, rHashS-rHashE, mod)) % mod;
             } else {
-                lHash = lHash % mult;
                 Character chrToAddToL = chrs.get(rPnt);
+                Character chrToRemoveFromL = chrs.get(lHashE);
+
                 chrs.add(lPnt, chrToAddToL);
-                lHash = insertIntoLeftHash(chrToAddToL, lPnt, lHash);
+
+                lHash = (lHash - powerWithMod(27, lHashE - lHashS, mod) * h(chrToRemoveFromL)) % mod;
+
+                lHashS += 1;
+
+                rHash = rHash - h(chrToAddToL);
+                rHash = rHash / 27;
+                rHashE += 1;
+            }
+            lPnt++;
+
+            String lHashStr = "";
+            for (int i = lHashS; i <= lHashE; i++) {
+                lHashStr += chrs.get(i);
             }
 
-            lPnt++;
-            lHashE = lHashS + (partSize-1);
-            rHashS = chrs.size()-1;
-            rHashE = rHashS - (partSize-1);
+            String rHashStr = "";
+            for (int i = rHashE; i <= rHashS; i++) {
+                rHashStr += chrs.get(i);
+            }
+            long lHashProxy = hashCode(chrs, lHashS, lHashE);
+            long rHashProxy = hashCode(chrs, rHashS, rHashE);
+            int t = 1;
         }
 
         StringBuilder sb = new StringBuilder();
@@ -63,11 +79,34 @@ class Solution {
         return sb.toString();
     }
 
-    private int h(Character chr) {
-        return (chr - 'a') + 1;
+    static long powerWithMod(long base, long exponent, long modulus) {
+        // result is initially 1, as any number raised to the power of 0 is 1
+        long result = 1;
+
+        // Update base if it is more than or equal to modulus
+        base = base % modulus;
+
+        while (exponent > 0) {
+            // If exponent is odd, multiply base with result
+            if (exponent % 2 == 1) {
+                result = (result * base) % modulus;
+            }
+
+            // exponent must be even now
+            exponent = exponent >> 1; // exponent divided by 2
+            base = (base * base) % modulus;
+        }
+
+        return result;
     }
 
-    private int hashCode(ArrayList<Character> chrs, int s, int e) {
+    private int h(Character chr) {
+        return ((chr - 'a') + 1);
+    }
+
+    private long mod = (long)Math.pow(10, 9) + 7;
+
+    private long hashCode(ArrayList<Character> chrs, int s, int e) {
         int incr = 0;
         if (e >= s) {
             incr = 1;
@@ -75,9 +114,11 @@ class Solution {
             incr = -1;
         }
         incr *= -1;
-        int h = 0;
+        long h = 0;
         for (int i = e; i != s+incr; i += incr) {
-            h = h * 27 + h(chrs.get(i));
+            char c = chrs.get(i);
+            int chr_hash = h(chrs.get(i));
+            h = (h * 27 + chr_hash) % mod;
         }
         return h;
     }
@@ -95,23 +136,40 @@ class Solution {
     }
 
     public static void main(String[] args) {
+        int t = Integer.MAX_VALUE - 10;
+        t = t * 27;
+        t = t/27;
+
+
+        test_big_sample();
+        test6_2();
+        test6();
+        test4();
+        test9();
         test8();
         test7();
-        test4();
-        test6();
         test5();
         test1();
         test2();
         test3();
     }
 
-    public static void test9() {
-        String s = "ababbbabbaba";
-        String expOutput = "ababbabbb aba|bbbabbaba";
+    public static void test_big_sample() {
+        String s = "abcdefghijklmnopqrstuvwzxy";
+        String expOutput = "zyxwvutsrqponmlkjihgfedcbabcdefghijklmnopqrstuvwzxy";
         Solution sol = new Solution();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
-        System.out.println("test7: " + (passed ? "passed" : "failed"));
+        System.out.println("test9: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test9() {
+        String s = "ababbbabbaba";
+        String expOutput = "ababbabbbababbbabbaba";
+        Solution sol = new Solution();
+        String output = sol.shortestPalindrome(s);
+        boolean passed = output.equals(expOutput);
+        System.out.println("test9: " + (passed ? "passed" : "failed"));
     }
 
     public static void test7() {
@@ -142,12 +200,21 @@ class Solution {
     }
 
     public static void test6() {
+        String s = "abcde";
+        String expOutput = "edcbabcde";
+        Solution sol = new Solution();
+        String output = sol.shortestPalindrome(s);
+        boolean passed = output.equals(expOutput);
+        System.out.println("test6: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test6_2() {
         String s = "abcdef";
         String expOutput = "fedcbabcdef";
         Solution sol = new Solution();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
-        System.out.println("test6: " + (passed ? "passed" : "failed"));
+        System.out.println("test6_2: " + (passed ? "passed" : "failed"));
     }
 
     public static void test4() {
