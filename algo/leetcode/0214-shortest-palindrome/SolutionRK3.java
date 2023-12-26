@@ -1,5 +1,4 @@
-class SolutionRabinKarp {
-
+public class SolutionRK3 {
     public String shortestPalindrome(String s) {
         if (s.length() <= 1) {
             return s;
@@ -7,42 +6,18 @@ class SolutionRabinKarp {
         char[] chrs = s.toCharArray();
         int N = chrs.length;
         int maxPolLen = 1;
-        int leftS = 0;
-        int leftE = 0;
-        int rightS = 1;
-        int rightE = 1;
-
-        int hashL = h(chrs[leftS]);
-        int hashR = h(chrs[rightS]);
-
+        int hashL = h(chrs[0]);
+        int hashR = h(chrs[0]);
         int power = 1;
+        for (int i = 1; i < N; i++) {
+            power = (power * 27) % mod;
 
-        for (rightE = 1; rightE < N; rightE++) {
-            if (hashL == hashR /*&& equal(chrs, leftS, leftE, rightS, rightE)*/ ) {
-                maxPolLen = (rightE - leftS + 1);
-            }
+            hashL = (hashL + h(chrs[i]) * power) % mod;
+            hashR = (hashR * 27 + h(chrs[i])) % mod;
 
-            if (rightE == N-1) {
-                continue;
+            if (hashL == hashR && equal(chrs, 0, i/2, i/2+(i%2==0?1:0), i)) {
+                maxPolLen = (i+1);
             }
-
-            if (rightE % 2 == 1) {
-                power = (power * 27) % mod;
-                hashR = (hashR * 27 + h(chrs[rightE+1])) % mod;
-                hashL = (hashL + h(chrs[rightS]) * power)%mod;
-                leftE++;
-            } else {
-                hashR = (hashR - h(chrs[rightS]) * power) % mod;
-                if (hashR < 0) {
-                    hashR += mod;
-                }
-                hashR = (27 * hashR + h(chrs[rightE+1]))%mod;
-                rightS++;
-            }
-            
-            //int proxyHashL = hashCode(chrs, leftS, leftE);
-            //int proxyHashR = hashCodeRev(chrs, rightS, rightE+1);
-            //int t = 1;
         }
 
         StringBuilder sb = new StringBuilder();
@@ -54,7 +29,6 @@ class SolutionRabinKarp {
             sb.insert(0, chrs[i]);
             sb.insert(sb.length(), chrs[i]);
         }
-
         return sb.toString();
     }
 
@@ -94,8 +68,8 @@ class SolutionRabinKarp {
     }
 
     public static void main(String[] args) {
-        test1();
         test0();
+        test1();
         test2();
         test3();
         test4();
@@ -110,7 +84,7 @@ class SolutionRabinKarp {
     public static void test1() {
         String s = "aacecaaa";
         String expOutput = "aaacecaaa";
-        SolutionRabinKarp sol = new SolutionRabinKarp();
+        SolutionRK3 sol = new SolutionRK3();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test1: " + (passed ? "passed" : "failed"));
@@ -121,7 +95,7 @@ class SolutionRabinKarp {
         String expOutput = "zyxwvutsrqponmlkjihgfedcbabcdefghijklmnopqrstuvwxyz";
         //String s = "abcd";
         //String expOutput = "dcbabcd";
-        SolutionRabinKarp sol = new SolutionRabinKarp();
+        SolutionRK3 sol = new SolutionRK3();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test0: " + (passed ? "passed" : "failed"));
@@ -130,7 +104,7 @@ class SolutionRabinKarp {
     public static void test9() {
         String s = "ababbbabbaba";
         String expOutput = "ababbabbbababbbabbaba";
-        SolutionRabinKarp sol = new SolutionRabinKarp();
+        SolutionRK3 sol = new SolutionRK3();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test9: " + (passed ? "passed" : "failed"));
@@ -139,7 +113,7 @@ class SolutionRabinKarp {
     public static void test7() {
         String s = "abc";
         String expOutput = "cbabc";
-        SolutionRabinKarp sol = new SolutionRabinKarp();
+        SolutionRK3 sol = new SolutionRK3();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test7: " + (passed ? "passed" : "failed"));
@@ -148,7 +122,7 @@ class SolutionRabinKarp {
     public static void test8() {
         String s = "bbc";
         String expOutput = "cbbc";
-        SolutionRabinKarp sol = new SolutionRabinKarp();
+        SolutionRK3 sol = new SolutionRK3();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test8: " + (passed ? "passed" : "failed"));
@@ -157,7 +131,7 @@ class SolutionRabinKarp {
     public static void test5() {
         String s = "ab";
         String expOutput = "bab";
-        SolutionRabinKarp sol = new SolutionRabinKarp();
+        SolutionRK3 sol = new SolutionRK3();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test5: " + (passed ? "passed" : "failed"));
@@ -166,7 +140,7 @@ class SolutionRabinKarp {
     public static void test6() {
         String s = "abcde";
         String expOutput = "edcbabcde";
-        SolutionRabinKarp sol = new SolutionRabinKarp();
+        SolutionRK3 sol = new SolutionRK3();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test6: " + (passed ? "passed" : "failed"));
@@ -175,7 +149,7 @@ class SolutionRabinKarp {
     public static void test6_2() {
         String s = "abcdef";
         String expOutput = "fedcbabcdef";
-        SolutionRabinKarp sol = new SolutionRabinKarp();
+        SolutionRK3 sol = new SolutionRK3();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test6_2: " + (passed ? "passed" : "failed"));
@@ -184,7 +158,7 @@ class SolutionRabinKarp {
     public static void test4() {
         String s = "abcd";
         String expOutput = "dcbabcd";
-        SolutionRabinKarp sol = new SolutionRabinKarp();
+        SolutionRK3 sol = new SolutionRK3();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test4: " + (passed ? "passed" : "failed"));
@@ -193,7 +167,7 @@ class SolutionRabinKarp {
     public static void test2() {
         String s = "a";
         String expOutput = "a";
-        SolutionRabinKarp sol = new SolutionRabinKarp();
+        SolutionRK3 sol = new SolutionRK3();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test2: " + (passed ? "passed" : "failed"));
@@ -202,7 +176,7 @@ class SolutionRabinKarp {
     public static void test3() {
         String s = "";
         String expOutput = "";
-        SolutionRabinKarp sol = new SolutionRabinKarp();
+        SolutionRK3 sol = new SolutionRK3();
         String output = sol.shortestPalindrome(s);
         boolean passed = output.equals(expOutput);
         System.out.println("test3: " + (passed ? "passed" : "failed"));
