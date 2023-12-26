@@ -17,7 +17,7 @@ class SolutionRabinKarp {
         int power = 1;
 
         for (rightE = 1; rightE < N; rightE++) {
-            if (hashL == hashR && equal(chrs, leftS, leftE, rightS, rightE)) {
+            if (hashL == hashR /*&& equal(chrs, leftS, leftE, rightS, rightE)*/ ) {
                 maxPolLen = (rightE - leftS + 1);
             }
 
@@ -39,9 +39,9 @@ class SolutionRabinKarp {
                 rightS++;
             }
             
-            int proxyHashL = hashCode(chrs, leftS, leftE);
-            int proxyHashR = hashCodeRev(chrs, rightS, rightE+1);
-            int t = 1;
+            //int proxyHashL = hashCode(chrs, leftS, leftE);
+            //int proxyHashR = hashCodeRev(chrs, rightS, rightE+1);
+            //int t = 1;
         }
 
         StringBuilder sb = new StringBuilder();
