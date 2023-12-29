@@ -36,7 +36,7 @@ class Solution {
             }
 
             if (!p1.isStarting && !p2.isStarting) {
-                return p1.height <= p2.height ? -1 : 0;
+                return p1.height <= p2.height ? -1 : 1;
             }
 
             if (!p1.isStarting && p2.isStarting) {
@@ -155,7 +155,7 @@ class Solution {
         if (matched) {
             for (int i = 0; i < output.size(); i++) {
                 for (int j = 0; j < output.get(i).size(); j++) {
-                    if (output.get(i).get(j) != expectedOutput.get(i).get(j)) {
+                    if (!output.get(i).get(j).equals(expectedOutput.get(i).get(j))) {
                         matched = false;
                         break;
                     }
