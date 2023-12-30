@@ -14,7 +14,8 @@ class Solution {
         put('=', 1);
         put('+', 2); put('-', 2);
         put('*', 3); put('/', 3);
-        put('^', 4);
+        put('!', 4);
+        put('^', 5);
     }};
 
     private static class Token {
@@ -39,21 +40,12 @@ class Solution {
         
         Integer num = 0;
         boolean isNumFilled = false;
-
-        //boolean isMinusOpAhead = false;
         
         for (int i = 0; i < str.length(); i++) {
             char chr = str.charAt(i);
             if (chr-'0' >= 0 && '9'-chr >= 0) {
                 isNumFilled = true;
-                
-                num = num * 10 + (chr-'0');
-                /* 
-                if (isMinusOpAhead) {
-                    isMinusOpAhead = false;
-                    num *= -1;
-                }
-                */
+                num = num * 10 + (chr-'0');                
             } else {
                 if (isNumFilled) {
                     res.add(new Token(num));
@@ -68,12 +60,12 @@ class Solution {
                     }
                     S.pop();
                 } else {
-                    /*
-                    if (chr == '-' && S.size() == 0) {
-                        isMinusOpAhead = true;
+                    if (chr == '-' && i > 0 && str.charAt(i-1) == '(' 
+                        && i < str.length()-1 && (str.charAt(i+1) == '(' || (str.charAt(i+1)-'0'>=0 && '9'-str.charAt(i+1)>=0))) {
+                        S.push('!');
                         continue;
                     }
-                    */
+                    
                     while (!S.isEmpty() && S.peek() != '(' && p.get(S.peek()) >= p.get(chr)) {
                         res.add(new Token(S.pop()));
                     }
@@ -101,6 +93,9 @@ class Solution {
                     int d1 = S.pop();
                     int d2 = S.pop();
                     S.push(d1+d2);
+                } else if (token.op == '!') {
+                    int d1 = S.pop();
+                    S.push(-1*d1);
                 } else if (token.op == '*') {
                     int d1 = S.pop();
                     int d2 = S.pop();
@@ -122,6 +117,8 @@ class Solution {
     }
 
     public static void main(String[] args) {
+        test11();
+        test10();
         test9();
         test8();
         test7();
@@ -131,6 +128,24 @@ class Solution {
         test3();
         test1();
         test2();
+    }
+
+    public static void test11() {
+        String s = "- (3 - (- (4 + 5) ) )";
+        int expOutput = -12;
+        Solution sol = new Solution();
+        int output = sol.calculate(s);
+        boolean passed = output == expOutput;
+        System.out.println("test11: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test10() {
+        String s = "2-(5-6)";
+        int expOutput = 3;
+        Solution sol = new Solution();
+        int output = sol.calculate(s);
+        boolean passed = output == expOutput;
+        System.out.println("test10: " + (passed ? "passed" : "failed"));
     }
 
     public static void test9() {
