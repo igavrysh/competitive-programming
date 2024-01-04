@@ -3,16 +3,16 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class SolutionSkipEval {
+    // 12+34+5-6+7*89
     public List<String> addOperators(String num, int target) {
         List<String> result = new ArrayList<>();
         BT(0, 0, 0, 1, false, false, num, target, new StringBuilder(), result);
         return result;
     }
 
-    private void BT(int pos, long val, long lastChange, long rightMult, boolean isMultInvolved, boolean lastChangeIsOp, 
+    private void BT(int pos, long val, long lastChange, long rightPart, boolean isMultInvolved, boolean lastChangeIsOp, 
         String num, int target, StringBuilder acc, List<String> result
     ) {
-        //String test = acc.toString();
         if (pos == num.length()) {
             if (val == target) {
                 result.add(acc.toString());
@@ -22,30 +22,29 @@ public class SolutionSkipEval {
 
         char chr = num.charAt(pos);
 
-
-        if (!lastChangeIsOp || (lastChangeIsOp && lastChange != 0)) {
+        if ((!lastChangeIsOp || (lastChangeIsOp && rightPart != 0)) && !(pos == 1 && !lastChangeIsOp && val == 0)) {
             long rollback = val - lastChange;
-            long rightMultNew = rightMult;
+            long rightMult = rightPart;
             long lastChangeNoOp = 0;
             if (!isMultInvolved) {
-                lastChangeNoOp = lastChange*10 + (chr-'0');
+                lastChangeNoOp = (Math.abs(lastChange*10) + (chr-'0')) * (lastChange >= 0 ? 1 : -1);
             } else {
-                long left = lastChangeNoOp / rightMult;
-                rightMultNew = rightMult*10 +(chr-'0'); 
-                lastChangeNoOp = left * rightMultNew;
+                long left = lastChange / rightPart;
+                rightMult = rightPart*10 +(chr-'0'); 
+                lastChangeNoOp = left * rightMult;
             }
             acc.append(chr);
-            BT(pos+1, rollback+lastChangeNoOp, lastChangeNoOp, rightMultNew, isMultInvolved, false, num, target, acc, result);
+            BT(pos+1, rollback+lastChangeNoOp, lastChangeNoOp, rightMult, isMultInvolved, false, num, target, acc, result);
             acc.deleteCharAt(acc.length()-1);
         }
 
         if (pos != 0) {
             acc.append(new char[]{'+', chr});
-            BT(pos+1, val+(chr-'0'), chr-'0', 1, false, true, num, target, acc, result);
+            BT(pos+1, val+(chr-'0'), chr-'0', chr-'0', false, true, num, target, acc, result);
             acc.delete(acc.length()-2, acc.length());
 
             acc.append(new char[]{'-', chr});
-            BT(pos+1, val-(chr-'0'), -(chr-'0'), 1, false, true, num, target, acc, result);
+            BT(pos+1, val-(chr-'0'), -(chr-'0'), chr-'0', false, true, num, target, acc, result);
             acc.delete(acc.length()-2, acc.length());
 
             acc.append(new char[]{'*', chr});
@@ -54,15 +53,16 @@ public class SolutionSkipEval {
             BT(pos+1, rollback+lastChangeOp, lastChangeOp, chr-'0', true, true, num, target, acc, result);
             acc.delete(acc.length()-2, acc.length());
         }
-
     }
 
     public static void main(String[] args) {
+        test7();
+        test6();
+        test5();
         test3();
         test1();
         test2();
         test4();
-        test5();
     }
 
     public static void test3() {
@@ -150,5 +150,26 @@ public class SolutionSkipEval {
         List<String> outputL = sol.addOperators(num, target);
         boolean passed = compAnL(expOutput, outputL);
         System.out.println("test5: " + (passed == true ? "true" : "false"));
+    }
+
+    public static void test6() {
+        String num = "00";
+        int target = 0;
+        String[] expOutput = {"0*0","0+0","0-0"};
+        SolutionSkipEval sol = new SolutionSkipEval();
+        List<String> outputL = sol.addOperators(num, target);
+        boolean passed = compAnL(expOutput, outputL);
+        System.out.println("test6: " + (passed == true ? "true" : "false"));
+    }
+
+    public static void test7() {
+        String num = "010";
+        int target = 0;
+        String[] expOutput = {"0*1*0","0*1+0","0*1-0","0*10","0+1*0","0-1*0"};
+        SolutionSkipEval sol = new SolutionSkipEval();
+        List<String> outputL = sol.addOperators(num, target);
+        boolean passed = compAnL(expOutput, outputL);
+        System.out.println("test7: " + (passed == true ? "true" : "false"));
+        
     }
 }
