@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolutionRecursiveNaive {
+public class SolutionBF {
 
     public int maxCoins(int[] nums) {
         List<Integer> list = new ArrayList<>();
@@ -31,7 +31,7 @@ public class SolutionRecursiveNaive {
     }
 
     private static void test1() {
-        SolutionRecursiveNaive s = new SolutionRecursiveNaive();
+        SolutionBF s = new SolutionBF();
         int output = s.maxCoins(new int[] { 3, 1, 5, 8 });
         boolean passed = output == 167;
         System.out.println("test1:" + (passed ? "passed" : "failed"));
