@@ -3,41 +3,65 @@ import java.util.List;
 
 class Solution {
     public List<Integer> countSmaller(int[] nums) {
-        List<Integer> c = new ArrayList<>(nums.length);
-        for (int i = 0; i < nums.length; i++) {
-            c.add(0);
+        int N = nums.length;
+        int[][] a = new int[N][3];
+        for (int i = 0; i < N; i++) {
+            a[i][0] = nums[i];
+            a[i][2] = i;
         }
 
-        if (nums.length > 1) {
-            mergeCount(0, nums.length-1, c, nums);
+        int[][] result = mergeCount(0, nums.length-1, a);
+        List<Integer> list = new ArrayList<>(a.length);
+        for (int i = 0; i < result.length; i++) {
+            list.add(0);
         }
-        return c;
+        for (int i = 0; i < result.length; i++) {
+            list.set(result[i][2], result[i][1]);
+        }
+        return list;
     }
 
-    private void mergeCount(int l, int r, List<Integer> c, int[] nums) {
+    private int[][] mergeCount(int l, int r, int[][] a) {
         if (r==l) {
-            return;
+            int res[][] = new int[1][3];
+            res[0] = a[l];
+            return res;
         }
 
         int m = l + (r-l+1)/2;
-        mergeCount(l, m-1, c, nums);
-        mergeCount(m, r, c, nums);
+        int[][] la = mergeCount(l, m-1, a);
+        int[][] ra = mergeCount(m, r, a);
 
-        int i = l;
-        int j = m;
-        while (i < m && j <= r) {
-            if (nums[i] > nums[j]) {
-                c.set(i, c.get(i) + c.get(j) + 1);
-                i++;
-            } else {
+        int[][] res = new int[la.length+ra.length][3];
+        int i = 0, j = 0;
+        while (i < la.length || j < ra.length) {
+            if (i == la.length) {
+                res[i+j] = ra[j];
                 j++;
+                continue;
+            }
+            
+            if (j == ra.length) {
+                res[i+j] = la[i];
+                i++;
+                continue;
+            }
+
+            if (la[i][0] <= ra[j][0]) {
+                res[i+j] = ra[j];
+                j++;
+            } else {
+                res[i+j] = la[i];
+                res[i+j][1] += (ra.length-j);
+                i++;
             }
         }
+        return res;
     }
 
     public static void main(String[] args) {
-        test3();
         test1();
+        test3();
         test2();
     }
 
