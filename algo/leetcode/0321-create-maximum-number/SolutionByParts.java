@@ -45,9 +45,9 @@ public class SolutionByParts {
                     int u = 1;
                     boolean n1IsGreater = true;
 
-                    if (n1+u<=lastN1Idx  && n2+u<=lastN2Idx) {
-                        n1IsGreater = lastN1IsGreater;
-                    } else {
+                    //if (n1+u<=lastN1Idx  && n2+u<=lastN2Idx) {
+                    //    n1IsGreater = lastN1IsGreater;
+                    //} else {
                         while (n1+u < nums1.length || n2+u < nums2.length) {
                             if (n1+u >= nums1.length) {
                                 n1IsGreater = false;
@@ -61,7 +61,7 @@ public class SolutionByParts {
                             }
                             u++;
                         }
-                    }
+                    //}
                     lastN1IsGreater = n1IsGreater;
                     lastN1Idx = Math.min(n1+u, nums1.length);
                     lastN2Idx = Math.min(n2+u, nums2.length);
