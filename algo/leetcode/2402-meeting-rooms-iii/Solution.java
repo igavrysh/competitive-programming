@@ -10,8 +10,8 @@ class Solution {
 		int[] fq = new int[n];
 		int max_fq = 0;
 		int max_fq_room = -1;
-		PriorityQueue<long[]> Q = new PriorityQueue<>(
-            (a, b) -> a[1] == b[1] ? Long.compare(a[0], b[0]) : Long.compare(a[1], b[1]));
+        PriorityQueue<long[]> Q = new PriorityQueue<>((a, b) -> a[1] == b[1] ? Long.compare(a[0], b[0]) : Long.compare(a[1], b[1]));
+		//PriorityQueue<long[]> Q = new PriorityQueue<>((a, b) -> a[1] == b[1] ? Long.compare(a[0], b[0]) : Long.compare(a[1], b[1]));
         PriorityQueue<Integer> availableRooms = new PriorityQueue<>(Integer::compare);
         for (int i = 0; i < n; i++) {
             availableRooms.add(i);
@@ -119,7 +119,7 @@ class Solution {
             e.printStackTrace();
         }
         int n = 10;
-        int expOutput = 1;
+        int expOutput = 0;
         Solution sol = new Solution();
         int output = sol.mostBooked(n, meetings);
         boolean passed = output == expOutput;
