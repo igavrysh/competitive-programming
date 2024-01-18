@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Random;
+
 class SolutionLeetcode {
 
 /*
@@ -37,6 +40,39 @@ k = 500\
             j++;
         }
         return j == nums2.length || (i < nums1.length && nums1[i] > nums2[j]);
+    }
+
+    public static void testMergeFunction() {
+        int[] Ns = {10, 50, 100, 250, 1000, 2500, 5000, 7500, 10000, 100000};
+        int SAMPLE = 10;
+        SolutionLeetcode sol = new SolutionLeetcode();
+        for (int n : Ns) {
+            long duration = 0;
+            for (int i = 0; i < SAMPLE; i++) {
+                int[] a1 = genRandomDigits(n);
+                int[] a2 = genRandomDigits(n);
+                long startTime = System.nanoTime();
+                sol.merge(a1, a2, a1.length + a2.length);
+                long endTime = System.nanoTime();
+                duration += (endTime - startTime);
+            }
+            duration = duration / SAMPLE;
+            System.out.println("for n = " + n + " avg execution duration = " + duration + " nanos; duration / n = " + (duration * 1.0 / n));
+        }
+    }
+
+    public static int[] genRandomDigits(int n) {
+        Random rand = new Random();
+        int[] a = new int[n];
+        for (int i = 0; i < a.length; i++) {
+            a[i] = rand.nextInt(10); // digits between 0 and 9
+        }
+        Arrays.sort(a);
+        return a;
+    }
+
+    public static void main(String[] args) {
+        testMergeFunction();
     }
 /*
 

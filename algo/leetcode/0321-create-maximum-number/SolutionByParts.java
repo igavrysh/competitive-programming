@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class SolutionByParts {
 
@@ -106,6 +107,7 @@ public class SolutionByParts {
     }
 
     public static void main(String[] args) {
+        testMergeFunction();
         test5();
         test2();
         test4();
@@ -166,5 +168,34 @@ public class SolutionByParts {
         int[] output = sol.maxNumber(nums1, nums2, k);
         boolean passed = Arrays.equals(output, expOutput);
         System.out.println("test5: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void testMergeFunction() {
+        int[] Ns = {10, 50, 100, 250, 1000, 2500, 5000, 7500, 10000, 100000};
+        int SAMPLE = 10;
+        SolutionByParts sol = new SolutionByParts();
+        for (int n : Ns) {
+            long duration = 0;
+            for (int i = 0; i < SAMPLE; i++) {
+                int[] a1 = genRandomDigits(n);
+                int[] a2 = genRandomDigits(n);
+                long startTime = System.nanoTime();
+                sol.merge(a1, a2);
+                long endTime = System.nanoTime();
+                duration += (endTime - startTime);
+            }
+            duration = duration / SAMPLE;
+            System.out.println("for n = " + n + " avg execution duration = " + duration + " nanos; duration / n = " + (duration * 1.0 / n));
+        }
+    }
+
+    public static int[] genRandomDigits(int n) {
+        Random rand = new Random();
+        int[] a = new int[n];
+        for (int i = 0; i < a.length; i++) {
+            a[i] = rand.nextInt(10); // digits between 0 and 9
+        }
+        Arrays.sort(a);
+        return a;
     }
 }
