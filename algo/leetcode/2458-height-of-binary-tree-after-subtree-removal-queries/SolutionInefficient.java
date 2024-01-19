@@ -1,7 +1,6 @@
 import java.util.Arrays;
 
 class SolutionInefficient {
-
     public int[] treeQueries(TreeNode root, int[] queries) {
         int n = dfsSize(root);
         int[][] acc = new int[n][5];
