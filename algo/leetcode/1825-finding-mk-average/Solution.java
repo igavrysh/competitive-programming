@@ -33,6 +33,10 @@ class MKAverage {
             tm.put(num, fq-1);
         }
     }
+
+    private void addToTreeMap(int num, TreeMap<Integer, Integer> tm) {
+        tm.put(num, m.getOrDefault(num, 0) + 1);
+    }
     
     public void addElement(int num) {
         if (q.size() == m) {
@@ -52,9 +56,19 @@ class MKAverage {
 
         q.offer(num);
 
-        middle.put(num, middle.getOrDefault(num, 1));
-        middleSize++;
-        middleSum += num;
+        middle.get
+
+        /* 
+
+        if (q.size() <= m) {
+            middle.put(num, middle.getOrDefault(num, 1));
+            middleSize++;
+            middleSum += num;
+        } else if (topSize == 0 || topSize)
+
+        if (topSize > 0 && top.firstKey())
+
+        
         if (middleSize > m-2*k) {
             if (topSize < k) {
                 Integer carry = middle.firstKey();
@@ -75,6 +89,8 @@ class MKAverage {
             }
             
         }
+
+        */
     }
     
     public int calculateMKAverage() {
