@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.*;
-
 
 class Solution {
     public List<Integer> largestDivisibleSubset(int[] nums) {
@@ -57,8 +54,5 @@ class Solution {
 
         boolean passed = output.equals(expOutput);
         System.out.println("test1: " + (passed ? "passed" : "failed"));
-        
-
-
     }
 }
