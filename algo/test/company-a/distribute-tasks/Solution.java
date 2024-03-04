@@ -10,7 +10,6 @@ public class Solution {
             HashSet<Integer> serversUsed = new HashSet<>();
             serversUsed.add(k);
             if (DFS(k, 0, n-1, G, mapping, serversUsed)) {
-                int s = 1;
                 return mapping.get(targetServer);
             }
         }
