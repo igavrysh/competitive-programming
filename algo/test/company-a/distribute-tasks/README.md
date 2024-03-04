@@ -38,3 +38,12 @@ int getTaskId(connections, int targetServer) { ... } // returns the task id assi
 
 **More clarifications**
 tasks are not given in problem statetement, but I assume its ok to have just array of incremented ids, starting from 1, e.g. tasks = taskIds = `[1,2,3,...,2^k]`
+
+
+**Example 3**
+
+In code - this example is mapped to `test3`:
+* server ids: `[0,1,2, (2^k)-1]`
+* task ids: `[0,1,2, (2^k)-1]`
+
+![ex3](ex3.png)
