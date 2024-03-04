@@ -125,8 +125,7 @@ public class Solution {
     }
 
     private static void test5() {
-        // equals to test3 but server 0, and 7 swapped so now server 7 has 3 connections
-        // and server 0 has 0 connections
+        // test for edge case - sequential connection b/w servers
         int[][] connections = {
             {0,1},{1,2},{2,3}  
         };
