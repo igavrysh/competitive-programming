@@ -6,10 +6,10 @@ class Solution {
     public void transform(int[][] matrix) {
         int R = matrix.length;
         int C = matrix[0].length;
-        HashMap<Integer, Integer[]> M = new HashMap<>();
+        int[][] M = new int[R*C][2];
         for (int i = 0; i < R; i++) {
             for (int j = 0; j < C; j++) {
-                M.put(matrix[i][j], new Integer[]{i,j});
+                M[matrix[i][j]-1] = new int[]{i,j};
             }
         }
 
@@ -18,12 +18,12 @@ class Solution {
         } 
     }
 
-    private void putNumOnRightPlace(int curr, HashMap<Integer, Integer[]> M, int[][] matrix) {
+    private void putNumOnRightPlace(int curr, int[][] M, int[][] matrix) {
         System.out.println("\nsetting " + curr + " into right place: ");
         print(matrix);
-        int R = matrix.length;
+        //int R = matrix.length;
         int C = matrix[0].length;
-        Integer[] coord = M.get(curr);
+        int[] coord = M[curr-1];
         if (coord == null) {
             throw new RuntimeException("unexp state");
         }
@@ -39,41 +39,39 @@ class Solution {
         }
 
         System.out.println("by columns move");
-        for (int delta = 1; delta <= Math.abs(finalC - coord[1]); delta++) {
+        int maxDelta = Math.abs(finalC - coord[1]);
+        for (int delta = 1; delta <= maxDelta; delta++) {
             int mult = finalC > coord[1] ? 1 : -1;
             int nextI = coord[0];
             int nextJ = coord[1] + mult;
             int next = matrix[nextI][nextJ];
             swap(curr, next, M, matrix);
-            coord[0] = nextI;
-            coord[1] = nextJ;
-
+            coord = M[curr-1];
             print(matrix);
         }
 
         System.out.println("by rows move");
-        for (int delta = 1; delta <= Math.abs(finalR - coord[0]); delta++) {
+        maxDelta = Math.abs(finalR - coord[0]);
+        for (int delta = 1; delta <= maxDelta; delta++) {
             int nextI = coord[0] - 1;
             int nextJ = coord[1];
             int next = matrix[nextI][nextJ];
             swap(curr, next, M, matrix);
-            coord[0] = nextI;
-            coord[1] = nextJ;
-
+            coord = M[curr-1];
             print(matrix);
         }
     }
 
-    private void swap(int curr, int next, HashMap<Integer, Integer[]> M, int[][] matrix) {
-        Integer[] coord = M.get(curr);
-        Integer[] nextCoord = M.get(next);
+    private void swap(int curr, int next, int[][] M, int[][] matrix) {
+        int[] coord = M[curr-1];
+        int[] nextCoord = M[next-1];
         int nextI = nextCoord[0];
         int nextJ = nextCoord[1];
         matrix[nextI][nextJ] = curr;
         matrix[coord[0]][coord[1]] = next;
-        Integer[] tmp = M.get(curr);
-        M.put(curr, M.get(next));
-        M.put(next, tmp);
+        int[] tmp = M[curr-1];
+        M[curr-1] = M[next-1];
+        M[next-1] = tmp;
     }
 
     private void print(int[][] matrix) {
@@ -102,10 +100,10 @@ class Solution {
             {   3,  2,  15, 5   }
         };
         int[][] expMatrix = {
-            {   1,  14, 7,  11  },
-            {   16, 6,  13, 8   },
-            {   9,  10, 4,  12  },
-            {   3,  2,  15, 5   }
+            {   1,  2,  3,  4   },
+            {   5,  6,  7,  8   },
+            {   9,  10, 11, 12  },
+            {   13, 14, 15, 16  }
         };
         Solution sol = new Solution();
         sol.transform(matrix);
@@ -115,5 +113,4 @@ class Solution {
         }
         System.out.println("test1: " + (passed ? "passed" : "failed"));
     }
-
 }
