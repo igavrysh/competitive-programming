@@ -1,6 +1,8 @@
 # 143. Reorder List
 
-**Medium**
+https://leetcode.com/problems/reorder-list
+
+`Medium`
 
 You are given the head of a singly linked-list. The list can be represented as:
 ```
