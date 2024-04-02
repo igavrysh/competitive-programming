@@ -2,57 +2,61 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class SolutionTri {
-    private static class TriNode {
-        public TriNode[] subNodes = new TriNode[26];
+    private static class TrieNode {
+        public TrieNode[] subnodes = new TrieNode[26];
         public boolean isEOW = false;
-        public TriNode() {}
+        public TrieNode() {}
     }
 
-    private void addWordToTri(String word, TriNode root) {
-        TriNode curr = root;
+    private void addWordToTrie(String word, TrieNode root) {
+        TrieNode curr = root;
         for (int i = word.length()-1; i >= 0; i--) {
-            char ch = word.charAt(i);
-            curr.subNodes[ch-'a'] = new TriNode();
-            curr = curr.subNodes[ch-'a'];
+            if (curr.subnodes[word.charAt(i)-'a'] == null) {
+                curr.subnodes[word.charAt(i)-'a'] = new TrieNode();
+            }
+            curr = curr.subnodes[word.charAt(i)-'a'];
         }
         curr.isEOW = true;
     }
-    // -1 = word is not in a tri
-    // positive result if word is in Tri, but maxSublen is not in Tri
-    private int isWordInTri(String word, int l, int r, TriNode root) {
-        TriNode curr = root;
-        int maxSublen = 0;
-        for (int i = r; i >= l; i--) {
-            char ch = word.charAt(i);
-            curr = curr.subNodes[ch-'a'];
-            if (curr == null || (r-l+1) > 10) {
+
+    // -1 - if false
+    // len of the last not blacklisted suffix 
+    private int isWordSuffixInBlackList(int l, int r, String word, TrieNode root) {
+        TrieNode curr = root;
+        for (int i = r; i >= r-10+1; i--) {
+            if (i < 0 || i < l) {
+                break;
+            }
+            curr = curr.subnodes[word.charAt(i)-'a'];
+            if (curr == null) {
                 return -1;
             }
             if (curr.isEOW) {
-                return maxSublen;
-            } else {
-                maxSublen++;
+                return r-i+1-1;
             }
         }
-        return !curr.isEOW ? -1 : maxSublen;
+        return -1;
     }
 
     public int longestValidSubstring(String word, List<String> forbidden) {
-        TriNode blacklistTri = new TriNode();
-        for (String w : forbidden) {
-            addWordToTri(w, blacklistTri);
+        // Time: O(B) + O(W*10) ~ O(B) + O(10*W)
+        // Space: O(B)
+
+        TrieNode blockedTrie = new TrieNode();
+        for (String forb : forbidden) {
+            addWordToTrie(forb, blockedTrie);
         }
-        int maxLen = 0;
+        int result = 0;
         int l = 0;
-        for (int r = 0; r < word.length(); r++) {
-            int len = isWordInTri(word, l, r, blacklistTri);
-            System.out.println("l:" + l + ", r:" + r + " , len:" + len);
-            if (len >= 0) {
-                l = r-len+1;
-            } else {}
-            maxLen = Math.max(maxLen, r-l+1);
+        int r = 0;
+        for (r = 0; r < word.length(); r++) {
+            int len = isWordSuffixInBlackList(l, r, word, blockedTrie);
+            if (len != -1) {
+                l = r - len + 1;
+            }
+            result = Math.max(result, r-l+1);
         }
-        return maxLen;
+        return result;
     }
 
     public static void test1() {
@@ -97,7 +101,23 @@ public class SolutionTri {
         System.out.println("test3: " + (passed ? "passed" : "failed"));
     }
 
+    public static void test4() {
+        String word = "aaaabaaacc";
+        List<String> forbidden = new ArrayList<>() {{
+            add("bcca");
+            add("aaa");
+            add("aabaa");
+            add("baaac");
+        }};
+        int expOutput = 4;
+        SolutionTri sol = new SolutionTri();
+        int output = sol.longestValidSubstring(word, forbidden);
+        boolean passed = output == expOutput;
+        System.out.println("test4: " + (passed ? "passed" : "failed"));
+    }
+
     public static void main(String[] args) {
+        test4();
         test3();
         test2();
         test1();
