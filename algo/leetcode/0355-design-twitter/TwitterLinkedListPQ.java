@@ -101,6 +101,7 @@ public class TwitterLinkedListPQ {
     }
 
     public static void main(String[] args) {
+        test4();
         test3();
         test1();
         test2();
@@ -141,5 +142,33 @@ public class TwitterLinkedListPQ {
         output = twitter.getNewsFeed(1).stream().toArray();
         passed = passed && Arrays.deepEquals(output, new Integer[]{ 3, 5 });
         System.out.println("test3: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test4() {
+        boolean passed = true;
+        Object[] output = null;
+        TwitterLinkedListPQ twitter = new TwitterLinkedListPQ();
+        twitter.postTweet(2, 5);
+        twitter.postTweet(1, 3);
+        twitter.postTweet(1, 101);
+        twitter.postTweet(2, 13);
+        twitter.postTweet(2, 10);
+        twitter.postTweet(1, 2);
+        twitter.postTweet(2, 94);
+        twitter.postTweet(2, 505);
+        twitter.postTweet(1, 333);
+        twitter.postTweet(1, 22);
+        output = twitter.getNewsFeed(2).stream().toArray();
+        passed = passed && Arrays.deepEquals(
+            output,
+            new Integer[]{505,94,10,13,5}
+        );
+        twitter.follow(2, 1);
+        output = twitter.getNewsFeed(2).stream().toArray();
+        passed = passed && Arrays.deepEquals(
+            output,
+            new Integer[]{22,333,505,94,2,10,13,101,3,5}
+        );
+        System.out.println("test4: " + (passed ? "passed" : "failed"));
     }
 }
