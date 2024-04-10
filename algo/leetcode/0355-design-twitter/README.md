@@ -1,5 +1,7 @@
-# 355. Design Twitter
-**Medium**
+### 355. Design Twitter
+
+
+``Medium``
 
 Design a simplified version of Twitter where users can post tweets, follow/unfollow another user, and is able to see the `10` most recent tweets in the user's news feed.
 
@@ -16,7 +18,7 @@ Implement the `Twitter` class:
 * `void unfollow(int followerId, int followeeId)` The user with ID `followerId` started unfollowing the user with ID `followeeId`.
  
 
-**Example 1**:
+**Example 1**
 ```
 Input
 ["Twitter", "postTweet", "getNewsFeed", "follow", "postTweet", "getNewsFeed", "unfollow", "getNewsFeed"]
@@ -35,9 +37,21 @@ twitter.unfollow(1, 2);  // User 1 unfollows user 2.
 twitter.getNewsFeed(1);  // User 1's news feed should return a list with 1 tweet id -> [5], since user 1 is no longer following user 2.
 ``` 
 
-**Constraints**:
+**Constraints**
 
 * `1 <= userId, followerId, followeeId <= 500`
 * `0 <= tweetId <= 10^4`
 * All the tweets have unique IDs.
 * At most `3 * 10^4` calls will be made to `postTweet`, `getNewsFeed`, `follow`, and `unfollow`.
+
+**Java API**
+```
+class Twitter {
+    public Twitter() {}
+    public void postTweet(int userId, int tweetId) {}
+    public List<Integer> getNewsFeed(int userId) { return null; }
+    public void follow(int followerId, int followeeId) {}
+    public void unfollow(int followerId, int followeeId) {}
+}
+```
+

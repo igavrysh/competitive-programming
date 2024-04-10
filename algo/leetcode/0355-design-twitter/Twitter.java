@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -7,7 +8,6 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 class Twitter {
-
     private HashMap<Integer, HashSet<Integer>> followers = new HashMap<>();
     private HashMap<Integer, ArrayList<Integer>> tweets = new HashMap<>();
     private HashMap<Integer, PriorityQueue<Integer>> newsFeed = new HashMap<>();
@@ -27,7 +27,12 @@ class Twitter {
     private void addUser(int userId) {
         HashSet<Integer> flwrs = followers.getOrDefault(userId, new HashSet<>() {{ add(userId); }});
         for (Integer flwr : flwrs) {
-            PriorityQueue<Integer> pq = newsFeed.getOrDefault(flwr, new PriorityQueue<>((t1, t2) -> timestamps.get(t2) - timestamps.get(t1)));
+            PriorityQueue<Integer> pq 
+                = newsFeed.getOrDefault(
+                    flwr,
+                    new PriorityQueue<>((t1, t2) -> timestamps.get(t2) - timestamps.get(t1)
+                )
+            );
             newsFeed.put(flwr, pq);
         }
         followers.put(userId, flwrs);
@@ -104,6 +109,49 @@ class Twitter {
             pq.remove(twts.get(i));
         }
         followers.get(followeeId).remove(followerId);
+    }
+
+    public static void main(String[] args) {
+        test1();
+        test2();
+        test3();
+    }
+
+    private static void test1() {
+        boolean passed = true;
+        Object[] output = null;
+        Twitter twitter = new Twitter();
+        twitter.postTweet(1, 5);
+        output = twitter.getNewsFeed(1).stream().toArray();
+        passed = passed && Arrays.deepEquals(output, new Integer[]{ 5 });
+        twitter.follow(1, 2);
+        twitter.postTweet(2, 6);
+        output = twitter.getNewsFeed(1).stream().toArray();
+        passed = passed && Arrays.deepEquals(output, new Integer[]{ 6, 5 });
+        twitter.unfollow(1, 2);
+        output = twitter.getNewsFeed(1).stream().toArray();
+        passed = passed &&  Arrays.deepEquals(output, new Integer[]{ 5 });
+        System.out.println("test1: " + (passed ? "passed" : "failed"));
+    }
+
+    private static void test2() {
+        boolean passed = true;
+        Object[] output = null;
+        Twitter twitter = new Twitter();
+        output = twitter.getNewsFeed(1).stream().toArray();
+        passed = passed && Arrays.deepEquals(output, new Integer[]{});
+        System.out.println("test2: " + (passed ? "passed" : "failed"));
+    }
+
+    private static void test3() {
+        boolean passed = true;
+        Object[] output = null;
+        Twitter twitter = new Twitter();
+        twitter.postTweet(1, 5);
+        twitter.postTweet(1, 3);
+        output = twitter.getNewsFeed(1).stream().toArray();
+        passed = passed && Arrays.deepEquals(output, new Integer[]{ 3, 5 });
+        System.out.println("test3: " + (passed ? "passed" : "failed"));
     }
 }
 
