@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-class Twitter {
+class TwitterOld {
     private HashMap<Integer, HashSet<Integer>> followers = new HashMap<>();
     private HashMap<Integer, ArrayList<Integer>> tweets = new HashMap<>();
     private HashMap<Integer, PriorityQueue<Integer>> newsFeed = new HashMap<>();
@@ -22,7 +22,7 @@ class Twitter {
         }
     }
 
-    public Twitter() {}
+    public TwitterOld() {}
 
     private void addUser(int userId) {
         HashSet<Integer> flwrs = followers.getOrDefault(userId, new HashSet<>() {{ add(userId); }});
@@ -120,7 +120,7 @@ class Twitter {
     private static void test1() {
         boolean passed = true;
         Object[] output = null;
-        Twitter twitter = new Twitter();
+        TwitterOld twitter = new TwitterOld();
         twitter.postTweet(1, 5);
         output = twitter.getNewsFeed(1).stream().toArray();
         passed = passed && Arrays.deepEquals(output, new Integer[]{ 5 });
@@ -137,7 +137,7 @@ class Twitter {
     private static void test2() {
         boolean passed = true;
         Object[] output = null;
-        Twitter twitter = new Twitter();
+        TwitterOld twitter = new TwitterOld();
         output = twitter.getNewsFeed(1).stream().toArray();
         passed = passed && Arrays.deepEquals(output, new Integer[]{});
         System.out.println("test2: " + (passed ? "passed" : "failed"));
@@ -146,7 +146,7 @@ class Twitter {
     private static void test3() {
         boolean passed = true;
         Object[] output = null;
-        Twitter twitter = new Twitter();
+        TwitterOld twitter = new TwitterOld();
         twitter.postTweet(1, 5);
         twitter.postTweet(1, 3);
         output = twitter.getNewsFeed(1).stream().toArray();

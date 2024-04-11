@@ -9,6 +9,7 @@ public class TwitterLinkedListPQ {
     static class Node {
         public Node next;
         public Node prev;
+        public Node prevSelf;
         public int t;
         public int tweetId;
         public boolean isSentinel = false;
@@ -24,7 +25,7 @@ public class TwitterLinkedListPQ {
     private Node head;
     private Node tail;
     private int t;
-    private HashMap<Integer, Node[]> userHeadTail = new HashMap<>();
+    private HashMap<Integer, Node[]> userHeadTails = new HashMap<>();
     private HashMap<Integer, HashSet<Integer>> userFollows = new HashMap<>();
 
     public TwitterLinkedListPQ() {
@@ -42,11 +43,11 @@ public class TwitterLinkedListPQ {
         node.next = head;
         headPrev.next = node;
         node.prev = headPrev;
-        Node[] headTail = userHeadTail.get(userId);
+        Node[] headTail = userHeadTails.get(userId);
         if (headTail == null) {
             headTail = new Node[]{node, node};
             node.cnt = 1;
-            userHeadTail.put(userId, headTail);
+            userHeadTails.put(userId, headTail);
         } else {
             if (head.cnt == 10) {
                 Node prevToUserTail = headTail[1].prev;
@@ -57,17 +58,19 @@ public class TwitterLinkedListPQ {
                 headTail[0].cnt--;
             }
             node.cnt = headTail[0].cnt+1;
+            node.prevSelf = headTail[0];
             headTail[0] = node;
         }
     }
 
     public List<Integer> getNewsFeed(int userId) {
         ArrayList<Integer> output = new ArrayList<>();
-        PriorityQueue<Node[]> q = new PriorityQueue<>((Node[] n1, Node[] n2) -> -1 * Integer.compare(n1[0].t, n2[0].t));
+        PriorityQueue<Node[]> q 
+            = new PriorityQueue<>((Node[] n1, Node[] n2) -> -1 * Integer.compare(n1[0].t, n2[0].t));
         HashSet<Integer> follows = userFollows.get(userId);
         if (follows == null) { return output; }
         for (int f : follows) {
-            Node[] headTail = userHeadTail.get(f);
+            Node[] headTail = userHeadTails.get(f);
             if (headTail != null) {
                 q.offer(headTail);
             }
@@ -77,8 +80,7 @@ public class TwitterLinkedListPQ {
             Node[] headTail = q.poll();
             output.add(headTail[0].tweetId);
             if (headTail[0] != headTail[1]) {
-                headTail[0] = headTail[0].prev;
-                q.offer(headTail);
+                q.offer(new Node[]{headTail[0].prevSelf, headTail[1]});
             }
         }
 
