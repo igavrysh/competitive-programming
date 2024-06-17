@@ -7,9 +7,20 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class SolutionPQ {
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 
     public List<List<Integer>> verticalTraversal(TreeNode root) {
-        
         Map<Integer, Queue<Element>> colMap = new HashMap<>();
         Queue<Element> queue = new LinkedList<>();
         queue.add(new Element(0, 0, root));
@@ -17,7 +28,6 @@ public class SolutionPQ {
         int maxCol = Integer.MIN_VALUE;
         while (!queue.isEmpty()) {
             var el = queue.remove();
-
             var mapQueue = colMap.get(el.col);
             if (mapQueue == null) {
                 mapQueue = new PriorityQueue<>();

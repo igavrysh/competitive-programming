@@ -5,6 +5,19 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class SolutionPQ3 {
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
     private class Pair {
         public TreeNode node;
         public Tuple tuple;
