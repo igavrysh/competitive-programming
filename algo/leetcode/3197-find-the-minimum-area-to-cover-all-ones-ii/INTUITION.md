@@ -1,13 +1,17 @@
 # Intuition ✨
 Harness the power of prefix sums for matrices and insightful hints to tackle the Brute Force solution!
 
-
 # Approach 🚀
 
-* To count the number of 1s in any row or column, regardless of the start or end indices for rows/columns, use a prefix submatrix representing the number of 1s in the submatrix `(0..i)x(0..j)`.
+First core idea is to count the number of 1s in any row or column, regardless of the start or end indices for rows/columns, use a prefix submatrix representing the number of 1s in the submatrix `(0..i)x(0..j)`.
 
-___
-* Split cases vertically and horizontally:
+Second core idea... based on hints:
+
+* Consider covering using 2 rectangles. As the rectangles don’t overlap, one of the rectangles must either be vertically above or horizontally left to the other.
+* To find the minimum area, check all possible vertical and horizontal splits.
+* For 3 rectangles, extend the idea to first covering using one rectangle, and then try splitting leftover ones both horizontally and vertically.
+
+... is to split cases vertically and horizontally:
   * vertically:
     ```
     X
@@ -20,7 +24,6 @@ ___
     X | Y
     ```
 `X` & `Y` themselves can also split into 2 or 1 squares based on the number of squares already used for splitting in the case.
-
 * vertially:
   * top square `X` splits:
     * vertially:
@@ -52,8 +55,6 @@ ___
     -------
     Y1 | Y2
     ```
-   
-
 * horizontally:
   * right square `X` splits:
     * vertically
@@ -78,22 +79,19 @@ ___
     X  | Y1 | Y 2
     ```
 
-
-
-
 # Complexity 🌟
 
-- Time complexity:$$O(rows \times cols  \times rows  \times cols  \times max(rows,cols)) \approx 30^5 \approx 2.5  \times 10^7$$ 
+- Time complexity: $O(rows \times cols  \times rows  \times cols  \times max(rows,cols)) \approx 30^5 \approx 2.5  \times 10^7$ 
 
-- Space complexity: $$O(rows  \times cols \times rows \times cols) \approx 30^4= 810,000$$
+- Space complexity: $O(rows  \times cols ) \approx 30^2= 900$
 
 
 # Code 💻✨
-The `Solution` class implements a method to find the minimum sum of areas needed to cover all `1s` in a `grid`. It uses prefix sums to quickly calculate subarray sums and tries different ways to split the grid vertically and horizontally to minimize the total area. 
+The `Solution` class implements a method to find the minimum sum of areas needed to cover all `1`s in a `grid`. It uses prefix sums to quickly calculate subarray sums and tries different ways to split the grid vertically and horizontally to minimize the total area.
 
-The helper methods, `minAreaToCoverOnesWith2Rec` and `minAreaToCoverOnes`, are used to calculate the minimum area required to cover ones with two rectangles and one rectangle respectively. 
+The helper methods, `minAreaToCoverOnesWith2Rec` and `minAreaToCoverOnes`, are used to calculate the minimum area required to cover ones with two rectangles and one rectangle respectively.
 
-The code handles caching (commented out since it does not improve runtime) for optimization and carefully updates the prefix sum array to facilitate quick calculations. 🌟
+The code handles caching (commented out since it does not improve runtime) for optimization and carefully updates the prefix sum array to facilitate quick calculations 🌟.
 
 ```
 class Solution {
