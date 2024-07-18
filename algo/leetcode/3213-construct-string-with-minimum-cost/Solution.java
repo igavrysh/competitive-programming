@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.PriorityQueue;
-
 class Solution {
     public class TrieNode {
         public TrieNode[] children = new TrieNode[26];
@@ -33,56 +31,53 @@ class Solution {
             add(words[i], costs[i], root);
             max_len = Math.max(max_len, words[i].length());
         }
-        // idx 0: stop idx at target, idx 1: cost
-        PriorityQueue<int[]> pq = new PriorityQueue<>((int[] p1, int[] p2) -> Integer.compare(p1[1], p2[1]));
-        TrieNode node = root;
-        for (int i = 0; i < Math.min(max_len, target.length()); i++) {
-            int ch = target.charAt(i)-'a';
-            node = node.children[ch];
-            if (node == null) {
-                break;
-            }
+        int[] dp = new int[target.length()];
+        int i = 0;
+        TrieNode node = root.children[target.charAt(i)-'a'];
+        while (node != null) {
             if (node.isEOW) {
-                pq.offer(new int[]{i, node.cost});
+                dp[i] = node.cost;
+            }
+            i++;
+            if (i < target.length()) {
+                node = node.children[target.charAt(i)-'a'];
+            } else {
+                node = null;
             }
         }
-        int minCost = -1;
-        while (!pq.isEmpty()) {
-            int level = pq.size();
-            for (int l = 0; l < level; l++) {
-                int[] pair = pq.poll();
-                if (pair[0] == target.length()-1) {
-                    if (minCost == -1) {
-                        minCost = pair[1];
+        for (i = 0; i < target.length(); i++) {
+            if (dp[i] == 0) {
+                continue;
+            }
+            int j = i+1;
+            if (j >= target.length()) {
+                continue;
+            }
+            node = root.children[target.charAt(j)-'a'];
+            while (node != null) {
+                if (node.isEOW) {
+                    if (dp[j] == 0) {
+                        dp[j] = dp[i] + node.cost;
                     } else {
-                        minCost = Math.min(minCost, pair[1]);
-                    }
-                    continue;
-                }
-
-                node = root;
-                for (int i = pair[0]+1 ; i < Math.min(pair[0]+1+max_len, target.length()); i++) {
-                    int ch = target.charAt(i)-'a';
-                    node = node.children[ch];
-                    if (node == null) {
-                        break;
-                    }
-                    if (node.isEOW) {
-                        pq.offer(new int[]{i, pair[1]+node.cost});
+                        dp[j] = Math.min(dp[j], dp[i] + node.cost);
                     }
                 }
-            }
-            if (minCost != -1) {
-                break;
+                j++;
+                if (j < target.length()) {
+                    node = node.children[target.charAt(j)-'a'];
+                } else {
+                    node = null;
+                }
             }
         }
-        return minCost;
+        return dp[target.length()-1] == 0 ? -1 : dp[target.length()-1];
     }
 
     public static void main(String[] args) {
+        test3();
         test1();
-
         test2();
+        test_big();
     }
 
     public static void test1() {
@@ -93,10 +88,32 @@ class Solution {
         int output = sol.minimumCost(target, words, costs);
         int expectedOutput = 7;
         boolean passed = output == expectedOutput;
-        System.out.println("test1:" + (passed ? "passed" : "failed"));
+        System.out.println("test1: " + (passed ? "passed" : "failed"));
     }
 
     public static void test2() {
+        String target = "n";
+        String[] words = {"n","n","n","n"};
+        int[] costs = {2,1,1,1};
+        Solution sol = new Solution();
+        int output = sol.minimumCost(target, words, costs);
+        int expectedOutput = 1;
+        boolean passed = output == expectedOutput;
+        System.out.println("test2: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test3() {
+        String target = "sgsipzma";
+        String[] words = {"s","s","g","ipzma"};
+        int[] costs = {1,5,2,1};
+        Solution sol = new Solution();
+        int output = sol.minimumCost(target, words, costs);
+        int expectedOutput = 5;
+        boolean passed = output == expectedOutput;
+        System.out.println("test3: " + (passed ? "passed" : "failed"));
+    }
+
+    public static void test_big() {
         try (
             BufferedReader reader_in = new BufferedReader(new FileReader("test_big.in"));
             BufferedReader reader_out = new BufferedReader(new FileReader("test_big.out"))
@@ -112,7 +129,7 @@ class Solution {
             Solution sol = new Solution();
             int output = sol.minimumCost(target, words, costs);
             boolean passed = output == exp_output;
-            System.out.println("test2: " + (passed ? "passed" : "failed"));
+            System.out.println("test_big: " + (passed ? "passed" : "failed"));
         } catch (IOException e) {
             e.printStackTrace();
         }

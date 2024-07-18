@@ -33,7 +33,8 @@ Select index 4 and append "ef" to s at a cost of 5, resulting in s = "abcdef".
 ```
 Input: target = "aaaa", words = ["z","zz","zzz"], costs = [1,10,100]
 
-Output: -1
+Outpu |
+<t: -1
 
 Explanation:
 
