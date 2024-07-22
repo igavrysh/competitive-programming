@@ -78,7 +78,7 @@ class SolutionBS {
         SolutionBS sol = new SolutionBS();
         int output = sol.minChanges(nums, k);
         boolean passed = output == expOutput;
-        System.out.println("test1: " + (passed ? "passed" : "failed")); 
+        System.out.println("test2: " + (passed ? "passed" : "failed")); 
     }
 
     public static void test3() {
