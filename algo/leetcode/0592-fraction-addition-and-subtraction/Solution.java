@@ -9,8 +9,7 @@ class Solution {
         for (int i = 0; i <= ex.length(); i++) {
             char ch = i < ex.length() ? ex.charAt(i) : 'a';
             if (ch == '-' || ch == '+' || i == ex.length()) {
-                System.out.println("acc_nom:"+acc_nom+";acc_denom"+acc_denom+";nom:"+nom+";denom:"+denom);
-                // least common multiple
+                // lcm = least common multiple
                 if (nom != 0 && denom != 0) {
                     if (acc_denom == 0) {
                         acc_nom = (is_minus ? -1 : 1) * nom;
@@ -18,12 +17,9 @@ class Solution {
                     } else {
                         int gcd = gcd(Math.abs(denom), Math.abs(acc_denom));
                         int lcm = (Math.abs(denom)*Math.abs(acc_denom))/gcd;
-                        System.out.println("gcd:"+gcd+";lcm:"+lcm);
                         acc_nom = acc_nom * lcm/acc_denom + (is_minus ? -1 : 1) * nom *lcm/denom;
-                        System.out.println("acc_nom:"+acc_nom);
                         acc_denom = lcm;
-
-                        int gcd2 = gcd(Math.abs(nom), Math.abs(denom));
+                        int gcd2 = gcd(Math.abs(acc_nom), Math.abs(acc_denom));
                         acc_nom /= gcd2;
                         acc_denom /= gcd2;
                     }
