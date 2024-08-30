@@ -71,7 +71,7 @@ class BSTIterator {
         test1();
     }
 
-    public static void test1() {
+    private static void test1() {
         TreeNode root = new TreeNode(
             7,
             new TreeNode(3),
