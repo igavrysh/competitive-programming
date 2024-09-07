@@ -2,9 +2,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 class Solution {
+    private int bt(int i, int mask, int sum, int[][] values, int[][] dp) {
+        if (dp[i][mask] != -1) {
+            return dp[i][mask];
+        }
+        int curr_sum = sum+values[i][0];
+        int max = curr_sum;
+        state[values[i][1]] = true;
+        for (int j = i-1; j>=0; j--) {
+            // values[j][0] - value itself, ...[1] row, [2] column
+            if (values[j][0] > values[i][0] && state[values[j][1]] == false) {
+                max = Math.max(max, bt(j, state, curr_sum, values, dp));
+            }
+        }
+        state[values[i][1]] = false;
+        dp[i][state_idx] = max;
+        return max;
+    }
     public int maxScore(List<List<Integer>> grid) {
         int rows = grid.size();
         int cols = grid.get(0).size();
+        int[][] dp = new int[100][1024];
+
+
+        
         int[][] values = new int[rows*cols][3];
         for (int i = 0; i < rows; i++) {
             List<Integer> row = grid.get(i);
@@ -13,31 +34,12 @@ class Solution {
             }
         }
         Arrays.sort(values, (int[] v1, int[] v2) -> -1*Integer.compare(v1[0],v2[0]));
-        int[] dp = new int[rows*cols];
-        boolean[][] state = new boolean[rows*cols][rows];
-        int max_score = 0;
+        boolean[] state = new boolean[rows];
+        int max = 0;
         for (int i = 0; i < values.length; i++) {
-            int[] vls = values[i];
-            for (int j = i-1; j >= -1; j--) {
-                if (j == -1 && dp[i] < vls[0]) {
-                    state[i][vls[1]] = true;
-                    dp[i] = vls[0];
-                    max_score = Math.max(max_score, dp[i]);
-                }
-                if (j == -1) {
-                    continue;
-                }
-                if (state[j][vls[1]] == false && values[j][0] > vls[0] && dp[i] < dp[j]+vls[0]) {
-                    for (int k = 0; k < rows; k++) {
-                        state[i][k] = state[j][k];
-                    }
-                    state[i][vls[1]] = true;
-                    dp[i] = dp[j] + vls[0];
-                    max_score = Math.max(max_score, dp[i]);
-                }
-            }
+            max = Math.max(max, bt(i, state, 0, values, dp));
         }
-        return max_score;
+        return max;
     }
     public static void main(String[] args) {
         test503();
