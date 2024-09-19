@@ -140,7 +140,7 @@ class Solution {
             System.out.println("Error reading file: " + e.getMessage());
         }
 
-        String output_filepath = "test47.out";
+        String output_filepath = "test47-out";
         int exp_output = 0;
         try (BufferedReader reader2 = new BufferedReader(new FileReader(output_filepath))) {
             String line = reader2.readLine();
