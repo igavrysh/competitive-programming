@@ -12,46 +12,49 @@ class Solution {
         long nanoTime = 0;
         long nanoTimeSt = System.nanoTime();
         nanoTime = System.nanoTime();
-        System.out.println("d0: " + (nanoTime-nanoTimeSt));
+        //System.out.println("d0: " + (nanoTime-nanoTimeSt));
 
         if (source == target) {
             return 0;
         }
         HashMap<Integer, HashSet<Integer>> routes = new HashMap<>();
         HashMap<Integer, HashSet<Integer>> station_to_route = new HashMap<>();
+        boolean[][] edges = new boolean[500][500];
         int r_id = 0;
         for (int i = 0; i < routes_input.length; i++) {
             for (int j = 0; j < routes_input[i].length; j++) {
                 HashSet<Integer> station_routes = station_to_route.getOrDefault(
                         routes_input[i][j], new HashSet<>());
+                for (Integer other_r_id : station_routes) {
+                    edges[r_id][other_r_id] = true;
+                    edges[other_r_id][r_id] = true;
+                }
                 station_routes.add(r_id);
                 station_to_route.put(routes_input[i][j], station_routes);
             }
             r_id++;
         }
- 
+
         nanoTime = System.nanoTime();
-        System.out.println("d1: " + (nanoTime-nanoTimeSt));
+        //System.out.println("d1: " + (nanoTime-nanoTimeSt));
 
         // stataions: 10^6, routes:500x500=250000~10^5, O(n^11)
-        for (int st : station_to_route.keySet()) {
-            HashSet<Integer> station_routes = station_to_route.get(st);
-            for (Integer r1 : station_routes) {
-                for (Integer r2 : station_routes) {
-                    if (r1 == r2) {
-                        continue;
-                    }
-                    HashSet<Integer> ngbrs_routes1 = routes.getOrDefault(r1, new HashSet<>());
-                    ngbrs_routes1.add(r2);
-                    routes.put(r1, ngbrs_routes1);
-                    HashSet<Integer> ngbrs_routes2 = routes.getOrDefault(r2, new HashSet<>());
-                    ngbrs_routes2.add(r1);
-                    routes.put(r2, ngbrs_routes2);
+
+        for (int i = 0; i < routes_input.length; i++) {
+            routes.put(i, new HashSet<>());
+        }
+
+        for (int i = 0; i < edges.length; i++) {
+            for (int j = 0; j < edges[i].length; j++) {
+                if (edges[i][j]) {
+                    routes.get(i).add(j);
+                    routes.get(j).add(i);
                 }
             }
         }
+           
         nanoTime = System.nanoTime();
-        System.out.println("d2: " + (nanoTime-nanoTimeSt));
+        //System.out.println("d2: " + (nanoTime-nanoTimeSt));
 
         HashSet<Integer> r_trgt = station_to_route.get(target);
         if (r_trgt == null) {
@@ -75,7 +78,7 @@ class Solution {
                 if (r_trgt.contains(curr)) {
 
                     nanoTime = System.nanoTime();
-                    System.out.println("d3: " + (nanoTime-nanoTimeSt));
+                    //System.out.println("d3: " + (nanoTime-nanoTimeSt));
 
                     return jumps;
                 }
@@ -94,7 +97,7 @@ class Solution {
             jumps++;
         }
         nanoTime = System.nanoTime();
-        System.out.println("d3: " + (nanoTime-nanoTimeSt));
+        //System.out.println("d3: " + (nanoTime-nanoTimeSt));
 
         return -1;
     }
