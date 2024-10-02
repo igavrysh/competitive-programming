@@ -1,11 +1,9 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-
 class AllOne {
     private static class Node {
         public HashSet<String> keys = new HashSet<>();
@@ -104,14 +102,12 @@ class AllOne {
     public String getMinKey() {
         return !tail.next.keys.isEmpty() ? tail.next.keys.iterator().next() : "";
     }
-
     public static void main(String[] args) {
         test5();
         test1();
         test3();
         test2();
     }
-
     private static String[][] read_from_file(String file_path) {
         String[][] test = new String[3][];
         try {
@@ -134,7 +130,6 @@ class AllOne {
         }
         return test;
     }
-
     public static void test5() {
         String[][] test = read_from_file("test5");
         AllOne sol = new AllOne();
@@ -156,7 +151,6 @@ class AllOne {
         }
         System.out.println("test5: " + (passed ? "passed" : "failed"));
     }
-
     public static void test1() {
 /*
 ["AllOne","inc",    "inc",  "inc",  "inc",  "inc",  "dec",  "dec",  "getMaxKey",    "getMinKey"]
@@ -175,7 +169,6 @@ class AllOne {
         passed = passed && sol.getMinKey().equals("a");
         System.out.println("test1: " + (passed ? "passed" : "failed"));
     }
-
     public static void test2() {
 /*
 ["AllOne","inc","inc","inc","inc","inc","inc","dec", "dec","getMinKey","dec","getMaxKey","getMinKey"]
