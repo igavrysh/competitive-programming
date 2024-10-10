@@ -32,8 +32,6 @@ class Solution {
         // so I need to clean pairs of divider of 2 cos out of 3 pairs with divider of 2
         // 1 pair be devider of 2 and divider of 4, therefore only 2 pairs that have gcd=2
         // & 1 pair that has gcd of 4
-        
-        
         for (int i=div_pairs.length-1; i>=1; i--) {
             if (div_pairs[i] == 0) {
                 continue;
