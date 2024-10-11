@@ -8,7 +8,7 @@ class Solution {
             max_num = Math.max(nums[i], max_num);
         }
         // store all valid dividers frequencies
-        int[] div_fq = new int[max_num+1];
+        long[] div_fq = new long[max_num+1];
         for (int i=0; i<n; i++) {
             for (int div=1; div<=(int)Math.sqrt(nums[i]); div++) {
                 if (nums[i]%div!=0) { continue; }
@@ -18,7 +18,7 @@ class Solution {
                 }
             }
         }
-        int[] div_pairs = new int[max_num+1];
+        long[] div_pairs = new long[max_num+1];
         // div_pairs[i] - number of pairs of numbers that divide by i
         // combinations of take 2 out for div_fq[i] 
         // = div_fq[i]!/[2!(div_fq[i]-2)!]
