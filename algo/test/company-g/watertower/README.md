@@ -12,20 +12,22 @@ Cell Neighbors: top, bottom, left, right
 heightMap = [
     [   7,  1,  2,  4,  5   ],
     [   6,  4,  6,  3,  2   ],
-    [   5,  2,  2i, 1,  9   ],
+    [   5,  2,  2*, 1,  9   ],
     [   6,  6,  4,  2,  3   ],
-    [   2,  1i, 3,  4,  6   ]
+    [   2,  1*, 3,  4,  6   ]
 ]
 ```
 
-Villages: (2,2), (4,1) - VIllages are marked as i for simplicity.
+Villages: (2,2), (4,1) - VIllages are marked with * for simplicity (* is absent in task input)
 
-Input: heightMap, coordinates of two villages
+Input: 2d array, heightMap, coordinates of two villages
 
 Output: coordinates of water tower
 
-0 <= R,C <= 10K
+Constraints:
+
+* `0 <= R,C <= 10K`
 
 API:
 
-* `int[] waterTower(int[][] heightMap, int[] village1, int[] villabe2)`, based on height map - matrix RxC and coordinates of `village1` = `[r1,c1]`, and `village2` = `[r2,c2]` return the coordinates of watertower `watertower` = `[r_watertower, c_watertower]`
+* `int[] waterTower(int[][] heightMap, int[] village1, int[] villabe2)`, based on height map - matrix RxC and coordinates of `village1` = `[row_1, col_1]`, and `village2` = `[row_2,col_2]` return the coordinates of watertower `watertower` = `[row_watertower, col_watertower]`
