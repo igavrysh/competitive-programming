@@ -17,7 +17,7 @@ You need to distribute `2^k` tasks to `2^k` servers using divide and conquer alg
 
 All servers should be assigned one task in the end
 
-Your task is to select a sequence of servers so that every server is mapped to one tasks
+Your task is to select a sequence of servers so that every server is mapped to one task
 
 **Input**
 
