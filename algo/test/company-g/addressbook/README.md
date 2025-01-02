@@ -23,11 +23,15 @@ calls:
 
 ```
 query: (number: null, city: "Seattle", street: null, state: "Washington") should return true
+as 1 record in addressbook satisfies search query: (number: 42, city: "Seattle", street: "Brandon", state: "Washington")
 
 query: (number: 42, city: "Seattle", street: "Xoxoxo", state:null) should return false
+as 0 records in addressbook satisfies search query, there is no city with name Xoxoxo in Seattle
 
 query: (number: null, city: null, street: null, state:null) should return true
+as 2 records in addressbook satisfies search query
 
 query: (number: null, city: "seattle", street: null, state: "Washington") 
-should return false (Seattle in address book starts with capital letter)
+should return false
+s Seattle in address book starts with capital letter
 ```
